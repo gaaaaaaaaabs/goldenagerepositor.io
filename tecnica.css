@@ -1,4 +1,4 @@
-/* --- [INÍCIO] Template de Técnica Amaldiçoada (ct-container) --- */
+/* --- Início do Template de Técnica Amaldiçoada (Layout Flex Corrigido) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
 
 :root {
@@ -144,9 +144,10 @@
     display: block;
 }
 
+/* --- NOVO LAYOUT RESPONSIVO (SEM MEDIA QUERY) --- */
 .spell-card-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    flex-wrap: nowrap; /* Força a ficar lado a lado */
     gap: 20px;
     background: var(--ct-glass-2);
     border-radius: 8px;
@@ -154,15 +155,20 @@
     border: 1px solid var(--ct-border-color);
 }
 .spell-image {
-    width: 100%;
-    height: 450px;
+    width: 40%; /* Imagem ocupa 40% */
+    flex-shrink: 0; /* Não encolhe */
+    height: auto; /* Altura se ajusta */
     object-fit: cover;
-    border-radius: 8px;
+    border-radius: 8px 0 0 8px;
 }
 .spell-details {
     padding: 20px;
-    min-width: 0;
+    flex-grow: 1; /* Ocupa o resto do espaço */
+    min-width: 0; /* Permite que o texto quebre */
+    width: 60%; /* Ocupa 60% */
 }
+/* --- FIM DA MUDANÇA --- */
+
 .spell-japanese-name {
     font-family: var(--ct-mono);
     font-size: 14px;
@@ -209,7 +215,7 @@
 }
 .spell-stats-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); /* Stats se ajustam */
     gap: 10px;
     margin-bottom: 15px;
     font-family: var(--ct-mono);
@@ -288,8 +294,9 @@
 .image-fire-wrapper {
   position: relative;
   display: block;
-  width: 100%;
-  height: 450px;
+  width: 40%; /* Define a largura como 40% */
+  height: auto; /* Altura se ajusta */
+  flex-shrink: 0;
   border-radius: 8px;
   animation: intense-fire-glow 2s infinite alternate ease-in-out; 
 }
@@ -304,22 +311,11 @@
   border-radius: 8px; 
 }
 
-@media (max-width: 650px) {
+/* Removemos a media query que estava sendo ignorada */
+@media (max-width: 768px) {
     .ct-header { height: 200px; }
     .ct-title { font-size: 26px; }
     .spell-tabs-nav { justify-content: center; }
     .spell-tab-button { font-size: 15px; padding: 10px; }
-    .spell-stats-grid { grid-template-columns: 1fr; }
     .stat-block { justify-content: center; }
-    .spell-image, .image-fire-wrapper {
-        height: 250px;
-        border-radius: 8px 8px 0 0;
-    }
-    .spell-card-grid {
-        gap: 0;
-    }
-    .spell-details {
-        border-top: 1px solid var(--ct-border-color);
-    }
 }
-/* --- [FIM] Template de Técnica --- */
