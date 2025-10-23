@@ -1,0 +1,325 @@
+/* --- [INÍCIO] Template de Técnica Amaldiçoada (ct-container) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
+
+:root {
+    --ct-bg: #0c0c1a;
+    --ct-panel: #0f1020;
+    --ct-muted: #bfc6e6;
+    --ct-accent1: #9b00ff;
+    --ct-accent2: #3c00b0;
+    --ct-highlight: #c48fff;
+    --ct-card-radius: 12px;
+    --ct-glass: rgba(255, 255, 255, 0.03);
+    --ct-glass-2: rgba(255, 255, 255, 0.02);
+    --ct-text: #e7e9ff;
+    --ct-border-color: rgba(255, 255, 255, 0.07);
+    --ct-mono: 'Share Tech Mono', monospace;
+    --ct-serif: 'Yuji Syuku', serif;
+    --ct-ui: 'Inter', sans-serif;
+}
+
+@keyframes ct-fadeInUp {
+    from { opacity: 0; transform: translateY(15px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.ct-container {
+    box-sizing: border-box;
+    max-width: 820px;
+    width: 95%;
+    margin: 30px auto;
+    font-family: var(--ct-ui);
+    color: var(--ct-text);
+    background: var(--ct-panel);
+    border-radius: var(--ct-card-radius);
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--ct-border-color);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+.ct-container * {
+    box-sizing: border-box;
+}
+.ct-header {
+    position: relative;
+    height: 250px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--ct-border-color);
+    background: var(--ct-bg);
+}
+.ct-header-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.3;
+    filter: blur(2px);
+}
+.ct-header-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 20px;
+    background: linear-gradient(180deg, transparent 60%, rgba(0, 0, 0, 0.8) 100%);
+}
+.ct-title {
+    font-family: var(--ct-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--ct-highlight);
+    text-shadow: 0 0 10px var(--ct-accent1);
+    margin: 0 0 5px 0;
+}
+.ct-requirements {
+    font-family: var(--ct-mono);
+    font-size: 12px;
+    color: var(--ct-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--ct-glass-2);
+    padding: 5px 10px;
+    border-radius: 4px;
+    display: inline-block;
+    border: 1px solid var(--ct-border-color);
+}
+.ct-body {
+    padding: 20px;
+}
+.ct-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ct-muted);
+    margin-bottom: 20px;
+    background: var(--ct-glass-2);
+    padding: 15px;
+    border-radius: 8px;
+}
+.spell-tabs-nav {
+    display: flex;
+    flex-wrap: wrap;
+    border-bottom: 1px solid var(--ct-border-color);
+    margin-bottom: 20px;
+}
+.spell-tabs-nav input[type="radio"] {
+    display: none;
+}
+.spell-tab-button {
+    font-family: var(--ct-serif);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--ct-muted);
+    padding: 10px 15px;
+    cursor: pointer;
+    position: relative;
+    border: none;
+    background: none;
+    transition: color 0.3s;
+}
+.spell-tab-button::after {
+    content: '';
+    position: absolute;
+    bottom: -1px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--ct-accent1);
+    transform: scaleX(0);
+    transition: transform 0.3s;
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button {
+    color: var(--ct-text);
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button::after {
+    transform: scaleX(1);
+}
+.spell-tab-content {
+    display: none;
+    animation: ct-fadeInUp 0.5s ease-out;
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button + .spell-tab-content {
+    display: block;
+}
+
+.spell-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    background: var(--ct-glass-2);
+    border-radius: 8px;
+    overflow: visible;
+    border: 1px solid var(--ct-border-color);
+}
+.spell-image {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+.spell-details {
+    padding: 20px;
+    min-width: 0;
+}
+.spell-japanese-name {
+    font-family: var(--ct-mono);
+    font-size: 14px;
+    color: var(--ct-muted);
+    margin-bottom: 15px;
+    display: block;
+}
+.spell-requirements {
+    margin-bottom: 15px;
+    background: rgba(0,0,0,0.2);
+    padding: 10px 12px;
+    border-radius: 4px;
+    border-left: 2px solid var(--ct-accent2);
+}
+.spell-requirements h4 {
+    font-family: var(--ct-mono);
+    font-size: 12px;
+    color: var(--ct-muted);
+    text-transform: uppercase;
+    margin: 0 0 8px 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid var(--ct-border-color);
+}
+.spell-requirements ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 13px;
+    color: var(--ct-text);
+    font-family: var(--ct-mono);
+}
+.spell-requirements li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 5px;
+}
+.spell-requirements li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--ct-highlight);
+    font-weight: bold;
+}
+.spell-stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin-bottom: 15px;
+    font-family: var(--ct-mono);
+}
+.stat-block {
+    background: var(--ct-bg);
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid var(--ct-border-color);
+    display: flex;
+    align-items: center;
+}
+.stat-label {
+    font-size: 10px;
+    color: var(--ct-muted);
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-right: 8px;
+}
+.stat-value {
+    font-size: 14px;
+    color: var(--ct-highlight);
+    font-weight: 700;
+}
+.spell-description {
+    font-size: 14px;
+    line-height: 1.6;
+    color: var(--ct-muted);
+    margin-bottom: 15px;
+}
+.spell-effects-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    color: var(--ct-text);
+}
+.spell-effects-list li {
+    position: relative;
+    padding-left: 20px;
+    margin-bottom: 8px;
+}
+.spell-effects-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: var(--ct-accent1);
+    font-weight: bold;
+}
+
+@keyframes intense-fire-glow {
+  0% { 
+    box-shadow: 
+      0 0 8px 2px #ffdfa0,
+      0 0 15px 5px #ff8c00,
+      0 0 25px 10px #ff4500,
+      0 0 35px 15px rgba(255, 69, 0, 0.5);
+  }
+  50% { 
+    box-shadow: 
+      0 0 10px 3px #ffe5b4, 
+      0 0 20px 8px #ff9c00, 
+      0 0 30px 13px #ff5a00, 
+      0 0 45px 20px rgba(255, 80, 0, 0.6); 
+  }
+  100% { 
+    box-shadow: 
+      0 0 8px 2px #ffdfa0, 
+      0 0 15px 5px #ff8c00, 
+      0 0 25px 10px #ff4500, 
+      0 0 35px 15px rgba(255, 69, 0, 0.5); 
+  }
+}
+
+.image-fire-wrapper {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 450px;
+  border-radius: 8px;
+  animation: intense-fire-glow 2s infinite alternate ease-in-out; 
+}
+
+.image-fire-wrapper > .spell-image {
+  border: none;
+  box-shadow: none;
+  position: relative;
+  z-index: 2; 
+  width: 100%;
+  height: 100%;
+  border-radius: 8px; 
+}
+
+@media (max-width: 650px) {
+    .ct-header { height: 200px; }
+    .ct-title { font-size: 26px; }
+    .spell-tabs-nav { justify-content: center; }
+    .spell-tab-button { font-size: 15px; padding: 10px; }
+    .spell-stats-grid { grid-template-columns: 1fr; }
+    .stat-block { justify-content: center; }
+    .spell-image, .image-fire-wrapper {
+        height: 250px;
+        border-radius: 8px 8px 0 0;
+    }
+    .spell-card-grid {
+        gap: 0;
+    }
+    .spell-details {
+        border-top: 1px solid var(--ct-border-color);
+    }
+}
+/* --- [FIM] Template de Técnica --- */
