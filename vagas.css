@@ -119,22 +119,18 @@
     border-radius: 8px;
     border: 1px solid var(--glass-2);
     transition: all 0.2s ease-out;
-    position: relative; /* O card é o 'container' */
 }
 
-.vacancy-item:hover {
+/* Esta é a classe que o JS vai adicionar */
+.vacancy-item.clickable {
+    cursor: pointer;
+}
+.vacancy-item.clickable:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(2, 2, 6, 0.4);
     border-color: rgba(155, 0, 255, 0.2);
 }
 
-/* Camada de CIMA (Texto) */
-.technique-name,
-.vacancy-separator,
-.technique-status {
-    position: relative;
-    z-index: 2; /* Texto fica na camada 2 */
-}
 
 .technique-name {
     font-size: 15px;
@@ -164,15 +160,6 @@
     color: #00e5ff; /* Ciano */
     text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
     text-decoration: none;
-}
-
-/* Camada do MEIO (Link Clicável) */
-.technique-status a::before {
-    content: '';
-    position: absolute;
-    inset: 0; /* Estica para cobrir o .vacancy-item */
-    z-index: 1; /* Link fica na camada 1 */
-    cursor: pointer;
 }
 
 
