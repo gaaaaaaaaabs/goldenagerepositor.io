@@ -121,16 +121,11 @@
     transition: all 0.2s ease-out;
 }
 
-/* Esta é a classe que o JS vai adicionar */
-.vacancy-item.clickable {
-    cursor: pointer;
-}
-.vacancy-item.clickable:hover {
+.vacancy-item:hover {
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(2, 2, 6, 0.4);
     border-color: rgba(155, 0, 255, 0.2);
 }
-
 
 .technique-name {
     font-size: 15px;
@@ -147,21 +142,23 @@
     top: -3px;
 }
 
+/* MUDEI AQUI: O padrão (available) agora é roxo */
 .technique-status {
     font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
-    color: var(--highlight); /* Padrão (Roxo - Disponível) */
-    text-shadow: 0 0 8px var(--accent1);
+    color: var(--highlight); /* Cor roxa para "Disponível" */
+    text-shadow: 0 0 8px var(--accent1); /* Brilho roxo */
 }
 
-/* Estilo do link (Nome Ciano) */
+/* MUDEI AQUI: Se o status for um link <a>, ele fica ciano */
 .technique-status a {
-    color: #00e5ff; /* Ciano */
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
+    color: #00e5ff; /* Cor ciano para nomes de portadores */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7); /* Brilho ciano */
     text-decoration: none;
 }
 
+/* (A classe .available não é mais necessária) */
 
 @media (max-width: 768px) {
     .ct-vacancy-list .header {
