@@ -119,12 +119,7 @@
     border-radius: 8px;
     border: 1px solid var(--glass-2);
     transition: all 0.2s ease-out;
-    position: relative; /* MUDANÇA 1: Ponto de âncora */
-}
-
-/* MUDANÇA 2: Adiciona a mãozinha ao card se ele tiver um link */
-.vacancy-item:has(.technique-status a) {
-    cursor: pointer;
+    position: relative; /* O card é o 'container' */
 }
 
 .vacancy-item:hover {
@@ -133,13 +128,24 @@
     border-color: rgba(155, 0, 255, 0.2);
 }
 
+/* Opcional: Adiciona a 'mãozinha' se o :has funcionar */
+.vacancy-item:has(.technique-status a) {
+    cursor: pointer;
+}
+
+/* Conteúdo visível: fica na camada de CIMA */
+.technique-name,
+.vacancy-separator,
+.technique-status {
+    position: relative;
+    z-index: 1; /* Camada 1 (Visível) */
+}
+
 .technique-name {
     font-size: 15px;
     font-weight: 600;
     color: var(--text);
     flex-shrink: 0;
-    position: relative; /* Garante que o nome fique acima do link */
-    z-index: 2;
 }
 
 .vacancy-separator {
@@ -148,32 +154,29 @@
     margin: 0 15px;
     position: relative;
     top: -3px;
-    position: relative; /* Garante que o separador fique acima do link */
-    z-index: 2;
 }
 
 .technique-status {
     font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
-    color: var(--highlight); /* Cor roxa (padrão "Disponível") */
+    color: var(--highlight); /* Padrão (Roxo - Disponível) */
     text-shadow: 0 0 8px var(--accent1);
-    position: relative; /* Garante que o status fique acima do link */
-    z-index: 2;
 }
 
+/* Estilo do link (Nome Ciano) */
 .technique-status a {
-    color: #00e5ff; /* Cor ciano */
+    color: #00e5ff; /* Ciano */
     text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
     text-decoration: none;
 }
 
-/* MUDANÇA 3: A mágica do "stretched-link" */
+/* O Link Esticado: fica na camada de BAIXO */
 .technique-status a::before {
     content: '';
     position: absolute;
-    inset: 0; /* Estica para cobrir o .vacancy-item (pai com position: relative) */
-    z-index: 1; /* Fica atrás do texto (z-index: 2) mas cobre o card */
+    inset: 0; /* Estica para cobrir o .vacancy-item */
+    z-index: 0; /* Camada 0 (Fica atrás do texto) */
 }
 
 
