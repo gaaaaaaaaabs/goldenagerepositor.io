@@ -119,6 +119,12 @@
     border-radius: 8px;
     border: 1px solid var(--glass-2);
     transition: all 0.2s ease-out;
+    position: relative; /* MUDANÇA 1: Ponto de âncora */
+}
+
+/* MUDANÇA 2: Adiciona a mãozinha ao card se ele tiver um link */
+.vacancy-item:has(.technique-status a) {
+    cursor: pointer;
 }
 
 .vacancy-item:hover {
@@ -132,6 +138,8 @@
     font-weight: 600;
     color: var(--text);
     flex-shrink: 0;
+    position: relative; /* Garante que o nome fique acima do link */
+    z-index: 2;
 }
 
 .vacancy-separator {
@@ -140,25 +148,34 @@
     margin: 0 15px;
     position: relative;
     top: -3px;
+    position: relative; /* Garante que o separador fique acima do link */
+    z-index: 2;
 }
 
-/* MUDEI AQUI: O padrão (available) agora é roxo */
 .technique-status {
     font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
-    color: var(--highlight); /* Cor roxa para "Disponível" */
-    text-shadow: 0 0 8px var(--accent1); /* Brilho roxo */
+    color: var(--highlight); /* Cor roxa (padrão "Disponível") */
+    text-shadow: 0 0 8px var(--accent1);
+    position: relative; /* Garante que o status fique acima do link */
+    z-index: 2;
 }
 
-/* MUDEI AQUI: Se o status for um link <a>, ele fica ciano */
 .technique-status a {
-    color: #00e5ff; /* Cor ciano para nomes de portadores */
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7); /* Brilho ciano */
+    color: #00e5ff; /* Cor ciano */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7);
     text-decoration: none;
 }
 
-/* (A classe .available não é mais necessária) */
+/* MUDANÇA 3: A mágica do "stretched-link" */
+.technique-status a::before {
+    content: '';
+    position: absolute;
+    inset: 0; /* Estica para cobrir o .vacancy-item (pai com position: relative) */
+    z-index: 1; /* Fica atrás do texto (z-index: 2) mas cobre o card */
+}
+
 
 @media (max-width: 768px) {
     .ct-vacancy-list .header {
