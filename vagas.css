@@ -142,18 +142,23 @@
     top: -3px;
 }
 
+/* MUDEI AQUI: O padrão (available) agora é roxo */
 .technique-status {
     font-size: 14px;
     font-weight: 700;
     flex-shrink: 0;
-    color: #00e5ff; /* Cor ciano para nomes de portadores */
-    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7); /* Brilho ciano */
-}
-
-.technique-status.available {
     color: var(--highlight); /* Cor roxa para "Disponível" */
     text-shadow: 0 0 8px var(--accent1); /* Brilho roxo */
 }
+
+/* MUDEI AQUI: Se o status for um link <a>, ele fica ciano */
+.technique-status a {
+    color: #00e5ff; /* Cor ciano para nomes de portadores */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7); /* Brilho ciano */
+    text-decoration: none;
+}
+
+/* (A classe .available não é mais necessária) */
 
 @media (max-width: 768px) {
     .ct-vacancy-list .header {
