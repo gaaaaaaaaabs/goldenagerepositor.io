@@ -1,134 +1,169 @@
-<html>
-<head>
-    <link href="https://gaaaaaaaaabs.github.io/goldenagerepositor.io/vagas.css" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <div class="ct-vacancy-list">
-        <div class="header">
-            <div class="icon-deco"></div>
-            <div class="title">
-                <span class="g">Vagas de Técnicas Amaldiçoadas</span>
-                <span class="tag">Diretório</span>
-            </div>
-            <div class="subtitle-line">Lista de técnicas inatas e seus portadores atuais.</div>
-        </div>
-        <div class="vacancy-grid">
-            <div class="vacancy-item">
-                <span class="technique-name">Ilimitado (無下限)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status">Naori Gojo</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Dez Sombras (十種影法術)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Manipulação de Espíritos (呪霊操術)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Transfiguração Inerte (無為転変)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Fala Amaldiçoada (呪言)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Técnica da Proporção (十劃呪法)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Técnica do Boneco de Palha (芻霊呪法)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Manipulação de Sangue (赤血操術)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Boogie Woogie (不義遊戯)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Cópia (コピー)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Feitiçaria de Projeção (投射呪法)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Construção (構築術式)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Manipulação de Pássaros Pretos (黒鳥操術)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Chamas do Desastre (災害の炎)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Plantas do Desastre (災害植物)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Maré do Desastre (災害潮)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Julgamento (審神者)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Manipulação do Céu (天空操)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Descarga de Energia (幻獣琥珀)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Controle de Estrelas (星と怒り)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Técnica de Gelo (氷凝呪法)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Apostador Ocioso (私“本”打殺)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-            <div class="vacancy-item">
-                <span class="technique-name">Encontro Amoroso (星間飛行)</span>
-                <span class="vacancy-separator"></span>
-                <span class="technique-status available">Disponível</span>
-            </div>
-        </div>
-    </div>
-</body>
-</html>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Yuji+Syuku&display=swap');
+
+:root {
+    --bg: #0c0c1a;
+    --panel: #0f1020;
+    --muted: #bfc6e6;
+    --accent1: #9b00ff;
+    --accent2: #3c00b0;
+    --highlight: #c48fff;
+    --card-radius: 12px;
+    --glass: rgba(255, 255, 255, 0.03);
+    --glass-2: rgba(255, 255, 255, 0.02);
+    --text: #e7e9ff;
+}
+
+@keyframes shine {
+    0% { background-position: left center; }
+    50% { background-position: right center; }
+    100% { background-position: left center; }
+}
+
+.ct-vacancy-list {
+    box-sizing: border-box;
+    max-width: 820px;
+    width: 95%;
+    margin: 30px auto;
+    font-family: 'Inter', system-ui, sans-serif;
+    color: var(--text);
+    background: linear-gradient(180deg, var(--bg) 0%, #06060d 100%);
+    border-radius: var(--card-radius);
+    padding: 20px;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+    box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
+}
+
+.ct-vacancy-list .header {
+    padding-left: 90px;
+    position: relative;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+.ct-vacancy-list .icon-deco {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    background: linear-gradient(180deg, var(--glass-2), rgba(0, 0, 0, 0.05));
+    border: 2px solid var(--glass);
+}
+
+.ct-vacancy-list .icon-deco::before {
+    content: '術';
+    font-size: 32px;
+    font-family: 'Yuji Syuku', serif;
+    color: var(--accent1);
+    text-shadow: 0 0 10px var(--accent1);
+}
+
+.ct-vacancy-list .title {
+    font-family: 'Yuji Syuku', serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 1.1;
+    letter-spacing: 0.2px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.ct-vacancy-list .title .g {
+    background: linear-gradient(90deg, var(--accent2), var(--accent1));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 800;
+}
+
+.ct-vacancy-list .subtitle-line {
+    color: var(--muted);
+    font-size: 13px;
+    max-width: 90%;
+}
+
+.tag {
+    background: linear-gradient(90deg, var(--accent2), var(--accent1), var(--accent2));
+    background-size: 200% auto;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    box-shadow: 0 6px 18px rgba(59, 0, 176, 0.12);
+    animation: shine 4s linear infinite;
+}
+
+.vacancy-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 20px 0 10px 0;
+}
+
+.vacancy-item {
+    display: flex;
+    align-items: center;
+    background: var(--panel);
+    padding: 14px 18px;
+    border-radius: 8px;
+    border: 1px solid var(--glass-2);
+    transition: all 0.2s ease-out;
+}
+
+.vacancy-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(2, 2, 6, 0.4);
+    border-color: rgba(155, 0, 255, 0.2);
+}
+
+.technique-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text);
+    flex-shrink: 0;
+}
+
+.vacancy-separator {
+    flex-grow: 1;
+    border-bottom: 2px dotted rgba(191, 198, 230, 0.2);
+    margin: 0 15px;
+    position: relative;
+    top: -3px;
+}
+
+.technique-status {
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+    color: #00e5ff; /* Cor ciano para nomes de portadores */
+    text-shadow: 0 0 8px rgba(0, 229, 255, 0.7); /* Brilho ciano */
+}
+
+.technique-status.available {
+    color: var(--highlight); /* Cor roxa para "Disponível" */
+    text-shadow: 0 0 8px var(--accent1); /* Brilho roxo */
+}
+
+@media (max-width: 768px) {
+    .ct-vacancy-list .header {
+        padding-left: 0;
+        text-align: center;
+    }
+    .ct-vacancy-list .icon-deco {
+        display: none;
+    }
+    .ct-vacancy-list .title {
+        justify-content: center;
+    }
+}
