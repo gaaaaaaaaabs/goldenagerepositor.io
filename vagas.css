@@ -128,17 +128,12 @@
     border-color: rgba(155, 0, 255, 0.2);
 }
 
-/* Opcional: Adiciona a 'mãozinha' se o :has funcionar */
-.vacancy-item:has(.technique-status a) {
-    cursor: pointer;
-}
-
-/* Conteúdo visível: fica na camada de CIMA */
+/* Camada de CIMA (Texto) */
 .technique-name,
 .vacancy-separator,
 .technique-status {
     position: relative;
-    z-index: 1; /* Camada 1 (Visível) */
+    z-index: 2; /* Texto fica na camada 2 */
 }
 
 .technique-name {
@@ -171,12 +166,13 @@
     text-decoration: none;
 }
 
-/* O Link Esticado: fica na camada de BAIXO */
+/* Camada do MEIO (Link Clicável) */
 .technique-status a::before {
     content: '';
     position: absolute;
     inset: 0; /* Estica para cobrir o .vacancy-item */
-    z-index: 0; /* Camada 0 (Fica atrás do texto) */
+    z-index: 1; /* Link fica na camada 1 */
+    cursor: pointer;
 }
 
 
