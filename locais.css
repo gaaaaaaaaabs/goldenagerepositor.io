@@ -1,4 +1,4 @@
-/* --- Template Locais v1 --- */
+/* --- Template Locais v2 (Suporte a Cards Clicáveis) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -20,7 +20,7 @@
   background: var(--loc-panel);
   border: 1px solid var(--loc-glass-border);
   border-radius: 12px;
-  max-width: 900px; /* Um pouco mais largo */
+  max-width: 900px;
   margin: 20px auto;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   color: var(--loc-text-primary);
@@ -76,7 +76,7 @@
   border-bottom: 2px solid var(--loc-glass-border);
 }
 .tab-button {
-  flex-grow: 0; /* Não cresce */
+  flex-grow: 0;
   padding: 10px 20px;
   text-align: center;
   font-weight: 700;
@@ -89,7 +89,7 @@
   transition: all 0.2s ease;
   white-space: nowrap;
   position: relative;
-  top: 2px; /* Alinha com a borda de baixo */
+  top: 2px;
 }
 .tab-button:hover {
   color: var(--loc-text-primary);
@@ -154,10 +154,18 @@
   border-left: 4px solid var(--loc-accent1);
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.info-card:hover {
+
+/* --- [NOVO v2] Estilos para Cards Clicáveis --- */
+.info-card[data-href] {
+  cursor: pointer;
+}
+.info-card[data-href]:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(155, 0, 255, 0.2);
+  border-left-color: var(--loc-highlight);
 }
+/* --- Fim da Mudança --- */
+
 .info-card .info-title {
   font-weight: 700;
   color: var(--loc-highlight);
