@@ -1,4 +1,4 @@
-/* --- Template Sistema de Combate v7 (Debuffs com Porcentagem) --- */
+/* --- Template Sistema de Combate v8 (Adicionado Estilo de Tabela) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -294,40 +294,55 @@
   .combat-content section { padding: 20px; }
 }
 
-/* === [NOVO v7] Estilo Específico para Debuffs === */
-#combate-recursos .rules-definitions dd ul {
-  padding-left: 45px; /* Mais espaço para os números */
-  margin-left: -25px; /* Compensa o margin-left do <dd> */
-}
-
+/* Estilo Específico para Debuffs */
+#combate-recursos .rules-definitions dd ul { padding-left: 45px; margin-left: -25px; }
 #combate-recursos .rules-definitions dd ul li::before {
-  /* Sobrescreve o Kanji */
-  font-family: var(--combat-font-main); /* Fonte normal */
+  font-family: var(--combat-font-main);
   font-weight: 700;
   font-size: 1.1em;
   color: var(--combat-highlight);
   text-shadow: 0 0 8px var(--combat-accent1);
-  
-  /* Posicionamento */
-  width: 35px; /* Largura fixa para alinhar 40% e 5% */
+  width: 35px;
   text-align: right;
   left: -45px; 
   top: 2px;
-  
-  /* Conteúdo será definido abaixo */
   content: ''; 
 }
+#combate-recursos .rules-definitions dd ul li:nth-child(1)::before { content: '40%'; }
+#combate-recursos .rules-definitions dd ul li:nth-child(2)::before { content: '30%'; }
+#combate-recursos .rules-definitions dd ul li:nth-child(3)::before { content: '15%'; }
+#combate-recursos .rules-definitions dd ul li:nth-child(4)::before { content: '5%'; }
 
-/* Define o conteúdo de porcentagem para cada item */
-#combate-recursos .rules-definitions dd ul li:nth-child(1)::before {
-  content: '40%';
+/* --- [NOVO v8] Estilo da Tabela --- */
+.combat-content table {
+  width: 100%;
+  margin-top: 10px;
+  border-collapse: collapse; /* Remove espaços entre células */
+  border-radius: 8px; /* Arredonda os cantos */
+  overflow: hidden; /* Garante que o border-radius funcione */
+  border: 1px solid var(--combat-glass-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.01));
 }
-#combate-recursos .rules-definitions dd ul li:nth-child(2)::before {
-  content: '30%';
+.combat-content th {
+  font-family: var(--combat-font-title);
+  color: var(--combat-highlight);
+  padding: 14px 18px;
+  text-align: left;
+  font-size: 1.2em;
+  background-color: rgba(155, 0, 255, 0.1); /* Fundo roxo pro cabeçalho */
+  border-bottom: 2px solid var(--combat-accent1);
 }
-#combate-recursos .rules-definitions dd ul li:nth-child(3)::before {
-  content: '15%';
+.combat-content td {
+  padding: 14px 18px;
+  text-align: left;
+  color: var(--combat-text-secondary);
+  border-bottom: 1px solid var(--combat-glass-border);
+  font-weight: 300;
 }
-#combate-recursos .rules-definitions dd ul li:nth-child(4)::before {
-  content: '5%';
+.combat-content td:first-child {
+  font-weight: 500;
+  color: var(--combat-text-primary);
+}
+.combat-content tr:last-child td {
+  border-bottom: none; /* Remove a borda da última linha */
 }
