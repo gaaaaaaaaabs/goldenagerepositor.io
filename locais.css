@@ -1,4 +1,4 @@
-/* --- Template Locais v3 (Correção de Layout) --- */
+/* --- Template Locais v4 (Correção de Layout Definitiva) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -26,7 +26,7 @@
   color: var(--loc-text-primary);
   box-sizing: border-box;
   overflow: hidden;
-  width: 95%; /* <<< ESTA LINHA FOI ADICIONADA */
+  /* width: 95%; <-- ESTA LINHA FOI REMOVIDA */
 }
 
 /* Banner */
