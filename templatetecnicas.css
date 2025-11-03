@@ -1,19 +1,19 @@
-/* --- Início do Template de Técnica v7 (Cabeçalho sem imagem) --- */
+/* --- Início do Template de Técnica v8 (20 Abas + Correção Mobile) --- */
 
 /* Importação das fontes do Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 
 /* ----- Variáveis de Cor (Tema Roxo/Glass) ----- */
 :root {
-  --jjk-bg: #0c0c1a; /* Fundo principal */
-  --jjk-panel: #0f1020; /* Cor do painel de navegação */
-  --jjk-surface: #1a1b2a; /* Fundo da área de conteúdo */
-  --jjk-glass-border: rgba(255, 255, 255, 0.05); /* Borda sutil */
-  --jjk-text-primary: #e7e9ff; /* Cor do texto principal */
-  --jjk-text-secondary: #bfc6e6; /* Cor do texto secundário (descrições) */
-  --jjk-accent1: #9b00ff; /* Destaque principal (abas ativas) */
-  --jjk-accent2: #3c00b0; /* Gradiente do destaque */
-  --jjk-highlight: #c48fff; /* Destaque de texto (nomes) */
+  --jjk-bg: #0c0c1a;
+  --jjk-panel: #0f1020;
+  --jjk-surface: #1a1b2a;
+  --jjk-glass-border: rgba(255, 255, 255, 0.05);
+  --jjk-text-primary: #e7e9ff;
+  --jjk-text-secondary: #bfc6e6;
+  --jjk-accent1: #9b00ff;
+  --jjk-accent2: #3c00b0;
+  --jjk-highlight: #c48fff;
 }
 
 /* ----- Estrutura Principal ----- */
@@ -46,6 +46,7 @@
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
   border-right: 1px solid var(--jjk-glass-border);
   padding: 15px;
+  overflow-y: auto; /* Permite rolar a nav se tiver muitas abas */
 }
 
 .ct-nav-v2 .ct-nav-title {
@@ -94,21 +95,51 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ----- Lógica de Exibição das Abas ----- */
+/* ----- LÓGICA DE ESCALABILIDADE (SUPORTE ATÉ 20 ABAS) ----- */
 #ct-tab-v2-1:checked ~ .ct-grid-v2 #ct-content-v2-1,
 #ct-tab-v2-2:checked ~ .ct-grid-v2 #ct-content-v2-2,
 #ct-tab-v2-3:checked ~ .ct-grid-v2 #ct-content-v2-3,
 #ct-tab-v2-4:checked ~ .ct-grid-v2 #ct-content-v2-4,
-#ct-tab-v2-5:checked ~ .ct-grid-v2 #ct-content-v2-5 {
+#ct-tab-v2-5:checked ~ .ct-grid-v2 #ct-content-v2-5,
+#ct-tab-v2-6:checked ~ .ct-grid-v2 #ct-content-v2-6,
+#ct-tab-v2-7:checked ~ .ct-grid-v2 #ct-content-v2-7,
+#ct-tab-v2-8:checked ~ .ct-grid-v2 #ct-content-v2-8,
+#ct-tab-v2-9:checked ~ .ct-grid-v2 #ct-content-v2-9,
+#ct-tab-v2-10:checked ~ .ct-grid-v2 #ct-content-v2-10,
+#ct-tab-v2-11:checked ~ .ct-grid-v2 #ct-content-v2-11,
+#ct-tab-v2-12:checked ~ .ct-grid-v2 #ct-content-v2-12,
+#ct-tab-v2-13:checked ~ .ct-grid-v2 #ct-content-v2-13,
+#ct-tab-v2-14:checked ~ .ct-grid-v2 #ct-content-v2-14,
+#ct-tab-v2-15:checked ~ .ct-grid-v2 #ct-content-v2-15,
+#ct-tab-v2-16:checked ~ .ct-grid-v2 #ct-content-v2-16,
+#ct-tab-v2-17:checked ~ .ct-grid-v2 #ct-content-v2-17,
+#ct-tab-v2-18:checked ~ .ct-grid-v2 #ct-content-v2-18,
+#ct-tab-v2-19:checked ~ .ct-grid-v2 #ct-content-v2-19,
+#ct-tab-v2-20:checked ~ .ct-grid-v2 #ct-content-v2-20 {
   display: block;
 }
 
-/* ----- Estilo da Aba Ativa ----- */
+/* ----- Estilo da Aba Ativa (SUPORTE ATÉ 20 ABAS) ----- */
 #ct-tab-v2-1:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-1"],
 #ct-tab-v2-2:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-2"],
 #ct-tab-v2-3:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-3"],
 #ct-tab-v2-4:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-4"],
-#ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"] {
+#ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"],
+#ct-tab-v2-6:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-6"],
+#ct-tab-v2-7:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-7"],
+#ct-tab-v2-8:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-8"],
+#ct-tab-v2-9:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-9"],
+#ct-tab-v2-10:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-10"],
+#ct-tab-v2-11:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-11"],
+#ct-tab-v2-12:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-12"],
+#ct-tab-v2-13:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-13"],
+#ct-tab-v2-14:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-14"],
+#ct-tab-v2-15:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-15"],
+#ct-tab-v2-16:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-16"],
+#ct-tab-v2-17:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-17"],
+#ct-tab-v2-18:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-18"],
+#ct-tab-v2-19:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-19"],
+#ct-tab-v2-20:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-20"] {
   background: linear-gradient(90deg, var(--jjk-accent2), var(--jjk-accent1));
   color: #fff;
   font-weight: bold;
@@ -118,39 +149,35 @@
 
 /* ----- Estilização do Conteúdo Interno ----- */
 
-/* NOVO CABEÇALHO SEM IMAGEM */
+/* Cabeçalho (sem imagem) */
 .ct-header-v2 {
   display: flex;
-  flex-direction: column; /* Empilha os elementos verticalmente */
-  align-items: flex-start; /* Alinha à esquerda por padrão */
+  flex-direction: column;
+  align-items: flex-start;
   gap: 10px;
   margin-bottom: 25px;
   padding: 15px 0;
-  border-bottom: 2px solid var(--jjk-accent1); /* Linha de destaque */
-  text-align: left; /* Garante alinhamento esquerdo */
+  border-bottom: 2px solid var(--jjk-accent1);
+  text-align: left;
 }
-
-/* Esconde a imagem (se ainda estiver no HTML) */
 .ct-header-v2 .ct-header-image {
   display: none; 
 }
-
 .ct-header-v2 h2 {
   font-family: 'Yuji Syuku', serif;
   margin: 0;
-  font-size: 2.5em; /* Um pouco maior sem a imagem */
+  font-size: 2.5em;
   color: #fff;
   font-weight: 700;
-  text-shadow: 0 0 10px var(--jjk-accent1), 0 0 5px var(--jjk-accent2); /* Brilho temático */
+  text-shadow: 0 0 10px var(--jjk-accent1), 0 0 5px var(--jjk-accent2);
 }
 .ct-header-v2 .ct-requirements {
-  font-size: 1.0em; /* Um pouco maior */
+  font-size: 1.0em;
   color: var(--jjk-text-secondary);
   font-style: italic;
   opacity: 0.9;
-  padding-left: 5px; /* Pequeno espaçamento */
+  padding-left: 5px;
 }
-
 
 /* Descrição (lead) */
 p.ct-description {
@@ -164,11 +191,14 @@ p.ct-description {
   border-radius: 0 6px 6px 0;
 }
 
+
+/* === CORREÇÃO DE LAYOUT (MOBILE) === */
 /* Layout das Habilidades (Aba 2+) */
 .spell-card-grid-v2 {
   display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 25px;
+  /* MUDANÇA: Mudei de "200px 1fr" para "1fr" */
+  grid-template-columns: 1fr; /* Coluna única sempre */
+  gap: 15px; /* Reduzido o 'gap' */
   margin-bottom: 20px;
 }
 .spell-image-v2 {
@@ -178,6 +208,7 @@ p.ct-description {
   border-radius: 8px;
   border: 1px solid var(--jjk-glass-border);
 }
+/* O .spell-details-v2 agora é um item da grid, não um container */
 .spell-japanese-name {
   font-family: 'Yuji Syuku', serif;
   font-size: 1.5em;
@@ -229,7 +260,7 @@ p.ct-description {
   line-height: 1.6;
 }
 .spell-effects-list-v2 li::before {
-  content: '»'; /* Caractere simples */
+  content: '»';
   position: absolute;
   left: 0;
   top: 0;
@@ -252,7 +283,7 @@ p.ct-description {
   font-size: 0.9em;
 }
 
-/* ----- MELHORIAS DE UI/UX (MOBILE) ----- */
+/* ----- RESPONSIVIDADE (MOBILE) ----- */
 @media (max-width: 768px) {
   .ct-grid-v2 {
     grid-template-columns: 1fr;
@@ -265,6 +296,7 @@ p.ct-description {
     border-right: none;
     border-bottom: 1px solid var(--jjk-glass-border);
     padding: 10px;
+    overflow-y: visible; /* Remove a barra de rolagem no mobile */
   }
   .ct-nav-v2 .ct-nav-title {
     width: 100%;
@@ -280,11 +312,28 @@ p.ct-description {
     font-size: 0.9em;
     padding: 10px 5px;
   }
+  
+  /* Lógica das abas ativas no mobile (até 20) */
   #ct-tab-v2-1:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-1"],
   #ct-tab-v2-2:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-2"],
   #ct-tab-v2-3:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-3"],
   #ct-tab-v2-4:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-4"],
-  #ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"] {
+  #ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"],
+  #ct-tab-v2-6:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-6"],
+  #ct-tab-v2-7:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-7"],
+  #ct-tab-v2-8:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-8"],
+  #ct-tab-v2-9:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-9"],
+  #ct-tab-v2-10:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-10"],
+  #ct-tab-v2-11:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-11"],
+  #ct-tab-v2-12:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-12"],
+  #ct-tab-v2-13:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-13"],
+  #ct-tab-v2-14:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-14"],
+  #ct-tab-v2-15:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-15"],
+  #ct-tab-v2-16:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-16"],
+  #ct-tab-v2-17:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-17"],
+  #ct-tab-v2-18:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-18"],
+  #ct-tab-v2-19:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-19"],
+  #ct-tab-v2-20:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-20"] {
     border-left: none;
     border-bottom: 3px solid var(--jjk-highlight);
     background: none;
@@ -295,19 +344,15 @@ p.ct-description {
   .ct-content-area-v2 {
     padding: 15px;
   }
-  /* Ajusta o novo cabeçalho no mobile */
   .ct-header-v2 {
-    align-items: center; /* Centraliza no mobile */
+    align-items: center;
     text-align: center;
   }
   .ct-header-v2 h2 {
     font-size: 1.8em;
   }
   
-  .spell-card-grid-v2 {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
+  /* O .spell-card-grid-v2 já é 1fr, mas podemos ajustar a imagem */
   .spell-image-v2 {
     height: 150px;
   }
