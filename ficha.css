@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v2 (Sistema Corrigido) --- */
+/* --- Template Ficha de Personagem (Dossier) v3 (Grid de Combate Atualizada) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -24,8 +24,6 @@
   --border-color: rgba(255, 255, 255, 0.07);
   --radius-md: 10px;
   --radius-sm: 6px;
-  
-  /* Adicionando fontes padrão */
   --font-main: 'Inter', system-ui, sans-serif;
   --font-title: 'Yuji Syuku', serif;
 
@@ -33,7 +31,7 @@
   max-width: 800px;
   width: 95%;
   margin: 30px auto;
-  font-family: var(--font-main); /* CORRIGIDO */
+  font-family: var(--font-main);
   color: var(--text-primary);
   background: var(--panel-bg);
   border-radius: var(--radius-md);
@@ -88,28 +86,13 @@
   animation: jjkDossierRise 3s infinite ease-out;
   opacity: 0;
 }
-.jjk-dossier-container .jjk-dossier-particle:nth-child(2) {
-  animation-delay: 0.5s;
-  left: 40%;
-  animation-duration: 3.2s;
-}
-.jjk-dossier-container .jjk-dossier-particle:nth-child(3) {
-  animation-delay: 1.1s;
-  left: 60%;
-  animation-duration: 2.8s;
-}
-.jjk-dossier-container .jjk-dossier-particle:nth-child(4) {
-  animation-delay: 1.8s;
-  left: 45%;
-  animation-duration: 3.5s;
-}
-.jjk-dossier-container .jjk-dossier-particle:nth-child(5) {
-  animation-delay: 2.5s;
-  left: 55%;
-}
+.jjk-dossier-container .jjk-dossier-particle:nth-child(2) { animation-delay: 0.5s; left: 40%; animation-duration: 3.2s; }
+.jjk-dossier-container .jjk-dossier-particle:nth-child(3) { animation-delay: 1.1s; left: 60%; animation-duration: 2.8s; }
+.jjk-dossier-container .jjk-dossier-particle:nth-child(4) { animation-delay: 1.8s; left: 45%; animation-duration: 3.5s; }
+.jjk-dossier-container .jjk-dossier-particle:nth-child(5) { animation-delay: 2.5s; left: 55%; }
 .jjk-dossier-container .jjk-dossier-profile-info { flex-grow: 1; }
 .jjk-dossier-container .jjk-dossier-char-name {
-  font-family: var(--font-title); /* CORRIGIDO */
+  font-family: var(--font-title);
   font-size: 28px;
   font-weight: bold;
   margin: 0;
@@ -239,7 +222,7 @@
   padding-top: 20px;
 }
 .jjk-dossier-container .jjk-dossier-tab-content h3 {
-  font-family: var(--font-title); /* CORRIGIDO */
+  font-family: var(--font-title);
   font-size: 18px;
   margin-bottom: 15px;
   border-left: 3px solid var(--accent);
@@ -331,9 +314,10 @@
   max-height: 800px;
   padding: 5px 10px 10px 10px;
 }
+/* --- [NOVO v3] Grid de Combate Flexível --- */
 .jjk-dossier-container .jjk-dossier-combat-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Mudado de '1fr 1fr' */
   gap: 15px;
 }
 .jjk-dossier-container .jjk-dossier-combat-box ul {
@@ -348,6 +332,8 @@
   font-size: 13px;
   margin-bottom: 8px;
 }
+/* --- Fim da Mudança --- */
+
 .jjk-dossier-container .jjk-dossier-bio-text,
 .jjk-dossier-container .jjk-dossier-psyche-card ul {
   overflow-y: auto;
@@ -437,7 +423,7 @@
 }
 .jjk-dossier-container .jjk-dossier-profile-value { font-size: 14px; }
 .jjk-dossier-container .jjk-dossier-profile-desc h4 {
-  font-family: var(--font-title); /* CORRIGIDO */
+  font-family: var(--font-title);
   margin: 0 0 10px 0;
   font-size: 16px;
 }
@@ -461,7 +447,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: var(--font-title); /* CORRIGIDO */
+  font-family: var(--font-title);
   margin: 0 0 10px 0;
   font-size: 16px;
 }
