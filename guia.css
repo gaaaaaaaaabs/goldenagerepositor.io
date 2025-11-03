@@ -1,4 +1,4 @@
-/* --- Template Guia do Iniciante v1 --- */
+/* --- Template Guia do Iniciante v2 (Correção de Botões) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -202,10 +202,12 @@
   margin-bottom: 20px;
   font-weight: 300;
 }
-/* Botão de Link */
+
+/* --- [NOVO v2] Estilo do Botão Corrigido --- */
 .guide-button {
-  display: inline-block;
-  text-decoration: none;
+  display: block; /* Faz o botão ocupar a largura e empilhar */
+  text-align: center; /* Centraliza o texto */
+  text-decoration: none !important; /* REMOVE o sublinhado */
   font-family: var(--guide-font-title);
   font-size: 1.1em;
   font-weight: 700;
@@ -215,12 +217,16 @@
   border-radius: 6px;
   box-shadow: 0 4px 15px rgba(155, 0, 255, 0.3);
   transition: all 0.3s ease;
+  margin: 10px 0; /* Adiciona espaço vertical entre botões */
 }
 .guide-button:hover {
+  text-decoration: none !important; /* Garante que não apareça sublinhado no hover */
   background: linear-gradient(90deg, var(--guide-accent2) 0%, var(--guide-highlight) 100%);
   box-shadow: 0 6px 20px rgba(155, 0, 255, 0.5);
   transform: translateY(-2px);
 }
+/* --- Fim da Correção --- */
+
 /* Caixa de Destaque */
 .guide-callout {
   margin: 30px 0;
