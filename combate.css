@@ -1,4 +1,4 @@
-/* --- Template Sistema de Combate v10 (Kanji personalizável) --- */
+/* --- Template Sistema de Combate v10 (Correção de Espaçamento) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -13,11 +13,15 @@
   --combat-font-main: 'Inter', system-ui, sans-serif;
   --combat-font-title: 'Yuji Syuku', serif;
 }
+
+/* Animações */
 @keyframes pulse-glow {
   0% { box-shadow: 0 0 5px var(--combat-accent1), 0 0 10px var(--combat-accent1) inset; }
   50% { box-shadow: 0 0 10px var(--combat-accent1), 0 0 20px var(--combat-accent1) inset; }
   100% { box-shadow: 0 0 5px var(--combat-accent1), 0 0 10px var(--combat-accent1) inset; }
 }
+
+/* Container Principal */
 .combat-container {
   font-family: var(--combat-font-main);
   background: linear-gradient(180deg, var(--combat-bg) 0%, #06060d 100%);
@@ -30,6 +34,8 @@
   box-sizing: border-box;
   overflow: hidden;
 }
+
+/* Cabeçalho */
 .combat-header {
   position: relative;
   display: flex;
@@ -70,6 +76,8 @@
   font-style: italic;
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
+
+/* Ícone */
 .combat-icon-deco {
   display: grid;
   place-items: center;
@@ -88,13 +96,14 @@
   margin: 0;
 }
 .combat-icon-deco::before {
-  /* --- ESTA É A MUDANÇA --- */
-  content: var(--custom-kanji, '戦'); /* Usa a variável ou 'Batalha' como padrão */
+  content: var(--custom-kanji, '地'); /* Kanji 'Chi' (Local) como padrão */
   font-size: 38px;
   font-family: var(--combat-font-title), serif;
   color: var(--combat-highlight);
   text-shadow: 0 0 15px var(--combat-accent1);
 }
+
+/* Layout do Corpo */
 .combat-body-grid {
   display: grid;
   grid-template-columns: 280px 1fr;
@@ -104,6 +113,8 @@
   position: relative;
   z-index: 1;
 }
+
+/* Navegação Lateral */
 .combat-nav {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.07), rgba(255, 255, 255, 0.03));
   border-right: 1px solid var(--combat-glass-border);
@@ -163,11 +174,15 @@
   text-shadow: 0 0 10px var(--combat-highlight);
   box-shadow: 0 0 15px rgba(196, 143, 255, 0.4) inset;
 }
+
+/* Conteúdo Principal (Regras) */
 .combat-content {
   padding: 30px 40px;
   min-width: 0;
   background-color: var(--combat-panel);
 }
+
+/* Card de Seção */
 .combat-content section {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
   border: 1px solid var(--combat-glass-border);
@@ -177,6 +192,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
   overflow: hidden;
 }
+
 .combat-content h2 {
   font-family: var(--combat-font-title);
   font-size: 2.5em;
@@ -200,16 +216,28 @@
   margin: 35px 0 18px 0;
   text-shadow: 0 0 3px rgba(255, 255, 255, 0.2);
 }
-.combat-content p, .combat-content li {
+
+/* --- [NOVO v10] Correção de Espaçamento --- */
+.combat-content p {
   font-family: var(--combat-font-main);
   font-size: 1.05em;
   line-height: 1.8;
   color: var(--combat-text-secondary);
-  margin-bottom: 20px;
+  margin-bottom: 20px; /* Margem normal para parágrafos */
   font-weight: 300;
 }
+.combat-content li {
+  font-family: var(--combat-font-main);
+  font-size: 1.05em;
+  line-height: 1.7; /* Linha ligeiramente mais justa */
+  color: var(--combat-text-secondary);
+  margin-bottom: 10px; /* Margem reduzida para listas */
+  font-weight: 300;
+  position: relative;
+}
+/* --- Fim da Correção --- */
+
 .combat-content ul { list-style-type: none; padding-left: 25px; }
-.combat-content li { position: relative; }
 .combat-content li::before {
   content: '呪';
   font-family: var(--combat-font-title), serif;
@@ -242,7 +270,15 @@
   margin-bottom: 8px;
   text-shadow: 0 0 5px rgba(196, 143, 255, 0.3);
 }
-.rules-definitions dd { margin-left: 25px; margin-bottom: 20px; color: var(--combat-text-secondary); line-height: 1.7; font-weight: 300; }
+.rules-definitions dd {
+  margin-left: 25px;
+  margin-bottom: 12px; /* [NOVO v10] Margem reduzida */
+  color: var(--combat-text-secondary);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* Estilo Específico para Debuffs */
 #combate-recursos .rules-definitions dd ul { padding-left: 45px; margin-left: -25px; }
 #combate-recursos .rules-definitions dd ul li::before {
   font-family: var(--combat-font-main);
@@ -260,6 +296,8 @@
 #combate-recursos .rules-definitions dd ul li:nth-child(2)::before { content: '30%'; }
 #combate-recursos .rules-definitions dd ul li:nth-child(3)::before { content: '15%'; }
 #combate-recursos .rules-definitions dd ul li:nth-child(4)::before { content: '5%'; }
+
+/* Estilo da Tabela */
 .combat-content table {
   width: 100%;
   margin-top: 10px;
@@ -292,6 +330,8 @@
 .combat-content tr:last-child td {
   border-bottom: none;
 }
+
+/* Estilos para Cards de RP */
 .rp-type-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -350,6 +390,8 @@
   font-weight: 500;
   color: var(--combat-text-primary);
 }
+
+/* Responsividade */
 @media (max-width: 992px) {
   .combat-container { border-radius: 0; margin: 0; }
   .combat-header { min-height: 150px; padding: 30px 20px; }
