@@ -1,4 +1,4 @@
-/* --- Template Sistema de Combate v4 (Correção de Layout Absoluto) --- */
+/* --- Template Sistema de Combate v5 (Correção Definitiva do Ícone) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -32,21 +32,21 @@
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   color: var(--combat-text-primary);
   box-sizing: border-box;
-  overflow: hidden; /* Importante para conter o border-radius */
+  overflow: hidden;
 }
 
-/* --- NOVO CABEÇALHO (NÃO MAIS 'absolute') --- */
+/* --- CABEÇALHO CORRIGIDO --- */
 .combat-header {
-  position: relative; /* Para o overlay */
+  position: relative; /* FUNDAMENTAL: "Ancora" o ícone absoluto */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-align: center;
+  min-height: 180px;
   padding: 40px 20px;
-  min-height: 180px; /* Altura do banner */
   box-sizing: border-box;
-  background: url('https://i.imgur.com/yK54q57.jpeg') center center / cover no-repeat;
+  background: url('https://i.imgur.com/YUtp3HN.png') center center / cover no-repeat;
   z-index: 2;
 }
 /* Overlay escuro sobre o banner */
@@ -59,7 +59,7 @@
 }
 .combat-header-content {
   position: relative;
-  z-index: 4; /* Conteúdo fica acima do overlay */
+  z-index: 4;
 }
 .combat-header h1 {
   font-family: var(--combat-font-title);
@@ -78,7 +78,7 @@
   text-shadow: 0 0 5px rgba(0, 0, 0, 0.8);
 }
 
-/* --- ÍCONE CORRIGIDO (NÃO MAIS 'absolute') --- */
+/* --- ÍCONE CORRIGIDO (com position: absolute) --- */
 .combat-icon-deco {
   display: grid;
   place-items: center;
@@ -91,9 +91,12 @@
   animation: pulse-glow 3s infinite alternate;
   
   /* Correção de layout: */
-  position: relative; /* Para z-index funcionar */
-  z-index: 10; /* Acima de tudo */
-  margin: 0 auto -35px auto; /* Centraliza e move para baixo (negativo) */
+  position: absolute; /* Posição absoluta... */
+  z-index: 10;
+  bottom: -35px; /* ...35px abaixo da borda do .combat-header */
+  left: 50%; /* ...centralizado horizontalmente */
+  transform: translateX(-50%);
+  margin: 0; /* Reseta a margem antiga */
 }
 .combat-icon-deco::before {
   content: '戦';
@@ -111,7 +114,7 @@
   background-color: var(--combat-panel);
   padding-top: 45px; /* Espaço para o ícone flutuante */
   position: relative;
-  z-index: 1; /* Fica abaixo do ícone */
+  z-index: 1;
 }
 
 /* Navegação Lateral (Sticky) */
@@ -135,14 +138,8 @@
   border-bottom: 2px solid var(--combat-accent1);
   text-shadow: 0 0 5px rgba(155, 0, 255, 0.5);
 }
-.combat-nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.combat-nav li {
-  margin-bottom: 4px;
-}
+.combat-nav ul { list-style: none; padding: 0; margin: 0; }
+.combat-nav li { margin-bottom: 4px; }
 .combat-nav a {
   color: var(--combat-text-secondary);
   text-decoration: none;
@@ -167,16 +164,13 @@
   opacity: 0;
   z-index: -1;
 }
-.combat-nav a:hover::before {
-  transform: translateX(0);
-  opacity: 0.15;
-}
+.combat-nav a:hover::before { transform: translateX(0); opacity: 0.15; }
 .combat-nav a:hover {
   color: var(--combat-text-primary);
   border-left-color: var(--combat-accent1);
   text-shadow: 0 0 5px var(--combat-highlight);
 }
-.combat-nav a:focus { /* Simula :active */
+.combat-nav a:focus {
   color: #fff;
   border-left-color: var(--combat-highlight);
   background: linear-gradient(90deg, var(--combat-accent2) 0%, var(--combat-accent1) 100%);
@@ -190,7 +184,6 @@
   min-width: 0;
   background-color: var(--combat-panel);
 }
-/* ... (todo o resto do css de .combat-content, h2, h3, p, li, etc., permanece igual) ... */
 .combat-content section { margin-bottom: 50px; }
 .combat-content h2 { font-family: var(--combat-font-title); font-size: 2.5em; color: var(--combat-highlight); margin: 0 0 25px 0; padding-bottom: 15px; position: relative; text-shadow: 0 0 8px rgba(196, 143, 255, 0.5); }
 .combat-content h2::after { content: ''; position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: linear-gradient(90deg, var(--combat-accent1), var(--combat-highlight), var(--combat-accent1)); }
@@ -212,7 +205,7 @@
   .combat-header { min-height: 150px; padding: 30px 20px; }
   .combat-header h1 { font-size: 2.8em; }
   .combat-header p { font-size: 1.1em; }
-  .combat-icon-deco { bottom: auto; margin-bottom: -30px; width: 60px; height: 60px; } /* Ajuste de margem */
+  .combat-icon-deco { bottom: -30px; width: 60px; height: 60px; } /* Mantém a posição absoluta */
   .combat-icon-deco::before { font-size: 30px; }
   .combat-body-grid { grid-template-columns: 1fr; padding-top: 40px; }
   .combat-nav { position: relative; top: 0; max-height: none; overflow-y: visible; border-right: none; border-bottom: 1px solid var(--combat-glass-border); padding: 20px; }
