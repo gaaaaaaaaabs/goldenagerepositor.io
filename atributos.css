@@ -1,0 +1,265 @@
+/* --- Template Atributos e Aptidões v1 --- */
+/* Importação das fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
+
+:root {
+  --bg: #0c0c1a;
+  --panel: #0f1020;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --card-radius: 12px;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --text: #e7e9ff;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, "Roboto Mono", "Segoe UI Mono", "Helvetica Neue", monospace;
+  --ui: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+}
+
+/* Animação de brilho contínuo para a tag */
+@keyframes shine {
+  0% { background-position: left center; }
+  50% { background-position: right center; }
+  100% { background-position: left center; }
+}
+
+/* Animação de entrada para as seções */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Nova animação de brilho pulsante para os cards de grau */
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 4px rgba(196, 143, 255, 0.3); border-left-color: var(--highlight); }
+  50% { box-shadow: 0 0 12px rgba(155, 0, 255, 0.6); border-left-color: #e3caff; }
+}
+
+.rpg-card {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 20px auto;
+  font-family: 'Inter', var(--ui); /* Fonte Inter como principal */
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg) 0%, #06060d 100%);
+  border-radius: var(--card-radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
+}
+
+.rpg-card .header {
+  padding-left: 90px;
+  position: relative;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+
+.rpg-card .icon-deco {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(0, 0, 0, 0.05));
+  border: 2px solid rgba(255, 255, 255, 0.04);
+}
+
+.rpg-card .icon-deco::before {
+  content: '術';
+  font-size: 32px;
+  font-family: 'Yuji Syuku', serif;
+  color: var(--accent1);
+  text-shadow: 0 0 10px var(--accent1);
+}
+
+.rpg-card .title {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-family: 'Yuji Syuku', serif; /* Fonte temática para o título */
+}
+
+.rpg-card .title .g {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+
+.rpg-card .subtitle-line {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 90%;
+}
+
+.section {
+  background: linear-gradient(180deg, var(--glass), var(--glass-2));
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  animation: fadeInUp 0.6s ease-out forwards; /* Animação de entrada */
+  opacity: 0; /* Inicia transparente para animação */
+}
+
+/* Atraso na animação para cada seção */
+.section:nth-of-type(2) { animation-delay: 0.1s; }
+.section:nth-of-type(3) { animation-delay: 0.2s; }
+.section:nth-of-type(4) { animation-delay: 0.3s; }
+.section:nth-of-type(5) { animation-delay: 0.4s; }
+
+.section .h {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.section .h .name {
+  font-weight: 700;
+  color: var(--highlight);
+  font-size: 17px; /* Aumentado para melhor visualização com a nova fonte */
+  font-family: 'Yuji Syuku', serif; /* Fonte temática para títulos de seção */
+}
+
+.section p.lead {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.details-list {
+  margin: 8px 0 0 18px;
+  padding: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+
+.details-list li { margin: 8px 0; }
+.details-list b { color: var(--text) }
+
+.tag {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1), var(--accent2));
+  background-size: 200% auto;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(59, 0, 176, 0.12);
+  animation: shine 4s linear infinite; /* Animação de brilho em loop */
+}
+
+.table-wrap {
+  overflow-y: auto;
+  border-radius: 0 0 8px 8px;
+  margin-top: 0;
+  background: #0f1122;
+  max-height: 400px;
+}
+
+table.rpg {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  color: var(--muted);
+  min-width: 500px;
+}
+
+table.rpg-header {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+table.rpg-header th {
+  padding: 10px 8px;
+  text-align: center;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+}
+
+table.rpg-header th:first-child { border-radius: 8px 0 0 0; }
+table.rpg-header th:last-child { border-radius: 0 8px 0 0; }
+
+table.rpg tbody td {
+  padding: 10px 8px;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.rank-progression {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.rank-step {
+  background: var(--glass);
+  padding: 12px;
+  border-radius: 8px;
+  border-left: 3px solid var(--accent1); /* Aplicar a nova animação de brilho */
+  animation: pulseGlow 4s infinite ease-in-out;
+}
+
+/* Atraso escalonado para um efeito mais dinâmico */
+.rank-progression .rank-step:nth-child(1) { animation-delay: 0s; }
+.rank-progression .rank-step:nth-child(2) { animation-delay: 0.2s; }
+.rank-progression .rank-step:nth-child(3) { animation-delay: 0.4s; }
+.rank-progression .rank-step:nth-child(4) { animation-delay: 0.6s; }
+.rank-progression .rank-step:nth-child(5) { animation-delay: 0.8s; }
+.rank-progression .rank-step:nth-child(6) { animation-delay: 1.0s; }
+
+.rank-step .rank-title {
+  font-size: 14px;
+  font-weight: bold;
+  color: var(--highlight);
+}
+
+.rank-step .rank-req {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.table-wrap::-webkit-scrollbar { width: 8px; }
+.table-wrap::-webkit-scrollbar-track { background: #101021; border-radius: 0 8px 8px 0; }
+.table-wrap::-webkit-scrollbar-thumb { background-color: #9b00ff; border-radius: 10px; box-shadow: 0 0 5px #9b00ff; }
+.table-wrap { scrollbar-width: thin; scrollbar-color: #9b00ff #101021; }
+
+@media (max-width:640px) {
+  .rpg-card .header {
+    padding-left: 0;
+    margin-top: 0;
+    min-height: auto;
+    text-align: center;
+  }
+  .rpg-card .icon-deco { display: none; }
+  .rpg-card .title { justify-content: center; }
+  table.rpg { min-width: 400px; font-size: 12.5px; }
+}
