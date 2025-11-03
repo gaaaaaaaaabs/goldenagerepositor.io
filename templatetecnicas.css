@@ -1,27 +1,31 @@
-/* --- Início do Template de Técnica v2 (Moderno/Dark) --- */
+/* --- Início do Template de Técnica v3 (Glassmorphism + Nav Vertical) --- */
 
-/* ----- Variáveis de Cor ----- */
-/* Altere estas cores para mudar o tema facilmente */
+/* Importação das fontes do Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
+
+/* ----- Variáveis de Cor (Tema Roxo/Glass) ----- */
 :root {
-  --jjk-bg: #18191a; /* Fundo principal do card */
-  --jjk-surface: #242526; /* Fundo da navegação e elementos internos */
-  --jjk-border: #3a3a3c; /* Cor da borda sutil */
-  --jjk-text-primary: #e4e6eb; /* Cor do texto principal */
-  --jjk-text-secondary: #b0b3b8; /* Cor do texto secundário (descrições) */
-  --jjk-accent: #0088cc; /* Cor de destaque (links, abas ativas) */
-  --jjk-accent-hover: #00aaff; /* Destaque ao passar o mouse */
+  --jjk-bg: #0c0c1a; /* Fundo principal */
+  --jjk-panel: #0f1020; /* Cor do painel de navegação */
+  --jjk-surface: #1a1b2a; /* Fundo da área de conteúdo */
+  --jjk-glass-border: rgba(255, 255, 255, 0.05); /* Borda sutil */
+  --jjk-text-primary: #e7e9ff; /* Cor do texto principal */
+  --jjk-text-secondary: #bfc6e6; /* Cor do texto secundário (descrições) */
+  --jjk-accent1: #9b00ff; /* Destaque principal (abas ativas) */
+  --jjk-accent2: #3c00b0; /* Gradiente do destaque */
+  --jjk-highlight: #c48fff; /* Destaque de texto (nomes) */
 }
 
 /* ----- Estrutura Principal ----- */
 .ct-container-v2 {
-  font-family: 'Arial', sans-serif; /* Mude para a fonte do seu fórum */
-  background-color: var(--jjk-bg);
-  border: 1px solid var(--jjk-border);
-  border-radius: 10px;
+  font-family: 'Inter', system-ui, sans-serif;
+  background: linear-gradient(180deg, var(--jjk-bg) 0%, #06060d 100%);
+  border: 1px solid var(--jjk-glass-border);
+  border-radius: 12px;
   overflow: hidden;
-  max-width: 800px; /* Largura máxima do template */
+  max-width: 850px; /* Um pouco mais largo */
   margin: 20px auto;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
   color: var(--jjk-text-primary);
 }
 
@@ -33,29 +37,32 @@
 /* ----- Layout em Grade (Navegação + Conteúdo) ----- */
 .ct-grid-v2 {
   display: grid;
-  grid-template-columns: 200px 1fr; /* Coluna de 200px para nav, o resto para conteúdo */
+  grid-template-columns: 220px 1fr; /* Coluna de nav, o resto para conteúdo */
   min-height: 400px;
 }
 
 /* ----- Navegação Vertical (Coluna Esquerda) ----- */
 .ct-nav-v2 {
-  background-color: var(--jjk-surface);
-  border-right: 1px solid var(--jjk-border);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
+  border-right: 1px solid var(--jjk-glass-border);
   padding: 15px;
 }
 
 .ct-nav-v2 .ct-nav-title {
-  font-size: 1.3em;
+  font-family: 'Yuji Syuku', serif;
+  font-size: 1.5em;
   font-weight: bold;
   color: #fff;
   padding-bottom: 10px;
-  margin: 0 0 10px 0;
-  border-bottom: 2px solid var(--jjk-accent);
+  margin: 5px 0 15px 0;
+  border-bottom: 2px solid var(--jjk-accent1);
+  text-shadow: 0 0 8px var(--jjk-accent1);
 }
 
 .ct-nav-v2 label {
   display: block;
   font-size: 0.95em;
+  font-weight: 700;
   padding: 12px 15px;
   margin-bottom: 5px;
   border-radius: 6px;
@@ -63,18 +70,18 @@
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
-  left: 0;
+  border-left: 3px solid transparent;
 }
 
 .ct-nav-v2 label:hover {
   background-color: rgba(255, 255, 255, 0.05);
   color: var(--jjk-text-primary);
-  left: 3px; /* Pequeno efeito de "empurrar" */
 }
 
 /* ----- Área de Conteúdo (Coluna Direita) ----- */
 .ct-content-area-v2 {
   padding: 25px 30px;
+  background-color: var(--jjk-surface);
 }
 
 .ct-tab-content-v2 {
@@ -88,7 +95,6 @@
 }
 
 /* ----- Lógica de Exibição das Abas ----- */
-/* Mostra o conteúdo da aba quando o rádio correspondente está checado */
 #ct-tab-v2-1:checked ~ .ct-grid-v2 #ct-content-v2-1,
 #ct-tab-v2-2:checked ~ .ct-grid-v2 #ct-content-v2-2,
 #ct-tab-v2-3:checked ~ .ct-grid-v2 #ct-content-v2-3,
@@ -98,21 +104,21 @@
 }
 
 /* ----- Estilo da Aba Ativa ----- */
-/* Muda o estilo do <label> quando seu <input> correspondente está checado */
 #ct-tab-v2-1:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-1"],
 #ct-tab-v2-2:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-2"],
 #ct-tab-v2-3:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-3"],
 #ct-tab-v2-4:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-4"],
 #ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"] {
-  background-color: var(--jjk-accent);
+  background: linear-gradient(90deg, var(--jjk-accent2), var(--jjk-accent1));
   color: #fff;
   font-weight: bold;
-  left: 0;
-  box-shadow: 0 2px 8px rgba(0, 136, 204, 0.3);
+  border-left: 3px solid var(--jjk-highlight);
+  box-shadow: 0 4px 12px rgba(155, 0, 255, 0.3);
 }
 
 /* ----- Estilização do Conteúdo Interno ----- */
-/* Header (da primeira aba) */
+
+/* Header (Visão Geral) - IMAGEM CORRIGIDA */
 .ct-header-v2 {
   display: flex;
   align-items: center;
@@ -120,51 +126,57 @@
   margin-bottom: 20px;
 }
 .ct-header-v2 .ct-header-image {
-  width: 80px;
-  height: 80px;
+  width: 100px; /* Um pouco maior */
+  height: 100px;
   object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid var(--jjk-border);
+  border-radius: 8px; /* <<< REMOVIDO O 'border-radius: 50%' */
+  border: 2px solid var(--jjk-glass-border);
 }
 .ct-header-v2 h2 {
+  font-family: 'Yuji Syuku', serif;
   margin: 0;
-  font-size: 1.8em;
+  font-size: 2.2em;
   color: #fff;
+  font-weight: 700;
 }
 .ct-header-v2 .ct-requirements {
   font-size: 0.9em;
   color: var(--jjk-text-secondary);
   font-style: italic;
+  opacity: 0.8;
 }
-.ct-description {
-  font-size: 1em;
+
+/* Descrição (lead) */
+p.ct-description {
+  font-size: 1.05em;
   line-height: 1.6;
   color: var(--jjk-text-secondary);
-  border-left: 3px solid var(--jjk-accent);
+  border-left: 3px solid var(--jjk-accent1);
   padding-left: 15px;
-  background: var(--jjk-surface);
+  background: var(--jjk-panel);
   padding: 15px;
   border-radius: 0 6px 6px 0;
 }
 
-/* Layout das Habilidades */
+/* Layout das Habilidades (Aba 2+) */
 .spell-card-grid-v2 {
   display: grid;
   grid-template-columns: 200px 1fr;
   gap: 25px;
-  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .spell-image-v2 {
   width: 100%;
   height: 200px;
   object-fit: cover;
   border-radius: 8px;
-  border: 1px solid var(--jjk-border);
+  border: 1px solid var(--jjk-glass-border);
 }
 .spell-japanese-name {
-  font-size: 1.2em;
+  font-family: 'Yuji Syuku', serif;
+  font-size: 1.5em;
   font-weight: bold;
-  color: var(--jjk-text-primary);
+  color: var(--jjk-highlight);
   display: block;
   margin-bottom: 10px;
 }
@@ -172,13 +184,13 @@
 /* Grade de Stats (Custo, Duração, etc.) */
 .spell-stats-grid-v2 {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
   gap: 10px;
-  background: var(--jjk-surface);
+  background: var(--jjk-panel);
   padding: 15px;
   border-radius: 8px;
   margin: 20px 0;
-  border-top: 2px solid var(--jjk-accent);
+  border-top: 2px solid var(--jjk-accent1);
 }
 .stat-block-v2 {
   text-align: center;
@@ -188,6 +200,7 @@
   font-size: 0.8em;
   color: var(--jjk-text-secondary);
   text-transform: uppercase;
+  font-weight: 700;
   margin-bottom: 5px;
 }
 .stat-block-v2 .stat-value {
@@ -201,30 +214,31 @@
   list-style-type: none;
   padding-left: 0;
   color: var(--jjk-text-secondary);
+  font-size: 0.95em;
 }
 .spell-effects-list-v2 li {
   position: relative;
   padding-left: 25px;
   margin-bottom: 12px;
-  line-height: 1.5;
+  line-height: 1.6;
 }
 .spell-effects-list-v2 li::before {
-  content: '•';
+  content: '»'; /* Usando um caractere simples */
   position: absolute;
   left: 0;
   top: 0;
-  color: var(--jjk-accent);
+  color: var(--jjk-accent1);
   font-weight: bold;
   font-size: 1.4em;
   line-height: 1;
 }
-
-/* Requisitos (h4) */
 .spell-requirements-v2 h4 {
-  color: var(--jjk-text-primary);
-  border-bottom: 1px solid var(--jjk-border);
+  color: var(--jjk-highlight);
+  border-bottom: 1px solid var(--jjk-glass-border);
   padding-bottom: 5px;
   margin-bottom: 10px;
+  font-family: 'Yuji Syuku', serif;
+  font-size: 1.1em;
 }
 .spell-requirements-v2 ul {
   list-style-type: none;
@@ -232,4 +246,75 @@
   font-size: 0.9em;
 }
 
-/* --- Fim do Template de Técnica v2 --- */
+/* ----- MELHORIAS DE UI/UX (MOBILE) ----- */
+@media (max-width: 768px) {
+  /* Layout de grade vira coluna única */
+  .ct-grid-v2 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Navegação vira barra horizontal no topo */
+  .ct-nav-v2 {
+    display: flex;
+    flex-wrap: wrap; /* Permite quebrar linha se não couber */
+    justify-content: flex-start;
+    border-right: none;
+    border-bottom: 1px solid var(--jjk-glass-border);
+    padding: 10px;
+  }
+  .ct-nav-v2 .ct-nav-title {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    font-size: 1.3em;
+  }
+  /* Botões de navegação preenchem o espaço */
+  .ct-nav-v2 label {
+    flex-grow: 1;
+    text-align: center;
+    border-left: none;
+    border-bottom: 3px solid transparent;
+    font-size: 0.9em;
+    padding: 10px 5px;
+  }
+  /* Aba ativa no mobile */
+  #ct-tab-v2-1:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-1"],
+  #ct-tab-v2-2:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-2"],
+  #ct-tab-v2-3:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-3"],
+  #ct-tab-v2-4:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-4"],
+  #ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"] {
+    border-left: none;
+    border-bottom: 3px solid var(--jjk-highlight);
+    background: none;
+    color: var(--jjk-highlight);
+    box-shadow: none;
+  }
+  
+  /* Ajustes de conteúdo no mobile */
+  .ct-content-area-v2 {
+    padding: 15px;
+  }
+  .ct-header-v2 {
+    flex-direction: column; /* Empilha a imagem e o título */
+    text-align: center;
+  }
+  .ct-header-v2 .ct-header-image {
+    width: 80px;
+    height: 80px;
+  }
+  .ct-header-v2 h2 {
+    font-size: 1.8em;
+  }
+  
+  /* Grade de imagem/detalhes vira coluna única */
+  .spell-card-grid-v2 {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .spell-image-v2 {
+    height: 150px;
+  }
+  .spell-japanese-name {
+    font-size: 1.3em;
+  }
+}
