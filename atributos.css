@@ -1,4 +1,4 @@
-/* --- Template Atributos e Aptidões v5 (Correção Abas Mobile) --- */
+/* --- Template Atributos e Aptidões v6 (Adicionado Suporte a Particularidades) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -32,7 +32,7 @@
   border-radius: var(--card-radius);
   padding: 20px;
   position: relative;
-  overflow: hidden; /* Este é o culpado, mas é necessário para o radius */
+  overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.03);
   box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
 }
@@ -214,7 +214,7 @@
   border-right: 1px solid var(--accent1);
 }
 
-/* --- Lógica de Abas para APTIDÕES --- */
+/* Lógica de Abas para APTIDÕES */
 #apt-tab-1:checked ~ .tab-nav label[for="apt-tab-1"],
 #apt-tab-2:checked ~ .tab-nav label[for="apt-tab-2"],
 #apt-tab-3:checked ~ .tab-nav label[for="apt-tab-3"] {
@@ -227,7 +227,7 @@
   display: block;
 }
 
-/* --- Lógica de Abas para XP (6 ABAS) --- */
+/* Lógica de Abas para XP (6 ABAS) */
 #xp-tab-1:checked ~ .tab-nav label[for="xp-tab-1"],
 #xp-tab-2:checked ~ .tab-nav label[for="xp-tab-2"],
 #xp-tab-3:checked ~ .tab-nav label[for="xp-tab-3"],
@@ -248,8 +248,9 @@
 
 /* Tabela de XP */
 .table-wrap {
-  overflow-y: visible;
+  overflow-y: auto;
   margin-top: 0;
+  background: #0f1122;
 }
 table.rpg {
   width: 100%;
@@ -332,14 +333,45 @@ table.rpg tbody td {
   
   table.rpg { min-width: 400px; font-size: 12.5px; }
   
-  /* --- [NOVO v5] Correção Abas Mobile --- */
   .tab-nav {
-    overflow-x: auto; /* Mantém a tentativa de rolagem */
+    overflow-x: auto;
     padding-bottom: 3px;
   }
   .tab-button {
-    flex: 1 1 0; /* FORÇA as abas a encolherem para caber */
-    padding: 10px 8px; /* Reduz o padding lateral */
-    font-size: 12px; /* Reduz a fonte */
+    flex: 1 1 0;
+    padding: 10px 8px;
+    font-size: 12px;
   }
+}
+
+/* --- [NOVO v6] Estilos para Particularidades --- */
+.effects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 10px;
+}
+.effects-list b {
+  color: var(--highlight);
+}
+.effects-list ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 5px;
+  font-size: 13.5px; /* Alinhado com o .details-list */
+  line-height: 1.45; /* Alinhado com o .details-list */
+  color: var(--muted);
+}
+.effects-list ul li {
+  margin-bottom: 8px; /* Alinhado com o .details-list */
+  padding-left: 18px; /* Alinhado com o .details-list */
+  position: relative;
+}
+.effects-list ul li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--accent1);
+  font-weight: bold;
 }
