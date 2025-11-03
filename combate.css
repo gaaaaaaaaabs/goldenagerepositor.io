@@ -1,4 +1,4 @@
-/* --- Template Sistema de Combate v6 (Conteúdo em Cards) --- */
+/* --- Template Sistema de Combate v7 (Debuffs com Porcentagem) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -177,22 +177,21 @@
 
 /* Conteúdo Principal (Regras) */
 .combat-content {
-  padding: 30px 40px; /* Aumenta o padding lateral */
+  padding: 30px 40px;
   min-width: 0;
   background-color: var(--combat-panel);
 }
 
-/* === NOVA REGRA DE CARD === */
+/* Card de Seção */
 .combat-content section {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.02));
   border: 1px solid var(--combat-glass-border);
   border-radius: 12px;
   padding: 30px 35px;
-  margin-bottom: 30px; /* Espaçamento entre os cards */
+  margin-bottom: 30px;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Garante que o border-radius funcione */
+  overflow: hidden;
 }
-/* === FIM DA NOVA REGRA === */
 
 .combat-content h2 {
   font-family: var(--combat-font-title);
@@ -278,7 +277,7 @@
   .combat-nav a:hover { border-left-color: transparent; border-bottom-color: var(--combat-accent1); }
   .combat-nav a:focus { border-left-color: transparent; border-bottom-color: var(--combat-highlight); background: none; }
   .combat-content { padding: 30px; }
-  .combat-content section { padding: 25px; margin-bottom: 20px; } /* Ajusta o card no mobile */
+  .combat-content section { padding: 25px; margin-bottom: 20px; }
   .combat-content h2 { font-size: 2em; }
   .combat-content h3 { font-size: 1.5em; }
   .combat-content p, .combat-content li { font-size: 1em; }
@@ -291,6 +290,44 @@
   .combat-nav li { margin: 0; }
   .combat-nav a { border-radius: 0; text-align: center; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
   .combat-nav a:last-child { border-bottom: none; }
-  .combat-content { padding: 20px; } /* Menos padding no mobile */
+  .combat-content { padding: 20px; }
   .combat-content section { padding: 20px; }
+}
+
+/* === [NOVO v7] Estilo Específico para Debuffs === */
+#combate-recursos .rules-definitions dd ul {
+  padding-left: 45px; /* Mais espaço para os números */
+  margin-left: -25px; /* Compensa o margin-left do <dd> */
+}
+
+#combate-recursos .rules-definitions dd ul li::before {
+  /* Sobrescreve o Kanji */
+  font-family: var(--combat-font-main); /* Fonte normal */
+  font-weight: 700;
+  font-size: 1.1em;
+  color: var(--combat-highlight);
+  text-shadow: 0 0 8px var(--combat-accent1);
+  
+  /* Posicionamento */
+  width: 35px; /* Largura fixa para alinhar 40% e 5% */
+  text-align: right;
+  left: -45px; 
+  top: 2px;
+  
+  /* Conteúdo será definido abaixo */
+  content: ''; 
+}
+
+/* Define o conteúdo de porcentagem para cada item */
+#combate-recursos .rules-definitions dd ul li:nth-child(1)::before {
+  content: '40%';
+}
+#combate-recursos .rules-definitions dd ul li:nth-child(2)::before {
+  content: '30%';
+}
+#combate-recursos .rules-definitions dd ul li:nth-child(3)::before {
+  content: '15%';
+}
+#combate-recursos .rules-definitions dd ul li:nth-child(4)::before {
+  content: '5%';
 }
