@@ -1,4 +1,6 @@
-/* --- Template Ficha de Personagem (Dossier) v1 --- */
+/* --- Template Ficha de Personagem (Dossier) v2 (Sistema Corrigido) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
+
 @keyframes jjkDossierFadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -22,11 +24,16 @@
   --border-color: rgba(255, 255, 255, 0.07);
   --radius-md: 10px;
   --radius-sm: 6px;
+  
+  /* Adicionando fontes padrão */
+  --font-main: 'Inter', system-ui, sans-serif;
+  --font-title: 'Yuji Syuku', serif;
+
   box-sizing: border-box;
   max-width: 800px;
   width: 95%;
   margin: 30px auto;
-  font-family: sans-serif;
+  font-family: var(--font-main); /* CORRIGIDO */
   color: var(--text-primary);
   background: var(--panel-bg);
   border-radius: var(--radius-md);
@@ -102,7 +109,7 @@
 }
 .jjk-dossier-container .jjk-dossier-profile-info { flex-grow: 1; }
 .jjk-dossier-container .jjk-dossier-char-name {
-  font-family: serif;
+  font-family: var(--font-title); /* CORRIGIDO */
   font-size: 28px;
   font-weight: bold;
   margin: 0;
@@ -232,7 +239,7 @@
   padding-top: 20px;
 }
 .jjk-dossier-container .jjk-dossier-tab-content h3 {
-  font-family: serif;
+  font-family: var(--font-title); /* CORRIGIDO */
   font-size: 18px;
   margin-bottom: 15px;
   border-left: 3px solid var(--accent);
@@ -430,7 +437,7 @@
 }
 .jjk-dossier-container .jjk-dossier-profile-value { font-size: 14px; }
 .jjk-dossier-container .jjk-dossier-profile-desc h4 {
-  font-family: serif;
+  font-family: var(--font-title); /* CORRIGIDO */
   margin: 0 0 10px 0;
   font-size: 16px;
 }
@@ -454,7 +461,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-family: serif;
+  font-family: var(--font-title); /* CORRIGIDO */
   margin: 0 0 10px 0;
   font-size: 16px;
 }
