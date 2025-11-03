@@ -1,0 +1,235 @@
+/* --- Início do Template de Técnica v2 (Moderno/Dark) --- */
+
+/* ----- Variáveis de Cor ----- */
+/* Altere estas cores para mudar o tema facilmente */
+:root {
+  --jjk-bg: #18191a; /* Fundo principal do card */
+  --jjk-surface: #242526; /* Fundo da navegação e elementos internos */
+  --jjk-border: #3a3a3c; /* Cor da borda sutil */
+  --jjk-text-primary: #e4e6eb; /* Cor do texto principal */
+  --jjk-text-secondary: #b0b3b8; /* Cor do texto secundário (descrições) */
+  --jjk-accent: #0088cc; /* Cor de destaque (links, abas ativas) */
+  --jjk-accent-hover: #00aaff; /* Destaque ao passar o mouse */
+}
+
+/* ----- Estrutura Principal ----- */
+.ct-container-v2 {
+  font-family: 'Arial', sans-serif; /* Mude para a fonte do seu fórum */
+  background-color: var(--jjk-bg);
+  border: 1px solid var(--jjk-border);
+  border-radius: 10px;
+  overflow: hidden;
+  max-width: 800px; /* Largura máxima do template */
+  margin: 20px auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  color: var(--jjk-text-primary);
+}
+
+/* Esconde os botões de rádio originais */
+.ct-container-v2 input[name="ct-tab-v2"] {
+  display: none;
+}
+
+/* ----- Layout em Grade (Navegação + Conteúdo) ----- */
+.ct-grid-v2 {
+  display: grid;
+  grid-template-columns: 200px 1fr; /* Coluna de 200px para nav, o resto para conteúdo */
+  min-height: 400px;
+}
+
+/* ----- Navegação Vertical (Coluna Esquerda) ----- */
+.ct-nav-v2 {
+  background-color: var(--jjk-surface);
+  border-right: 1px solid var(--jjk-border);
+  padding: 15px;
+}
+
+.ct-nav-v2 .ct-nav-title {
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #fff;
+  padding-bottom: 10px;
+  margin: 0 0 10px 0;
+  border-bottom: 2px solid var(--jjk-accent);
+}
+
+.ct-nav-v2 label {
+  display: block;
+  font-size: 0.95em;
+  padding: 12px 15px;
+  margin-bottom: 5px;
+  border-radius: 6px;
+  color: var(--jjk-text-secondary);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  left: 0;
+}
+
+.ct-nav-v2 label:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--jjk-text-primary);
+  left: 3px; /* Pequeno efeito de "empurrar" */
+}
+
+/* ----- Área de Conteúdo (Coluna Direita) ----- */
+.ct-content-area-v2 {
+  padding: 25px 30px;
+}
+
+.ct-tab-content-v2 {
+  display: none; /* Esconde todas as abas por padrão */
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ----- Lógica de Exibição das Abas ----- */
+/* Mostra o conteúdo da aba quando o rádio correspondente está checado */
+#ct-tab-v2-1:checked ~ .ct-grid-v2 #ct-content-v2-1,
+#ct-tab-v2-2:checked ~ .ct-grid-v2 #ct-content-v2-2,
+#ct-tab-v2-3:checked ~ .ct-grid-v2 #ct-content-v2-3,
+#ct-tab-v2-4:checked ~ .ct-grid-v2 #ct-content-v2-4,
+#ct-tab-v2-5:checked ~ .ct-grid-v2 #ct-content-v2-5 {
+  display: block;
+}
+
+/* ----- Estilo da Aba Ativa ----- */
+/* Muda o estilo do <label> quando seu <input> correspondente está checado */
+#ct-tab-v2-1:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-1"],
+#ct-tab-v2-2:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-2"],
+#ct-tab-v2-3:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-3"],
+#ct-tab-v2-4:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-4"],
+#ct-tab-v2-5:checked ~ .ct-grid-v2 .ct-nav-v2 label[for="ct-tab-v2-5"] {
+  background-color: var(--jjk-accent);
+  color: #fff;
+  font-weight: bold;
+  left: 0;
+  box-shadow: 0 2px 8px rgba(0, 136, 204, 0.3);
+}
+
+/* ----- Estilização do Conteúdo Interno ----- */
+/* Header (da primeira aba) */
+.ct-header-v2 {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+.ct-header-v2 .ct-header-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid var(--jjk-border);
+}
+.ct-header-v2 h2 {
+  margin: 0;
+  font-size: 1.8em;
+  color: #fff;
+}
+.ct-header-v2 .ct-requirements {
+  font-size: 0.9em;
+  color: var(--jjk-text-secondary);
+  font-style: italic;
+}
+.ct-description {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--jjk-text-secondary);
+  border-left: 3px solid var(--jjk-accent);
+  padding-left: 15px;
+  background: var(--jjk-surface);
+  padding: 15px;
+  border-radius: 0 6px 6px 0;
+}
+
+/* Layout das Habilidades */
+.spell-card-grid-v2 {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 25px;
+  margin-top: 20px;
+}
+.spell-image-v2 {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid var(--jjk-border);
+}
+.spell-japanese-name {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: var(--jjk-text-primary);
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Grade de Stats (Custo, Duração, etc.) */
+.spell-stats-grid-v2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  gap: 10px;
+  background: var(--jjk-surface);
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px 0;
+  border-top: 2px solid var(--jjk-accent);
+}
+.stat-block-v2 {
+  text-align: center;
+}
+.stat-block-v2 .stat-label {
+  display: block;
+  font-size: 0.8em;
+  color: var(--jjk-text-secondary);
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+.stat-block-v2 .stat-value {
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--jjk-text-primary);
+}
+
+/* Lista de Efeitos */
+.spell-effects-list-v2 {
+  list-style-type: none;
+  padding-left: 0;
+  color: var(--jjk-text-secondary);
+}
+.spell-effects-list-v2 li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+.spell-effects-list-v2 li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--jjk-accent);
+  font-weight: bold;
+  font-size: 1.4em;
+  line-height: 1;
+}
+
+/* Requisitos (h4) */
+.spell-requirements-v2 h4 {
+  color: var(--jjk-text-primary);
+  border-bottom: 1px solid var(--jjk-border);
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+.spell-requirements-v2 ul {
+  list-style-type: none;
+  padding-left: 0;
+  font-size: 0.9em;
+}
+
+/* --- Fim do Template de Técnica v2 --- */
