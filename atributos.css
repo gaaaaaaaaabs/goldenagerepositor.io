@@ -1,4 +1,4 @@
-/* --- Template Atributos e Aptidões v2 (UX/UI Melhorada) --- */
+/* --- Template Atributos e Aptidões v3 (Abas para Aptidões e XP) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -37,26 +37,26 @@
   box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
 }
 
-/* --- [NOVO v2] Cabeçalho com Flexbox --- */
+/* Cabeçalho com Flexbox */
 .rpg-card .header {
   display: flex;
   align-items: center;
   gap: 20px;
-  padding-left: 0; /* Removido o padding antigo */
-  min-height: 60px; /* Reduzido o min-height */
+  padding-left: 0;
+  min-height: 60px;
 }
 .rpg-card .header-content {
-  flex: 1; /* Ocupa o espaço restante */
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 .rpg-card .icon-deco {
-  position: relative; /* Removido o absolute */
-  top: 0; left: 0; transform: none; /* Reset */
+  position: relative;
+  top: 0; left: 0; transform: none;
   width: 60px;
   height: 60px;
-  flex-shrink: 0; /* Impede que o ícone encolha */
+  flex-shrink: 0;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -90,10 +90,10 @@
 .rpg-card .subtitle-line {
   color: var(--muted);
   font-size: 13px;
-  max-width: 100%; /* Ajustado */
+  max-width: 100%;
 }
-/* --- Fim do Cabeçalho --- */
 
+/* Seções */
 .section {
   background: linear-gradient(180deg, var(--glass), var(--glass-2));
   border-radius: 8px;
@@ -149,33 +149,13 @@
   animation: shine 4s linear infinite;
 }
 
-/* --- [NOVO v2] Grade de Aptidões --- */
-.aptitude-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 15px;
-  margin-top: 10px;
-}
-.aptitude-grid .apt-column {
-  /* background: rgba(0,0,0,0.1); */ /* Opcional */
-  padding: 5px;
-  border-radius: 6px;
-}
-.aptitude-grid .apt-title {
-  color: var(--highlight);
-  display: block;
-  font-weight: 700;
-  font-size: 1.05em; /* Um pouco maior */
-}
-/* --- Fim da Grade de Aptidões --- */
-
-/* --- [NOVO v2] Abas da Tabela de XP --- */
-.tabs-container {
+/* --- [NOVO v3] Sistema de Abas Genérico --- */
+.rpg-tabs {
   display: flex;
   flex-wrap: wrap;
   margin-top: 10px;
 }
-.tabs-container input[name="xp-tabs"] {
+.rpg-tabs-input {
   display: none;
 }
 .tab-nav {
@@ -184,7 +164,9 @@
   gap: 5px;
 }
 .tab-button {
-  flex: 1;
+  flex-grow: 1; /* Cresce para preencher */
+  flex-shrink: 1; /* Encolhe se necessário */
+  flex-basis: 0;  /* Base zero para distribuição igual */
   padding: 10px;
   text-align: center;
   font-weight: 700;
@@ -196,6 +178,7 @@
   border-radius: 6px 6px 0 0;
   cursor: pointer;
   transition: all 0.2s ease;
+  white-space: nowrap; /* Impede que o texto da aba quebre linha */
 }
 .tab-button:hover {
   background: var(--glass);
@@ -203,43 +186,74 @@
 }
 .tab-pane-wrapper {
   width: 100%;
-  order: 99; /* Garante que fique abaixo das abas */
+  order: 99;
 }
 .tab-pane {
   display: none;
+  background: #0f1122;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  padding: 10px;
 }
-/* Lógica de exibição das Abas */
-#xp-tab-1:checked ~ .tab-nav label[for="xp-tab-1"],
-#xp-tab-2:checked ~ .tab-nav label[for="xp-tab-2"],
-#xp-tab-3:checked ~ .tab-nav label[for="xp-tab-3"] {
+/* Estilo da aba ativa (genérico) */
+.rpg-tabs-input:checked + .tab-nav .tab-button {
   background: linear-gradient(90deg, var(--accent2), var(--accent1));
   color: white;
   border-color: var(--accent1);
 }
-#xp-tab-1:checked ~ .tab-pane-wrapper #xp-pane-1,
-#xp-tab-2:checked ~ .tab-pane-wrapper #xp-pane-2,
-#xp-tab-3:checked ~ .tab-pane-wrapper #xp-pane-3 {
+/* Hack para bordas (para não ter borda dupla entre abas) */
+.tab-button {
+  border-right: none;
+}
+.tab-button:last-child {
+  border-right: 1px solid rgba(255, 255, 255, 0.02);
+}
+.rpg-tabs-input:checked + .tab-nav .tab-button {
+  border-right: none;
+}
+.rpg-tabs-input:checked + .tab-nav .tab-button:last-child {
+  border-right: 1px solid var(--accent1);
+}
+
+/* --- Lógica de Abas para APTIDÕES --- */
+#apt-tab-1:checked ~ .tab-nav label[for="apt-tab-1"],
+#apt-tab-2:checked ~ .tab-nav label[for="apt-tab-2"],
+#apt-tab-3:checked ~ .tab-nav label[for="apt-tab-3"] {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  color: white; border-color: var(--accent1);
+}
+#apt-tab-1:checked ~ .tab-pane-wrapper #apt-pane-1,
+#apt-tab-2:checked ~ .tab-pane-wrapper #apt-pane-2,
+#apt-tab-3:checked ~ .tab-pane-wrapper #apt-pane-3 {
   display: block;
 }
-/* --- Fim das Abas --- */
 
-/* Tabela de XP (Removido max-height) */
+/* --- Lógica de Abas para XP (5 ABAS) --- */
+#xp-tab-1:checked ~ .tab-nav label[for="xp-tab-1"],
+#xp-tab-2:checked ~ .tab-nav label[for="xp-tab-2"],
+#xp-tab-3:checked ~ .tab-nav label[for="xp-tab-3"],
+#xp-tab-4:checked ~ .tab-nav label[for="xp-tab-4"],
+#xp-tab-5:checked ~ .tab-nav label[for="xp-tab-5"] {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  color: white; border-color: var(--accent1);
+}
+#xp-tab-1:checked ~ .tab-pane-wrapper #xp-pane-1,
+#xp-tab-2:checked ~ .tab-pane-wrapper #xp-pane-2,
+#xp-tab-3:checked ~ .tab-pane-wrapper #xp-pane-3,
+#xp-tab-4:checked ~ .tab-pane-wrapper #xp-pane-4,
+#xp-tab-5:checked ~ .tab-pane-wrapper #xp-pane-5 {
+  display: block;
+}
+/* --- Fim do Sistema de Abas --- */
+
+
+/* Tabela de XP */
 .table-wrap {
-  overflow-y: visible; /* Removido 'auto' */
-  border-radius: 0 0 8px 8px; /* Trocado para 0 0 8px 8px */
+  overflow-y: visible; /* Não mais necessário */
   margin-top: 0;
-  background: #0f1122;
-  border: 1px solid rgba(255, 255, 255, 0.02); /* Adiciona borda */
-  border-top: none; /* Remove borda do topo que fica com a aba */
+  /* background, border, radius agora estão no .tab-pane */
 }
-/* Correção de Borda para a primeira aba */
-#xp-tab-1:checked ~ .tab-nav label[for="xp-tab-1"] {
-  border-right-color: rgba(255, 255, 255, 0.02);
-}
-#xp-tab-2:checked ~ .tab-nav label[for="xp-tab-2"] {
-  border-right-color: rgba(255, 255, 255, 0.02);
-}
-
 table.rpg {
   width: 100%;
   border-collapse: collapse;
@@ -271,7 +285,7 @@ table.rpg tbody td {
   font-size: 13px;
 }
 
-/* Progressão de Grau (sem mudanças) */
+/* Progressão de Grau */
 .rank-progression {
   display: flex;
   flex-direction: column;
@@ -290,7 +304,6 @@ table.rpg tbody td {
 .rank-progression .rank-step:nth-child(4) { animation-delay: 0.6s; }
 .rank-progression .rank-step:nth-child(5) { animation-delay: 0.8s; }
 .rank-progression .rank-step:nth-child(6) { animation-delay: 1.0s; }
-
 .rank-step .rank-title {
   font-size: 14px;
   font-weight: bold;
@@ -302,36 +315,34 @@ table.rpg tbody td {
   margin-top: 4px;
 }
 
-/* Scrollbar (mantido para o caso de .table-wrap ser usado em outro lugar) */
+/* Scrollbar (mantido) */
 .table-wrap::-webkit-scrollbar { width: 8px; }
 .table-wrap::-webkit-scrollbar-track { background: #101021; border-radius: 0 8px 8px 0; }
 .table-wrap::-webkit-scrollbar-thumb { background-color: #9b00ff; border-radius: 10px; box-shadow: 0 0 5px #9b00ff; }
 .table-wrap { scrollbar-width: thin; scrollbar-color: #9b00ff #101021; }
 
 @media (max-width:640px) {
-  /* [NOVO v2] Cabeçalho responsivo */
   .rpg-card .header {
-    flex-direction: column; /* Empilha ícone e texto */
+    flex-direction: column;
     text-align: center;
     gap: 10px;
   }
   .rpg-card .icon-deco {
-    display: grid; /* Mantém o ícone visível! */
+    display: grid;
     margin: 0 auto;
   }
   .rpg-card .title { justify-content: center; }
   
-  /* [NOVO v2] Grade de Aptidões responsiva */
-  .aptitude-grid {
-    grid-template-columns: 1fr; /* Coluna única */
-    gap: 10px;
-  }
-  
   table.rpg { min-width: 400px; font-size: 12.5px; }
   
-  /* Abas responsivas */
+  /* --- [NOVO v3] Abas Responsivas --- */
+  .tab-nav {
+    overflow-x: auto; /* Permite rolagem horizontal */
+    padding-bottom: 3px; /* Espaço para scrollbar se houver */
+  }
   .tab-button {
-    font-size: 12px;
-    padding: 10px 5px;
+    flex: 0 0 auto; /* Não cresce, não encolhe, tamanho automático */
+    padding: 10px 15px; /* Padding fixo no mobile */
+    font-size: 13px;
   }
 }
