@@ -1,5 +1,6 @@
-/* --- Template Postagem de Jogador v2 (com OOC) --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
+/* --- Template Postagem Unificado v3 (Jogador e Mestre) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
+
 :root {
   --bg: #0a0a14;
   --panel: #101120;
@@ -16,7 +17,11 @@
   --ui: 'Inter', system-ui, sans-serif;
   --title: 'Yuji Syuku', serif;
   --mono: 'Roboto Mono', monospace;
+  --failure: #c53030;
+  --failure-dark: #9b2c2c;
 }
+
+/* --- Container Base (Comum a ambos) --- */
 .rppost-container {
   box-sizing: border-box;
   max-width: 700px;
@@ -29,32 +34,31 @@
   position: relative;
   border: 1px solid rgba(160, 80, 255, 0.1);
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
-  padding: 20px;
+  padding: 0; /* Removido padding para o banner */
+  overflow: hidden; /* Adicionado */
 }
 .rppost-container * {
   box-sizing: border-box;
 }
-@keyframes draw-line-x {
-  from { width: 0%; }
-  to { width: 100%; }
-}
-@keyframes draw-line-y {
-  from { height: 0%; }
-  to { height: 100%; }
-}
+
+/* --- Animações (Comum) --- */
+@keyframes draw-line-x { from { width: 0%; } to { width: 100%; } }
+@keyframes draw-line-y { from { height: 0%; } to { height: 100%; } }
 @keyframes neon-flicker {
   0%, 100% {
     opacity: 1;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
   }
-  20%, 24%, 55% {
-    opacity: 0.6;
-    text-shadow: none;
-  }
+  20%, 24%, 55% { opacity: 0.6; text-shadow: none; }
   22%, 26%, 57% {
     opacity: 1;
     text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
   }
+}
+
+/* --- [INÍCIO] Template Jogador (.rppost-player) --- */
+.rppost-player .rppost-body-wrapper {
+  padding: 20px;
 }
 .rppost-image-wrapper {
   position: relative;
@@ -93,10 +97,7 @@
 }
 .rppost-image-wrapper .overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   pointer-events: none;
 }
 .vignette-overlay {
@@ -107,10 +108,7 @@
 }
 .frame-corners {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  top: 0; left: 0; width: 100%; height: 100%;
   z-index: 5;
 }
 .frame-corners .corner {
@@ -125,14 +123,8 @@
   background: var(--accent);
   box-shadow: 0 0 8px var(--accent);
 }
-.frame-corners .corner::before {
-  width: 100%;
-  height: 2px;
-}
-.frame-corners .corner::after {
-  width: 2px;
-  height: 100%;
-}
+.frame-corners .corner::before { width: 100%; height: 2px; }
+.frame-corners .corner::after { width: 2px; height: 100%; }
 .corner.top-left { top: 10px; left: 10px; }
 .corner.top-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.1s forwards; }
 .corner.top-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 0.4s forwards; }
@@ -145,9 +137,10 @@
 .corner.bottom-left { bottom: 10px; left: 10px; transform: rotate(270deg); }
 .corner.bottom-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.9s forwards; }
 .corner.bottom-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 2.2s forwards; }
+
 .rppost-header {
   text-align: center;
-  margin: 30px 0;
+  margin: 10px 0 30px 0; /* Ajustado */
 }
 .rppost-title {
   font-family: 'Yuji Syuku', serif;
@@ -270,13 +263,90 @@
 .rppost-content p:last-child {
   margin-bottom: 0;
 }
+/* --- [FIM] Template Jogador --- */
 
-/* --- [NOVO v2] Estilos de Divisor e Acordeão --- */
+
+/* --- [INÍCIO] Template Mestre (.rppost-master) --- */
+.rppost-master .post-header {
+  padding: 25px 30px;
+  text-align: left;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+}
+.rppost-master .post-title {
+  font-family: var(--title);
+  font-size: 2.2em;
+  font-weight: 700;
+  color: var(--highlight);
+  margin: 0 0 5px 0;
+}
+.rppost-master .post-subtitle {
+  font-family: var(--ui);
+  font-size: 1.1em;
+  color: var(--text-muted);
+  margin: 0 0 15px 0;
+  font-style: italic;
+  font-weight: 300;
+}
+.rppost-master .post-metadata-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  border-top: 1px solid var(--glass);
+  padding-top: 15px;
+}
+.rppost-master .post-metadata-item {
+  font-size: 12px;
+  font-family: var(--mono);
+}
+.rppost-master .post-metadata-item .label {
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 700;
+  margin-right: 8px;
+  opacity: 0.8;
+}
+.rppost-master .post-metadata-item .value {
+  font-size: 1.1em;
+  color: var(--text);
+  font-weight: 500;
+}
+.rppost-master .post-narration {
+  padding: 25px 30px;
+}
+.rppost-master .post-narration::first-letter {
+  content: '';
+  font-family: var(--title);
+  font-size: 4.5em;
+  font-weight: 700;
+  color: var(--highlight);
+  float: left;
+  margin-right: 12px;
+  margin-top: 5px;
+  line-height: 0.8;
+  text-shadow: 0 0 10px var(--accent);
+}
+.rppost-master .post-narration p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: var(--text-muted);
+  margin-bottom: 20px;
+  font-weight: 300;
+  text-align: justify;
+}
+.rppost-master .post-narration p:last-of-type {
+  margin-bottom: 0;
+}
+/* --- [FIM] Template Mestre --- */
+
+
+/* --- [INÍCIO] Bloco OOC (Comum a ambos) --- */
 .post-divider {
   display: flex;
   align-items: center;
   gap: 15px;
-  margin: 20px 0; /* Ajustado o padding */
+  margin: 15px 25px;
 }
 .post-divider::before,
 .post-divider::after {
@@ -292,53 +362,53 @@
   opacity: 0.5;
 }
 .post-ooc-wrapper {
-  padding: 0; /* Removido padding extra */
+  padding: 0 20px 20px 20px; /* Padding unificado */
 }
 .accordion-toggle {
   display: none;
 }
 .accordion-label {
   display: block;
-  padding: 12px 18px;
+  padding: 10px 15px;
   background: var(--bg);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: var(--radius);
   cursor: pointer;
   font-weight: 700;
   font-family: var(--title);
-  font-size: 1.3em;
+  font-size: 1.2em;
   transition: background 0.3s;
+  margin-top: 10px; /* Espaçamento entre acordeões */
   color: var(--highlight);
 }
 .accordion-label:hover {
   background: var(--glass-2);
 }
 .accordion-label::after {
-  content: '[+ Ver Notas OOC]';
+  content: '[Ver]';
   float: right;
-  font-size: 0.8em;
+  font-size: 0.9em;
   color: var(--muted);
   font-family: var(--ui);
   font-weight: 400;
 }
 .accordion-toggle:checked + .accordion-label::after {
-  content: '[- Esconder Notas OOC]';
+  content: '[Esconder]';
 }
-.post-ooc-block {
+.accordion-content {
   max-height: 0;
   overflow: hidden;
-  transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, opacity 0.5s ease-out;
-  background: var(--bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: max-height 0.4s ease-in-out, margin-top 0.4s ease-in-out;
+  margin-top: 0;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid rgba(255,255,255,0.05);
   border-top: none;
   border-radius: 0 0 var(--radius) var(--radius);
-  opacity: 0.5;
-  padding: 0 25px; /* Adicionado padding h. para o conteúdo */
 }
-.accordion-toggle:checked + .accordion-label + .post-ooc-block {
-  max-height: 4000px;
-  padding: 20px 25px 25px 25px;
-  opacity: 1;
+.accordion-toggle:checked + .accordion-label + .accordion-content {
+  max-height: 2000px;
+  margin-top: 0;
+  padding: 15px;
 }
 .post-ooc-block h3 {
   font-family: var(--title);
@@ -349,11 +419,79 @@
   padding-bottom: 10px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
+/* --- Estilos OOC do Mestre --- */
+.special-rules-box {
+  margin: 0 0 15px 0;
+  background: linear-gradient(180deg, rgba(155, 0, 255, 0.1), rgba(60, 0, 176, 0.1));
+  border: 1px solid var(--accent);
+  border-left: 6px solid var(--highlight);
+  padding: 20px 25px;
+  border-radius: 0 10px 10px 0;
+}
+.special-rules-box h3 { margin: 0 0 10px 0; padding: 0; border: none; }
+.special-rules-box ul { list-style: none; padding-left: 0; margin: 0; font-size: 13px; color: var(--muted); }
+.special-rules-box li { margin-bottom: 5px; }
+.enemy-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+.enemy-card {
+  background: var(--glass-2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  font-family: var(--mono);
+  overflow: hidden;
+}
+.enemy-card-header {
+  position: relative;
+  height: 150px;
+  background-color: var(--bg);
+  background-size: cover;
+  background-position: center;
+}
+.enemy-card-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 80px;
+  background: linear-gradient(0deg, rgba(15,16,32,1) 0%, rgba(15,16,32,0) 100%);
+}
+.enemy-card-name {
+  font-family: var(--title);
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--text);
+  position: absolute;
+  bottom: 10px;
+  left: 15px;
+  z-index: 2;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.7);
+}
+.enemy-stats-wrapper { padding: 15px; }
+.enemy-stats { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+.enemy-stat-item { display: flex; align-items: center; gap: 10px; }
+.enemy-stat-label { font-size: 13px; font-weight: 700; width: 30px; flex-shrink: 0; font-family: var(--mono); color: var(--muted); }
+.enemy-stat-bar-wrapper { flex-grow: 1; position: relative; }
+.enemy-stat-bar { height: 18px; background: rgba(0, 0, 0, 0.3); border-radius: 50px; overflow: hidden; }
+.enemy-stat-bar-fill { height: 100%; border-radius: 50px; transition: width 0.5s ease-in-out; }
+.enemy-hp-fill { background: linear-gradient(90deg, var(--failure-dark), var(--failure)); }
+.enemy-ea-fill { background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
+.enemy-stat-value { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 11px; font-weight: bold; color: var(--text); }
+.enemy-notes { font-size: 12px; color: var(--muted); line-height: 1.5; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--glass); }
+.player-notes-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.player-note-card { background: var(--glass-2); border: 1px solid var(--glass); border-radius: var(--radius); padding: 15px; }
+.player-note-card .player-name { font-family: var(--mono); font-size: 1.2em; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+.player-note-card .player-note-text { font-size: 13px; color: var(--muted); line-height: 1.6; margin: 0; }
+.general-notes-box { margin: 15px 0 0 0; background: var(--glass-2); border: 1px solid var(--glass); padding: 20px 25px; border-radius: 10px; }
+.general-notes-box h3 { margin-top: 0; }
+.general-notes-box ul { list-style: none; padding-left: 0; margin: 0; font-size: 13px; color: var(--muted); }
+.general-notes-box li { margin-bottom: 5px; }
+/* --- Estilos OOC do Jogador --- */
 .ooc-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
-  margin-bottom: 25px;
 }
 .ooc-card {
   background: var(--glass-2);
@@ -381,7 +519,7 @@
   margin-bottom: 5px;
 }
 .ooc-notes-box {
-  margin: 0;
+  margin: 15px 0 0 0;
   background: var(--glass-2);
   border: 1px solid var(--glass);
   padding: 20px 25px;
@@ -396,3 +534,4 @@
   line-height: 1.6;
   margin: 0;
 }
+/* --- [FIM] Bloco OOC --- */
