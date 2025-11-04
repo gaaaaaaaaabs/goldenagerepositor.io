@@ -1,4 +1,4 @@
-/* --- Template Postagem de Jogador (v1) --- */
+/* --- Template Postagem de Jogador v2 (com OOC) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
 :root {
   --bg: #0a0a14;
@@ -11,8 +11,13 @@
   --hp-color: #FF50A0;
   --hp-dark: #C52070;
   --text-muted: #9FA3B9;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
 }
-.rppost-container { /* Renomeado de .jjk-dossier-container */
+.rppost-container {
   box-sizing: border-box;
   max-width: 700px;
   width: 95%;
@@ -174,7 +179,6 @@
   margin: 0;
   opacity: 0.8;
 }
-/* Barras de Status Renomeadas */
 .rppost-status-bars {
   display: flex;
   flex-direction: column;
@@ -228,7 +232,6 @@
   color: #fff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
 }
-/* Fim das Barras de Status */
 .rppost-content {
   position: relative;
   background: rgba(0, 0, 0, 0.2);
@@ -266,4 +269,130 @@
 }
 .rppost-content p:last-child {
   margin-bottom: 0;
+}
+
+/* --- [NOVO v2] Estilos de Divisor e Acordeão --- */
+.post-divider {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin: 20px 0; /* Ajustado o padding */
+}
+.post-divider::before,
+.post-divider::after {
+  content: '';
+  flex-grow: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+}
+.post-divider-kanji {
+  font-family: var(--title);
+  font-size: 1.5em;
+  color: var(--muted);
+  opacity: 0.5;
+}
+.post-ooc-wrapper {
+  padding: 0; /* Removido padding extra */
+}
+.accordion-toggle {
+  display: none;
+}
+.accordion-label {
+  display: block;
+  padding: 12px 18px;
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 700;
+  font-family: var(--title);
+  font-size: 1.3em;
+  transition: background 0.3s;
+  color: var(--highlight);
+}
+.accordion-label:hover {
+  background: var(--glass-2);
+}
+.accordion-label::after {
+  content: '[+ Ver Notas OOC]';
+  float: right;
+  font-size: 0.8em;
+  color: var(--muted);
+  font-family: var(--ui);
+  font-weight: 400;
+}
+.accordion-toggle:checked + .accordion-label::after {
+  content: '[- Esconder Notas OOC]';
+}
+.post-ooc-block {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease-out, padding-top 0.5s ease-out, opacity 0.5s ease-out;
+  background: var(--bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-top: none;
+  border-radius: 0 0 var(--radius) var(--radius);
+  opacity: 0.5;
+  padding: 0 25px; /* Adicionado padding h. para o conteúdo */
+}
+.accordion-toggle:checked + .accordion-label + .post-ooc-block {
+  max-height: 4000px;
+  padding: 20px 25px 25px 25px;
+  opacity: 1;
+}
+.post-ooc-block h3 {
+  font-family: var(--title);
+  font-weight: 700;
+  color: var(--highlight);
+  font-size: 1.5em;
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.ooc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.ooc-card {
+  background: var(--glass-2);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius);
+  padding: 12px;
+  font-family: var(--mono);
+}
+.ooc-card-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--text);
+  border-bottom: 1px solid var(--glass);
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+}
+.ooc-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.ooc-card li {
+  margin-bottom: 5px;
+}
+.ooc-notes-box {
+  margin: 0;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  padding: 20px 25px;
+  border-radius: 10px;
+}
+.ooc-notes-box h3 {
+  margin-top: 0;
+}
+.ooc-notes-box p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin: 0;
 }
