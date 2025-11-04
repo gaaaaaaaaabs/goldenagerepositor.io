@@ -316,13 +316,11 @@
   animation: none;
   opacity: 0.8;
 }
+/* --- [NOVO v18] Acordeão JS --- */
 .reward-notes-accordion {
   margin-top: 5px;
 }
-.reward-notes-accordion input {
-  display: none;
-}
-.reward-notes-accordion label {
+.reward-notes-toggle { /* Este é o novo botão clicável */
   display: inline-block;
   font-weight: 700;
   font-size: 13px;
@@ -330,13 +328,13 @@
   cursor: pointer;
   transition: color 0.2s;
 }
-.reward-notes-accordion label:hover {
+.reward-notes-toggle:hover {
   color: var(--highlight);
 }
-.reward-notes-accordion label::before {
+.reward-notes-toggle::before {
   content: '[+ Ver Notas do Mestre]';
 }
-.reward-notes-accordion input:checked + label::before {
+.reward-notes-accordion.is-open .reward-notes-toggle::before {
   content: '[- Esconder Notas]';
 }
 .reward-notes-content {
@@ -349,7 +347,7 @@
   padding: 0 10px;
   margin-top: 0;
 }
-.reward-notes-accordion input:checked + label + .reward-notes-content {
+.reward-notes-accordion.is-open .reward-notes-content {
   max-height: 500px;
   padding: 10px;
   margin-top: 5px;
@@ -357,6 +355,7 @@
   border-radius: 4px;
   border-top: 1px solid var(--glass);
 }
+/* --- Fim do Acordeão JS --- */
 .report-footer {
   text-align: center;
   padding: 25px;
