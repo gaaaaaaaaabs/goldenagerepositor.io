@@ -1,0 +1,269 @@
+/* --- Template Postagem de Jogador (v1) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
+:root {
+  --bg: #0a0a14;
+  --panel: #101120;
+  --text: #d4d8f0;
+  --accent: #a050ff;
+  --accent-dark: #6d20c5;
+  --highlight: #c48fff;
+  --radius: 8px;
+  --hp-color: #FF50A0;
+  --hp-dark: #C52070;
+  --text-muted: #9FA3B9;
+}
+.rppost-container { /* Renomeado de .jjk-dossier-container */
+  box-sizing: border-box;
+  max-width: 700px;
+  width: 95%;
+  margin: 40px auto;
+  font-family: 'Inter', sans-serif;
+  color: var(--text);
+  background: var(--panel);
+  border-radius: var(--radius);
+  position: relative;
+  border: 1px solid rgba(160, 80, 255, 0.1);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+  padding: 20px;
+}
+.rppost-container * {
+  box-sizing: border-box;
+}
+@keyframes draw-line-x {
+  from { width: 0%; }
+  to { width: 100%; }
+}
+@keyframes draw-line-y {
+  from { height: 0%; }
+  to { height: 100%; }
+}
+@keyframes neon-flicker {
+  0%, 100% {
+    opacity: 1;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
+  }
+  20%, 24%, 55% {
+    opacity: 0.6;
+    text-shadow: none;
+  }
+  22%, 26%, 57% {
+    opacity: 1;
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
+  }
+}
+.rppost-image-wrapper {
+  position: relative;
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.rppost-image-wrapper::before,
+.rppost-image-wrapper::after {
+  content: '呪術師';
+  position: absolute;
+  top: 30px;
+  left: 15px;
+  font-family: 'Yuji Syuku', serif;
+  font-size: 64px;
+  letter-spacing: 15px;
+  writing-mode: vertical-lr;
+  pointer-events: none;
+  z-index: 4;
+}
+.rppost-image-wrapper::before {
+  color: var(--accent);
+  opacity: 0.6;
+  text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-dark);
+}
+.rppost-image-wrapper::after {
+  color: #fff;
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
+  animation: neon-flicker 5s infinite alternate;
+}
+.rppost-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.rppost-image-wrapper .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.vignette-overlay {
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7) 100%);
+}
+.grid-overlay {
+  background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="rgba(160, 80, 255, 0.05)" fill-opacity="1" fill-rule="evenodd"><path d="M0 40L40 0H20L0 20M40 40V20L20 40"/></g></svg>');
+}
+.frame-corners {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+.frame-corners .corner {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+}
+.frame-corners .corner::before,
+.frame-corners .corner::after {
+  content: '';
+  position: absolute;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+.frame-corners .corner::before {
+  width: 100%;
+  height: 2px;
+}
+.frame-corners .corner::after {
+  width: 2px;
+  height: 100%;
+}
+.corner.top-left { top: 10px; left: 10px; }
+.corner.top-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.1s forwards; }
+.corner.top-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 0.4s forwards; }
+.corner.top-right { top: 10px; right: 10px; transform: rotate(90deg); }
+.corner.top-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.7s forwards; }
+.corner.top-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1s forwards; }
+.corner.bottom-right { bottom: 10px; right: 10px; transform: rotate(180deg); }
+.corner.bottom-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.3s forwards; }
+.corner.bottom-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1.6s forwards; }
+.corner.bottom-left { bottom: 10px; left: 10px; transform: rotate(270deg); }
+.corner.bottom-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.9s forwards; }
+.corner.bottom-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 2.2s forwards; }
+.rppost-header {
+  text-align: center;
+  margin: 30px 0;
+}
+.rppost-title {
+  font-family: 'Yuji Syuku', serif;
+  font-size: 28px;
+  color: var(--highlight);
+  text-shadow: 0 0 10px var(--accent);
+  margin: 0 0 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.rppost-title::before,
+.rppost-title::after {
+  content: '';
+  height: 1px;
+  flex-grow: 1;
+  background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
+  opacity: 0.4;
+}
+.rppost-title::after {
+  background: linear-gradient(to left, transparent, var(--accent) 50%, transparent);
+}
+.rppost-subtitle {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 13px;
+  color: var(--text);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin: 0;
+  opacity: 0.8;
+}
+/* Barras de Status Renomeadas */
+.rppost-status-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  max-width: 450px;
+  margin: 25px auto;
+}
+.rppost-status-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.rppost-status-label {
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 12px;
+  font-weight: 700;
+  width: 35px;
+  flex-shrink: 0;
+  color: var(--highlight);
+}
+.rppost-status-bar-wrapper {
+  flex-grow: 1;
+  position: relative;
+}
+.rppost-status-bar {
+  height: 14px;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 50px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, .2);
+}
+.rppost-status-bar-fill {
+  height: 100%;
+  border-radius: 50px;
+  transition: width .5s ease-in-out;
+}
+.rppost-hp-fill {
+  background: linear-gradient(90deg, var(--hp-dark), var(--hp-color));
+}
+.rppost-ea-fill {
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+}
+.rppost-status-value {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, .6);
+}
+/* Fim das Barras de Status */
+.rppost-content {
+  position: relative;
+  background: rgba(0, 0, 0, 0.2);
+  padding: 25px;
+  border-radius: 4px;
+  margin-top: 15px;
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.7;
+  box-shadow: inset 0 0 15px rgba(160, 80, 255, 0.1);
+}
+.rppost-content::before,
+.rppost-content::after {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  opacity: 0.5;
+}
+.rppost-content::before {
+  top: 10px;
+  left: 10px;
+  border-top: 2px solid var(--accent);
+  border-left: 2px solid var(--accent);
+}
+.rppost-content::after {
+  bottom: 10px;
+  right: 10px;
+  border-bottom: 2px solid var(--accent);
+  border-right: 2px solid var(--accent);
+}
+.rppost-content p {
+  margin: 0 0 1em 0;
+}
+.rppost-content p:last-child {
+  margin-bottom: 0;
+}
