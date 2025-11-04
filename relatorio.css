@@ -83,6 +83,11 @@
   text-shadow: 0 -1px 2px rgba(0, 0, 0, 0.9), 0 1px 1px rgba(255, 255, 255, 0.2);
   line-height: 1;
 }
+.report-header-main {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .report-header-main h1 {
   font-family: var(--title);
   font-size: 2.2em;
@@ -98,20 +103,22 @@
   font-family: var(--mono);
   font-size: 1.5em;
   font-weight: 700;
-  color: var(--success);
-  text-shadow: 0 0 10px rgba(0, 224, 145, 0.4);
   margin: 0 0 15px 0;
   padding: 5px 15px;
   background: var(--glass);
   border-radius: var(--card-radius);
   width: 100%;
   text-align: center;
+}
+.report-primary-status.success {
+  color: var(--success);
+  text-shadow: 0 0 10px rgba(0, 224, 145, 0.4);
   border: 1px solid var(--success);
 }
 .report-primary-status.is-failed {
   color: var(--failure);
   text-shadow: 0 0 10px rgba(197, 48, 48, 0.4);
-  border-color: var(--failure);
+  border: 1px solid var(--failure);
 }
 .report-metadata {
   display: grid;
@@ -181,6 +188,13 @@
   color: var(--muted);
   font-size: 13.5px;
   line-height: 1.6;
+}
+.report-container.mission-success .report-body #recompensas p.lead::before {
+  content: 'O XP e os itens a seguir foram distribuídos aos participantes com base em seu desempenho. Atualizem suas fichas.';
+}
+.report-container.mission-failed .report-body #recompensas p.lead::before {
+  content: 'A missão falhou. As recompensas (ou falta delas) estão listadas abaixo.';
+  color: var(--muted);
 }
 .report-body .details-list {
   margin: 10px 0 0 0;
