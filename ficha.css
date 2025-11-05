@@ -153,7 +153,6 @@
 }
 .jjk-dossier-container .jjk-dossier-info-grid {
   display: grid;
-  /* [CORRIGIDO] Grid flexível para 4 ou 5 colunas */
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
   gap: 10px;
 }
@@ -174,7 +173,7 @@
 .info-grau .jjk-dossier-label::before { content: 'Grau'; }
 .info-afiliacao .jjk-dossier-label::before { content: 'Afiliação'; }
 .info-alinhamento .jjk-dossier-label::before { content: 'Alinhamento'; }
-.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; } /* [CORRIGIDO] Adicionado de volta */
+.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; }
 
 .jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
   font-size: 13px;
