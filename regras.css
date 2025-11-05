@@ -27,11 +27,12 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
+/* [NOVO v10] Cabeçalho "Glass" */
 .rules-header {
   padding: 25px 30px;
   text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
+  border-bottom: 1px solid var(--glass);
+  background: var(--glass-2);
 }
 .rules-title {
   font-family: var(--title);
@@ -48,42 +49,47 @@
   font-style: italic;
   font-weight: 300;
 }
+/* [NOVO v10] Navegação por "Abas de Vidro" */
 .rules-toc {
-  background-color: var(--bg);
-  border: 1px solid var(--glass-2);
-  border-radius: 8px;
-  padding: 20px 25px;
-  margin: 25px;
+  padding: 20px 25px 0 25px; /* Ajustado */
+  margin: 0;
 }
 .rules-toc h3 {
-  font-family: var(--title);
-  color: var(--highlight);
-  margin: 0 0 15px 0;
-  font-size: 1.5em;
-  border-bottom: 1px solid var(--glass);
-  padding-bottom: 10px;
+ display: none; /* Título do Índice removido */
 }
 .rules-toc ul {
   list-style-type: none;
   padding-left: 0;
   margin: 0;
-  columns: 3;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 .rules-toc li {
-  margin-bottom: 10px;
+  margin: 0;
 }
 .rules-toc a {
+  display: block;
   color: var(--muted);
   text-decoration: none;
   font-weight: 700;
-  font-size: 1.05em;
-  transition: color 0.2s;
+  font-size: 0.9em; /* Menor para caber */
+  transition: all 0.2s;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  padding: 8px 12px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  font-family: var(--mono);
 }
 .rules-toc a:hover {
-  color: var(--highlight);
+  color: var(--text);
+  background: var(--accent1);
+  border-color: var(--highlight);
+  transform: translateY(-2px);
 }
 .rules-content {
-  padding: 0 30px 30px 30px;
+  padding: 15px 30px 30px 30px; /* Ajustado */
 }
 .rules-content section {
   margin-top: 30px;
@@ -125,15 +131,20 @@
   font-size: 1.2em;
   color: var(--highlight);
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 8px; /* Aumentado */
 }
+/* [NOVO v10] Definições como "Cards de Vidro" */
 .rules-content dd {
   color: var(--muted);
   font-size: 0.95em;
   line-height: 1.7;
-  padding-left: 20px;
-  margin: 0 0 15px 0;
-  border-left: 3px solid var(--accent1);
+  padding: 15px; /* Ajustado */
+  margin: 0 0 10px 0; /* Ajustado */
+  border-left: none; /* Removido */
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 8px;
+  border-top: 1px solid rgba(255,255,255,0.05);
 }
 .rules-content ul {
   list-style: none;
@@ -168,32 +179,29 @@
 .rules-content blockquote.danger ul {
   font-size: 1em;
 }
-/* --- [NOVO v9] Botão Chanfrado e Discreto --- */
 .guide-button {
   display: inline-block;
   padding: 10px 18px;
-  background: linear-gradient(180deg, var(--glass-2) 0%, rgba(0,0,0,0.1) 100%);
+  background: var(--glass-2);
   color: var(--muted);
-  text-decoration: none !important; /* Remove sublinhado */
+  text-decoration: none !important;
   font-family: var(--title);
   font-size: 1.1em;
   border-radius: 6px;
   transition: all 0.3s;
   margin-top: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  border: 1px solid var(--glass);
+  border-bottom: 2px solid var(--accent2);
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.05);
 }
 .guide-button:hover {
   background: var(--accent1);
   color: var(--text);
   border-color: var(--accent1);
-  text-decoration: none !important; /* Garante que não haja sublinhado no hover */
+  border-bottom-color: var(--highlight);
+  text-decoration: none !important;
   transform: translateY(-2px);
-  box-shadow: 0 5px 15px rgba(155, 0, 255, 0.3);
-}
-/* --- Fim da Mudança --- */
-@media (max-width: 780px) {
-  .rules-toc ul { columns: 2; }
+  box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 5px 15px rgba(155, 0, 255, 0.3);
 }
 @media (max-width: 640px) {
   .rules-toc ul { columns: 1; }
