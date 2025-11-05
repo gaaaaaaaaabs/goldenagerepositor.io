@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v4 (8 Abas) --- */
+/* --- Template Ficha de Personagem (Dossier) v6 (Rótulos no CSS) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -121,6 +121,8 @@
   width: 35px;
   flex-shrink: 0;
 }
+.jjk-dossier-container .jjk-dossier-status-label.hp::before { content: 'HP'; }
+.jjk-dossier-container .jjk-dossier-status-label.ea::before { content: 'EA'; }
 .jjk-dossier-container .jjk-dossier-status-bar-wrapper {
   flex-grow: 1;
   position: relative;
@@ -167,6 +169,11 @@
   text-transform: uppercase;
   margin-bottom: 4px;
 }
+/* Rótulos do Cabeçalho */
+.info-idade .jjk-dossier-label::before { content: 'Idade'; }
+.info-grau .jjk-dossier-label::before { content: 'Grau'; }
+.info-afiliacao .jjk-dossier-label::before { content: 'Afiliação'; }
+.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; }
 .jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
   font-size: 13px;
   font-weight: bold;
@@ -208,6 +215,15 @@
   transform: scaleX(0);
   transition: transform 0.3s;
 }
+/* Rótulos das Abas */
+.tab-perfil::before { content: 'Perfil'; }
+.tab-atributos::before { content: 'Atributos'; }
+.tab-aptidoes::before { content: 'Aptidões'; }
+.tab-caracteristicas::before { content: 'Características'; }
+.tab-combate::before { content: 'Combate'; }
+.tab-relacoes::before { content: 'Relações'; }
+.tab-inventario::before { content: 'Inventário'; }
+.tab-biografia::before { content: 'Biografia'; }
 .jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button { color: var(--text-primary); }
 .jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button svg { stroke: var(--accent); }
 .jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button::after { transform: scaleX(1); }
@@ -224,10 +240,25 @@
 .jjk-dossier-container .jjk-dossier-tab-content h3 {
   font-family: var(--font-title);
   font-size: 18px;
-  margin-bottom: 15px;
+  margin: 0 0 15px 0;
   border-left: 3px solid var(--accent);
   padding-left: 10px;
 }
+/* Rótulos dos Títulos de Seção */
+.jjk-dossier-tab-content .h3-atributos-p::before { content: 'Atributos Principais'; }
+.jjk-dossier-tab-content .h3-atributos-e::before { content: 'Atributos Especiais'; }
+.jjk-dossier-tab-content .h3-aptidoes::before { content: 'Aptidões'; }
+.jjk-dossier-tab-content .h3-tecnicas::before { content: 'Técnicas'; }
+.jjk-dossier-tab-content .h3-equipamentos::before { content: 'Equipamentos'; }
+.jjk-dossier-tab-content .h3-carac-p::before { content: 'Características Positivas'; }
+.jjk-dossier-tab-content .h3-carac-n::before { content: 'Características Negativas'; }
+.jjk-dossier-tab-content .h3-perfil-f::before { content: 'Perfil Físico'; }
+.jjk-dossier-tab-content .h3-perfil-p::before { content: 'Perfil Psicológico'; }
+.jjk-dossier-tab-content .h3-particularidade::before { content: 'Particularidade'; }
+.jjk-dossier-tab-content .h3-relacoes::before { content: 'Relações'; }
+.jjk-dossier-tab-content .h3-inventario::before { content: 'Inventário'; }
+.jjk-dossier-tab-content .h3-biografia::before { content: 'Biografia'; }
+
 .jjk-dossier-container input[name="dossier-tab"] { display: none; }
 #dossier-tab-1:checked ~ .jjk-dossier-body #dossier-content-1,
 #dossier-tab-2:checked ~ .jjk-dossier-body #dossier-content-2,
@@ -236,7 +267,7 @@
 #dossier-tab-5:checked ~ .jjk-dossier-body #dossier-content-5,
 #dossier-tab-6:checked ~ .jjk-dossier-body #dossier-content-6,
 #dossier-tab-7:checked ~ .jjk-dossier-body #dossier-content-7,
-#dossier-tab-8:checked ~ .jjk-dossier-body #dossier-content-8 { /* ADICIONADO */
+#dossier-tab-8:checked ~ .jjk-dossier-body #dossier-content-8 {
   display: block;
 }
 .jjk-dossier-container .jjk-dossier-attr-grid {
@@ -254,6 +285,15 @@
   font-weight: 700;
   font-size: 13px;
 }
+/* Rótulos de Atributos */
+.attr-forca .jjk-dossier-attr-name::before { content: 'Força'; }
+.attr-destreza .jjk-dossier-attr-name::before { content: 'Destreza'; }
+.attr-inteligencia .jjk-dossier-attr-name::before { content: 'Inteligência'; }
+.attr-sorte .jjk-dossier-attr-name::before { content: 'Sorte'; }
+.attr-vigor .jjk-dossier-attr-name::before { content: 'Vigor (HP)'; }
+.attr-energia .jjk-dossier-attr-name::before { content: 'Energia (EA)'; }
+.attr-fonte .jjk-dossier-attr-name::before { content: 'Fonte (Regen. EA)'; }
+
 .jjk-dossier-container .jjk-dossier-attr-item .jjk-dossier-attr-value {
   font-size: 12px;
   font-weight: bold;
@@ -281,6 +321,11 @@
   margin-top: 10px;
   transition: background 0.3s;
 }
+/* Rótulos do Acordeão de Aptidões */
+.apt-forca .jjk-dossier-accordion-title::before { content: 'Força (FOR)'; }
+.apt-destreza .jjk-dossier-accordion-title::before { content: 'Destreza (DES)'; }
+.apt-inteligencia .jjk-dossier-accordion-title::before { content: 'Inteligência (INT)'; }
+
 .jjk-dossier-container .jjk-dossier-accordion-title:hover { background: rgba(255, 255, 255, 0.05); }
 .jjk-dossier-container .jjk-dossier-accordion-title::after {
   content: '+';
@@ -305,6 +350,38 @@
 }
 .jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
 .jjk-dossier-container .jjk-dossier-skill-name { color: var(--text-muted); }
+
+/* Rótulos das Aptidões */
+.skill-combate-desarmado .jjk-dossier-skill-name::before { content: 'Combate Desarmado'; }
+.skill-espadas-longas .jjk-dossier-skill-name::before { content: 'Espadas Longas'; }
+.skill-machados-longos .jjk-dossier-skill-name::before { content: 'Machados Longos'; }
+.skill-martelos-longos .jjk-dossier-skill-name::before { content: 'Martelos Longos'; }
+.skill-clavas .jjk-dossier-skill-name::before { content: 'Clavas'; }
+.skill-escalada .jjk-dossier-skill-name::before { content: 'Escalada'; }
+.skill-acrobacia .jjk-dossier-skill-name::before { content: 'Acrobacia'; }
+.skill-espadas-curtas .jjk-dossier-skill-name::before { content: 'Espadas Curtas'; }
+.skill-adagas .jjk-dossier-skill-name::before { content: 'Adagas'; }
+.skill-laminas-duplas .jjk-dossier-skill-name::before { content: 'Lâminas Duplas'; }
+.skill-machados-curtos .jjk-dossier-skill-name::before { content: 'Machados Curtos'; }
+.skill-martelos-curtos .jjk-dossier-skill-name::before { content: 'Martelos Curtos'; }
+.skill-lancas .jjk-dossier-skill-name::before { content: 'Lanças'; }
+.skill-foices .jjk-dossier-skill-name::before { content: 'Foices'; }
+.skill-bastoes .jjk-dossier-skill-name::before { content: 'Bastões'; }
+.skill-correntes .jjk-dossier-skill-name::before { content: 'Correntes e Kusarigama'; }
+.skill-arremesso .jjk-dossier-skill-name::before { content: 'Arremesso de Armas'; }
+.skill-armas-de-fogo .jjk-dossier-skill-name::before { content: 'Armas de Fogo'; }
+.skill-furtividade .jjk-dossier-skill-name::before { content: 'Furtividade'; }
+.skill-natacao .jjk-dossier-skill-name::before { content: 'Natação'; }
+.skill-corrida .jjk-dossier-skill-name::before { content: 'Corrida'; }
+.skill-feiticos .jjk-dossier-skill-name::before { content: 'Feitiços'; }
+.skill-barreiras .jjk-dossier-skill-name::before { content: 'Barreiras'; }
+.skill-pactos .jjk-dossier-skill-name::before { content: 'Pactos'; }
+.skill-percepcao-magica .jjk-dossier-skill-name::before { content: 'Percepção Mágica'; }
+.skill-primeiros-socorros .jjk-dossier-skill-name::before { content: 'Primeiros Socorros'; }
+.skill-tecnica-reversa .jjk-dossier-skill-name::before { content: 'Técnica Reversa'; }
+.skill-percepcao-visual .jjk-dossier-skill-name::before { content: 'Percepção Visual'; }
+.skill-sobrevivencia .jjk-dossier-skill-name::before { content: 'Sobrevivência'; }
+
 .jjk-dossier-container .jjk-dossier-skill-level {
   font-weight: bold;
   color: var(--text-primary);
@@ -331,6 +408,12 @@
   border-radius: var(--radius-sm);
   font-size: 13px;
   margin-bottom: 8px;
+}
+.jjk-dossier-combat-box a {
+  text-decoration: none;
+}
+.jjk-dossier-combat-box a:hover {
+  text-decoration: underline;
 }
 .jjk-dossier-container .jjk-dossier-bio-text,
 .jjk-dossier-container .jjk-dossier-psyche-card ul {
@@ -419,11 +502,21 @@
   color: var(--text-muted);
   margin-bottom: 4px;
 }
+/* Rótulos dos Detalhes do Perfil */
+.profile-altura .jjk-dossier-profile-label::before { content: 'Altura'; }
+.profile-peso .jjk-dossier-profile-label::before { content: 'Peso'; }
+.profile-olhos .jjk-dossier-profile-label::before { content: 'Olhos'; }
+.profile-cabelo .jjk-dossier-profile-label::before { content: 'Cabelo'; }
+.profile-pele .jjk-dossier-profile-label::before { content: 'Pele'; }
+
 .jjk-dossier-container .jjk-dossier-profile-value { font-size: 14px; }
 .jjk-dossier-container .jjk-dossier-profile-desc h4 {
   font-family: var(--font-title);
   margin: 0 0 10px 0;
   font-size: 16px;
+}
+.jjk-dossier-container .jjk-dossier-profile-desc h4::before {
+  content: 'Aparência Geral';
 }
 .jjk-dossier-container .jjk-dossier-profile-desc p {
   font-size: 13.5px;
@@ -449,6 +542,11 @@
   margin: 0 0 10px 0;
   font-size: 16px;
 }
+/* Rótulos do Perfil Psicológico */
+.psyche-gostos h4::before { content: 'Gostos'; }
+.psyche-desgostos h4::before { content: 'Desgostos'; }
+.psyche-medos h4::before { content: 'Medos'; }
+.psyche-objetivos h4::before { content: 'Objetivos'; }
 .jjk-dossier-container .jjk-dossier-psyche-card svg {
   width: 18px;
   height: 18px;
