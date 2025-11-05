@@ -1,0 +1,199 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+}
+
+body {
+  background: var(--bg);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* Alinhar no topo para não ficar centralizado verticalmente */
+  min-height: 100vh;
+  margin: 0;
+  padding-top: 50px; /* Espaço para ver o menu */
+}
+
+.scoop-demo-container {
+  width: 90%;
+  max-width: 900px;
+  background: var(--panel);
+  border-radius: 15px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  padding: 30px;
+  box-sizing: border-box;
+  text-align: center;
+  color: var(--text);
+  font-family: var(--ui);
+}
+
+.scoop-demo-container h1 {
+  font-family: var(--title);
+  font-size: 2.2em;
+  color: var(--highlight);
+  margin-bottom: 10px;
+  text-shadow: 0 0 8px var(--accent1);
+}
+
+.scoop-demo-container p {
+  color: var(--muted);
+  font-size: 1.0em;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+/* --- Navigation Bar --- */
+.scoop-nav {
+  display: flex;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+  height: 60px; /* Altura fixa da barra */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.scoop-nav-item {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 15px;
+  cursor: pointer;
+  position: relative;
+  z-index: 2; /* Para que os itens fiquem acima do background do scoop */
+  transition: color 0.3s ease;
+  font-family: var(--ui);
+  font-weight: 500;
+  color: var(--muted);
+  font-size: 1.0em;
+  text-decoration: none; /* Remover sublinhado padrão do link */
+}
+
+.scoop-nav-item:hover {
+  color: var(--text);
+}
+
+/* O "scoop" (fundo do item ativo) */
+.scoop-nav-indicator {
+  position: absolute;
+  bottom: 0; /* Alinha o indicador na parte inferior da barra */
+  height: 100%; /* A altura total da barra */
+  background: linear-gradient(180deg, var(--accent2), var(--accent1));
+  border-radius: 10px; /* Manter a borda arredondada da barra */
+  transition: left 0.3s ease, width 0.3s ease, background 0.3s ease;
+  z-index: 1; /* Fica abaixo dos itens */
+  box-shadow: 0 0 15px rgba(155, 0, 255, 0.4);
+}
+
+.scoop-nav-indicator::before,
+.scoop-nav-indicator::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  width: 20px; /* Largura das curvas */
+  height: 20px; /* Altura das curvas */
+  background: var(--accent1); /* Cor da curva, precisa ser a mesma do indicador */
+  z-index: 2; /* Acima do indicador para criar o recorte */
+}
+
+/* Curva Esquerda */
+.scoop-nav-indicator::before {
+  left: -20px; /* Posiciona para fora do limite esquerdo do indicador */
+  border-top-right-radius: 20px;
+  box-shadow: 5px -5px 0 0 var(--accent1); /* Falso corte */
+  background: var(--panel); /* Cor do painel para "recortar" */
+  clip-path: circle(20px at 0% 100%); /* Ajustar clip-path para o canto inferior esquerdo */
+}
+
+/* Curva Direita */
+.scoop-nav-indicator::after {
+  right: -20px; /* Posiciona para fora do limite direito do indicador */
+  border-top-left-radius: 20px;
+  box-shadow: -5px -5px 0 0 var(--accent1); /* Falso corte */
+  background: var(--panel); /* Cor do painel para "recortar" */
+  clip-path: circle(20px at 100% 100%); /* Ajustar clip-path para o canto inferior direito */
+}
+
+
+/* Cor do texto do item ativo */
+.scoop-nav-item.active {
+  color: var(--text);
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.4); /* Brilho no texto ativo */
+}
+
+/* --- Conteúdo da seção --- */
+.scoop-content {
+  margin-top: 30px;
+  padding: 20px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 10px;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+}
+
+.scoop-content h2 {
+  font-family: var(--title);
+  font-size: 1.8em;
+  color: var(--highlight);
+  margin: 0;
+}
+
+.scoop-content p {
+  font-family: var(--ui);
+  font-size: 1.0em;
+  color: var(--muted);
+  margin: 0;
+}
+
+/* Media Queries para responsividade */
+@media (max-width: 640px) {
+  .scoop-demo-container {
+    padding: 20px;
+  }
+  .scoop-demo-container h1 {
+    font-size: 1.8em;
+  }
+  .scoop-nav {
+    height: 50px;
+  }
+  .scoop-nav-item {
+    font-size: 0.9em;
+    padding: 0 10px;
+  }
+  .scoop-nav-indicator::before,
+  .scoop-nav-indicator::after {
+    width: 15px;
+    height: 15px;
+  }
+  .scoop-nav-indicator::before {
+    left: -15px;
+    border-top-right-radius: 15px;
+  }
+  .scoop-nav-indicator::after {
+    right: -15px;
+    border-top-left-radius: 15px;
+  }
+  .scoop-content h2 {
+    font-size: 1.5em;
+  }
+}
