@@ -159,6 +159,26 @@
 .rules-content blockquote.danger ul {
   font-size: 1em;
 }
+/* --- [NOVO v6] Estilo de Botão de Guia --- */
+.guide-button {
+  display: inline-block;
+  padding: 10px 18px;
+  background: var(--accent1);
+  color: var(--text);
+  text-decoration: none;
+  font-family: var(--title);
+  font-size: 1.1em;
+  border-radius: 8px;
+  transition: background 0.3s, color 0.3s;
+  margin-top: 10px;
+  border: 1px solid var(--accent1);
+}
+.guide-button:hover {
+  background: var(--highlight);
+  color: var(--panel);
+  border-color: var(--highlight);
+}
+/* --- Fim da Mudança --- */
 @media (max-width: 640px) {
   .rules-toc ul {
     columns: 1;
