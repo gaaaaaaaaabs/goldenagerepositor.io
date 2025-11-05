@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v8 (5 Colunas de Info) --- */
+/* --- Template Ficha de Personagem (Dossier) v9 (Rótulos Corrigidos) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -162,23 +162,32 @@
   border-radius: var(--radius-sm);
   text-align: center;
 }
-.jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-label {
+/* [CORRIGIDO] Rótulo e Valor agora são a mesma coisa */
+.jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
+  font-size: 13px;
+  font-weight: bold;
+  padding-top: 4px; /* Espaço para o rótulo */
+  position: relative;
+}
+/* [CORRIGIDO] Injeta o rótulo ANTES do valor */
+.jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value::before {
+  content: '';
   font-size: 10px;
   font-weight: 700;
   color: var(--text-muted);
   text-transform: uppercase;
-  margin-bottom: 4px;
+  position: absolute;
+  top: -8px; /* Puxa para cima */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
-.info-idade .jjk-dossier-label::before { content: 'Idade'; }
-.info-grau .jjk-dossier-label::before { content: 'Grau'; }
-.info-afiliacao .jjk-dossier-label::before { content: 'Afiliação'; }
-.info-alinhamento .jjk-dossier-label::before { content: 'Alinhamento'; }
-.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; }
+.info-idade .jjk-dossier-value::before { content: 'Idade'; }
+.info-grau .jjk-dossier-value::before { content: 'Grau'; }
+.info-afiliacao .jjk-dossier-value::before { content: 'Afiliação'; }
+.info-alinhamento .jjk-dossier-value::before { content: 'Alinhamento'; }
+.info-regen .jjk-dossier-value::before { content: 'Regen. EA'; }
 
-.jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
-  font-size: 13px;
-  font-weight: bold;
-}
 .jjk-dossier-container .jjk-dossier-body { padding: 20px; }
 .jjk-dossier-container .jjk-dossier-tabs-nav {
   display: flex;
@@ -491,20 +500,25 @@
   padding: 10px;
   border-radius: var(--radius-sm);
 }
-.jjk-dossier-container .jjk-dossier-profile-label {
+/* [CORRIGIDO] Removido o seletor .jjk-dossier-profile-label */
+.jjk-dossier-container .jjk-dossier-profile-item .jjk-dossier-profile-value::before {
+  content: ''; /* O conteúdo será preenchido pelas classes abaixo */
+  display: block;
   font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--text-muted);
   margin-bottom: 4px;
 }
-.profile-altura .jjk-dossier-profile-label::before { content: 'Altura'; }
-.profile-peso .jjk-dossier-profile-label::before { content: 'Peso'; }
-.profile-olhos .jjk-dossier-profile-label::before { content: 'Olhos'; }
-.profile-cabelo .jjk-dossier-profile-label::before { content: 'Cabelo'; }
-.profile-pele .jjk-dossier-profile-label::before { content: 'Pele'; }
+.profile-altura .jjk-dossier-profile-value::before { content: 'Altura'; }
+.profile-peso .jjk-dossier-profile-value::before { content: 'Peso'; }
+.profile-olhos .jjk-dossier-profile-value::before { content: 'Olhos'; }
+.profile-cabelo .jjk-dossier-profile-value::before { content: 'Cabelo'; }
+.profile-pele .jjk-dossier-profile-value::before { content: 'Pele'; }
 
-.jjk-dossier-container .jjk-dossier-profile-value { font-size: 14px; }
+.jjk-dossier-container .jjk-dossier-profile-value { 
+  font-size: 14px; 
+}
 .jjk-dossier-container .jjk-dossier-profile-desc h4 {
   font-family: var(--font-title);
   margin: 0 0 10px 0;
