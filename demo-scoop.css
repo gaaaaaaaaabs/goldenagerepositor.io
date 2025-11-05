@@ -63,20 +63,20 @@ body {
   position: relative;
   height: 60px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
-  overflow: hidden; /* Importante para o clip-path */
+  overflow: hidden; 
 }
 
 .scoop-nav-item {
   flex: 1;
   display: flex;
-  flex-direction: column; /* Para alinhar ícone/texto verticalmente se houver */
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 0 15px;
   cursor: pointer;
   position: relative;
   z-index: 2;
-  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* Adicionado transform e text-shadow */
+  transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; 
   font-family: var(--ui);
   font-weight: 500;
   color: var(--muted);
@@ -88,14 +88,13 @@ body {
   color: var(--text);
 }
 
-/* O "scoop" (fundo do item ativo) */
 .scoop-nav-indicator {
   position: absolute;
   bottom: 0;
   height: 100%;
   background: linear-gradient(180deg, var(--accent2), var(--accent1));
   border-radius: 10px;
-  transition: left 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Animação mais elástica */
+  transition: left 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55), width 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   z-index: 1;
   box-shadow: 0 0 15px rgba(155, 0, 255, 0.4);
 }
@@ -105,35 +104,34 @@ body {
 .scoop-nav-indicator::after {
   content: '';
   position: absolute;
-  top: -1px; /* Ajuste fino para evitar falhas de renderização */
+  top: 0; 
   width: 20px;
   height: 20px;
-  background: var(--panel); /* Cor do fundo do container pai para "recortar" */
-  border-radius: 50%; /* Faz a curva */
-  box-shadow: 0 0 0 100px var(--panel); /* Truque para "preencher" o fundo do nav */
-  z-index: 0; /* Abaixo do indicador e dos itens */
-  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); /* Animação também elástica */
+  /* [CORRIGIDO] A cor de fundo deve ser a da barra de navegação, não do painel */
+  background: var(--glass-2); 
+  border-radius: 50%;
+  box-shadow: 0 0 0 100px var(--glass-2); /* Truque para "preencher" o fundo */
+  z-index: 0;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 .scoop-nav-indicator::before {
-  left: -10px; /* Posiciona um pouco antes do canto esquerdo do indicador */
+  left: -10px;
   transform: translateX(-50%);
 }
 
 .scoop-nav-indicator::after {
-  right: -10px; /* Posiciona um pouco depois do canto direito do indicador */
+  right: -10px;
   transform: translateX(50%);
 }
 
-/* Estilos para o item ATIVO */
 .scoop-nav-item.active {
   color: var(--text);
   font-weight: 700;
-  transform: translateY(-10px); /* Move o item para cima */
-  text-shadow: 0 0 15px var(--highlight); /* Mais brilho */
+  transform: translateY(-10px);
+  text-shadow: 0 0 15px var(--highlight);
 }
 
-/* --- Conteúdo da seção --- */
 .scoop-content {
   margin-top: 30px;
   padding: 20px;
@@ -147,14 +145,12 @@ body {
   align-items: center;
   gap: 15px;
 }
-
 .scoop-content h2 {
   font-family: var(--title);
   font-size: 1.8em;
   color: var(--highlight);
   margin: 0;
 }
-
 .scoop-content p {
   font-family: var(--ui);
   font-size: 1.0em;
@@ -162,7 +158,6 @@ body {
   margin: 0;
 }
 
-/* Media Queries para responsividade */
 @media (max-width: 640px) {
   .scoop-demo-container {
     padding: 20px;
@@ -178,7 +173,7 @@ body {
     padding: 0 10px;
   }
   .scoop-nav-item.active {
-    transform: translateY(-8px); /* Ajuste para telas menores */
+    transform: translateY(-8px);
   }
   .scoop-nav-indicator::before,
   .scoop-nav-indicator::after {
