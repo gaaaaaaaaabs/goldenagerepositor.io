@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v7 (Alinhamento) --- */
+/* --- Template Ficha de Personagem (Dossier) v8 (5 Colunas de Info) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -153,7 +153,8 @@
 }
 .jjk-dossier-container .jjk-dossier-info-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* ATUALIZADO DE 3 para 4 */
+  /* [CORRIGIDO] Grid flexível para 4 ou 5 colunas */
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
   gap: 10px;
 }
 .jjk-dossier-container .jjk-dossier-info-box {
@@ -172,7 +173,8 @@
 .info-idade .jjk-dossier-label::before { content: 'Idade'; }
 .info-grau .jjk-dossier-label::before { content: 'Grau'; }
 .info-afiliacao .jjk-dossier-label::before { content: 'Afiliação'; }
-.info-alinhamento .jjk-dossier-label::before { content: 'Alinhamento'; } /* ADICIONADO */
+.info-alinhamento .jjk-dossier-label::before { content: 'Alinhamento'; }
+.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; } /* [CORRIGIDO] Adicionado de volta */
 
 .jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
   font-size: 13px;
