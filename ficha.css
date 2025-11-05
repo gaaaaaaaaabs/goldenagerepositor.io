@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v6 (Rótulos no CSS) --- */
+/* --- Template Ficha de Personagem (Dossier) v7 (Alinhamento) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -153,7 +153,7 @@
 }
 .jjk-dossier-container .jjk-dossier-info-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+  grid-template-columns: repeat(4, 1fr); /* ATUALIZADO DE 3 para 4 */
   gap: 10px;
 }
 .jjk-dossier-container .jjk-dossier-info-box {
@@ -169,11 +169,11 @@
   text-transform: uppercase;
   margin-bottom: 4px;
 }
-/* Rótulos do Cabeçalho */
 .info-idade .jjk-dossier-label::before { content: 'Idade'; }
 .info-grau .jjk-dossier-label::before { content: 'Grau'; }
 .info-afiliacao .jjk-dossier-label::before { content: 'Afiliação'; }
-.info-regen .jjk-dossier-label::before { content: 'Regen. EA'; }
+.info-alinhamento .jjk-dossier-label::before { content: 'Alinhamento'; } /* ADICIONADO */
+
 .jjk-dossier-container .jjk-dossier-info-box .jjk-dossier-value {
   font-size: 13px;
   font-weight: bold;
@@ -215,7 +215,6 @@
   transform: scaleX(0);
   transition: transform 0.3s;
 }
-/* Rótulos das Abas */
 .tab-perfil::before { content: 'Perfil'; }
 .tab-atributos::before { content: 'Atributos'; }
 .tab-aptidoes::before { content: 'Aptidões'; }
@@ -244,7 +243,6 @@
   border-left: 3px solid var(--accent);
   padding-left: 10px;
 }
-/* Rótulos dos Títulos de Seção */
 .jjk-dossier-tab-content .h3-atributos-p::before { content: 'Atributos Principais'; }
 .jjk-dossier-tab-content .h3-atributos-e::before { content: 'Atributos Especiais'; }
 .jjk-dossier-tab-content .h3-aptidoes::before { content: 'Aptidões'; }
@@ -285,7 +283,6 @@
   font-weight: 700;
   font-size: 13px;
 }
-/* Rótulos de Atributos */
 .attr-forca .jjk-dossier-attr-name::before { content: 'Força'; }
 .attr-destreza .jjk-dossier-attr-name::before { content: 'Destreza'; }
 .attr-inteligencia .jjk-dossier-attr-name::before { content: 'Inteligência'; }
@@ -321,7 +318,6 @@
   margin-top: 10px;
   transition: background 0.3s;
 }
-/* Rótulos do Acordeão de Aptidões */
 .apt-forca .jjk-dossier-accordion-title::before { content: 'Força (FOR)'; }
 .apt-destreza .jjk-dossier-accordion-title::before { content: 'Destreza (DES)'; }
 .apt-inteligencia .jjk-dossier-accordion-title::before { content: 'Inteligência (INT)'; }
@@ -351,7 +347,6 @@
 .jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
 .jjk-dossier-container .jjk-dossier-skill-name { color: var(--text-muted); }
 
-/* Rótulos das Aptidões */
 .skill-combate-desarmado .jjk-dossier-skill-name::before { content: 'Combate Desarmado'; }
 .skill-espadas-longas .jjk-dossier-skill-name::before { content: 'Espadas Longas'; }
 .skill-machados-longos .jjk-dossier-skill-name::before { content: 'Machados Longos'; }
@@ -502,7 +497,6 @@
   color: var(--text-muted);
   margin-bottom: 4px;
 }
-/* Rótulos dos Detalhes do Perfil */
 .profile-altura .jjk-dossier-profile-label::before { content: 'Altura'; }
 .profile-peso .jjk-dossier-profile-label::before { content: 'Peso'; }
 .profile-olhos .jjk-dossier-profile-label::before { content: 'Olhos'; }
@@ -542,7 +536,6 @@
   margin: 0 0 10px 0;
   font-size: 16px;
 }
-/* Rótulos do Perfil Psicológico */
 .psyche-gostos h4::before { content: 'Gostos'; }
 .psyche-desgostos h4::before { content: 'Desgostos'; }
 .psyche-medos h4::before { content: 'Medos'; }
