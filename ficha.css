@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v9 (Rótulos no HTML) --- */
+/* --- Template Ficha de Personagem (Dossier) v10 (Rótulos no HTML) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -160,7 +160,6 @@
   border-radius: var(--radius-sm);
   text-align: center;
 }
-/* [CORRIGIDO] Estilos de Rótulo no HTML */
 .jjk-dossier-container .jjk-dossier-label {
   font-size: 10px;
   font-weight: 700;
@@ -419,7 +418,6 @@
   padding: 10px;
   border-radius: var(--radius-sm);
 }
-/* [CORRIGIDO] Rótulo e Valor agora são a mesma coisa */
 .jjk-dossier-container .jjk-dossier-profile-label {
   font-size: 10px;
   font-weight: 700;
