@@ -119,14 +119,13 @@
 .header-col-3 {
   text-align: right;
 }
-/* [NOVO v3] Lista de transações com scroll */
 .transaction-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  max-height: 300px; /* Define uma altura máxima */
-  overflow-y: auto; /* Adiciona scroll se a lista for longa */
-  padding-right: 5px; /* Espaço para o scrollbar */
+  max-height: 300px; 
+  overflow-y: auto; 
+  padding-right: 5px;
 }
 .transaction-item {
   display: grid;
@@ -148,7 +147,6 @@
   color: var(--text);
   font-weight: 500;
 }
-/* [NOVO v3] Estilo do link na descrição */
 .transaction-item .desc a {
   color: var(--text);
   text-decoration: none;
@@ -175,8 +173,6 @@
 .transaction-item.withdrawal .amount::before {
   content: '- ¥';
 }
-
-/* [NOVO v3] Estilo do Scrollbar "Roxo-Neon" */
 .transaction-list::-webkit-scrollbar {
   width: 6px;
 }
@@ -192,6 +188,50 @@
 .transaction-list {
   scrollbar-width: thin;
   scrollbar-color: var(--accent1) rgba(0, 0, 0, 0.2);
+}
+
+/* [NOVO v4] Acordeão para o Log Helper */
+.log-helper { margin: 15px 0 0 0; }
+.log-helper input[type="checkbox"] { display: none; }
+.log-helper-toggle {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 10px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.log-helper-toggle:hover { 
+  background: var(--accent2); 
+  color: var(--text); 
+}
+.log-helper-toggle::before { content: '[+] Adicionar Novo Log'; }
+.log-helper input:checked + .log-helper-toggle::before { content: '[-] Esconder Template'; }
+.log-helper-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  margin-top: 0;
+  padding: 0;
+}
+.log-helper input:checked + .log-helper-toggle + .log-helper-content {
+  max-height: 500px;
+  margin-top: 10px;
+}
+.log-helper-content textarea {
+  width: 100%;
+  height: 120px;
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--bg);
+  border: 1px solid var(--glass-2);
+  color: var(--muted);
+  padding: 10px;
 }
 
 @media (max-width: 600px) {
