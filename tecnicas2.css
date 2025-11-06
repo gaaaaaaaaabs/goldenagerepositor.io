@@ -29,7 +29,7 @@
   overflow: hidden;
 }
 .tech-header {
-  height: 200px; /* Mais curto */
+  height: 200px;
   position: relative;
   background-position: center center;
   background-size: cover;
@@ -72,7 +72,6 @@
   margin: 0 0 20px 0;
   font-weight: 300;
 }
-/* Card de Vidro */
 .tech-card {
   color: var(--muted);
   font-size: 0.95em;
@@ -84,7 +83,6 @@
   border-radius: 8px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-/* Grid de Stats */
 .tech-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -112,20 +110,104 @@
   color: var(--highlight);
   font-weight: 700;
 }
-/* Lista de Habilidades/Efeitos */
-.tech-card ul {
+/* --- [NOVO v2] Sistema de Abas de Feitiços --- */
+.spell-tabs-nav {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 1px solid var(--glass);
+  margin: 25px 0 20px 0;
+}
+.spell-tabs-nav input[type="radio"] {
+  display: none;
+}
+.spell-tab-button {
+  font-family: var(--title);
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 10px 15px;
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background: none;
+  transition: color 0.3s;
+}
+.spell-tab-button::after {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--accent1);
+  transform: scaleX(0);
+  transition: transform 0.3s;
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button {
+  color: var(--text);
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button::after {
+  transform: scaleX(1);
+}
+.spell-tab-content {
+  display: none;
+}
+.spell-tabs-nav input[type="radio"]:checked + .spell-tab-button + .spell-tab-content {
+  display: block;
+}
+
+/* Card de Feitiço Individual */
+.spell-card-grid {
+  display: flex;
+  flex-wrap: wrap; /* Permite quebra no mobile */
+  gap: 20px;
+  background: var(--glass-2);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid var(--glass);
+}
+.spell-image {
+  width: 250px;
+  height: 300px;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+.spell-details {
+  padding: 20px;
+  flex-grow: 1;
+  flex-basis: 300px; /* Garante que o texto tenha espaço */
+}
+.spell-details h3 { /* Título do Feitiço */
+  font-family: var(--title);
+  font-size: 1.5em;
+  color: var(--highlight);
+  margin: 0 0 5px 0;
+}
+.spell-japanese-name {
+  font-family: var(--mono);
+  font-size: 1em;
+  color: var(--muted);
+  margin-bottom: 15px;
+  display: block;
+}
+.spell-details p {
+  font-size: 1em;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 20px 0;
+}
+.spell-details ul {
   list-style: none;
   padding-left: 0;
   margin: 0;
 }
-.tech-card li {
+.spell-details li {
   position: relative;
   padding-left: 25px;
   margin-bottom: 10px;
-  font-size: 1.05em;
-  line-height: 1.7;
+  font-size: 1em;
 }
-.tech-card li::before {
+.spell-details li::before {
   content: '•';
   position: absolute;
   left: 0;
@@ -134,14 +216,12 @@
   font-weight: 700;
   font-size: 1.2em;
 }
-.tech-card li b {
-  color: var(--text);
-  font-family: var(--title);
-}
 
 @media (max-width: 640px) {
   .tech-header { height: 150px; }
   .tech-title { font-size: 2.2em; left: 20px; bottom: 15px; }
   .tech-body { padding: 20px; }
   .tech-stats-grid { grid-template-columns: 1fr 1fr; }
+  .spell-tabs-nav { justify-content: center; }
+  .spell-image { width: 100%; height: 180px; }
 }
