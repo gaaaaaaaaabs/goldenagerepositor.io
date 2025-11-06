@@ -4,6 +4,7 @@
   --panel: #13141c;
   --muted: #bfc6e6;
   --accent1: #9b00ff;
+  --accent2: #3c00b0;
   --highlight: #c48fff;
   --text: #e7e9ff;
   --ui: 'Inter', system-ui, sans-serif;
@@ -27,7 +28,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* [NOVO] Título do Banco */
 .bank-brand {
   padding: 15px 25px;
   background: var(--glass-2);
@@ -119,10 +119,14 @@
 .header-col-3 {
   text-align: right;
 }
+/* [NOVO v3] Lista de transações com scroll */
 .transaction-list {
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 300px; /* Define uma altura máxima */
+  overflow-y: auto; /* Adiciona scroll se a lista for longa */
+  padding-right: 5px; /* Espaço para o scrollbar */
 }
 .transaction-item {
   display: grid;
@@ -144,6 +148,16 @@
   color: var(--text);
   font-weight: 500;
 }
+/* [NOVO v3] Estilo do link na descrição */
+.transaction-item .desc a {
+  color: var(--text);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.transaction-item .desc a:hover {
+  color: var(--highlight);
+  text-decoration: underline;
+}
 .transaction-item .amount {
   font-family: var(--mono);
   font-weight: 700;
@@ -160,6 +174,24 @@
 }
 .transaction-item.withdrawal .amount::before {
   content: '- ¥';
+}
+
+/* [NOVO v3] Estilo do Scrollbar "Roxo-Neon" */
+.transaction-list::-webkit-scrollbar {
+  width: 6px;
+}
+.transaction-list::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 6px;
+}
+.transaction-list::-webkit-scrollbar-thumb {
+  background: var(--accent1);
+  border-radius: 6px;
+  box-shadow: 0 0 5px var(--accent1);
+}
+.transaction-list {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent1) rgba(0, 0, 0, 0.2);
 }
 
 @media (max-width: 600px) {
