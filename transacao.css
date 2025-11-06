@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+:root {
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --success: #00e091;
+  --failure: #c53030;
+  --transfer: #30a9ff; /* Azul para transferências */
+}
+.tx-container {
+  box-sizing: border-box;
+  max-width: 500px; /* Menor que a ficha principal */
+  width: 95%;
+  margin: 20px auto;
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: 8px;
+  border: 1px solid var(--glass);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+}
+.tx-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--glass);
+  background: var(--glass-2);
+}
+.tx-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  flex-shrink: 0;
+}
+.tx-title {
+  font-family: var(--title);
+  font-size: 1.5em;
+  font-weight: 700;
+  line-height: 1.2;
+}
+.tx-body {
+  padding: 20px;
+}
+.tx-amount {
+  font-family: var(--mono);
+  font-size: 2.5em;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 20px;
+}
+.tx-amount::before {
+  content: '¥';
+  margin-right: 8px;
+  opacity: 0.6;
+}
+.tx-details {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 14px;
+}
+.tx-details li {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--glass-2);
+}
+.tx-details li:last-child {
+  border-bottom: none;
+}
+.tx-details .label {
+  font-weight: 700;
+  color: var(--muted);
+}
+.tx-details .value {
+  color: var(--text);
+  font-family: var(--mono);
+}
+
+/* --- Variações de Cor --- */
+
+/* Depósito (Verde) */
+.tx-container.deposit {
+  border-color: rgba(0, 224, 145, 0.3);
+}
+.tx-container.deposit .tx-icon {
+  background: var(--success);
+  color: var(--panel);
+}
+.tx-container.deposit .tx-title {
+  color: var(--success);
+}
+.tx-container.deposit .tx-amount {
+  color: var(--success);
+}
+.tx-container.deposit .tx-amount::before {
+  content: '+ ¥';
+}
+
+/* Saque (Vermelho) */
+.tx-container.withdrawal {
+  border-color: rgba(197, 48, 48, 0.3);
+}
+.tx-container.withdrawal .tx-icon {
+  background: var(--failure);
+  color: var(--panel);
+}
+.tx-container.withdrawal .tx-title {
+  color: var(--failure);
+}
+.tx-container.withdrawal .tx-amount {
+  color: var(--failure);
+}
+.tx-container.withdrawal .tx-amount::before {
+  content: '- ¥';
+}
+
+/* Transferência (Azul) */
+.tx-container.transfer {
+  border-color: rgba(48, 169, 255, 0.3);
+}
+.tx-container.transfer .tx-icon {
+  background: var(--transfer);
+  color: var(--panel);
+}
+.tx-container.transfer .tx-title {
+  color: var(--transfer);
+}
+.tx-container.transfer .tx-amount {
+  color: var(--transfer);
+}
