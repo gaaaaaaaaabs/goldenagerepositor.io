@@ -1,5 +1,5 @@
 /* --- Template Sistema de Combate v10 (Correção de Espaçamento) --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
+/* --- ADIÇÕES PARA SISTEMA DE QUESTS --- */
 
 :root {
   --combat-bg: #0c0c1a;
@@ -14,6 +14,7 @@
   --combat-font-title: 'Yuji Syuku', serif;
 }
 
+/* [EXISTING CSS - NO CHANGES] */
 /* Animações */
 @keyframes pulse-glow {
   0% { box-shadow: 0 0 5px var(--combat-accent1), 0 0 10px var(--combat-accent1) inset; }
@@ -389,6 +390,104 @@
 .info-card .info-value {
   font-weight: 500;
   color: var(--combat-text-primary);
+}
+
+/* --- [NOVO] ESTILOS ESPECÍFICOS PARA SISTEMA DE QUESTS --- */
+.quest-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 15px;
+  width: 100%;
+}
+
+.quest-item {
+  border: 1px solid var(--combat-glass-border);
+  border-radius: 8px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.2);
+  width: 100%;
+  box-sizing: border-box;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.quest-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(155, 0, 255, 0.2);
+  border-color: var(--combat-accent1);
+}
+
+.quest-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 12px;
+  border-bottom: 1px solid var(--combat-glass-border);
+  padding-bottom: 10px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quest-header h3 {
+  margin: 0;
+  color: var(--combat-highlight);
+  flex-grow: 1;
+  font-size: 1.3em;
+  font-family: var(--combat-font-title);
+}
+
+.quest-type {
+  background: var(--combat-accent1);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85em;
+  font-weight: bold;
+  white-space: nowrap;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+.quest-req {
+  background: rgba(155, 0, 255, 0.1);
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 0.95em;
+  border-left: 3px solid var(--combat-accent1);
+  color: var(--combat-text-primary);
+}
+
+.quest-special {
+  background: rgba(255, 215, 0, 0.1);
+  border: 1px solid rgba(255, 215, 0, 0.3);
+  padding: 10px 15px;
+  border-radius: 6px;
+  margin-top: 10px;
+  font-size: 0.9em;
+  color: #ffd700;
+  border-left: 3px solid #ffd700;
+}
+
+.quest-content p {
+  margin: 10px 0 0 0;
+  line-height: 1.6;
+  color: var(--combat-text-secondary);
+}
+
+/* Ajustes para responsividade das quests */
+@media (max-width: 768px) {
+  .quest-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .quest-type {
+    align-self: flex-start;
+  }
+  
+  .quest-header h3 {
+    font-size: 1.1em;
+  }
 }
 
 /* Responsividade */
