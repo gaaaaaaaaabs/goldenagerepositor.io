@@ -27,12 +27,11 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* [NOVO v10] Cabeçalho "Glass" */
 .rules-header {
   padding: 25px 30px;
   text-align: center;
-  border-bottom: 1px solid var(--glass);
-  background: var(--glass-2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.05));
 }
 .rules-title {
   font-family: var(--title);
@@ -49,47 +48,42 @@
   font-style: italic;
   font-weight: 300;
 }
-/* [NOVO v10] Navegação por "Abas de Vidro" */
 .rules-toc {
-  padding: 20px 25px 0 25px; /* Ajustado */
-  margin: 0;
+  background-color: var(--bg);
+  border: 1px solid var(--glass-2);
+  border-radius: 8px;
+  padding: 20px 25px;
+  margin: 25px;
 }
 .rules-toc h3 {
- display: none; /* Título do Índice removido */
+  font-family: var(--title);
+  color: var(--highlight);
+  margin: 0 0 15px 0;
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--glass);
+  padding-bottom: 10px;
 }
 .rules-toc ul {
   list-style-type: none;
   padding-left: 0;
   margin: 0;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+  columns: 3;
 }
 .rules-toc li {
-  margin: 0;
+  margin-bottom: 10px;
 }
 .rules-toc a {
-  display: block;
   color: var(--muted);
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.9em; /* Menor para caber */
-  transition: all 0.2s;
-  background: var(--glass-2);
-  border: 1px solid var(--glass);
-  padding: 8px 12px;
-  border-radius: 6px;
-  text-transform: uppercase;
-  font-family: var(--mono);
+  font-size: 1.05em;
+  transition: color 0.2s;
 }
 .rules-toc a:hover {
-  color: var(--text);
-  background: var(--accent1);
-  border-color: var(--highlight);
-  transform: translateY(-2px);
+  color: var(--highlight);
 }
 .rules-content {
-  padding: 15px 30px 30px 30px; /* Ajustado */
+  padding: 0 30px 30px 30px;
 }
 .rules-content section {
   margin-top: 30px;
@@ -131,20 +125,18 @@
   font-size: 1.2em;
   color: var(--highlight);
   font-weight: 700;
-  margin-bottom: 8px; /* Aumentado */
+  margin-bottom: 8px;
 }
-/* [NOVO v10] Definições como "Cards de Vidro" */
 .rules-content dd {
   color: var(--muted);
   font-size: 0.95em;
   line-height: 1.7;
-  padding: 15px; /* Ajustado */
-  margin: 0 0 10px 0; /* Ajustado */
-  border-left: none; /* Removido */
+  padding: 15px;
+  margin: 0 0 10px 0;
   background: var(--glass-2);
   border: 1px solid var(--glass);
   border-radius: 8px;
-  border-top: 1px solid rgba(255,255,255,0.05);
+  border-left: 3px solid var(--accent1);
 }
 .rules-content ul {
   list-style: none;
@@ -202,6 +194,54 @@
   text-decoration: none !important;
   transform: translateY(-2px);
   box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.1), 0 5px 15px rgba(155, 0, 255, 0.3);
+}
+
+/* [NOVO v10] Acordeão para o Log Helper */
+.log-helper { margin: 15px 0 0 0; }
+.log-helper input[type="checkbox"] { display: none; }
+.log-helper-toggle {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 10px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.log-helper-toggle:hover { 
+  background: var(--accent2); 
+  color: var(--text); 
+}
+.log-helper-toggle::before { content: '[+] Mostrar Código do Template'; }
+.log-helper input:checked + .log-helper-toggle::before { content: '[-] Esconder Código do Template'; }
+.log-helper-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  margin-top: 0;
+  padding: 0;
+}
+.log-helper input:checked + .log-helper-toggle + .log-helper-content {
+  max-height: 500px;
+  margin-top: 10px;
+}
+.log-helper-content textarea {
+  width: 100%;
+  height: 200px; /* Mais altura para o código */
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--bg);
+  border: 1px solid var(--glass-2);
+  color: var(--muted);
+  padding: 10px;
+}
+
+@media (max-width: 780px) {
+  .rules-toc ul { columns: 2; }
 }
 @media (max-width: 640px) {
   .rules-toc ul { columns: 1; }
