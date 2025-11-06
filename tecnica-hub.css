@@ -82,32 +82,35 @@
   border-radius: 8px;
   border-top: 1px solid rgba(255,255,255,0.05);
 }
-.tech-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 10px;
+.tech-card p:last-child {
+  margin-bottom: 0;
 }
-.stat-item {
-  background: var(--bg);
-  border: 1px solid var(--glass);
-  border-radius: 6px;
-  padding: 10px;
-  text-align: center;
+/* Suporte para listas de regras dentro do card */
+.tech-card ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
-.stat-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  display: block;
-  margin-bottom: 5px;
+.tech-card li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 10px;
+  font-size: 1.05em;
+  line-height: 1.7;
 }
-.stat-value {
-  font-family: var(--ui);
-  font-size: 1.2em;
+.tech-card li::before {
+  content: '•';
+  position: absolute;
+  left: 0;
+  top: 0;
   color: var(--highlight);
   font-weight: 700;
+  font-size: 1.2em;
 }
+.tech-card li b {
+  color: var(--text);
+}
+
 /* Lista de Feitiços (Botões) */
 .spell-list {
   list-style: none;
@@ -156,6 +159,5 @@
   .tech-header { height: 150px; }
   .tech-title { font-size: 2.2em; left: 20px; bottom: 15px; }
   .tech-body { padding: 20px; }
-  .tech-stats-grid { grid-template-columns: 1fr 1fr; }
   .spell-list-button .spell-req { float: none; display: block; margin-top: 5px; }
 }
