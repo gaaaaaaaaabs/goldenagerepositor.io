@@ -14,7 +14,7 @@
 }
 .tx-container {
   box-sizing: border-box;
-  max-width: 500px; /* Menor que a ficha principal */
+  max-width: 500px;
   width: 95%;
   margin: 20px auto;
   font-family: var(--ui);
@@ -140,4 +140,7 @@
 }
 .tx-container.transfer .tx-amount {
   color: var(--transfer);
+}
+.tx-container.transfer .tx-amount::before {
+  content: '¥'; /* Transferência não tem + ou - */
 }
