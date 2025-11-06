@@ -11,8 +11,8 @@
   --mono: 'Roboto Mono', monospace;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
-  --success: #00e091; /* Verde para depósitos */
-  --failure: #c53030; /* Vermelho para saques */
+  --success: #00e091;
+  --failure: #c53030;
 }
 .bank-container {
   box-sizing: border-box;
@@ -27,16 +27,27 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-.bank-header {
-  padding: 25px;
+/* [NOVO] Título do Banco */
+.bank-brand {
+  padding: 15px 25px;
   background: var(--glass-2);
+  border-bottom: 1px solid var(--glass);
+  text-align: center;
+  font-family: var(--title);
+  font-size: 1.5em;
+  color: var(--highlight);
+  text-shadow: 0 0 8px var(--accent1);
+}
+.bank-header {
+  padding: 20px 25px;
+  background: var(--bg);
   border-bottom: 1px solid var(--glass);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
 }
 .header-item {
-  background: var(--bg);
+  background: var(--panel);
   border: 1px solid var(--glass);
   border-radius: 6px;
   padding: 10px 15px;
@@ -82,7 +93,7 @@
   text-shadow: 0 0 15px rgba(0, 224, 145, 0.3);
 }
 .balance-amount::before {
-  content: '¥'; /* Símbolo do Iene */
+  content: '¥';
   margin-right: 10px;
   opacity: 0.6;
 }
@@ -154,9 +165,9 @@
 @media (max-width: 600px) {
   .bank-header { grid-template-columns: 1fr; }
   .balance-amount { font-size: 2.5em; }
-  .transaction-header { display: none; } /* Esconde cabeçalho no mobile */
+  .transaction-header { display: none; }
   .transaction-item {
-    grid-template-columns: 1fr 1fr; /* 2 colunas */
+    grid-template-columns: 1fr 1fr;
     gap: 5px;
   }
   .transaction-item .desc {
@@ -165,7 +176,7 @@
   }
   .transaction-item .amount {
     grid-column: 2 / 3;
-    grid-row: 1 / 2; /* Move o valor para o topo direito */
+    grid-row: 1 / 2;
     text-align: right;
     font-size: 1.1em;
   }
