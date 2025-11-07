@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+}
+.log-guide-container {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 20px auto;
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.log-guide-header {
+  padding: 20px 25px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass);
+  background: var(--glass-2);
+}
+.log-guide-title {
+  font-family: var(--title);
+  font-size: 2em;
+  font-weight: 700;
+  color: var(--highlight);
+  margin: 0 0 5px 0;
+  text-shadow: 0 0 10px var(--accent1);
+}
+.log-guide-subtitle {
+  font-size: 1.1em;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 300;
+}
+.log-guide-body {
+  padding: 25px;
+}
+.log-guide-body h2 {
+  font-family: var(--title);
+  font-size: 1.3em;
+  color: var(--text);
+  margin: 0 0 10px 0;
+  padding-bottom: 5px;
+  border-bottom: 1px solid var(--glass-2);
+}
+.log-guide-body p {
+  font-size: 0.95em;
+  line-height: 1.7;
+  color: var(--muted);
+  margin: 0 0 20px 0;
+}
+/* Lista de Passos */
+.guide-step-list {
+  list-style-type: decimal;
+  padding-left: 20px;
+  margin-bottom: 25px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.guide-step-list li {
+  padding-left: 10px;
+  margin-bottom: 10px;
+}
+.guide-step-list b {
+  color: var(--text);
+}
+
+/* Acordeão de Código (copiado do regras.css) */
+.log-helper { margin: 15px 0 0 0; }
+.log-helper input[type="checkbox"] { display: none; }
+.log-helper-toggle {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 5px 10px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+.log-helper-toggle:hover { 
+  background: var(--accent2); 
+  color: var(--text); 
+}
+.log-helper-toggle::before { content: '[+] Mostrar Código de Postagem'; }
+.log-helper input:checked + .log-helper-toggle::before { content: '[-] Esconder Código de Postagem'; }
+.log-helper-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease-out;
+  margin-top: 0;
+  padding: 0;
+}
+.log-helper input:checked + .log-helper-toggle + .log-helper-content {
+  max-height: 500px; /* Ajustável */
+  margin-top: 10px;
+}
+.log-code-box {
+  width: 100%;
+  height: 250px; /* Mais compacto */
+  font-family: var(--mono);
+  font-size: 12px;
+  line-height: 1.6;
+  background: var(--bg);
+  border: 1px solid var(--glass-2);
+  color: var(--muted);
+  padding: 10px;
+  border-radius: 6px;
+  resize: vertical;
+}
+@media (max-width: 640px) {
+  .log-guide-body { padding: 20px; }
+  .log-guide-title { font-size: 1.8em; }
+  .log-guide-subtitle { font-size: 1em; }
+}
