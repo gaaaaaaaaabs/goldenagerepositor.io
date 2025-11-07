@@ -159,10 +159,7 @@
   font-size: 14px;
   line-height: 1.7;
   color: var(--muted);
-  max-height: 200px;
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent1) var(--panel);
+  /* Propriedades de scroll removidas */
 }
 .log-text-content ul {
   list-style: none;
@@ -186,9 +183,7 @@
   color: var(--text);
   font-family: var(--title);
 }
-.log-text-content::-webkit-scrollbar { width: 6px; }
-.log-text-content::-webkit-scrollbar-track { background: var(--panel); }
-.log-text-content::-webkit-scrollbar-thumb { background-color: var(--accent1); border-radius: 6px; }
+/* Propriedades de scrollbar removidas */
 
 /* Cores de Adicionar/Remover */
 .log-status-tag {
@@ -214,5 +209,3 @@
   .log-details li { grid-template-columns: 1fr; gap: 2px; }
   .log-changes-grid { grid-template-columns: 1fr; }
 }
-
-
