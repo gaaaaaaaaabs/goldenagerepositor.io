@@ -1,0 +1,189 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --success: #00e091;
+  --gold: #FFD700; /* Cor para a Era Dourada */
+}
+.donation-container {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 20px auto;
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.donation-header {
+  padding: 20px 25px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass);
+  background: var(--glass-2);
+}
+.donation-title {
+  font-family: var(--title);
+  font-size: 2.2em;
+  font-weight: 700;
+  color: var(--highlight);
+  margin: 0 0 5px 0;
+  text-shadow: 0 0 10px var(--accent1);
+}
+.donation-subtitle {
+  font-size: 1.1em;
+  color: var(--muted);
+  margin: 0;
+  font-weight: 300;
+}
+.donation-body {
+  padding: 25px;
+}
+.donation-body h2 {
+  font-family: var(--title);
+  font-size: 1.8em;
+  color: var(--highlight);
+  margin: 0 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent1);
+}
+.donation-body p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: var(--muted);
+  margin: 0 0 20px 0;
+  font-weight: 300;
+}
+
+/* --- Seção da Barra de Progresso --- */
+.progress-section {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 8px;
+  padding: 20px;
+  margin: 25px 0;
+}
+.progress-bar-bg {
+  width: 100%;
+  height: 40px; /* Larga verticalmente */
+  background: var(--bg);
+  border-radius: 6px;
+  border: 1px solid var(--glass);
+  overflow: hidden;
+  padding: 4px;
+}
+.progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  border-radius: 4px;
+  transition: width 0.5s ease-out;
+  box-shadow: 0 0 10px var(--accent1);
+}
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  font-family: var(--mono);
+  font-size: 1em;
+  color: var(--text);
+}
+.progress-labels .goal {
+  font-weight: 700;
+  color: var(--gold);
+}
+
+/* --- Seção de Recompensas --- */
+.reward-tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-bottom: 25px;
+}
+.tier-card {
+  background: var(--bg);
+  border: 1px solid var(--glass);
+  border-radius: 6px;
+  padding: 15px;
+  text-align: center;
+  transition: all 0.3s;
+  opacity: 0.6;
+}
+.tier-level {
+  font-family: var(--mono);
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--muted);
+  display: block;
+}
+.tier-reward {
+  font-family: var(--title);
+  font-size: 2em;
+  color: var(--highlight);
+  margin: 10px 0;
+}
+.tier-goal {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--gold);
+  font-weight: 700;
+}
+/* Estilo da Meta Ativa */
+.tier-card.active {
+  opacity: 1;
+  border-color: var(--success);
+  box-shadow: 0 0 15px rgba(0, 224, 145, 0.3);
+}
+.tier-card.active .tier-level {
+  color: var(--success);
+}
+.tier-card.active .tier-level::before {
+  content: 'ATIVO | ';
+}
+.tier-card.active .tier-reward {
+  color: var(--success);
+  text-shadow: 0 0 10px rgba(0, 224, 145, 0.5);
+}
+
+/* --- Seção de Doação --- */
+.cta-card {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+}
+.cta-card p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95em;
+}
+.pix-key {
+  font-family: var(--mono);
+  font-size: 1.1em;
+  color: var(--text);
+  background: var(--bg);
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: 1px solid var(--glass);
+  margin: 15px 0;
+  display: inline-block;
+}
+
+@media (max-width: 640px) {
+  .donation-body { padding: 20px; }
+  .progress-labels { font-size: 0.9em; }
+  .balance-amount { font-size: 2.8em; }
+  .reward-tiers-grid { grid-template-columns: 1fr; }
+}
