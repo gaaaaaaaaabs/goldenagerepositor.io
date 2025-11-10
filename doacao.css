@@ -74,14 +74,14 @@
   margin-bottom: 0;
 }
 
-/* [NOVO v3] Destaque da Seção de Progresso */
+/* [CORRIGIDO] Destaque da Seção de Progresso */
 .progress-section {
   background: var(--glass-2);
-  border: 1px solid var(--gold); /* Borda Dourada */
+  border: 1px solid var(--gold);
   border-radius: 8px;
   padding: 20px;
-  margin: 0 0 25px 0; /* Movido para o topo */
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15); /* Brilho Dourado */
+  margin: 0 0 25px 0;
+  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
 }
 .progress-section h2 {
   text-align: center;
@@ -95,9 +95,10 @@
   background: var(--bg);
   border-radius: 6px;
   border: 1px solid var(--glass);
-  overflow: hidden;
+  overflow: visible; /* Permitir que os rótulos fiquem visíveis */
   padding: 4px;
   position: relative; 
+  margin-top: 25px; /* Espaço para os rótulos de cima (agora em baixo) */
 }
 .progress-bar-fill {
   height: 100%;
@@ -109,7 +110,7 @@
 .progress-labels {
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
+  margin-top: 25px; /* Mais espaço para os rótulos da régua */
   font-family: var(--mono);
   font-size: 1em;
   color: var(--text);
@@ -118,6 +119,8 @@
   font-weight: 700;
   color: var(--gold);
 }
+
+/* [CORRIGIDO] Marcadores da Régua */
 .progress-marker {
   position: absolute;
   top: 0;
@@ -127,7 +130,7 @@
 }
 .progress-marker .marker-label {
   position: absolute;
-  top: -20px;
+  bottom: -20px; /* Movido para baixo */
   transform: translateX(-50%);
   font-family: var(--mono);
   font-size: 10px;
@@ -142,7 +145,7 @@
   font-weight: 700;
 }
 
-/* [NOVO v3] Grid de Informações (Por que/Moedas) */
+/* Grid de Informações (Por que/Moedas) */
 .info-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -224,12 +227,7 @@
   color: var(--text);
   font-weight: 500;
 }
-.intermediate-rewards li::before {
-  content: '■';
-  color: var(--highlight);
-  margin-right: 10px;
-  font-size: 0.8em;
-}
+/* [CORRIGIDO] Removido o ::before, o <b> no HTML cuidará disso */
 
 /* --- Seção de Doação --- */
 .cta-card {
