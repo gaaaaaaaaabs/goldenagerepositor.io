@@ -13,9 +13,9 @@
   --ui: 'Inter', system-ui, sans-serif;
   --title: 'Yuji Syuku', serif;
   --mono: 'Roboto Mono', monospace;
-  --failure: #c53030;
+  --gold: #FFD700; /* Cor para Arte Secreta */
 }
-.ad-container { /* Renomeado de .pact-container */
+.ad-container {
   box-sizing: border-box;
   max-width: 820px;
   width: 95%;
@@ -31,7 +31,6 @@
 .ad-header {
   height: 200px;
   position: relative;
-  /* Imagem de Fundo Genérica de Barreira/Domínio */
   background-image: url('https://i.pinimg.com/originals/a0/81/2a/a0812aa89831961b659c1626f21774e9.jpg');
   background-position: center center;
   background-size: cover;
@@ -102,7 +101,6 @@
   position: relative;
   margin-bottom: 10px;
 }
-/* Esta regra de CSS externo é segura */
 .ad-body li::before {
   content: '•';
   position: absolute;
@@ -115,8 +113,6 @@
 .ad-body li b {
   color: var(--text);
 }
-
-/* Card Maior para Técnicas */
 .ad-card {
   background: var(--glass-2);
   border: 1px solid var(--glass);
@@ -153,7 +149,6 @@
 .ad-card-body li {
   font-size: 1em;
 }
-/* Estilo para Arte Secreta */
 .ad-card.secret {
   border-left-color: var(--gold);
 }
