@@ -101,8 +101,8 @@
   position: relative;
   margin-bottom: 10px;
 }
-.ad-body li::before {
-  content: '•';
+/* [CORRIGIDO] CSS para o bullet point no HTML */
+.ad-body .bullet {
   position: absolute;
   left: 0;
   top: 0;
@@ -113,6 +113,8 @@
 .ad-body li b {
   color: var(--text);
 }
+
+/* Card Maior para Técnicas */
 .ad-card {
   background: var(--glass-2);
   border: 1px solid var(--glass);
@@ -143,15 +145,20 @@
   font-size: 0.95em;
   line-height: 1.7;
 }
+.ad-card-body p {
+  margin-bottom: 15px;
+}
 .ad-card-body p:last-child {
   margin-bottom: 0;
 }
 .ad-card-body li {
   font-size: 1em;
 }
+/* Estilo para Arte Secreta */
 .ad-card.secret {
   border-left-color: var(--gold);
 }
 .ad-card.secret .ad-card-title {
   color: var(--gold);
+  background: rgba(255, 215, 0, 0.05);
 }
