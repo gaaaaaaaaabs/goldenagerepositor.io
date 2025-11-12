@@ -1,4 +1,4 @@
-/* --- Template Raça: Jugai (v1) --- */
+/* --- Template Raça: Jugai (v2) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -13,8 +13,9 @@
   --text: #e7e9ff;
   --ui: 'Inter', system-ui, sans-serif;
   --title: 'Yuji Syuku', serif;
-  --failure: #c53030; /* Vermelho para restrições */
-  --success: #00e091; /* Verde para vantagens */
+  --mono: 'Roboto Mono', monospace;
+  --failure: #c53030;
+  --success: #00e091;
 }
 /* Animações */
 @keyframes shine {
@@ -184,6 +185,38 @@
   left: 0;
   top: 0;
   color: var(--failure);
+  font-weight: 700;
+}
+
+/* [NOVO v2] Grade de Stats (Copiado do anti-dominio.css) */
+.jugai-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+  background: var(--bg);
+  padding: 10px;
+  border-radius: 6px;
+}
+.stat-item {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
+}
+.stat-value {
+  font-family: var(--ui);
+  font-size: 1.2em;
+  color: var(--highlight);
   font-weight: 700;
 }
 
