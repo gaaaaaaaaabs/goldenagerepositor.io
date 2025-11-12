@@ -1,0 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+}
+.lore-container {
+  box-sizing: border-box;
+  max-width: 900px; /* Mais largo para a timeline */
+  width: 95%;
+  margin: 20px auto;
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+.lore-header {
+  padding: 25px 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--glass);
+  background: var(--glass-2);
+}
+.lore-title {
+  font-family: var(--title);
+  font-size: 2.5em;
+  font-weight: 700;
+  color: var(--highlight);
+  margin: 0 0 5px 0;
+  text-shadow: 0 0 10px var(--accent1);
+}
+.lore-subtitle {
+  font-size: 1.1em;
+  color: var(--muted);
+  margin: 0;
+  font-style: italic;
+  font-weight: 300;
+}
+.lore-timeline {
+  list-style: none;
+  padding: 30px 0;
+  margin: 0;
+  position: relative;
+}
+/* A Linha Central */
+.lore-timeline::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  background: var(--accent2);
+}
+.timeline-event {
+  position: relative;
+  width: 50%;
+  margin-bottom: 40px;
+}
+/* O Círculo na Linha */
+.timeline-event::after {
+  content: '';
+  position: absolute;
+  top: 10px;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: var(--accent1);
+  border: 3px solid var(--panel);
+  box-shadow: 0 0 10px var(--accent1);
+  z-index: 2;
+}
+/* Eventos da Esquerda */
+.timeline-event:nth-child(odd) {
+  left: 0;
+  padding-right: 40px;
+  text-align: right;
+}
+.timeline-event:nth-child(odd) .event-content {
+  text-align: left; /* Alinha o texto dentro do card */
+}
+.timeline-event:nth-child(odd)::after {
+  right: -10px;
+  transform: translateX(50%);
+}
+/* Eventos da Direita */
+.timeline-event:nth-child(even) {
+  left: 50%;
+  padding-left: 40px;
+}
+.timeline-event:nth-child(even)::after {
+  left: -10px;
+  transform: translateX(-50%);
+}
+/* Card de Conteúdo */
+.event-content {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 8px;
+  padding: 20px;
+  position: relative;
+}
+.event-date {
+  font-family: var(--mono);
+  font-size: 1em;
+  color: var(--highlight);
+  font-weight: 700;
+  margin-bottom: 8px;
+  display: block;
+}
+.event-title {
+  font-family: var(--title);
+  font-size: 1.5em;
+  color: var(--text);
+  margin: 0 0 10px 0;
+}
+.event-description {
+  font-size: 0.95em;
+  line-height: 1.7;
+  color: var(--muted);
+  font-weight: 300;
+  margin: 0;
+}
+.event-image-wrapper {
+  margin-top: 15px;
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid var(--glass);
+}
+.event-image-wrapper img {
+  width: 100%;
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .lore-timeline::before {
+    left: 10px; /* Move a linha para a esquerda */
+    transform: none;
+  }
+  .timeline-event {
+    width: 100%;
+    left: 0 !important; /* Reseta a posição */
+    padding-left: 40px; /* Todos os cards à direita */
+    padding-right: 0;
+    text-align: left;
+  }
+  .timeline-event::after {
+    left: 0; /* Move o círculo para a esquerda */
+    transform: none;
+  }
+}
