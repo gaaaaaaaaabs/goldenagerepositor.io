@@ -1,0 +1,264 @@
+/* --- Template Expansão de Domínio (v1) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #0f1020;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --card-radius: 12px;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+}
+/* Animações */
+@keyframes shine {
+  0% { background-position: left center; }
+  50% { background-position: right center; }
+  100% { background-position: left center; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Estilo Base */
+.rpg-card {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 30px auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: linear-gradient(180deg, var(--bg) 0%, #06060d 100%);
+  border-radius: var(--card-radius);
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
+}
+/* Cabeçalho */
+.rpg-card .icon-deco {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(180deg, var(--glass-2), rgba(0, 0, 0, 0.05));
+  border: 2px solid var(--glass);
+}
+.rpg-card .icon-deco::before {
+  content: '領';
+  font-size: 32px;
+  font-family: 'Yuji Syuku', serif;
+  color: var(--accent1);
+  text-shadow: 0 0 10px var(--accent1);
+}
+.rpg-card .header {
+  padding-left: 90px;
+  position: relative;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+}
+.rpg-card .title {
+  font-family: 'Yuji Syuku', serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: 0.2px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.rpg-card .title .g {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+.rpg-card .subtitle-line {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 90%;
+}
+/* Seções e Conteúdo */
+.section {
+  background: linear-gradient(180deg, var(--glass), var(--glass-2));
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+.rpg-card .section:nth-of-type(1) { animation-delay: 0.1s; }
+.rpg-card .section:nth-of-type(2) { animation-delay: 0.2s; }
+.rpg-card .section:nth-of-type(3) { animation-delay: 0.3s; }
+
+.section .h {
+  margin-bottom: 8px;
+}
+.section .h .name {
+  font-family: 'Yuji Syuku', serif;
+  font-weight: 700;
+  color: var(--highlight);
+  font-size: 17px;
+}
+.section p.lead {
+  margin: 0 0 8px 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.45;
+}
+.tag {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1), var(--accent2));
+  background-size: 200% auto;
+  color: white;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 6px 18px rgba(59, 0, 176, 0.12);
+  animation: shine 4s linear infinite;
+}
+/* Sistema de Abas (CSS Puro) */
+.tabs-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.tabs-container input[type="radio"] {
+  display: none;
+}
+.tab-button {
+  flex-grow: 1;
+  padding: 8px 10px;
+  background: var(--glass-2);
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 14px;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, border-color 0.3s;
+  margin: 0 2.5px 5px;
+}
+.tab-button:hover {
+  background: var(--glass);
+  color: var(--text);
+}
+.tabs-container input[type="radio"]:checked + .tab-button {
+  background: var(--accent1);
+  color: white;
+  border-color: var(--highlight);
+  box-shadow: 0 0 15px rgba(155, 0, 255, 0.5);
+}
+.tab-pane {
+  display: none;
+  order: 99; /* Garante que os painéis fiquem abaixo dos botões */
+  flex-grow: 1;
+  width: 100%;
+  animation: fadeInUp 0.5s;
+}
+.tabs-container input[type="radio"]:checked + .tab-button + .tab-pane {
+  display: block;
+}
+/* Listas e Cards de Informação */
+.rules-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+  font-size: 13.5px;
+}
+.rules-list li {
+  padding: 8px 10px;
+  border-radius: 4px;
+  transition: background 0.3s;
+  border-bottom: 1px solid var(--glass);
+}
+.rules-list li:hover {
+  background: var(--glass);
+}
+.rules-list li:last-child {
+  border-bottom: none;
+}
+.rules-list b {
+  color: var(--highlight);
+  display: inline-block;
+  min-width: 90px;
+}
+/* Correção para as sub-listas */
+.rules-list ul {
+  padding-left: 20px;
+  margin-top: 8px;
+  list-style: none;
+  color: var(--muted);
+}
+.rules-list ul li {
+  border-bottom: none;
+  padding-top: 2px;
+  padding-bottom: 2px;
+}
+.rules-list ul li .list-marker {
+  color: var(--highlight);
+  margin-right: 8px;
+}
+.info-cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  margin-top: 12px;
+}
+.info-card {
+  background: var(--panel);
+  padding: 10px;
+  border-radius: 6px;
+  text-align: center;
+  border: 1px solid var(--glass);
+}
+.info-card .label {
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.info-card .value {
+  font-size: 16px;
+  color: var(--highlight);
+  font-weight: 800;
+  margin-top: 4px;
+}
+.quote {
+  font-style: italic;
+  color: var(--muted);
+  padding-left: 10px;
+  border-left: 2px solid var(--accent1);
+  margin: 15px 0;
+}
+/* Responsividade */
+@media (max-width:640px) {
+  .rpg-card .header {
+    padding-left: 0;
+    text-align: center;
+  }
+  .rpg-card .icon-deco {
+    display: none;
+  }
+  .rpg-card .title {
+    justify-content: center;
+  }
+  .tab-button {
+    flex-basis: 100%;
+  }
+}
