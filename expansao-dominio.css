@@ -1,4 +1,4 @@
-/* --- Template Expansão de Domínio (v1) --- */
+/* --- Template Expansão de Domínio (v2) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -166,7 +166,7 @@
 }
 .tab-pane {
   display: none;
-  order: 99; /* Garante que os painéis fiquem abaixo dos botões */
+  order: 99;
   flex-grow: 1;
   width: 100%;
   animation: fadeInUp 0.5s;
@@ -174,49 +174,10 @@
 .tabs-container input[type="radio"]:checked + .tab-button + .tab-pane {
   display: block;
 }
-/* Listas e Cards de Informação */
-.rules-list {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 10px;
-  font-size: 13.5px;
-}
-.rules-list li {
-  padding: 8px 10px;
-  border-radius: 4px;
-  transition: background 0.3s;
-  border-bottom: 1px solid var(--glass);
-}
-.rules-list li:hover {
-  background: var(--glass);
-}
-.rules-list li:last-child {
-  border-bottom: none;
-}
-.rules-list b {
-  color: var(--highlight);
-  display: inline-block;
-  min-width: 90px;
-}
-/* Correção para as sub-listas */
-.rules-list ul {
-  padding-left: 20px;
-  margin-top: 8px;
-  list-style: none;
-  color: var(--muted);
-}
-.rules-list ul li {
-  border-bottom: none;
-  padding-top: 2px;
-  padding-bottom: 2px;
-}
-.rules-list ul li .list-marker {
-  color: var(--highlight);
-  margin-right: 8px;
-}
+/* [MODIFICADO v2] Grid de Stats Padronizado */
 .info-cards-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   gap: 10px;
   margin-top: 12px;
 }
@@ -238,6 +199,37 @@
   color: var(--highlight);
   font-weight: 800;
   margin-top: 4px;
+  font-family: 'Roboto Mono', monospace; /* Padroniza a fonte */
+}
+/* [NOVO v2] Bloco de Texto para Efeitos */
+.info-block {
+  background: var(--panel);
+  padding: 12px 15px;
+  border-radius: 6px;
+  border: 1px solid var(--glass);
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--muted);
+  margin-top: 10px;
+}
+.info-block b {
+  color: var(--highlight);
+}
+.info-block ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 8px;
+}
+.info-block li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.info-block .list-marker {
+  color: var(--highlight);
+  position: absolute;
+  left: 0;
+  top: 0;
 }
 .quote {
   font-style: italic;
@@ -246,7 +238,8 @@
   border-left: 2px solid var(--accent1);
   margin: 15px 0;
 }
-/* Responsividade */
+/* [REMOVIDO v2] .rules-list (não é mais usado) */
+
 @media (max-width:640px) {
   .rpg-card .header {
     padding-left: 0;
