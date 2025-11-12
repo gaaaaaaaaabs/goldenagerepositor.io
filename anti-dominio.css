@@ -101,9 +101,8 @@
   position: relative;
   margin-bottom: 10px;
 }
-/* Esta regra de CSS externo é segura */
-.ad-body li::before {
-  content: '•';
+/* [CORRIGIDO] O CSS para o bullet span */
+.ad-body .bullet {
   position: absolute;
   left: 0;
   top: 0;
@@ -156,7 +155,7 @@
   font-size: 1em;
 }
 
-/* [NOVO v3] Grade de Stats da Técnica */
+/* Grade de Stats da Técnica */
 .ad-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
