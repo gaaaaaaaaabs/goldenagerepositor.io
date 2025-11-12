@@ -101,8 +101,9 @@
   position: relative;
   margin-bottom: 10px;
 }
-/* [CORRIGIDO] CSS para o bullet point no HTML */
-.ad-body .bullet {
+/* Esta regra de CSS externo é segura */
+.ad-body li::before {
+  content: '•';
   position: absolute;
   left: 0;
   top: 0;
@@ -154,6 +155,39 @@
 .ad-card-body li {
   font-size: 1em;
 }
+
+/* [NOVO v3] Grade de Stats da Técnica */
+.ad-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 10px;
+  margin-bottom: 20px;
+  background: var(--bg);
+  padding: 10px;
+  border-radius: 6px;
+}
+.stat-item {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 6px;
+  padding: 10px;
+  text-align: center;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 5px;
+}
+.stat-value {
+  font-family: var(--ui);
+  font-size: 1.2em;
+  color: var(--highlight);
+  font-weight: 700;
+}
+
 /* Estilo para Arte Secreta */
 .ad-card.secret {
   border-left-color: var(--gold);
