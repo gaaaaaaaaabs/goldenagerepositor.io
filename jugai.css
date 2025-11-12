@@ -188,7 +188,7 @@
   font-weight: 700;
 }
 
-/* [NOVO v2] Grade de Stats (Copiado do anti-dominio.css) */
+/* [NOVO v2] Grade de Stats */
 .jugai-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
