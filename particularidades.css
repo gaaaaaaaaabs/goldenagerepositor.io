@@ -1,4 +1,4 @@
-/* --- Template Raça: Jugai (v2) --- */
+/* --- Template Particularidade: Jugai (v1) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -188,7 +188,7 @@
   font-weight: 700;
 }
 
-/* [NOVO v2] Grade de Stats */
+/* Grade de Stats */
 .jugai-stats-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
