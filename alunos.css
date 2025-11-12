@@ -1,0 +1,203 @@
+/* --- Template Alunos Jujutsu (v1) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
+:root {
+  --bg: #0c0c1a;
+  --panel: #0f1020;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --accent2: #3c00b0;
+  --highlight: #c48fff;
+  --card-radius: 12px;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+}
+/* Animações */
+@keyframes shine {
+  0% { background-position: left center; }
+  50% { background-position: right center; }
+  100% { background-position: left center; }
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pulse {
+  0% { transform: scale(0.95); opacity: 0.7; }
+  70% { transform: scale(1.05); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.7; }
+}
+.rpg-card {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 30px auto;
+  font-family: 'Inter', system-ui, sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  border-radius: var(--card-radius);
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
+}
+/* Cabeçalho */
+.new-header {
+  padding: 40px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  background: radial-gradient(ellipse at top, var(--panel), var(--bg) 80%);
+}
+.header-svg-container {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 15px auto;
+  animation: pulse 5s infinite ease-in-out;
+}
+.header-svg-container svg {
+  width: 100%;
+  height: 100%;
+}
+.rpg-card .title {
+  font-family: 'Yuji Syuku', serif;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+}
+/* Ajuste para o .g (não estava no CSS mas está no HTML) */
+.rpg-card .title .g {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-weight: 800;
+}
+.rpg-card .subtitle-line {
+  color: var(--muted);
+  font-size: 13px;
+  max-width: 90%;
+  margin: 5px auto 0 auto;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+.tag {
+  background: linear-gradient(90deg, var(--accent2), var(--accent1), var(--accent2));
+  background-size: 200% auto;
+  color: white;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  animation: shine 4s linear infinite;
+}
+.tag-container {
+  margin-top: 15px;
+}
+.main-content {
+  padding: 0 20px 20px 20px;
+}
+/* Seções e Conteúdo */
+.section {
+  background: linear-gradient(180deg, var(--glass), var(--glass-2));
+  border-radius: 8px;
+  padding: 14px;
+  margin: 12px 0;
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  animation: fadeInUp 0.6s ease-out forwards;
+  opacity: 0;
+}
+.rpg-card .section:nth-of-type(1) { animation-delay: 0.1s; }
+.rpg-card .section:nth-of-type(2) { animation-delay: 0.2s; }
+.rpg-card .section:nth-of-type(3) { animation-delay: 0.3s; }
+
+.section .h { margin-bottom: 8px; } /* Adicionado margin-bottom que faltava */
+.section .h .name {
+  font-family: 'Yuji Syuku', serif;
+  font-weight: 700;
+  color: var(--highlight);
+  font-size: 17px;
+}
+.section p.lead {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13.5px;
+  line-height: 1.5;
+}
+.schools-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-top: 10px;
+}
+.school-card {
+  background: var(--glass-2);
+  padding: 12px;
+  border-radius: 6px;
+}
+.school-card .school-name {
+  font-weight: bold;
+  color: var(--highlight);
+  font-size: 15px;
+}
+.school-card .school-desc {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 8px;
+  line-height: 1.6;
+}
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+  margin-top: 15px;
+}
+.detail-card {
+  background: var(--glass-2);
+  padding: 12px;
+  border-radius: 6px;
+}
+.detail-card .card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--highlight);
+}
+.detail-card .card-content {
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 5px;
+  line-height: 1.5;
+}
+.detail-card ul {
+  padding-left: 0;
+  margin: 5px 0 0 0;
+  list-style: none;
+}
+.detail-card ul li {
+  margin-bottom: 4px;
+  position: relative; /* Adicionado para o bullet */
+  padding-left: 15px; /* Espaço para o bullet */
+}
+/* [CORRIGIDO] Adicionando o bullet via CSS */
+.detail-card ul li::before {
+  content: '—';
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: var(--highlight);
+}
+
+@media (max-width: 768px) {
+  .rpg-card .title,
+  .rpg-card .subtitle-line {
+    text-align: center;
+  }
+  .schools-grid {
+    grid-template-columns: 1fr;
+  }
+}
