@@ -1,4 +1,4 @@
-/* --- Template Objeto Amaldiçoado (v4) --- */
+/* --- Template Objeto Amaldiçoado (v5) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -20,10 +20,12 @@
   --gold: #FFD700;    /* Grau Especial */
   --white: #FFFFFF;  /* Grau 4 */
 }
-/* [ATUALIZADO v4] Animações */
+/* [CORRIGIDO v5] Animação de Rotação (para a borda) */
 @keyframes itemBorderSpin {
-  to { border-image-source: conic-gradient(from 360deg, var(--glow-color) 0%, transparent 20%, transparent 80%, var(--glow-color) 100%); }
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
+/* Animação de Shimmer (mantida) */
 @keyframes itemImageShimmer {
   0% { transform: translateX(-100%) skewX(-30deg); opacity: 0.1; }
   20% { transform: translateX(100%) skewX(-30deg); opacity: 0.3; }
@@ -43,7 +45,6 @@
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
   overflow: hidden;
 }
-/* Cabeçalho com Imagem + Stats */
 .item-header {
   display: grid;
   grid-template-columns: 300px 1fr;
@@ -59,32 +60,41 @@
   overflow: hidden;
   background: var(--bg);
   position: relative;
-  
-  /* [ATUALIZADO v4] Propriedades da Borda Animada */
-  padding: 2px; /* Espaço para a borda */
-  border: 2px solid transparent; /* Para que border-image funcione */
-  border-image-slice: 1;
-  border-image-source: conic-gradient(from 0deg, var(--glow-color, transparent) 0%, transparent 20%, transparent 80%, var(--glow-color, transparent) 100%);
+  border: 2px solid transparent; /* Apenas para manter o espaçamento */
+  padding: 2px; /* Espaço para a borda falsa */
+}
+
+/* [CORRIGIDO v5] A Borda Animada (usando pseudo-elemento) */
+.item-image::before {
+  content: '';
+  position: absolute;
+  inset: -4px; /* Cobre a área da borda */
+  z-index: 1;
+  background: conic-gradient(from 0deg, var(--glow-color, transparent) 0%, transparent 20%, transparent 80%, var(--glow-color, transparent) 100%);
   animation: itemBorderSpin 3s linear infinite;
 }
+
 .item-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block; /* Remove espaço extra abaixo da imagem */
-  border-radius: 6px; /* Para se alinhar ao padding do pai */
+  display: block;
+  border-radius: 6px; /* Raio menor para caber dentro do padding */
+  position: relative; /* Para ficar acima da borda */
+  z-index: 2; /* Fica acima do ::before */
 }
 
 /* Overlay de Brilho na Imagem */
 .item-image::after {
   content: '';
   position: absolute;
-  inset: 0;
+  inset: 2px; /* Alinha com a imagem interna */
   width: 50%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: itemImageShimmer 4s infinite ease-in-out;
   animation-delay: 1s;
-  border-radius: 6px; /* Para se alinhar ao padding do pai */
+  border-radius: 6px;
+  z-index: 3; /* Fica acima da imagem */
 }
 
 .item-info {
@@ -219,25 +229,19 @@
   }
 }
 
-/* --- Efeitos de Brilho ANIMADOS (por Grau) --- */
-
-/* Grau 4 (Branco) */
+/* --- [CORRIGIDO v5] Efeitos de Brilho (Define a cor da animação) --- */
 .item-container[data-grade="4"] .item-image {
-  --glow-color: rgba(255, 255, 255, 0.7); /* Aumentei a opacidade */
+  --glow-color: rgba(255, 255, 255, 0.7);
 }
-/* Grau 3 (Verde) */
 .item-container[data-grade="3"] .item-image {
   --glow-color: var(--success);
 }
-/* Grau 2 (Azul) */
 .item-container[data-grade="2"] .item-image {
   --glow-color: var(--blue);
 }
-/* Grau 1 (Roxo) */
 .item-container[data-grade="1"] .item-image {
   --glow-color: var(--accent1);
 }
-/* Grau Especial (Dourado) */
 .item-container[data-grade="especial"] .item-image {
   --glow-color: var(--gold);
 }
