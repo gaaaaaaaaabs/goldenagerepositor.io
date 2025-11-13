@@ -1,4 +1,4 @@
-/* --- Template Objeto Amaldiçoado (v5) --- */
+/* --- Template Objeto Amaldiçoado (v6) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -20,8 +20,8 @@
   --gold: #FFD700;    /* Grau Especial */
   --white: #FFFFFF;  /* Grau 4 */
 }
-/* [CORRIGIDO v5] Animação de Rotação (para a borda) */
-@keyframes itemBorderSpin {
+/* [CORRIGIDO v6] Animação de Borda Circular */
+@keyframes itemBorderSparkle {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
@@ -60,18 +60,20 @@
   overflow: hidden;
   background: var(--bg);
   position: relative;
-  border: 2px solid transparent; /* Apenas para manter o espaçamento */
-  padding: 2px; /* Espaço para a borda falsa */
+  /* Removendo padding e borda fixa daqui */
 }
 
-/* [CORRIGIDO v5] A Borda Animada (usando pseudo-elemento) */
+/* [CORRIGIDO v6] Borda Circular (usando pseudo-elementos e máscara) */
 .item-image::before {
   content: '';
   position: absolute;
-  inset: -4px; /* Cobre a área da borda */
-  z-index: 1;
-  background: conic-gradient(from 0deg, var(--glow-color, transparent) 0%, transparent 20%, transparent 80%, var(--glow-color, transparent) 100%);
-  animation: itemBorderSpin 3s linear infinite;
+  inset: -2px; /* Espaço para a borda */
+  border-radius: 10px; /* Alinha com a borda externa */
+  background: linear-gradient(to right, var(--glow-color) 0%, transparent 20%, transparent 80%, var(--glow-color) 100%);
+  mask: conic-gradient(from 0deg, transparent 0%, transparent 10%, #000 10%, #000 90%, transparent 90%, transparent 100%);
+  mask-border: 1px solid;
+  animation: itemBorderSparkle 3s linear infinite;
+  z-index: 1; /* Abaixo da imagem */
 }
 
 .item-image img {
@@ -79,22 +81,22 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  border-radius: 6px; /* Raio menor para caber dentro do padding */
-  position: relative; /* Para ficar acima da borda */
-  z-index: 2; /* Fica acima do ::before */
+  border-radius: 8px; /* Mantém o raio da imagem interna */
+  position: relative;
+  z-index: 2; /* Fica acima da borda */
 }
 
 /* Overlay de Brilho na Imagem */
 .item-image::after {
   content: '';
   position: absolute;
-  inset: 2px; /* Alinha com a imagem interna */
+  inset: 0;
   width: 50%;
   background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
   animation: itemImageShimmer 4s infinite ease-in-out;
   animation-delay: 1s;
-  border-radius: 6px;
-  z-index: 3; /* Fica acima da imagem */
+  border-radius: 8px; /* Alinha com a imagem interna */
+  z-index: 3;
 }
 
 .item-info {
@@ -229,19 +231,19 @@
   }
 }
 
-/* --- [CORRIGIDO v5] Efeitos de Brilho (Define a cor da animação) --- */
-.item-container[data-grade="4"] .item-image {
+/* --- Efeitos de Brilho (Define a cor da animação) --- */
+.item-container[data-grade="4"] .item-image::before {
   --glow-color: rgba(255, 255, 255, 0.7);
 }
-.item-container[data-grade="3"] .item-image {
+.item-container[data-grade="3"] .item-image::before {
   --glow-color: var(--success);
 }
-.item-container[data-grade="2"] .item-image {
+.item-container[data-grade="2"] .item-image::before {
   --glow-color: var(--blue);
 }
-.item-container[data-grade="1"] .item-image {
+.item-container[data-grade="1"] .item-image::before {
   --glow-color: var(--accent1);
 }
-.item-container[data-grade="especial"] .item-image {
+.item-container[data-grade="especial"] .item-image::before {
   --glow-color: var(--gold);
 }
