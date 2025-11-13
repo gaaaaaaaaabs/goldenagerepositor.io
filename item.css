@@ -1,4 +1,4 @@
-/* --- Template Objeto Amaldiçoado (v1) --- */
+/* --- Template Objeto Amaldiçoado (v2) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -14,8 +14,11 @@
   --ui: 'Inter', system-ui, sans-serif;
   --title: 'Yuji Syuku', serif;
   --mono: 'Roboto Mono', monospace;
-  --failure: #c53030; /* Vermelho para restrições */
-  --gold: #FFD700; /* Dourado para Grau Especial */
+  --failure: #c53030;
+  --success: #00e091; /* Grau 3 */
+  --blue: #30a9ff;   /* Grau 2 */
+  --gold: #FFD700;    /* Grau Especial */
+  --white: #FFFFFF;  /* Grau 4 */
 }
 .item-container {
   box-sizing: border-box;
@@ -33,7 +36,7 @@
 /* Cabeçalho com Imagem + Stats */
 .item-header {
   display: grid;
-  grid-template-columns: 300px 1fr; /* Coluna da imagem | Coluna dos stats */
+  grid-template-columns: 300px 1fr;
   gap: 20px;
   padding: 20px;
   background: var(--glass-2);
@@ -46,6 +49,9 @@
   overflow: hidden;
   border: 1px solid var(--glass);
   background: var(--bg);
+  /* [NOVO v2] Transição para o brilho */
+  transition: box-shadow 0.3s ease, border-color 0.3s ease;
+  border: 2px solid transparent; /* Borda base */
 }
 .item-image img {
   width: 100%;
@@ -68,7 +74,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
-  margin-top: auto; /* Empurra os stats para baixo */
+  margin-top: auto;
 }
 .stat-item {
   background: var(--bg);
@@ -91,6 +97,7 @@
   color: var(--highlight);
   font-weight: 700;
 }
+/* [NOVO v2] Cor do Grau Especial (Opcional, mas recomendado) */
 .stat-value.grade-especial {
   color: var(--gold);
   text-shadow: 0 0 5px var(--gold);
@@ -161,7 +168,6 @@
 .item-card-body li b {
   color: var(--text);
 }
-/* Card de Restrição */
 .item-card.secret {
   border-left-color: var(--failure);
 }
@@ -172,10 +178,10 @@
 
 @media (max-width: 768px) {
   .item-header {
-    grid-template-columns: 1fr; /* Empilha a imagem em cima dos stats */
+    grid-template-columns: 1fr;
   }
   .item-image {
-    height: 250px; /* Reduz a altura da imagem no mobile */
+    height: 250px;
   }
   .item-stats-grid {
     margin-top: 15px;
@@ -183,4 +189,32 @@
   .item-title {
     text-align: center;
   }
+}
+
+/* --- [NOVO v2] Efeitos de Brilho da Imagem por Grau --- */
+
+/* Grau 4 (Branco) */
+.item-container[data-grade="4"] .item-image {
+  border-color: rgba(255, 255, 255, 0.5);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+}
+/* Grau 3 (Verde) */
+.item-container[data-grade="3"] .item-image {
+  border-color: var(--success);
+  box-shadow: 0 0 20px rgba(0, 224, 145, 0.5);
+}
+/* Grau 2 (Azul) */
+.item-container[data-grade="2"] .item-image {
+  border-color: var(--blue);
+  box-shadow: 0 0 20px rgba(48, 169, 255, 0.5);
+}
+/* Grau 1 (Roxo) */
+.item-container[data-grade="1"] .item-image {
+  border-color: var(--accent1);
+  box-shadow: 0 0 20px rgba(155, 0, 255, 0.5);
+}
+/* Grau Especial (Dourado) */
+.item-container[data-grade="especial"] .item-image {
+  border-color: var(--gold);
+  box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
 }
