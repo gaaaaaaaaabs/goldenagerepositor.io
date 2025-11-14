@@ -1,4 +1,4 @@
-/* --- Template Particularidade: Jugai (v1) --- */
+/* --- Template Particularidade: Jugai (v2) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -61,10 +61,12 @@
   animation: pulse 5s infinite ease-in-out;
   display: grid;
   place-items: center;
-  font-family: var(--title);
-  font-size: 50px;
-  color: var(--accent1);
-  text-shadow: 0 0 10px var(--accent1);
+}
+.header-svg-container svg {
+  width: 100%;
+  height: 100%;
+  /* Define a cor do SVG aqui */
+  stroke: var(--accent1);
 }
 .rpg-card .title {
   font-family: 'Yuji Syuku', serif;
@@ -119,6 +121,8 @@
 .rpg-card .section:nth-of-type(1) { animation-delay: 0.1s; }
 .rpg-card .section:nth-of-type(2) { animation-delay: 0.2s; }
 .rpg-card .section:nth-of-type(3) { animation-delay: 0.3s; }
+.rpg-card .section:nth-of-type(4) { animation-delay: 0.4s; }
+
 .section .h { margin-bottom: 8px; }
 .section .h .name {
   font-family: 'Yuji Syuku', serif;
@@ -188,37 +192,60 @@
   font-weight: 700;
 }
 
-/* Grade de Stats */
-.jugai-stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-  gap: 10px;
-  margin-top: 15px;
-  background: var(--bg);
-  padding: 10px;
-  border-radius: 6px;
+/* [NOVO v2] Influence Stepper (UI Melhorada) */
+.influence-stepper {
+  list-style: none;
+  padding: 20px 0 0 30px; /* Padding para a linha */
+  margin: 0;
+  position: relative;
+  border-left: 3px solid var(--glass-2);
 }
-.stat-item {
-  background: var(--glass-2);
-  border: 1px solid var(--glass);
-  border-radius: 6px;
-  padding: 10px;
-  text-align: center;
+.influence-step {
+  margin-bottom: 20px;
+  position: relative;
 }
-.stat-label {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  text-transform: uppercase;
-  display: block;
+.influence-step:last-child {
+  margin-bottom: 0;
+}
+.influence-step::before { /* O "ponto" na linha */
+  content: '';
+  position: absolute;
+  left: -32px; /* (padding-left) + (metade do ponto) */
+  top: 4px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--muted);
+  border: 3px solid var(--panel);
+}
+.influence-step-title {
+  font-family: var(--title);
+  font-size: 1.3em;
+  color: var(--text);
+  font-weight: 700;
   margin-bottom: 5px;
 }
-.stat-value {
-  font-family: var(--ui);
-  font-size: 1.2em;
-  color: var(--highlight);
-  font-weight: 700;
+.influence-step-content {
+  font-size: 0.95em;
+  line-height: 1.7;
+  color: var(--muted);
 }
+.influence-step-content b {
+  color: var(--text);
+}
+/* Destaques de Nível */
+.influence-step.level-1::before { background: var(--success); }
+.influence-step.level-1 .influence-step-title { color: var(--success); }
+
+.influence-step.level-2::before { background: var(--highlight); }
+.influence-step.level-2 .influence-step-title { color: var(--highlight); }
+
+.influence-step.level-3::before { background: var(--failure); }
+.influence-step.level-3 .influence-step-title { color: var(--failure); }
+
+.influence-step.level-4::before { background: var(--failure); box-shadow: 0 0 10px var(--failure); }
+.influence-step.level-4 .influence-step-title { color: var(--failure); font-weight: 900; }
+
 
 @media (max-width: 768px) {
   .rpg-card .title,
