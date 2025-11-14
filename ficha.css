@@ -302,7 +302,7 @@
 
 /* --- Bloco de Aptidões (com barra de XP) --- */
 .jjk-dossier-container .jjk-dossier-skill-item {
-  display: block; /* MUDOU */
+  display: block; 
   padding: 8px 0;
   border-bottom: 1px solid var(--border-color);
 }
@@ -312,22 +312,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 6px;
   font-size: 13px;
+  margin-bottom: 2px; /* Espaço entre Nível e XP */
 }
 
 .jjk-dossier-container .jjk-dossier-skill-name {
   color: var(--text-muted);
-  flex-grow: 1;
-}
-
-.jjk-dossier-container .jjk-dossier-skill-xp {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-  min-width: 80px;
-  text-align: right;
-  padding-right: 10px;
 }
 
 .jjk-dossier-container .jjk-dossier-skill-level {
@@ -338,17 +328,25 @@
   flex-shrink: 0;
 }
 
+.jjk-dossier-container .jjk-dossier-skill-xp {
+  display: block; /* Faz o XP ficar em linha própria */
+  font-size: 11px;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin-bottom: 6px; /* Espaço entre XP e Barra */
+}
+
 .jjk-dossier-container .jjk-dossier-skill-bar-wrapper {
   height: 4px;
   width: 100%;
-  background: var(--bg); /* Fundo discreto */
+  background: var(--bg);
   border-radius: 2px;
   overflow: hidden;
 }
 
 .jjk-dossier-container .jjk-dossier-skill-bar-fill {
   height: 100%;
-  background: var(--accent-dark); /* Cor de preenchimento discreta */
+  background: var(--accent-dark);
   border-radius: 2px;
   transition: width 0.5s ease-in-out;
 }
