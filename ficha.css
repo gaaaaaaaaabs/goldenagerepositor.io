@@ -295,26 +295,65 @@
   transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
   padding: 0 10px;
 }
+.jjk-dossier-container input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
+  max-height: 800px;
+  padding: 5px 10px 10px 10px;
+}
+
+/* --- Bloco de Aptidões (com barra de XP) --- */
 .jjk-dossier-container .jjk-dossier-skill-item {
+  display: block; /* MUDOU */
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+.jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
+
+.jjk-dossier-container .jjk-dossier-skill-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-color);
+  margin-bottom: 6px;
   font-size: 13px;
 }
-.jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
-.jjk-dossier-container .jjk-dossier-skill-name { color: var(--text-muted); }
+
+.jjk-dossier-container .jjk-dossier-skill-name {
+  color: var(--text-muted);
+  flex-grow: 1;
+}
+
+.jjk-dossier-container .jjk-dossier-skill-xp {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+  min-width: 80px;
+  text-align: right;
+  padding-right: 10px;
+}
+
 .jjk-dossier-container .jjk-dossier-skill-level {
   font-weight: bold;
   color: var(--text-primary);
   min-width: 20px;
   text-align: right;
+  flex-shrink: 0;
 }
-.jjk-dossier-container input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
-  max-height: 800px;
-  padding: 5px 10px 10px 10px;
+
+.jjk-dossier-container .jjk-dossier-skill-bar-wrapper {
+  height: 4px;
+  width: 100%;
+  background: var(--bg); /* Fundo discreto */
+  border-radius: 2px;
+  overflow: hidden;
 }
+
+.jjk-dossier-container .jjk-dossier-skill-bar-fill {
+  height: 100%;
+  background: var(--accent-dark); /* Cor de preenchimento discreta */
+  border-radius: 2px;
+  transition: width 0.5s ease-in-out;
+}
+/* --- Fim do Bloco de Aptidões --- */
+
 .jjk-dossier-container .jjk-dossier-combat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -503,20 +542,4 @@
 .jjk-dossier-container .jjk-dossier-inventory-item:hover .jjk-dossier-tooltip-text {
   visibility: visible;
   opacity: 1;
-}
-
-/* --- Adições para XP de Aptidão --- */
-.jjk-dossier-container .jjk-dossier-skill-name {
-  flex-grow: 1;
-}
-.jjk-dossier-container .jjk-dossier-skill-xp {
-  font-size: 12px;
-  color: var(--text-muted);
-  font-weight: 500;
-  min-width: 80px;
-  text-align: right;
-  padding-right: 10px;
-}
-.jjk-dossier-container .jjk-dossier-skill-level {
-  flex-shrink: 0;
 }
