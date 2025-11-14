@@ -1,4 +1,4 @@
-/* --- Template Particularidade: Jugai (v2) --- */
+/* --- Template Particularidades (v3) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 :root {
   --bg: #0c0c1a;
@@ -16,6 +16,8 @@
   --mono: 'Roboto Mono', monospace;
   --failure: #c53030;
   --success: #00e091;
+  --gold: #FFD700;
+  --blue: #30a9ff;
 }
 /* Animações */
 @keyframes shine {
@@ -65,8 +67,13 @@
 .header-svg-container svg {
   width: 100%;
   height: 100%;
-  /* Define a cor do SVG aqui */
   stroke: var(--accent1);
+}
+.header-svg-container { /* Estilo de fallback para Kanji */
+  font-family: var(--title);
+  font-size: 50px;
+  color: var(--accent1);
+  text-shadow: 0 0 10px var(--accent1);
 }
 .rpg-card .title {
   font-family: 'Yuji Syuku', serif;
@@ -122,6 +129,7 @@
 .rpg-card .section:nth-of-type(2) { animation-delay: 0.2s; }
 .rpg-card .section:nth-of-type(3) { animation-delay: 0.3s; }
 .rpg-card .section:nth-of-type(4) { animation-delay: 0.4s; }
+.rpg-card .section:nth-of-type(5) { animation-delay: 0.5s; }
 
 .section .h { margin-bottom: 8px; }
 .section .h .name {
@@ -192,10 +200,10 @@
   font-weight: 700;
 }
 
-/* [NOVO v2] Influence Stepper (UI Melhorada) */
+/* Stepper de Influência (Para Receptáculo) */
 .influence-stepper {
   list-style: none;
-  padding: 20px 0 0 30px; /* Padding para a linha */
+  padding: 20px 0 0 30px;
   margin: 0;
   position: relative;
   border-left: 3px solid var(--glass-2);
@@ -207,10 +215,10 @@
 .influence-step:last-child {
   margin-bottom: 0;
 }
-.influence-step::before { /* O "ponto" na linha */
+.influence-step::before {
   content: '';
   position: absolute;
-  left: -32px; /* (padding-left) + (metade do ponto) */
+  left: -32px;
   top: 4px;
   width: 10px;
   height: 10px;
@@ -233,18 +241,76 @@
 .influence-step-content b {
   color: var(--text);
 }
-/* Destaques de Nível */
 .influence-step.level-1::before { background: var(--success); }
 .influence-step.level-1 .influence-step-title { color: var(--success); }
-
 .influence-step.level-2::before { background: var(--highlight); }
 .influence-step.level-2 .influence-step-title { color: var(--highlight); }
-
 .influence-step.level-3::before { background: var(--failure); }
 .influence-step.level-3 .influence-step-title { color: var(--failure); }
-
 .influence-step.level-4::before { background: var(--failure); box-shadow: 0 0 10px var(--failure); }
 .influence-step.level-4 .influence-step-title { color: var(--failure); font-weight: 900; }
+
+/* [NOVO v3] UI da Árvore de Habilidades */
+.skill-tree-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; /* 3 Colunas */
+  gap: 15px;
+  margin-top: 15px;
+}
+.skill-path {
+  background: var(--bg);
+  border: 1px solid var(--glass-2);
+  border-radius: 8px;
+  padding: 15px;
+}
+.skill-path-title {
+  font-family: var(--title);
+  font-size: 1.4em;
+  font-weight: 700;
+  color: var(--highlight);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--glass);
+  text-align: center;
+}
+/* Cores do Caminho */
+.skill-path.path-defense .skill-path-title { color: var(--blue); }
+.skill-path.path-offense .skill-path-title { color: var(--failure); }
+.skill-path.path-utility .skill-path-title { color: var(--success); }
+
+.skill-node {
+  background: var(--glass-2);
+  border-radius: 6px;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid var(--glass);
+  border-left: 3px solid var(--muted);
+}
+.skill-node .skill-name {
+  font-weight: 700;
+  color: var(--text);
+  font-size: 1.1em;
+}
+.skill-node .skill-cost {
+  font-family: var(--mono);
+  font-size: 0.9em;
+  color: var(--gold);
+  font-weight: 700;
+  float: right;
+}
+.skill-node .skill-desc {
+  font-size: 0.9em;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-top: 8px;
+  clear: both;
+}
+/* Cores por Nível/Tier */
+.skill-node[data-tier="1"] { border-left-color: var(--muted); }
+.skill-node[data-tier="2"] { border-left-color: var(--success); }
+.skill-node[data-tier="3"] { border-left-color: var(--blue); }
+.skill-node[data-tier="4"] { border-left-color: var(--accent1); }
+.skill-node[data-tier="5"] { border-left-color: var(--gold); }
 
 
 @media (max-width: 768px) {
@@ -253,6 +319,9 @@
     text-align: center;
   }
   .rules-grid {
+    grid-template-columns: 1fr;
+  }
+  .skill-tree-grid { /* Empilha no mobile */
     grid-template-columns: 1fr;
   }
 }
