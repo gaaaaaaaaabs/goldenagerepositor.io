@@ -1,4 +1,4 @@
-/* --- Template Ficha de Personagem (Dossier) v10 (Rótulos no HTML) --- */
+/* --- Template Ficha de Personagem (Dossier) v11 (IDs Únicos) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
 
 @keyframes jjkDossierFadeIn {
@@ -208,9 +208,10 @@
   transform: scaleX(0);
   transition: transform 0.3s;
 }
-.jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button { color: var(--text-primary); }
-.jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button svg { stroke: var(--accent); }
-.jjk-dossier-container input[name="dossier-tab"]:checked + label.jjk-dossier-tab-button::after { transform: scaleX(1); }
+/* [CORRIGIDO v11] Usa seletor de atributo que "começa com" (^) */
+.jjk-dossier-container input[name^="dossier-tab-"]:checked + label.jjk-dossier-tab-button { color: var(--text-primary); }
+.jjk-dossier-container input[name^="dossier-tab-"]:checked + label.jjk-dossier-tab-button svg { stroke: var(--accent); }
+.jjk-dossier-container input[name^="dossier-tab-"]:checked + label.jjk-dossier-tab-button::after { transform: scaleX(1); }
 .jjk-dossier-container .jjk-dossier-tab-button:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
@@ -228,15 +229,17 @@
   border-left: 3px solid var(--accent);
   padding-left: 10px;
 }
-.jjk-dossier-container input[name="dossier-tab"] { display: none; }
-#dossier-tab-1:checked ~ .jjk-dossier-body #dossier-content-1,
-#dossier-tab-2:checked ~ .jjk-dossier-body #dossier-content-2,
-#dossier-tab-3:checked ~ .jjk-dossier-body #dossier-content-3,
-#dossier-tab-4:checked ~ .jjk-dossier-body #dossier-content-4,
-#dossier-tab-5:checked ~ .jjk-dossier-body #dossier-content-5,
-#dossier-tab-6:checked ~ .jjk-dossier-body #dossier-content-6,
-#dossier-tab-7:checked ~ .jjk-dossier-body #dossier-content-7,
-#dossier-tab-8:checked ~ .jjk-dossier-body #dossier-content-8 {
+.jjk-dossier-container input[name^="dossier-tab-"] { display: none; }
+
+/* [CORRIGIDO v11] Usa seletor de atributo que "começa com" (^) */
+input[id^="dossier-tab-1-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-1-"],
+input[id^="dossier-tab-2-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-2-"],
+input[id^="dossier-tab-3-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-3-"],
+input[id^="dossier-tab-4-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-4-"],
+input[id^="dossier-tab-5-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-5-"],
+input[id^="dossier-tab-6-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-6-"],
+input[id^="dossier-tab-7-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-7-"],
+input[id^="dossier-tab-8-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-8-"] {
   display: block;
 }
 .jjk-dossier-container .jjk-dossier-attr-grid {
@@ -295,63 +298,27 @@
   transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
   padding: 0 10px;
 }
-.jjk-dossier-container input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
-  max-height: 800px;
-  padding: 5px 10px 10px 10px;
-}
-
-/* --- Bloco de Aptidões (com barra de XP) --- */
 .jjk-dossier-container .jjk-dossier-skill-item {
-  display: block; 
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-color);
-}
-.jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
-
-.jjk-dossier-container .jjk-dossier-skill-info {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-color);
   font-size: 13px;
-  margin-bottom: 2px; /* Espaço entre Nível e XP */
 }
-
-.jjk-dossier-container .jjk-dossier-skill-name {
-  color: var(--text-muted);
-}
-
+.jjk-dossier-container .jjk-dossier-skill-item:last-child { border-bottom: none; }
+.jjk-dossier-container .jjk-dossier-skill-name { color: var(--text-muted); }
 .jjk-dossier-container .jjk-dossier-skill-level {
   font-weight: bold;
   color: var(--text-primary);
   min-width: 20px;
   text-align: right;
-  flex-shrink: 0;
 }
-
-.jjk-dossier-container .jjk-dossier-skill-xp {
-  display: block; /* Faz o XP ficar em linha própria */
-  font-size: 11px;
-  color: var(--text-muted);
-  font-weight: 500;
-  margin-bottom: 6px; /* Espaço entre XP e Barra */
+/* [CORRIGIDO v11] Acordeão agora também usa seletor de atributo */
+.jjk-dossier-container input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
+  max-height: 800px;
+  padding: 5px 10px 10px 10px;
 }
-
-.jjk-dossier-container .jjk-dossier-skill-bar-wrapper {
-  height: 4px;
-  width: 100%;
-  background: var(--bg);
-  border-radius: 2px;
-  overflow: hidden;
-}
-
-.jjk-dossier-container .jjk-dossier-skill-bar-fill {
-  height: 100%;
-  background: var(--accent-dark);
-  border-radius: 2px;
-  transition: width 0.5s ease-in-out;
-}
-/* --- Fim do Bloco de Aptidões --- */
-
 .jjk-dossier-container .jjk-dossier-combat-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -469,6 +436,12 @@
   font-family: var(--font-title);
   margin: 0 0 10px 0;
   font-size: 16px;
+}
+.jjk-dossier-container .jjk-dossier-profile-desc p {
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--text-muted);
+  margin: 0 0 15px 0;
 }
 .jjk-dossier-container .jjk-dossier-psyche-grid {
   display: grid;
