@@ -232,14 +232,14 @@
 .jjk-dossier-container input[name^="dossier-tab-"] { display: none; }
 
 /* [CORRIGIDO v11] Usa seletor de atributo que "começa com" (^) */
-input[id^="dossier-tab-1-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-1-"],
-input[id^="dossier-tab-2-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-2-"],
-input[id^="dossier-tab-3-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-3-"],
-input[id^="dossier-tab-4-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-4-"],
-input[id^="dossier-tab-5-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-5-"],
-input[id^="dossier-tab-6-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-6-"],
-input[id^="dossier-tab-7-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-7-"],
-input[id^="dossier-tab-8-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-8-"] {
+.jjk-dossier-container input[id^="dossier-tab-1-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-1-"],
+.jjk-dossier-container input[id^="dossier-tab-2-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-2-"],
+.jjk-dossier-container input[id^="dossier-tab-3-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-3-"],
+.jjk-dossier-container input[id^="dossier-tab-4-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-4-"],
+.jjk-dossier-container input[id^="dossier-tab-5-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-5-"],
+.jjk-dossier-container input[id^="dossier-tab-6-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-6-"],
+.jjk-dossier-container input[id^="dossier-tab-7-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-7-"],
+.jjk-dossier-container input[id^="dossier-tab-8-"]:checked ~ .jjk-dossier-body div[id^="dossier-content-8-"] {
   display: block;
 }
 .jjk-dossier-container .jjk-dossier-attr-grid {
@@ -314,7 +314,6 @@ input[id^="dossier-tab-8-"]:checked ~ .jjk-dossier-body div[id^="dossier-content
   min-width: 20px;
   text-align: right;
 }
-/* [CORRIGIDO v11] Acordeão agora também usa seletor de atributo */
 .jjk-dossier-container input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
   max-height: 800px;
   padding: 5px 10px 10px 10px;
