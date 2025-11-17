@@ -1,4 +1,4 @@
-/* --- FICHA DE PERSONAGEM JJK V3 --- */
+/* --- FICHA DE PERSONAGEM JJK V2 (Revisada) --- */
 /* --- Importa a fonte --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
@@ -15,7 +15,6 @@
   --jjk-hp: #c52020;
   --jjk-positive: #20c56d;
   --jjk-negative: #c52020;
-  --jjk-risk: #e08f2f;
 }
 
 /* --- Reset Básico --- */
@@ -269,10 +268,10 @@
   animation: fadeIn 0.5s ease;
 }
 
-#jjk-tab-v3-1:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v3-1,
-#jjk-tab-v3-2:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v3-2,
-#jjk-tab-v3-3:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v3-3,
-#jjk-tab-v3-4:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v3-4 {
+#jjk-tab-v2-1:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v2-1,
+#jjk-tab-v2-2:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v2-2,
+#jjk-tab-v2-3:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v2-3,
+#jjk-tab-v2-4:checked ~ .jjk-dossier-tab-nav ~ #jjk-content-v2-4 {
   display: block;
 }
 
@@ -314,7 +313,7 @@
 .jjk-category-title {
   font-size: 1.1em;
   font-weight: 700;
-  color: var(--jjk-text-primary);
+  color: var(--jjk-purple-light); /* [CORREÇÃO] Cor alterada */
   margin-bottom: 15px;
 }
 .jjk-dossier-skills-list {
@@ -378,18 +377,21 @@
   color: var(--jjk-purple-light);
   margin-bottom: 5px;
 }
+/* [CORREÇÃO] Estilo para o link no título */
+.jjk-technique-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.jjk-technique-title a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .jjk-technique-desc {
   font-size: 0.95em;
   color: var(--jjk-text-secondary);
   margin-bottom: 15px;
-}
-.jjk-dossier-card-item a {
-  color: inherit;
-  text-decoration: none;
-}
-.jjk-dossier-card-item a:hover {
-  text-decoration: underline;
-  color: var(--jjk-purple-light);
 }
 
 /* Aba 3: Detalhes (Cards) */
@@ -459,8 +461,8 @@
   color: #fff;
 }
 
-/* Aba 3: Particularidade (Modular) */
-.jjk-particularidade-block {
+/* [CORREÇÃO] Aba 3: Particularidade (Modular Simples) */
+.jjk-particularidade-card {
   background: var(--jjk-bg-darker);
   border: 1px solid var(--jjk-border);
   border-radius: 5px;
@@ -471,6 +473,14 @@
   font-size: 1.5em;
   font-weight: 900;
   color: var(--jjk-purple);
+}
+.jjk-particularidade-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.jjk-particularidade-name a:hover {
+  color: var(--jjk-purple-light);
 }
 .jjk-particularidade-subtitle {
   font-size: 1.1em;
@@ -483,18 +493,14 @@
 .jjk-particularidade-section {
   margin-bottom: 20px;
 }
+.jjk-particularidade-section:last-child {
+  margin-bottom: 0;
+}
 .jjk-particularidade-section-title {
   font-size: 1.1em;
   font-weight: 700;
   color: var(--jjk-text-primary);
   margin-bottom: 10px;
-}
-.jjk-particularidade-definition p {
-  margin-bottom: 10px;
-  color: var(--jjk-text-secondary);
-}
-.jjk-particularidade-definition strong {
-  color: var(--jjk-text-primary);
 }
 .jjk-columns-2 {
   display: grid;
@@ -524,49 +530,13 @@
   color: var(--jjk-negative);
   font-weight: 700;
 }
-
-/* Tabela de Influência */
-.jjk-influence-table {
-  border: 1px solid var(--jjk-border);
-  border-radius: 5px;
-  overflow: hidden;
-}
-.jjk-influence-row {
-  display: grid;
-  grid-template-columns: 100px 1fr;
-  background: var(--jjk-bg-darker);
-  border-bottom: 1px solid var(--jjk-border);
-}
-.jjk-influence-row:last-child {
-  border-bottom: 0;
-}
-.jjk-influence-row.jjk-influence-header {
-  background: var(--jjk-bg-darker);
-  font-weight: 700;
-  color: var(--jjk-purple-light);
-  font-size: 0.9em;
-  text-transform: uppercase;
-}
-.jjk-influence-level {
-  padding: 10px;
-  font-weight: 700;
-  color: var(--jjk-text-primary);
-  border-right: 1px solid var(--jjk-border);
-  text-align: center;
-}
-.jjk-influence-desc {
-  padding: 10px;
+.jjk-particularidade-notes {
+  font-size: 0.95em;
   color: var(--jjk-text-secondary);
-}
-.jjk-influence-row.jjk-risk {
-  background: #2b1d1d;
-}
-.jjk-influence-row.jjk-risk .jjk-influence-level {
-  color: var(--jjk-risk);
-}
-.jjk-influence-row.jjk-risk .jjk-influence-desc {
-  color: var(--jjk-risk);
-  font-weight: 700;
+  background: var(--jjk-bg);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--jjk-border);
 }
 
 /* --- Responsividade --- */
@@ -615,9 +585,5 @@
   .jjk-dossier-card-list,
   .jjk-profile-list {
     grid-template-columns: 1fr; /* Coluna única para listas */
-  }
-  
-  .jjk-influence-row {
-    grid-template-columns: 70px 1fr; /* Diminui coluna de Nível */
   }
 }
