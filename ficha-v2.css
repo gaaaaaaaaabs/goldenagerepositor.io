@@ -29,7 +29,7 @@
   --font-mono: 'Roboto Mono', monospace;
   
   box-sizing: border-box;
-  max-width: 900px; /* Mais largo que o antigo */
+  max-width: 900px;
   width: 95%;
   margin: 30px auto;
   font-family: var(--font-main);
@@ -87,6 +87,7 @@
   text-align: center;
   margin: 0;
   color: var(--text-primary);
+  word-wrap: break-word;
 }
 .jjk-dossier-title {
   font-size: 1em;
@@ -94,6 +95,7 @@
   text-align: center;
   margin-top: 2px;
   margin-bottom: 25px;
+  word-wrap: break-word;
 }
 /* Barras de Status (HP/EA) */
 .jjk-dossier-status-bars {
@@ -157,13 +159,14 @@
 .jjk-dossier-value {
   font-size: 13px;
   font-weight: bold;
+  word-wrap: break-word;
 }
 
 /* --- 2. Painel Principal (Conteúdo) --- */
 .jjk-dossier-main {
   background: var(--panel-bg);
   padding: 20px;
-  overflow-y: auto; /* Permite scroll se o conteúdo for longo */
+  overflow-y: auto;
 }
 .jjk-dossier-tabs-nav {
   display: flex;
@@ -183,6 +186,7 @@
   font-size: 13px;
   border-radius: var(--radius-sm);
   transition: all 0.3s;
+  text-align: center;
 }
 .jjk-dossier-tab-button:hover {
   background: var(--accent2);
@@ -205,7 +209,9 @@
 .jjk-dossier-main input[id^="dossier-tab-3-"]:checked ~ div[id^="dossier-content-3-"],
 .jjk-dossier-main input[id^="dossier-tab-4-"]:checked ~ div[id^="dossier-content-4-"],
 .jjk-dossier-main input[id^="dossier-tab-5-"]:checked ~ div[id^="dossier-content-5-"],
-.jjk-dossier-main input[id^="dossier-tab-6-"]:checked ~ div[id^="dossier-content-6-"] {
+.jjk-dossier-main input[id^="dossier-tab-6-"]:checked ~ div[id^="dossier-content-6-"],
+.jjk-dossier-main input[id^="dossier-tab-7-"]:checked ~ div[id^="dossier-content-7-"],
+.jjk-dossier-main input[id^="dossier-tab-8-"]:checked ~ div[id^="dossier-content-8-"] {
   display: block;
 }
 
@@ -258,6 +264,40 @@
 .jjk-dossier-skill-name { color: var(--text-muted); }
 .jjk-dossier-skill-level { font-weight: bold; color: var(--text-primary); }
 
+/* Atributos */
+.jjk-dossier-attr-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.jjk-dossier-attr-item .jjk-dossier-attr-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 6px;
+}
+.jjk-dossier-attr-item .jjk-dossier-attr-name {
+  font-weight: 700;
+  font-size: 13px;
+}
+.jjk-dossier-attr-item .jjk-dossier-attr-value {
+  font-size: 12px;
+  font-weight: bold;
+  color: var(--text-muted);
+}
+.jjk-dossier-attr-bar {
+  height: 8px;
+  background: var(--glass);
+  border-radius: 50px;
+  overflow: hidden;
+}
+.jjk-dossier-attr-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
+  border-radius: 50px;
+  transition: width 0.5s ease-in-out;
+}
+
 /* Perfil (Bio, Psicológico) */
 .jjk-dossier-bio-text {
   font-size: 13.5px;
@@ -289,24 +329,138 @@
   margin: 0;
   max-height: 120px;
   overflow-y: auto;
+  padding-right: 5px;
 }
 .jjk-dossier-psyche-card ul li { margin-bottom: 5px; font-size: 13px; }
 
-/* Scrollbars */
+/* Combate, Características */
+.jjk-dossier-combat-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.jjk-dossier-combat-box ul {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+}
+.jjk-dossier-combat-box li {
+  background: var(--glass);
+  padding: 8px 10px;
+  border-radius: var(--radius-sm);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+.jjk-dossier-combat-box a {
+  text-decoration: none;
+}
+.jjk-dossier-combat-box a:hover {
+  text-decoration: underline;
+}
+
+/* Relações */
+.jjk-dossier-relations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 15px;
+}
+.jjk-dossier-relation-card {
+  background: var(--glass);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+}
+.jjk-dossier-relation-header {
+  padding: 10px 15px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jjk-dossier-relation-name {
+  font-weight: bold;
+  font-size: 15px;
+}
+.jjk-dossier-relation-status {
+  font-size: 12px;
+  color: var(--accent);
+  font-weight: bold;
+}
+.jjk-dossier-relation-body {
+  padding: 15px;
+  max-height: 150px;
+  overflow-y: auto;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Inventário */
+.jjk-dossier-inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 10px;
+}
+.jjk-dossier-inventory-item {
+  background: var(--glass);
+  border-radius: var(--radius-sm);
+  padding: 15px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: bold;
+  position: relative;
+  cursor: default;
+}
+.jjk-dossier-tooltip-text {
+  visibility: hidden;
+  opacity: 0;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--bg);
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: normal;
+  padding: 8px;
+  border-radius: var(--radius-sm);
+  width: 200px;
+  text-align: left;
+  line-height: 1.5;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+  transition: opacity 0.3s;
+}
+.jjk-dossier-inventory-item:hover .jjk-dossier-tooltip-text {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Scrollbars "Roxa Neon" */
 .jjk-dossier-bio-text::-webkit-scrollbar,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar {
+.jjk-dossier-psyche-card ul::-webkit-scrollbar,
+.jjk-dossier-relation-body::-webkit-scrollbar {
   width: 6px;
 }
 .jjk-dossier-bio-text::-webkit-scrollbar-track,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar-track {
+.jjk-dossier-psyche-card ul::-webkit-scrollbar-track,
+.jjk-dossier-relation-body::-webkit-scrollbar-track {
   background: rgba(0, 0, 0, 0.2);
   border-radius: 6px;
 }
 .jjk-dossier-bio-text::-webkit-scrollbar-thumb,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar-thumb {
+.jjk-dossier-psyche-card ul::-webkit-scrollbar-thumb,
+.jjk-dossier-relation-body::-webkit-scrollbar-thumb {
   background: var(--accent);
   border-radius: 6px;
+  box-shadow: 0 0 5px var(--accent);
 }
+.jjk-dossier-bio-text,
+.jjk-dossier-psyche-card ul,
+.jjk-dossier-relation-body {
+  scrollbar-width: thin;
+  scrollbar-color: var(--accent) rgba(0, 0, 0, 0.2);
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
   .jjk-dossier-v2 {
@@ -314,12 +468,24 @@
   }
   .jjk-dossier-sidebar {
     border-right: none;
+    border-bottom: 1px solid var(--border-color);
   }
   .jjk-dossier-profile-pic {
     width: 120px;
     height: 120px;
   }
   .jjk-dossier-psyche-grid {
+    grid-template-columns: 1fr;
+  }
+  .jjk-dossier-attr-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 480px) {
+  .jjk-dossier-quick-stats {
+    grid-template-columns: 1fr;
+  }
+  .jjk-dossier-combat-grid {
     grid-template-columns: 1fr;
   }
 }
