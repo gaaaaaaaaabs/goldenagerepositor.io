@@ -1,16 +1,330 @@
-/* --- Substitua este bloco no seu ficha-v2.css --- */
+/* --- FICHA DE PERSONAGEM JJK V3 (Solução JS + Nível de Aptidão) --- */
+/* --- Importa a fonte --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
+/* --- Variáveis de Cor --- */
+:root {
+  --jjk-bg: #101118;
+  --jjk-bg-light: #1b1d29;
+  --jjk-bg-darker: #0c0d13;
+  --jjk-purple: #6D20C5;
+  --jjk-purple-light: #8a40e3;
+  --jjk-border: #2a2d3d;
+  --jjk-text-primary: #e0e0e0;
+  --jjk-text-secondary: #a0a0a0;
+  --jjk-hp: #c52020;
+  --jjk-positive: #20c56d;
+  --jjk-negative: #c52020;
+}
+
+/* --- Reset Básico --- */
+.jjk-dossier-container * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+/* --- Scrollbar Customizada --- */
+.jjk-dossier-container ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.jjk-dossier-container ::-webkit-scrollbar-track {
+  background: var(--jjk-bg-darker);
+  border-radius: 4px;
+}
+.jjk-dossier-container ::-webkit-scrollbar-thumb {
+  background-color: var(--jjk-purple);
+  border-radius: 4px;
+  border: 1px solid var(--jjk-bg-darker);
+}
+.jjk-dossier-container ::-webkit-scrollbar-thumb:hover {
+  background-color: var(--jjk-purple-light);
+}
+
+/* --- Classe de Conteúdo com Scroll --- */
+.jjk-scrollable-content {
+  max-height: 180px; /* Altura máxima antes de rolar */
+  overflow-y: auto;
+  padding-right: 10px; /* Espaço para a barra de rolagem */
+  white-space: pre-wrap; /* Preserva quebras de linha */
+}
+/* Biografia terá altura maior */
+.jjk-dossier-textarea.jjk-scrollable-content {
+  max-height: 350px;
+  min-height: 200px;
+}
+
+
+/* --- Container Principal --- */
+.jjk-dossier-container {
+  max-width: 900px;
+  margin: 25px auto;
+  background-color: var(--jjk-bg);
+  border: 1px solid var(--jjk-border);
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--jjk-text-primary);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Cabeçalho (Header) --- */
+.jjk-dossier-header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.jjk-dossier-header-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(16, 17, 24, 1) 20%, rgba(16, 17, 24, 0.5) 70%, transparent);
+}
+.jjk-dossier-name {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
+.jjk-dossier-subtitle {
+  font-size: 1.1em;
+  color: var(--jjk-text-secondary);
+  font-weight: 700;
+}
+.jjk-dossier-apelido {
+  color: var(--jjk-purple-light);
+}
+
+/* --- Corpo Principal (Grid) --- */
+.jjk-dossier-body {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 20px;
+  padding: 20px;
+}
+
+/* --- Coluna Esquerda (Foto & Info) --- */
+.jjk-dossier-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.jjk-dossier-profile-pic {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 2px solid var(--jjk-border);
+  object-fit: cover;
+}
+.jjk-dossier-info-box {
+  background: var(--jjk-bg-light);
+  border-radius: 8px;
+  padding: 15px;
+}
+.jjk-info-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.jjk-info-item:last-child { margin-bottom: 0; }
+.jjk-info-label {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--jjk-purple);
+  text-transform: uppercase;
+}
+.jjk-info-value {
+  font-size: 1em;
+  color: var(--jjk-text-primary);
+}
+
+/* --- Coluna Direita (Status & Atributos) --- */
+.jjk-dossier-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0;
+}
+
+/* --- Bloco de Conteúdo Padrão --- */
+.jjk-dossier-block {
+  background: var(--jjk-bg-light);
+  border-radius: 8px;
+  padding: 20px;
+}
+.jjk-block-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--jjk-purple);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--jjk-border);
+}
+
+/* --- Bloco de Status (Vigor/Energia) --- */
+.jjk-status-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.jjk-dossier-status-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+.jjk-dossier-status-name {
+  font-weight: 700;
+  color: var(--jjk-text-primary);
+}
+.jjk-dossier-status-value {
+  font-weight: 700;
+  color: var(--jjk-text-secondary);
+}
+.jjk-dossier-status-bar {
+  height: 12px;
+  background: var(--jjk-bg-darker);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.jjk-dossier-hp-fill {
+  height: 100%;
+  background: var(--jjk-hp);
+  transition: width 0.5s ease-in-out;
+}
+.jjk-dossier-ea-fill {
+  height: 100%;
+  background: var(--jjk-purple);
+  transition: width 0.5s ease-in-out;
+}
+
+/* --- Bloco de Atributos (FOR, DES, etc.) --- */
+.jjk-dossier-attr-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+.jjk-dossier-attr-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+.jjk-dossier-attr-name {
+  font-weight: 700;
+  color: var(--jjk-text-primary);
+}
+.jjk-dossier-attr-value {
+  color: var(--jjk-text-secondary);
+}
+.jjk-dossier-attr-bar {
+  height: 6px;
+  background: var(--jjk-bg-darker);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+.jjk-dossier-attr-bar-fill {
+  height: 100%;
+  background: var(--jjk-text-secondary);
+  transition: width 0.5s ease-in-out;
+}
+
+/* --- Sistema de Abas (Tabs) --- */
+.jjk-dossier-tabs-container {
+  padding: 0 20px 20px;
+}
+.jjk-tab-input { display: none; } /* Inputs de rádio não são mais usados */
+
+.jjk-dossier-tab-nav {
+  display: flex;
+  border-bottom: 2px solid var(--jjk-border);
+}
+.jjk-tab-label {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: var(--jjk-text-secondary);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+  bottom: -2px;
+}
+.jjk-tab-label:hover {
+  color: var(--jjk-text-primary);
+}
+
+/* Estilo da Aba Ativa (via JS) */
+.jjk-tab-label.is-active {
+  color: var(--jjk-purple);
+  border-bottom-color: var(--jjk-purple);
+}
+
+/* Controle de Conteúdo das Abas (via JS) */
+.jjk-tab-content {
+  display: none; /* Escondido por padrão */
+  padding: 20px 0 0;
+  animation: fadeIn 0.5s ease;
+}
+.jjk-tab-content.is-active {
+  display: block; /* Mostrado quando o JS adiciona a classe */
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Conteúdo das Abas --- */
+
+/* Aba 1: Perfil */
+.jjk-profile-description {
+  font-size: 0.95em;
+  color: var(--jjk-text-secondary);
+  margin-bottom: 15px;
+  border-left: 3px solid var(--jjk-purple);
+  padding-left: 10px;
+  font-style: italic;
+  background: var(--jjk-bg-darker);
+  padding: 10px;
+  border-radius: 0 4px 4px 0;
+}
+.jjk-profile-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px 20px;
+}
+.jjk-profile-item { padding: 5px 0; }
+.jjk-profile-label {
+  font-weight: 700;
+  color: var(--jjk-purple-light);
+  margin-right: 8px;
+}
+
+/* Aba 2: Combate (Aptidões) */
+.jjk-dossier-skills-category { margin-bottom: 25px; }
+.jjk-category-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--jjk-purple-light);
+  margin-bottom: 15px;
+}
+/* [ATUALIZADO] Estilos da Aptidão com Nível */
 .jjk-dossier-skills-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Aumentei o min-width */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 12px 20px;
 }
 .jjk-dossier-skill-item {
   display: grid;
-  /* Nome | Nível | XP */
   grid-template-columns: 1fr auto auto;
   align-items: center;
-  gap: 0 10px; /* Espaço entre os itens */
+  gap: 0 10px;
 }
 .jjk-dossier-skill-name {
   font-weight: 700;
@@ -32,7 +346,7 @@
   grid-column: 3 / 4;
 }
 .jjk-dossier-skill-bar {
-  grid-column: 1 / -1; /* Barra ocupa todas as colunas */
+  grid-column: 1 / -1;
   height: 5px;
   background: var(--jjk-bg-darker);
   border-radius: 3px;
@@ -44,5 +358,208 @@
   background: var(--jjk-purple);
   transition: width 0.5s ease-in-out;
 }
+/* Fim da atualização de Aptidão */
 
-/* --- Fim do bloco de substituição --- */
+/* Textareas (Bio) */
+.jjk-dossier-textarea {
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 15px;
+  color: var(--jjk-text-primary);
+  font-size: 0.95em;
+}
+
+/* Aba 2: Técnicas (Modular) */
+.jjk-technique-group {
+  margin-bottom: 20px;
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 15px;
+}
+.jjk-technique-group:last-child { margin-bottom: 0; }
+.jjk-technique-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--jjk-purple-light);
+  margin-bottom: 5px;
+}
+.jjk-technique-title a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.jjk-technique-title a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+.jjk-technique-desc {
+  font-size: 0.95em;
+  color: var(--jjk-text-secondary);
+  margin-bottom: 15px;
+  background: var(--jjk-bg);
+  padding: 10px;
+  border-radius: 4px;
+}
+
+/* Aba 2: Expansão de Domínio */
+.jjk-domain-expansion {
+  background: linear-gradient(145deg, var(--jjk-bg-light), #2a163d);
+  border: 1px solid var(--jjk-purple);
+  box-shadow: 0 0 10px rgba(109, 32, 197, 0.3);
+}
+.jjk-domain-expansion .jjk-block-title {
+  color: var(--jjk-purple-light);
+  border-bottom-color: var(--jjk-purple);
+}
+.jjk-domain-expansion .jjk-technique-group {
+  background: var(--jjk-bg-darker);
+  border-color: var(--jjk-border);
+}
+
+
+/* Aba 3: Detalhes (Cards) */
+.jjk-dossier-card-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 15px;
+}
+.jjk-dossier-card-item {
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 15px;
+  transition: all 0.2s ease;
+}
+.jjk-technique-group .jjk-dossier-card-item {
+  background: var(--jjk-bg);
+}
+.jjk-dossier-card-item:hover {
+  border-color: var(--jjk-purple);
+}
+.jjk-dossier-card-title {
+  font-weight: 700;
+  color: var(--jjk-purple-light);
+  font-size: 1.1em;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.jjk-card-positive .jjk-dossier-card-title {
+  color: var(--jjk-positive);
+}
+.jjk-card-negative .jjk-dossier-card-title {
+  color: var(--jjk-negative);
+}
+.jjk-dossier-card-subtitle {
+  color: var(--jjk-text-secondary);
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  font-weight: 700;
+}
+.jjk-dossier-card-desc {
+  font-size: 0.95em;
+  color: var(--jjk-text-primary);
+}
+.jjk-status-tag {
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.jjk-status-vivo {
+  background: var(--jjk-positive);
+  color: var(--jjk-bg-darker);
+}
+.jjk-status-morto {
+  background: var(--jjk-negative);
+  color: #fff;
+}
+
+/* Aba 3: Particularidade (Modular Simples) */
+.jjk-particularidade-card {
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 20px;
+  font-size: 0.95em;
+}
+.jjk-particularidade-name {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--jjk-purple);
+}
+.jjk-particularidade-name a {
+  color: inherit;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+.jjk-particularidade-name a:hover {
+  color: var(--jjk-purple-light);
+}
+.jjk-particularidade-section {
+  margin-top: 20px;
+}
+.jjk-particularidade-section-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--jjk-text-primary);
+  margin-bottom: 10px;
+}
+.jjk-particularidade-desc, .jjk-particularidade-notes {
+  font-size: 0.95em;
+  color: var(--jjk-text-secondary);
+  background: var(--jjk-bg);
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid var(--jjk-border);
+}
+
+
+/* --- Responsividade --- */
+@media (max-width: 768px) {
+  .jjk-dossier-body {
+    grid-template-columns: 1fr;
+  }
+  .jjk-dossier-left-col {
+    align-items: center;
+  }
+  .jjk-dossier-profile-pic {
+    width: 200px;
+    height: 200px;
+  }
+  .jjk-dossier-info-box {
+    width: 100%;
+  }
+  .jjk-dossier-attr-list {
+    grid-template-columns: 1fr;
+  }
+  .jjk-dossier-tab-nav {
+    flex-wrap: wrap; /* Permite que as 5 abas quebrem a linha */
+  }
+  .jjk-tab-label {
+    padding: 10px 15px;
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .jjk-dossier-name {
+    font-size: 2em;
+  }
+  .jjk-dossier-subtitle {
+    font-size: 1em;
+  }
+  .jjk-dossier-skills-list,
+  .jjk-dossier-card-list,
+  .jjk-profile-list {
+    grid-template-columns: 1fr;
+  }
+  .jjk-tab-label {
+    flex-grow: 1; /* Faz as abas ocuparem o espaço no mobile */
+    text-align: center;
+  }
+}
