@@ -1,491 +1,463 @@
-/* --- Template Ficha de Personagem (Dossier) v2.0 --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Yuji+Syuku&display=swap');
+/* --- FICHA DE PERSONAGEM JJK V2 --- */
+/* --- Importa a fonte --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
-/* --- Animações --- */
-@keyframes jjkDossierSpin {
-  to { transform: rotate(360deg); }
+/* --- Variáveis de Cor --- */
+:root {
+  --jjk-bg: #101118;
+  --jjk-bg-light: #1b1d29;
+  --jjk-bg-darker: #0c0d13;
+  --jjk-purple: #6D20C5;
+  --jjk-purple-light: #8a40e3;
+  --jjk-border: #2a2d3d;
+  --jjk-text-primary: #e0e0e0;
+  --jjk-text-secondary: #a0a0a0;
+  --jjk-hp: #c52020;
+  --jjk-positive: #20c56d;
+  --jjk-negative: #c52020;
 }
-@keyframes jjkDossierFadeIn {
+
+/* --- Reset Básico --- */
+.jjk-dossier-container * {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Roboto', sans-serif;
+  line-height: 1.5;
+}
+
+/* --- Container Principal --- */
+.jjk-dossier-container {
+  max-width: 900px;
+  margin: 25px auto;
+  background-color: var(--jjk-bg);
+  border: 1px solid var(--jjk-border);
+  border-radius: 10px;
+  overflow: hidden;
+  color: var(--jjk-text-primary);
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* --- Cabeçalho (Header) --- */
+.jjk-dossier-header {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+
+.jjk-dossier-header-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  background: linear-gradient(to top, rgba(16, 17, 24, 1) 20%, rgba(16, 17, 24, 0.5) 70%, transparent);
+}
+
+.jjk-dossier-name {
+  font-size: 2.5em;
+  font-weight: 900;
+  color: #fff;
+  text-shadow: 2px 2px 4px #000;
+}
+
+.jjk-dossier-subtitle {
+  font-size: 1.1em;
+  color: var(--jjk-text-secondary);
+  font-weight: 700;
+}
+.jjk-dossier-apelido {
+  color: var(--jjk-purple-light);
+}
+
+/* --- Corpo Principal (Grid) --- */
+.jjk-dossier-body {
+  display: grid;
+  grid-template-columns: 240px 1fr; /* Coluna fixa à esquerda, flexível à direita */
+  gap: 20px;
+  padding: 20px;
+}
+
+/* --- Coluna Esquerda (Foto & Info) --- */
+.jjk-dossier-left-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.jjk-dossier-profile-pic {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  border-radius: 8px;
+  border: 2px solid var(--jjk-border);
+  object-fit: cover;
+}
+
+.jjk-dossier-info-box {
+  background: var(--jjk-bg-light);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.jjk-info-item {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 12px;
+}
+.jjk-info-item:last-child {
+  margin-bottom: 0;
+}
+
+.jjk-info-label {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--jjk-purple);
+  text-transform: uppercase;
+}
+
+.jjk-info-value {
+  font-size: 1em;
+  color: var(--jjk-text-primary);
+}
+
+/* --- Coluna Direita (Status & Atributos) --- */
+.jjk-dossier-right-col {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-width: 0; /* Previne overflow em layouts flex/grid */
+}
+
+/* --- Bloco de Conteúdo Padrão --- */
+.jjk-dossier-block {
+  background: var(--jjk-bg-light);
+  border-radius: 8px;
+  padding: 20px;
+}
+
+.jjk-block-title {
+  font-size: 1.3em;
+  font-weight: 700;
+  color: var(--jjk-purple);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid var(--jjk-border);
+}
+
+/* --- Bloco de Status (Vigor/Energia) --- */
+.jjk-dossier-status-item {
+  margin-bottom: 15px;
+}
+.jjk-dossier-status-item:last-child {
+  margin-bottom: 0;
+}
+
+.jjk-dossier-status-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.jjk-dossier-status-name {
+  font-weight: 700;
+  color: var(--jjk-text-primary);
+}
+
+.jjk-dossier-status-value {
+  font-weight: 700;
+  color: var(--jjk-text-secondary);
+}
+
+.jjk-dossier-status-bar {
+  height: 12px;
+  background: var(--jjk-bg-darker);
+  border-radius: 6px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.jjk-dossier-hp-fill {
+  height: 100%;
+  background: var(--jjk-hp);
+  transition: width 0.5s ease-in-out;
+}
+
+.jjk-dossier-ea-fill {
+  height: 100%;
+  background: var(--jjk-purple);
+  transition: width 0.5s ease-in-out;
+}
+
+/* --- Bloco de Atributos (FOR, DES, etc.) --- */
+.jjk-dossier-attr-list {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.jjk-dossier-attr-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 5px;
+  font-size: 0.9em;
+}
+
+.jjk-dossier-attr-name {
+  font-weight: 700;
+  color: var(--jjk-text-primary);
+}
+
+.jjk-dossier-attr-value {
+  color: var(--jjk-text-secondary);
+}
+
+.jjk-dossier-attr-bar {
+  height: 6px;
+  background: var(--jjk-bg-darker);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid #000;
+}
+
+.jjk-dossier-attr-bar-fill {
+  height: 100%;
+  background: var(--jjk-text-secondary);
+  transition: width 0.5s ease-in-out;
+}
+
+/* --- Sistema de Abas (Tabs) --- */
+.jjk-dossier-tabs-container {
+  padding: 0 20px 20px;
+}
+
+.jjk-tab-input {
+  display: none; /* Esconde os inputs de rádio */
+}
+
+.jjk-dossier-tab-nav {
+  display: flex;
+  border-bottom: 2px solid var(--jjk-border);
+}
+
+.jjk-tab-label {
+  padding: 12px 20px;
+  cursor: pointer;
+  color: var(--jjk-text-secondary);
+  font-weight: 700;
+  transition: all 0.2s ease;
+  border-bottom: 3px solid transparent;
+  position: relative;
+  bottom: -2px; /* Alinha com a borda principal */
+}
+
+.jjk-tab-label:hover {
+  color: var(--jjk-text-primary);
+}
+
+/* Estilo da Aba Ativa */
+.jjk-tab-input:checked + .jjk-dossier-tab-nav .jjk-tab-label[for^="jjk-tab"], /* Workaround para Forumeiros */
+.jjk-tab-input:checked + label {
+  color: var(--jjk-purple);
+  border-bottom-color: var(--jjk-purple);
+}
+
+/* Controle de Conteúdo das Abas */
+.jjk-tab-content {
+  display: none;
+  padding: 20px 0 0;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Seletor de "irmão" para mostrar o conteúdo */
+#jjk-tab1:checked ~ .jjk-dossier-tab-nav ~ #jjk-content1,
+#jjk-tab2:checked ~ .jjk-dossier-tab-nav ~ #jjk-content2,
+#jjk-tab3:checked ~ .jjk-dossier-tab-nav ~ #jjk-content3,
+#jjk-tab4:checked ~ .jjk-dossier-tab-nav ~ #jjk-content4 {
+  display: block;
+}
+
+@keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* --- Variáveis Globais --- */
-.jjk-dossier-v2 {
-  --bg: #101118;
-  --panel-bg: #191A23;
-  --glass: rgba(42, 44, 56, 0.5);
-  --text-primary: #EAEAF2;
-  --text-muted: #9FA3B9;
-  --accent: #A050FF;
-  --accent-dark: #6D20C5;
-  --hp-color: #FF50A0;
-  --hp-dark: #C52070;
-  --border-color: rgba(255, 255, 255, 0.07);
-  --radius-md: 10px;
-  --radius-sm: 6px;
-  --font-main: 'Inter', system-ui, sans-serif;
-  --font-title: 'Yuji Syuku', serif;
-  --font-mono: 'Roboto Mono', monospace;
-  
-  box-sizing: border-box;
-  max-width: 900px;
-  width: 95%;
-  margin: 30px auto;
-  font-family: var(--font-main);
-  color: var(--text-primary);
-  border-radius: var(--radius-md);
-  position: relative;
-  border: 1px solid var(--border-color);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
-  display: grid;
-  grid-template-columns: 280px 1fr; /* [Layout Principal] Sidebar | Main */
-  overflow: hidden;
-}
-.jjk-dossier-v2 * { box-sizing: border-box; }
+/* --- Conteúdo das Abas --- */
 
-/* --- 1. Sidebar (Perfil) --- */
-.jjk-dossier-sidebar {
-  background: var(--bg);
-  padding: 25px;
-  border-right: 1px solid var(--border-color);
-  display: flex;
-  flex-direction: column;
+/* Aba 1: Perfil */
+.jjk-profile-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px 20px;
 }
-.jjk-dossier-profile-pic {
-  width: 150px;
-  height: 150px;
-  border-radius: 50%;
-  position: relative;
-  margin: 10px auto 20px auto;
-  flex-shrink: 0;
+.jjk-profile-item {
+  padding: 5px 0;
 }
-.jjk-dossier-profile-pic::before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: calc(100% + 10px);
-  height: calc(100% + 10px);
-  border-radius: 50%;
-  background: conic-gradient(from 0deg, transparent 0%, var(--accent) 70%, transparent 100%);
-  animation: jjkDossierSpin 4s linear infinite;
-}
-.jjk-dossier-profile-pic img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid var(--bg);
-  position: relative;
-  z-index: 2;
-}
-.jjk-dossier-name {
-  font-family: var(--font-title);
-  font-size: 2em;
+.jjk-profile-label {
   font-weight: 700;
-  text-align: center;
-  margin: 0;
-  color: var(--text-primary);
-  word-wrap: break-word;
+  color: var(--jjk-purple-light);
+  margin-right: 8px;
 }
-.jjk-dossier-title {
-  font-size: 1em;
-  color: var(--accent);
-  text-align: center;
-  margin-top: 2px;
-  margin-bottom: 25px;
-  word-wrap: break-word;
-}
-/* Barras de Status (HP/EA) */
-.jjk-dossier-status-bars {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+
+/* Aba 2: Combate (Aptidões) */
+.jjk-dossier-skills-category {
   margin-bottom: 25px;
 }
-.jjk-dossier-status-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-.jjk-dossier-status-header {
-  display: flex;
-  justify-content: space-between;
-  font-family: var(--font-mono);
-  font-size: 12px;
-}
-.jjk-dossier-status-label {
+.jjk-category-title {
+  font-size: 1.1em;
   font-weight: 700;
+  color: var(--jjk-text-primary);
+  margin-bottom: 15px;
 }
-.jjk-dossier-status-value {
-  color: var(--text-muted);
-}
-.jjk-dossier-status-bar {
-  height: 12px;
-  background: rgba(0, 0, 0, 0.3);
-  border-radius: 50px;
-  overflow: hidden;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-}
-.jjk-dossier-status-bar-fill {
-  height: 100%;
-  border-radius: 50px;
-  transition: width 0.5s ease-in-out;
-}
-.jjk-dossier-hp-fill { background: linear-gradient(90deg, var(--hp-dark), var(--hp-color)); }
-.jjk-dossier-ea-fill { background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
-
-/* Stats Rápidos (Grau, Alinhamento, etc) */
-.jjk-dossier-quick-stats {
+.jjk-dossier-skills-list {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 10px;
-  margin-top: auto; /* Empurra para o fim da sidebar */
-}
-.jjk-dossier-stat-box {
-  background: var(--glass);
-  padding: 8px;
-  border-radius: var(--radius-sm);
-  text-align: center;
-}
-.jjk-dossier-label {
-  font-size: 10px;
-  font-weight: 700;
-  color: var(--text-muted);
-  text-transform: uppercase;
-  margin-bottom: 4px;
-}
-.jjk-dossier-value {
-  font-size: 13px;
-  font-weight: bold;
-  word-wrap: break-word;
-}
-
-/* --- 2. Painel Principal (Conteúdo) --- */
-.jjk-dossier-main {
-  background: var(--panel-bg);
-  padding: 20px;
-  overflow-y: auto;
-}
-.jjk-dossier-tabs-nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  border-bottom: 1px solid var(--border-color);
-  padding-bottom: 10px;
-}
-.jjk-dossier-tab-button {
-  flex-grow: 1;
-  padding: 8px 12px;
-  cursor: pointer;
-  background: var(--glass);
-  border: 1px solid var(--glass-2);
-  color: var(--text-muted);
-  font-weight: 700;
-  font-size: 13px;
-  border-radius: var(--radius-sm);
-  transition: all 0.3s;
-  text-align: center;
-}
-.jjk-dossier-tab-button:hover {
-  background: var(--accent2);
-  color: var(--text-primary);
-}
-.jjk-dossier-main input[name^="dossier-tab-"] { display: none; }
-.jjk-dossier-main input[name^="dossier-tab-"]:checked + label.jjk-dossier-tab-button {
-  background: var(--accent);
-  color: var(--text-primary);
-  box-shadow: 0 0 15px var(--accent-dark);
-}
-.jjk-dossier-tab-content {
-  display: none;
-  animation: jjkDossierFadeIn 0.5s ease-out;
-  padding-top: 20px;
-}
-/* Seletor de "Começa Com" (^) para IDs únicos */
-.jjk-dossier-main input[id^="dossier-tab-1-"]:checked ~ div[id^="dossier-content-1-"],
-.jjk-dossier-main input[id^="dossier-tab-2-"]:checked ~ div[id^="dossier-content-2-"],
-.jjk-dossier-main input[id^="dossier-tab-3-"]:checked ~ div[id^="dossier-content-3-"],
-.jjk-dossier-main input[id^="dossier-tab-4-"]:checked ~ div[id^="dossier-content-4-"],
-.jjk-dossier-main input[id^="dossier-tab-5-"]:checked ~ div[id^="dossier-content-5-"],
-.jjk-dossier-main input[id^="dossier-tab-6-"]:checked ~ div[id^="dossier-content-6-"],
-.jjk-dossier-main input[id^="dossier-tab-7-"]:checked ~ div[id^="dossier-content-7-"],
-.jjk-dossier-main input[id^="dossier-tab-8-"]:checked ~ div[id^="dossier-content-8-"] {
-  display: block;
-}
-
-/* --- Estilos de Conteúdo (Reutilizados do v11) --- */
-.jjk-dossier-main h3 {
-  font-family: var(--font-title);
-  font-size: 18px;
-  margin: 0 0 15px 0;
-  border-left: 3px solid var(--accent);
-  padding-left: 10px;
-}
-/* Acordeão (Aptidões) */
-.jjk-dossier-accordion-item input { display: none; }
-.jjk-dossier-accordion-title {
-  padding: 10px;
-  background: var(--glass);
-  border-radius: var(--radius-sm);
-  cursor: pointer;
-  font-weight: 700;
-  margin-top: 10px;
-  transition: background 0.3s;
-}
-.jjk-dossier-accordion-title:hover { background: rgba(255, 255, 255, 0.05); }
-.jjk-dossier-accordion-title::after {
-  content: '+';
-  float: right;
-  transition: transform 0.4s;
-  font-weight: bold;
-}
-.jjk-dossier-main input:checked + .jjk-dossier-accordion-title::after { transform: rotate(45deg); }
-.jjk-dossier-skill-list {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-  padding: 0 10px;
-}
-.jjk-dossier-main input:checked + .jjk-dossier-accordion-title + .jjk-dossier-skill-list {
-  max-height: 800px;
-  padding: 5px 10px 10px 10px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px 20px;
 }
 .jjk-dossier-skill-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border-color);
-  font-size: 13px;
-}
-.jjk-dossier-skill-item:last-child { border-bottom: none; }
-.jjk-dossier-skill-name { color: var(--text-muted); }
-.jjk-dossier-skill-level { font-weight: bold; color: var(--text-primary); }
-
-/* Atributos */
-.jjk-dossier-attr-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.jjk-dossier-attr-item .jjk-dossier-attr-header {
-  display: flex;
-  justify-content: space-between;
+  grid-template-columns: 1fr auto; /* Nome | XP */
   align-items: center;
-  margin-bottom: 6px;
 }
-.jjk-dossier-attr-item .jjk-dossier-attr-name {
+.jjk-dossier-skill-name {
   font-weight: 700;
-  font-size: 13px;
 }
-.jjk-dossier-attr-item .jjk-dossier-attr-value {
-  font-size: 12px;
-  font-weight: bold;
-  color: var(--text-muted);
+.jjk-dossier-skill-xp {
+  font-size: 0.9em;
+  color: var(--jjk-text-secondary);
 }
-.jjk-dossier-attr-bar {
-  height: 8px;
-  background: var(--glass);
-  border-radius: 50px;
+.jjk-dossier-skill-bar {
+  grid-column: 1 / -1; /* Barra ocupa as duas colunas */
+  height: 5px;
+  background: var(--jjk-bg-darker);
+  border-radius: 3px;
   overflow: hidden;
+  margin-top: 4px;
 }
-.jjk-dossier-attr-bar-fill {
+.jjk-dossier-skill-bar-fill {
   height: 100%;
-  background: linear-gradient(90deg, var(--accent-dark), var(--accent));
-  border-radius: 50px;
+  background: var(--jjk-purple);
   transition: width 0.5s ease-in-out;
 }
 
-/* Perfil (Bio, Psicológico) */
-.jjk-dossier-bio-text {
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--text-muted);
-  max-height: 250px;
-  overflow-y: auto;
-  padding-right: 10px;
-}
-.jjk-dossier-psyche-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
-}
-.jjk-dossier-psyche-card {
-  background: var(--glass);
-  border-radius: var(--radius-sm);
-  padding: 12px;
-}
-.jjk-dossier-psyche-card h4 {
-  font-family: var(--font-title);
-  margin: 0 0 10px 0;
-  font-size: 16px;
-}
-.jjk-dossier-psyche-card ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  max-height: 120px;
-  overflow-y: auto;
-  padding-right: 5px;
-}
-.jjk-dossier-psyche-card ul li { margin-bottom: 5px; font-size: 13px; }
-
-/* Combate, Características */
-.jjk-dossier-combat-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 15px;
-}
-.jjk-dossier-combat-box ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.jjk-dossier-combat-box li {
-  background: var(--glass);
-  padding: 8px 10px;
-  border-radius: var(--radius-sm);
-  font-size: 13px;
-  margin-bottom: 8px;
-}
-.jjk-dossier-combat-box a {
-  text-decoration: none;
-}
-.jjk-dossier-combat-box a:hover {
-  text-decoration: underline;
+/* Textareas (Técnicas, Bio, etc.) */
+.jjk-dossier-textarea {
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 15px;
+  color: var(--jjk-text-primary);
+  min-height: 150px;
+  white-space: pre-wrap; /* Preserva quebras de linha */
+  font-size: 0.95em;
 }
 
-/* Relações */
-.jjk-dossier-relations-grid {
+/* Aba 3: Detalhes (Cards) */
+.jjk-dossier-card-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 15px;
 }
-.jjk-dossier-relation-card {
-  background: var(--glass);
-  border-radius: var(--radius-sm);
-  overflow: hidden;
+
+.jjk-dossier-card-item {
+  background: var(--jjk-bg-darker);
+  border: 1px solid var(--jjk-border);
+  border-radius: 5px;
+  padding: 15px;
+  transition: all 0.2s ease;
 }
-.jjk-dossier-relation-header {
-  padding: 10px 15px;
-  background: rgba(0, 0, 0, 0.2);
+.jjk-dossier-card-item:hover {
+  border-color: var(--jjk-purple);
+}
+
+.jjk-dossier-card-title {
+  font-weight: 700;
+  color: var(--jjk-purple-light);
+  font-size: 1.1em;
+  margin-bottom: 5px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.jjk-dossier-relation-name {
-  font-weight: bold;
-  font-size: 15px;
+
+/* Cores das Características */
+.jjk-card-positive .jjk-dossier-card-title {
+  color: var(--jjk-positive);
 }
-.jjk-dossier-relation-status {
-  font-size: 12px;
-  color: var(--accent);
-  font-weight: bold;
-}
-.jjk-dossier-relation-body {
-  padding: 15px;
-  max-height: 150px;
-  overflow-y: auto;
-  font-size: 13.5px;
-  line-height: 1.7;
-  color: var(--text-muted);
+.jjk-card-negative .jjk-dossier-card-title {
+  color: var(--jjk-negative);
 }
 
-/* Inventário */
-.jjk-dossier-inventory-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-  gap: 10px;
-}
-.jjk-dossier-inventory-item {
-  background: var(--glass);
-  border-radius: var(--radius-sm);
-  padding: 15px;
-  text-align: center;
-  font-size: 13px;
-  font-weight: bold;
-  position: relative;
-  cursor: default;
-}
-.jjk-dossier-tooltip-text {
-  visibility: hidden;
-  opacity: 0;
-  position: absolute;
-  bottom: 110%;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--bg);
-  color: var(--text-muted);
-  font-size: 12px;
-  font-weight: normal;
-  padding: 8px;
-  border-radius: var(--radius-sm);
-  width: 200px;
-  text-align: left;
-  line-height: 1.5;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-  z-index: 10;
-  transition: opacity 0.3s;
-}
-.jjk-dossier-inventory-item:hover .jjk-dossier-tooltip-text {
-  visibility: visible;
-  opacity: 1;
+.jjk-dossier-card-subtitle {
+  color: var(--jjk-text-secondary);
+  font-size: 0.9em;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 
-/* Scrollbars "Roxa Neon" */
-.jjk-dossier-bio-text::-webkit-scrollbar,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar,
-.jjk-dossier-relation-body::-webkit-scrollbar {
-  width: 6px;
-}
-.jjk-dossier-bio-text::-webkit-scrollbar-track,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar-track,
-.jjk-dossier-relation-body::-webkit-scrollbar-track {
-  background: rgba(0, 0, 0, 0.2);
-  border-radius: 6px;
-}
-.jjk-dossier-bio-text::-webkit-scrollbar-thumb,
-.jjk-dossier-psyche-card ul::-webkit-scrollbar-thumb,
-.jjk-dossier-relation-body::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 6px;
-  box-shadow: 0 0 5px var(--accent);
-}
-.jjk-dossier-bio-text,
-.jjk-dossier-psyche-card ul,
-.jjk-dossier-relation-body {
-  scrollbar-width: thin;
-  scrollbar-color: var(--accent) rgba(0, 0, 0, 0.2);
+.jjk-dossier-card-desc {
+  font-size: 0.95em;
+  color: var(--jjk-text-primary);
 }
 
-/* Responsividade */
+.jjk-status-tag {
+  font-size: 0.8em;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
+}
+.jjk-status-vivo {
+  background: var(--jjk-positive);
+  color: var(--jjk-bg-darker);
+}
+.jjk-status-morto {
+  background: var(--jjk-negative);
+  color: #fff;
+}
+
+
+/* --- Responsividade --- */
 @media (max-width: 768px) {
-  .jjk-dossier-v2 {
-    grid-template-columns: 1fr; /* Empilha a sidebar */
+  .jjk-dossier-body {
+    grid-template-columns: 1fr; /* Coluna única */
   }
-  .jjk-dossier-sidebar {
-    border-right: none;
-    border-bottom: 1px solid var(--border-color);
+
+  .jjk-dossier-left-col {
+    align-items: center; /* Centraliza a foto no mobile */
   }
   .jjk-dossier-profile-pic {
-    width: 120px;
-    height: 120px;
+    width: 200px;
+    height: 200px;
   }
-  .jjk-dossier-psyche-grid {
-    grid-template-columns: 1fr;
+  .jjk-dossier-info-box {
+    width: 100%;
   }
-  .jjk-dossier-attr-grid {
-    grid-template-columns: 1fr;
+
+  .jjk-dossier-attr-list {
+    grid-template-columns: 1fr; /* Atributos em coluna única */
+  }
+
+  .jjk-dossier-tab-nav {
+    flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+  }
+  .jjk-tab-label {
+    padding: 10px 15px;
+    font-size: 0.9em;
   }
 }
+
 @media (max-width: 480px) {
-  .jjk-dossier-quick-stats {
-    grid-template-columns: 1fr;
+  .jjk-dossier-name {
+    font-size: 2em;
   }
-  .jjk-dossier-combat-grid {
-    grid-template-columns: 1fr;
+  .jjk-dossier-subtitle {
+    font-size: 1em;
+  }
+  
+  .jjk-dossier-skills-list,
+  .jjk-dossier-card-list,
+  .jjk-profile-list {
+    grid-template-columns: 1fr; /* Coluna única para listas */
   }
 }
