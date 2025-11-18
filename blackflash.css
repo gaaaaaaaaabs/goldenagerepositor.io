@@ -11,6 +11,7 @@
   --highlight: #c48fff;
   --failure: #FF3030;
   --success: #00e091;
+  --blue: #00e5ff;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --font-main: 'Inter', system-ui, sans-serif;
@@ -116,6 +117,41 @@
   }
 }
 
+@keyframes lightning-bolt {
+  0% {
+    transform: translateY(-100%) rotate(45deg);
+    opacity: 0;
+  }
+  10% {
+    transform: translateY(0%) rotate(45deg);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(10%) rotate(45deg);
+    opacity: 0.8;
+  }
+  30% {
+    transform: translateY(20%) rotate(45deg);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translateY(30%) rotate(45deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(40%) rotate(45deg);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translateY(50%) rotate(45deg);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateY(100%) rotate(45deg);
+    opacity: 0;
+  }
+}
+
 .bf-container {
   box-sizing: border-box;
   max-width: 820px;
@@ -157,6 +193,15 @@
 
 .horizontal-flash {
   animation: horizontal-flash 0.4s linear forwards;
+}
+
+.lightning-bolt {
+  position: absolute;
+  width: 3px;
+  height: 50px;
+  background: linear-gradient(to bottom, transparent, var(--failure), transparent);
+  opacity: 0;
+  animation: lightning-bolt 0.3s linear forwards;
 }
 
 .bf-header {
