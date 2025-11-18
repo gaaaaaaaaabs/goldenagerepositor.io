@@ -1,4 +1,5 @@
 /* --- Template: Black Flash (v2) --- */
+/* CSS atualizado com partículas de flash rápidas e dano multiplicador */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -10,7 +11,6 @@
   --highlight: #c48fff;
   --failure: #FF3030;
   --success: #00e091;
-  --blue: #30a9ff;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --font-main: 'Inter', system-ui, sans-serif;
@@ -33,11 +33,87 @@
   100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
 }
 
-/* [NOVO v2] Animação das Partículas (Flash Rápido) */
-@keyframes bf-flash {
-  0% { transform: scale(1) rotate(0deg); opacity: 0; }
-  50% { transform: scale(3) rotate(180deg); opacity: 1; }
-  100% { transform: scale(1) rotate(360deg); opacity: 0; }
+/* --- Novas animações para partículas de relâmpago --- */
+@keyframes flash-particle {
+  0% { 
+    transform: translateY(0) translateX(0) scale(1);
+    opacity: 0;
+  }
+  5% {
+    transform: translateY(-20px) translateX(5px) scale(1.2);
+    opacity: 0.9;
+  }
+  10% {
+    transform: translateY(-40px) translateX(-10px) scale(1.5);
+    opacity: 1;
+  }
+  20% {
+    transform: translateY(-80px) translateX(15px) scale(1.8);
+    opacity: 0.8;
+  }
+  30% {
+    transform: translateY(-120px) translateX(-5px) scale(2);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translateY(-160px) translateX(10px) scale(2.2);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-200px) translateX(-15px) scale(2.5);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translateY(-240px) translateX(5px) scale(2.8);
+    opacity: 0.1;
+  }
+  70% {
+    transform: translateY(-280px) translateX(-10px) scale(3);
+    opacity: 0.05;
+  }
+  100% {
+    transform: translateY(-350px) translateX(0) scale(3.5);
+    opacity: 0;
+  }
+}
+
+@keyframes horizontal-flash {
+  0% { 
+    transform: translateX(0) scaleX(0.1);
+    opacity: 0;
+  }
+  10% {
+    transform: translateX(30px) scaleX(1.2);
+    opacity: 0.8;
+  }
+  20% {
+    transform: translateX(-40px) scaleX(1.5);
+    opacity: 1;
+  }
+  30% {
+    transform: translateX(50px) scaleX(1.8);
+    opacity: 0.7;
+  }
+  40% {
+    transform: translateX(-60px) scaleX(2);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateX(70px) scaleX(2.2);
+    opacity: 0.3;
+  }
+  60% {
+    transform: translateX(-80px) scaleX(2.5);
+    opacity: 0.2;
+  }
+  70% {
+    transform: translateX(90px) scaleX(2.8);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translateX(100px) scaleX(3);
+    opacity: 0;
+  }
 }
 
 .bf-container {
@@ -49,23 +125,51 @@
   color: var(--text);
   background: var(--panel);
   border-radius: 10px;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--accent1);
   box-shadow: 0 0 30px rgba(0, 0, 0, 0.6);
   overflow: hidden;
-  border: 1px solid var(--accent1);
+  position: relative;
 }
+
+/* Container para as partículas de flash */
+.bf-particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.flash-particle {
+  position: absolute;
+  background: var(--failure);
+  border-radius: 50%;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.vertical-flash {
+  animation: flash-particle 0.5s linear forwards;
+}
+
+.horizontal-flash {
+  animation: horizontal-flash 0.4s linear forwards;
+}
+
 .bf-header {
   padding: 20px 25px;
   text-align: center;
   background: var(--bg);
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--accent1);
   position: relative;
-  overflow: hidden; /* Para conter as partículas */
+  z-index: 2;
 }
 .bf-title-wrapper {
   position: relative;
   display: inline-block;
-  z-index: 2; /* Fica na frente das partículas */
 }
 .bf-title {
   font-family: var(--font-title);
@@ -79,9 +183,10 @@
   display: inline-block;
   color: var(--failure);
 }
+/* Efeito Glitch no Título */
 .bf-title .glitch-text::before,
 .bf-title .glitch-text::after {
-  content: 'Flash Negro'; /* [CORRIGIDO] Texto do Glitch */
+  content: 'Flash Negro';
   position: absolute;
   top: 0;
   left: 0;
@@ -90,11 +195,11 @@
   background: var(--bg);
 }
 .bf-title .glitch-text::before {
-  color: #00E5FF;
+  color: #00E5FF; /* Cyan */
   animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
 }
 .bf-title .glitch-text::after {
-  color: var(--highlight);
+  color: var(--highlight); /* Roxo */
   animation: bf-glitch-anim 1s infinite linear alternate;
 }
 .bf-subtitle {
@@ -102,46 +207,14 @@
   font-size: 1.2em;
   color: var(--muted);
   margin: 5px 0 0 0;
-  z-index: 2;
-  position: relative;
 }
-
-/* [NOVO v2] Container das Partículas */
-.bf-particles {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-}
-.bf-particle {
-  position: absolute;
-  width: 2px; /* Riscos finos */
-  height: 150px; /* Riscos longos */
-  background: linear-gradient(to bottom, transparent, var(--failure) 50%, transparent);
-  opacity: 0;
-  animation: bf-flash 0.3s ease-in-out infinite; /* Duração MUITO RÁPIDA */
-}
-/* Gerando 15 partículas com delays aleatórios */
-.bf-particle:nth-child(1) { top: 10%; left: 5%; animation-delay: 0.1s; }
-.bf-particle:nth-child(2) { top: 50%; left: 15%; animation-delay: 0.2s; }
-.bf-particle:nth-child(3) { top: 20%; left: 30%; animation-delay: 0.05s; }
-.bf-particle:nth-child(4) { top: 70%; left: 45%; animation-delay: 0.15s; }
-.bf-particle:nth-child(5) { top: 30%; left: 55%; animation-delay: 0.25s; }
-.bf-particle:nth-child(6) { top: 80%; left: 70%; animation-delay: 0.1s; }
-.bf-particle:nth-child(7) { top: 15%; left: 85%; animation-delay: 0.0s; }
-.bf-particle:nth-child(8) { top: 60%; left: 95%; animation-delay: 0.2s; }
-.bf-particle:nth-child(9) { top: 5%; left: 40%; animation-delay: 0.1s; }
-.bf-particle:nth-child(10) { top: 90%; left: 25%; animation-delay: 0.15s; }
-.bf-particle:nth-child(11) { top: 40%; left: 75%; animation-delay: 0.05s; }
-.bf-particle:nth-child(12) { top: 25%; left: 65%; animation-delay: 0.25s; }
-.bf-particle:nth-child(13) { top: 75%; left: 5%; animation-delay: 0.0s; }
-.bf-particle:nth-child(14) { top: 55%; left: 80%; animation-delay: 0.1s; }
-.bf-particle:nth-child(15) { top: 35%; left: 90%; animation-delay: 0.2s; }
-
 .bf-body {
   padding: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  position: relative;
+  z-index: 2;
 }
 .bf-section {
   background: var(--glass-2);
@@ -194,6 +267,7 @@
 .bf-section b {
   color: var(--text);
 }
+/* Caixa de Fórmula */
 .bf-formula-box {
   background: var(--bg);
   border-radius: 6px;
@@ -209,6 +283,7 @@
   font-weight: 700;
   font-size: 1.1em;
 }
+/* Card de Efeito (A Zona) */
 .bf-buff-card {
   background: linear-gradient(135deg, rgba(0, 224, 145, 0.05), rgba(0, 224, 145, 0.15));
   border: 1px solid var(--success);
@@ -226,38 +301,39 @@
 .bf-buff-card li::before {
   color: var(--success);
 }
+
+/* Grid para os caminhos */
 .bf-stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 15px;
-  margin-top: 15px;
 }
+
 .stat-item {
   background: var(--glass-2);
   border: 1px solid var(--glass);
-  border-radius: 6px;
+  border-radius: 8px;
   padding: 15px;
-  text-align: left;
 }
+
 .stat-value {
-  font-family: var(--ui);
-  font-size: 1.2em;
-  color: var(--highlight);
-  font-weight: 700;
-}
-.stat-label {
-  font-family: var(--font-main);
-  font-size: 0.9em;
-  color: var(--muted);
+  font-family: var(--font-mono);
+  font-size: 1em;
+  font-weight: bold;
   display: block;
-  margin-top: 8px;
-  text-transform: none;
+  margin-bottom: 8px;
 }
-.stat-item .stat-value[style*="color: var(--success)"] { color: var(--success); }
-.stat-item .stat-value[style*="color: var(--blue)"] { color: var(--blue); }
+
+.stat-label {
+  font-size: 0.9em;
+  line-height: 1.5;
+  display: block;
+}
 
 @media (max-width: 640px) {
   .bf-body {
+    grid-template-columns: 1fr;
+  }
+  .bf-stats-grid {
     grid-template-columns: 1fr;
   }
 }
