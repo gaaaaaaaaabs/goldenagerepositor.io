@@ -1,4 +1,5 @@
-/* --- Template: Black Flash (v1) --- */
+/* --- Template: Black Flash (v3) --- */
+/* CSS atualizado com efeitos de partículas CORRIGIDOS */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -8,22 +9,17 @@
   --muted: #bfc6e6;
   --accent1: #9b00ff;
   --highlight: #c48fff;
-  --failure: #FF3030; /* Vermelho padrão para falha */
+  --failure: #FF3030;
   --success: #00e091;
+  --blue: #00e5ff;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --font-main: 'Inter', system-ui, sans-serif;
   --font-title: 'Yuji Syuku', serif;
   --font-mono: 'Share Tech Mono', monospace;
-
-  /* Novas variáveis para cores do Flash Negro e partículas */
-  --bf-glitch-color-1: #00E5FF; /* Cyan */
-  --bf-glitch-color-2: #c48fff; /* Roxo */
-  --bf-particle-color: #FF3030; /* Vermelho intenso para as partículas */
-  --bf-particle-glow: #FF0000; /* Brilho mais forte para as partículas (vermelho puro) */
 }
 
-/* --- Animação de Glitch (Da Memória) --- */
+/* --- Animação de Glitch --- */
 @keyframes bf-glitch-anim {
   0% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
   10% { clip-path: inset(43% 0 16% 0); transform: translate(3px, 2px); }
@@ -38,25 +34,69 @@
   100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
 }
 
-/* --- NOVA ANIMAÇÃO DE PARTÍCULAS (para JS) --- */
-@keyframes bf-js-spark-anim {
-  0% { 
-    transform: translate(0, 0) scale(0.1); 
-    opacity: 0; 
-    box-shadow: 0 0 5px var(--bf-particle-color); 
+/* --- Efeitos de Partículas Corrigidos --- */
+@keyframes spark-flash {
+  0% {
+    transform: translate(var(--start-x), var(--start-y)) scale(0);
+    opacity: 0;
   }
-  15% {
-    opacity: 1; 
+  10% {
+    transform: translate(var(--mid-x), var(--mid-y)) scale(1.5);
+    opacity: 1;
   }
-  70% { 
-    transform: translate(var(--x-end), var(--y-end)) scale(var(--scale-end)); 
-    opacity: 0.8; 
-    box-shadow: 0 0 15px var(--bf-particle-glow), 0 0 25px var(--bf-particle-color); 
+  20% {
+    transform: translate(var(--end-x), var(--end-y)) scale(2);
+    opacity: 0.8;
   }
-  100% { 
-    transform: translate(var(--x-end), var(--y-end)) scale(0); 
-    opacity: 0; 
-    box-shadow: 0 0 0 transparent;
+  30% {
+    transform: translate(var(--end-x), var(--end-y)) scale(2.5);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(var(--end-x), var(--end-y)) scale(3);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(var(--end-x), var(--end-y)) scale(3.5);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translate(var(--end-x), var(--end-y)) scale(4);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(5);
+    opacity: 0;
+  }
+}
+
+@keyframes shockwave {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 1;
+    box-shadow: 0 0 20px var(--failure), 0 0 30px var(--failure);
+  }
+  70% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.5;
+    box-shadow: 0 0 40px var(--failure), 0 0 60px var(--failure);
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0;
+    box-shadow: 0 0 60px var(--failure), 0 0 80px var(--failure);
+  }
+}
+
+@keyframes energy-pulse {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 48, 48, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 25px rgba(255, 48, 48, 0.8);
+  }
+  100% {
+    box-shadow: 0 0 10px rgba(255, 48, 48, 0.3);
   }
 }
 
@@ -70,9 +110,52 @@
   background: var(--panel);
   border-radius: 10px;
   border: 1px solid var(--accent1);
-  box-shadow: 0 0 15px rgba(155, 0, 255, 0.4);
   overflow: hidden;
   position: relative;
+  animation: energy-pulse 3s ease-in-out infinite;
+}
+
+/* Container para as partículas de flash */
+.bf-particles-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.bf-spark {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--failure);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 2;
+  animation: spark-flash 0.8s linear forwards;
+  box-shadow: 0 0 10px currentColor;
+}
+
+.bf-shockwave {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--failure);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: shockwave 1s ease-out forwards;
+}
+
+/* Efeito de brilho no título quando partículas ativam */
+.bf-title-highlight {
+  text-shadow: 0 0 20px var(--failure), 
+               0 0 30px var(--failure), 
+               0 0 40px var(--failure) !important;
+  transition: text-shadow 0.3s ease;
 }
 
 .bf-header {
@@ -81,24 +164,19 @@
   background: var(--bg);
   border-bottom: 1px solid var(--accent1);
   position: relative;
-  overflow: hidden;
+  z-index: 2;
 }
-
 .bf-title-wrapper {
   position: relative;
   display: inline-block;
-  z-index: 2; /* Garante que o texto esteja acima das partículas */
 }
-
 .bf-title {
   font-family: var(--font-title);
   font-size: 2.8em;
   color: var(--text);
   margin: 0;
-  /* Ajusta o text-shadow para ter um brilho vermelho mais alinhado com as partículas */
-  text-shadow: 0 0 10px var(--bf-particle-glow), 0 0 20px var(--failure); 
+  text-shadow: 0 0 10px var(--failure);
 }
-
 .bf-title .glitch-text {
   position: relative;
   display: inline-block;
@@ -116,50 +194,26 @@
   background: var(--bg);
 }
 .bf-title .glitch-text::before {
-  color: var(--bf-glitch-color-1); /* Cyan */
+  color: #00E5FF; /* Cyan */
   animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
 }
 .bf-title .glitch-text::after {
-  color: var(--bf-glitch-color-2); /* Roxo */
+  color: var(--highlight); /* Roxo */
   animation: bf-glitch-anim 1s infinite linear alternate;
 }
-
 .bf-subtitle {
   font-family: var(--font-mono);
   font-size: 1.2em;
   color: var(--muted);
   margin: 5px 0 0 0;
-  position: relative;
-  z-index: 2;
 }
-
-/* --- Estilização para as partículas geradas por JS --- */
-.bf-header .js-particle-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1; /* Atrás do título e subtítulo */
-}
-
-.bf-header .js-particle {
-  position: absolute;
-  border-radius: 50%;
-  /* Gradient para dar um efeito de brilho intenso do centro para fora */
-  background: radial-gradient(circle at center, #ffffff 0%, var(--bf-particle-glow) 20%, var(--bf-particle-color) 80%);
-  opacity: 0;
-  animation: bf-js-spark-anim var(--anim-duration) ease-out infinite;
-  animation-delay: var(--anim-delay);
-}
-
-
 .bf-body {
   padding: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
+  position: relative;
+  z-index: 2;
 }
 .bf-section {
   background: var(--glass-2);
@@ -247,38 +301,32 @@
   color: var(--success);
 }
 
-/* Grid de Status/Caminhos */
+/* Grid para os caminhos */
 .bf-stats-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
   gap: 15px;
-  margin-top: 15px;
 }
-.bf-stats-grid .stat-item {
+
+.stat-item {
   background: var(--glass-2);
   border: 1px solid var(--glass);
   border-radius: 8px;
   padding: 15px;
-  text-align: center;
 }
-.bf-stats-grid .stat-item .stat-value {
-  font-family: var(--font-title);
-  font-size: 1.3em;
-  display: block;
-  margin-bottom: 5px;
-  line-height: 1.2;
-}
-.bf-stats-grid .stat-item .stat-label {
-  font-size: 0.85em;
-  color: var(--muted);
-  display: block;
-  text-transform: uppercase;
-}
-/* Cores para os Caminhos */
-.bf-stats-grid .stat-item .stat-value[style*="var(--success)"] { color: var(--success) !important; text-shadow: 0 0 8px rgba(0,224,145,0.5); }
-.bf-stats-grid .stat-item .stat-value[style*="var(--highlight)"] { color: var(--highlight) !important; text-shadow: 0 0 8px rgba(196,143,255,0.5); }
-.bf-stats-grid .stat-item .stat-value[style*="var(--blue)"] { color: #00E5FF !important; text-shadow: 0 0 8px rgba(0,229,255,0.5); }
 
+.stat-value {
+  font-family: var(--font-mono);
+  font-size: 1em;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 0.9em;
+  line-height: 1.5;
+  display: block;
+}
 
 @media (max-width: 640px) {
   .bf-body {
