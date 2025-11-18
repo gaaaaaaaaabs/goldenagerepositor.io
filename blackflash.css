@@ -8,15 +8,19 @@
   --muted: #bfc6e6;
   --accent1: #9b00ff;
   --highlight: #c48fff;
-  --failure: #FF3030;
+  --failure: #FF3030; /* Vermelho padrão para falha */
   --success: #00e091;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --font-main: 'Inter', system-ui, sans-serif;
   --font-title: 'Yuji Syuku', serif;
   --font-mono: 'Share Tech Mono', monospace;
-  --bf-flash-color-1: #00E5FF; /* Cyan */
-  --bf-flash-color-2: #c48fff; /* Purple */
+
+  /* Novas variáveis para cores do Flash Negro e partículas */
+  --bf-glitch-color-1: #00E5FF; /* Cyan */
+  --bf-glitch-color-2: #c48fff; /* Roxo */
+  --bf-particle-color: #FF3030; /* Vermelho intenso para as partículas */
+  --bf-particle-glow: #FF0000; /* Brilho mais forte para as partículas */
 }
 
 /* --- Animação de Glitch (Da Memória) --- */
@@ -34,22 +38,25 @@
   100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
 }
 
-/* --- NOVA ANIMAÇÃO DE PARTÍCULAS FLASH --- */
-@keyframes bf-spark-anim {
+/* --- NOVA ANIMAÇÃO DE PARTÍCULAS (para JS) --- */
+@keyframes bf-js-spark-anim {
   0% { 
     transform: translate(0, 0) scale(0.1); 
     opacity: 0; 
-    box-shadow: 0 0 5px var(--bf-flash-color-1); 
+    box-shadow: 0 0 5px var(--bf-particle-color); /* Brilho inicial */
   }
-  20% { 
-    transform: translate(var(--x), var(--y)) scale(1); 
+  15% {
+    opacity: 1; /* Rápido aparecimento */
+  }
+  70% { 
+    transform: translate(var(--x-end), var(--y-end)) scale(var(--scale-end)); 
     opacity: 0.8; 
-    box-shadow: 0 0 15px var(--bf-flash-color-2), 0 0 25px var(--bf-flash-color-1); 
+    box-shadow: 0 0 15px var(--bf-particle-glow), 0 0 25px var(--bf-particle-color); /* Brilho máximo */
   }
   100% { 
-    transform: translate(calc(var(--x) * 2), calc(var(--y) * 2)) scale(0); 
+    transform: translate(var(--x-end), var(--y-end)) scale(0); 
     opacity: 0; 
-    box-shadow: 0 0 0 transparent;
+    box-shadow: 0 0 0 transparent; /* Desaparece */
   }
 }
 
@@ -62,19 +69,19 @@
   color: var(--text);
   background: var(--panel);
   border-radius: 10px;
-  border: 1px solid var(--accent1); /* Mais um brilho inicial */
-  box-shadow: 0 0 15px rgba(155, 0, 255, 0.4); /* Brilho mais sutil */
+  border: 1px solid var(--accent1);
+  box-shadow: 0 0 15px rgba(155, 0, 255, 0.4);
   overflow: hidden;
-  position: relative; /* Necessário para posicionar as partículas */
+  position: relative;
 }
 
 .bf-header {
   padding: 20px 25px;
   text-align: center;
   background: var(--bg);
-  border-bottom: 1px solid var(--accent1); /* Borda mais acentuada */
+  border-bottom: 1px solid var(--accent1);
   position: relative;
-  overflow: hidden; /* Para garantir que as partículas fiquem dentro */
+  overflow: hidden;
 }
 
 .bf-title-wrapper {
@@ -108,11 +115,11 @@
   background: var(--bg);
 }
 .bf-title .glitch-text::before {
-  color: var(--bf-flash-color-1); /* Cyan */
+  color: var(--bf-glitch-color-1); /* Cyan */
   animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
 }
 .bf-title .glitch-text::after {
-  color: var(--bf-flash-color-2); /* Roxo */
+  color: var(--bf-glitch-color-2); /* Roxo */
   animation: bf-glitch-anim 1s infinite linear alternate;
 }
 
@@ -121,71 +128,28 @@
   font-size: 1.2em;
   color: var(--muted);
   margin: 5px 0 0 0;
-  position: relative; /* Para garantir que esteja acima das partículas */
+  position: relative;
   z-index: 2;
 }
 
-/* --- Estilização das Partículas de Flash --- */
-.bf-particles {
+/* --- Estilização para as partículas geradas por JS --- */
+.bf-header .js-particle-container {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  pointer-events: none; /* Permite clicar nos elementos abaixo */
-  z-index: 1; /* Abaixo do texto do título */
+  pointer-events: none;
+  z-index: 1; /* Atrás do título e subtítulo */
 }
 
-.bf-particles::before,
-.bf-particles::after {
-  content: '';
+.bf-header .js-particle {
   position: absolute;
-  width: 4px; /* Tamanho da partícula */
-  height: 4px;
   border-radius: 50%;
-  background: radial-gradient(circle, var(--bf-flash-color-1) 0%, var(--bf-flash-color-2) 100%);
+  background: radial-gradient(circle, #fff 0%, var(--bf-particle-color) 100%); /* Centro mais branco para brilho */
   opacity: 0;
-  animation: bf-spark-anim 0.8s ease-out infinite; /* Animação rápida */
-}
-
-/* Variar posições e delays para as partículas */
-.bf-particles::before {
-  top: 30%;
-  left: 20%;
-  --x: 20px;
-  --y: -15px;
-  animation-delay: 0.1s;
-  background: radial-gradient(circle, var(--bf-flash-color-2) 0%, var(--bf-flash-color-1) 100%);
-  width: 3px; height: 3px;
-}
-.bf-particles::after {
-  top: 70%;
-  left: 80%;
-  --x: -25px;
-  --y: 10px;
-  animation-delay: 0.5s;
-  width: 5px; height: 5px;
-}
-/* Mais partículas para um efeito mais completo */
-.bf-particles .spark1,
-.bf-particles .spark2 {
-  content: '';
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: radial-gradient(circle, var(--bf-flash-color-1) 0%, var(--bf-flash-color-2) 100%);
-  opacity: 0;
-  animation: bf-spark-anim 0.7s ease-out infinite;
-}
-.bf-particles .spark1 {
-  top: 50%; left: 10%; --x: 10px; --y: -20px; animation-delay: 0.3s;
-  background: radial-gradient(circle, #fff 0%, var(--bf-flash-color-1) 100%); /* Mais branco para brilho */
-}
-.bf-particles .spark2 {
-  top: 10%; left: 90%; --x: -18px; --y: 12px; animation-delay: 0.7s;
-  background: radial-gradient(circle, #fff 0%, var(--bf-flash-color-2) 100%);
-  width: 3px; height: 3px;
+  animation: bf-js-spark-anim var(--anim-duration) ease-out infinite;
+  animation-delay: var(--anim-delay);
 }
 
 
