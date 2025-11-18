@@ -72,7 +72,7 @@
 /* Efeito Glitch no Título */
 .bf-title .glitch-text::before,
 .bf-title .glitch-text::after {
-  content: '黒閃';
+  content: 'Flash Negro';
   position: absolute;
   top: 0;
   left: 0;
