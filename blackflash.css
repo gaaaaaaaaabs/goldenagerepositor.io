@@ -1,4 +1,4 @@
-/* --- Template: Black Flash (v1) --- */
+/* --- Template: Black Flash (v2) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -10,6 +10,7 @@
   --highlight: #c48fff;
   --failure: #FF3030;
   --success: #00e091;
+  --blue: #30a9ff;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --font-main: 'Inter', system-ui, sans-serif;
@@ -32,6 +33,13 @@
   100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
 }
 
+/* [NOVO v2] Animação das Partículas (Flash Rápido) */
+@keyframes bf-flash {
+  0% { transform: scale(1) rotate(0deg); opacity: 0; }
+  50% { transform: scale(3) rotate(180deg); opacity: 1; }
+  100% { transform: scale(1) rotate(360deg); opacity: 0; }
+}
+
 .bf-container {
   box-sizing: border-box;
   max-width: 820px;
@@ -52,10 +60,12 @@
   background: var(--bg);
   border-bottom: 1px solid var(--border-color);
   position: relative;
+  overflow: hidden; /* Para conter as partículas */
 }
 .bf-title-wrapper {
   position: relative;
   display: inline-block;
+  z-index: 2; /* Fica na frente das partículas */
 }
 .bf-title {
   font-family: var(--font-title);
@@ -69,10 +79,9 @@
   display: inline-block;
   color: var(--failure);
 }
-/* Efeito Glitch no Título */
 .bf-title .glitch-text::before,
 .bf-title .glitch-text::after {
-  content: 'Flash Negro';
+  content: 'Flash Negro'; /* [CORRIGIDO] Texto do Glitch */
   position: absolute;
   top: 0;
   left: 0;
@@ -81,11 +90,11 @@
   background: var(--bg);
 }
 .bf-title .glitch-text::before {
-  color: #00E5FF; /* Cyan */
+  color: #00E5FF;
   animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
 }
 .bf-title .glitch-text::after {
-  color: var(--highlight); /* Roxo */
+  color: var(--highlight);
   animation: bf-glitch-anim 1s infinite linear alternate;
 }
 .bf-subtitle {
@@ -93,7 +102,41 @@
   font-size: 1.2em;
   color: var(--muted);
   margin: 5px 0 0 0;
+  z-index: 2;
+  position: relative;
 }
+
+/* [NOVO v2] Container das Partículas */
+.bf-particles {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+.bf-particle {
+  position: absolute;
+  width: 2px; /* Riscos finos */
+  height: 150px; /* Riscos longos */
+  background: linear-gradient(to bottom, transparent, var(--failure) 50%, transparent);
+  opacity: 0;
+  animation: bf-flash 0.3s ease-in-out infinite; /* Duração MUITO RÁPIDA */
+}
+/* Gerando 15 partículas com delays aleatórios */
+.bf-particle:nth-child(1) { top: 10%; left: 5%; animation-delay: 0.1s; }
+.bf-particle:nth-child(2) { top: 50%; left: 15%; animation-delay: 0.2s; }
+.bf-particle:nth-child(3) { top: 20%; left: 30%; animation-delay: 0.05s; }
+.bf-particle:nth-child(4) { top: 70%; left: 45%; animation-delay: 0.15s; }
+.bf-particle:nth-child(5) { top: 30%; left: 55%; animation-delay: 0.25s; }
+.bf-particle:nth-child(6) { top: 80%; left: 70%; animation-delay: 0.1s; }
+.bf-particle:nth-child(7) { top: 15%; left: 85%; animation-delay: 0.0s; }
+.bf-particle:nth-child(8) { top: 60%; left: 95%; animation-delay: 0.2s; }
+.bf-particle:nth-child(9) { top: 5%; left: 40%; animation-delay: 0.1s; }
+.bf-particle:nth-child(10) { top: 90%; left: 25%; animation-delay: 0.15s; }
+.bf-particle:nth-child(11) { top: 40%; left: 75%; animation-delay: 0.05s; }
+.bf-particle:nth-child(12) { top: 25%; left: 65%; animation-delay: 0.25s; }
+.bf-particle:nth-child(13) { top: 75%; left: 5%; animation-delay: 0.0s; }
+.bf-particle:nth-child(14) { top: 55%; left: 80%; animation-delay: 0.1s; }
+.bf-particle:nth-child(15) { top: 35%; left: 90%; animation-delay: 0.2s; }
+
 .bf-body {
   padding: 25px;
   display: grid;
@@ -151,7 +194,6 @@
 .bf-section b {
   color: var(--text);
 }
-/* Caixa de Fórmula */
 .bf-formula-box {
   background: var(--bg);
   border-radius: 6px;
@@ -167,7 +209,6 @@
   font-weight: 700;
   font-size: 1.1em;
 }
-/* Card de Efeito (A Zona) */
 .bf-buff-card {
   background: linear-gradient(135deg, rgba(0, 224, 145, 0.05), rgba(0, 224, 145, 0.15));
   border: 1px solid var(--success);
@@ -185,6 +226,36 @@
 .bf-buff-card li::before {
   color: var(--success);
 }
+.bf-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+.stat-item {
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 6px;
+  padding: 15px;
+  text-align: left;
+}
+.stat-value {
+  font-family: var(--ui);
+  font-size: 1.2em;
+  color: var(--highlight);
+  font-weight: 700;
+}
+.stat-label {
+  font-family: var(--font-main);
+  font-size: 0.9em;
+  color: var(--muted);
+  display: block;
+  margin-top: 8px;
+  text-transform: none;
+}
+.stat-item .stat-value[style*="color: var(--success)"] { color: var(--success); }
+.stat-item .stat-value[style*="color: var(--blue)"] { color: var(--blue); }
+
 @media (max-width: 640px) {
   .bf-body {
     grid-template-columns: 1fr;
