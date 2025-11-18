@@ -1,288 +1,103 @@
-/* --- Template: Black Flash (v1) --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&display=swap');
-
-:root {
-  --bg: #0c0c1a;
-  --panel: #13141c;
-  --text: #e7e9ff;
-  --muted: #bfc6e6;
-  --accent1: #9b00ff;
-  --highlight: #c48fff;
-  --failure: #FF3030; /* Vermelho padrão para falha */
-  --success: #00e091;
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-2: rgba(255, 255, 255, 0.02);
-  --font-main: 'Inter', system-ui, sans-serif;
-  --font-title: 'Yuji Syuku', serif;
-  --font-mono: 'Share Tech Mono', monospace;
-
-  /* Novas variáveis para cores do Flash Negro e partículas */
-  --bf-glitch-color-1: #00E5FF; /* Cyan */
-  --bf-glitch-color-2: #c48fff; /* Roxo */
-  --bf-particle-color: #FF3030; /* Vermelho intenso para as partículas */
-  --bf-particle-glow: #FF0000; /* Brilho mais forte para as partículas */
-}
-
-/* --- Animação de Glitch (Da Memória) --- */
-@keyframes bf-glitch-anim {
-  0% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
-  10% { clip-path: inset(43% 0 16% 0); transform: translate(3px, 2px); }
-  20% { clip-path: inset(93% 0 2% 0); transform: translate(-2px, -3px); }
-  30% { clip-path: inset(1% 0 92% 0); transform: translate(5px, 1px); }
-  40% { clip-path: inset(36% 0 54% 0); transform: translate(1px, -2px); }
-  50% { clip-path: inset(90% 0 3% 0); transform: translate(-4px, 0); }
-  60% { clip-path: inset(12% 0 79% 0); transform: translate(3px, -1px); }
-  70% { clip-path: inset(57% 0 23% 0); transform: translate(-2px, 2px); }
-  80% { clip-path: inset(10% 0 83% 0); transform: translate(4px, -3px); }
-  90% { clip-path: inset(71% 0 10% 0); transform: translate(-1px, 1px); }
-  100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
-}
-
-/* --- NOVA ANIMAÇÃO DE PARTÍCULAS (para JS) --- */
-@keyframes bf-js-spark-anim {
-  0% { 
-    transform: translate(0, 0) scale(0.1); 
-    opacity: 0; 
-    box-shadow: 0 0 5px var(--bf-particle-color); /* Brilho inicial */
+/* --- Efeitos de Partículas Corrigidos --- */
+@keyframes spark-flash {
+  0% {
+    transform: translate(var(--start-x), var(--start-y)) scale(0);
+    opacity: 0;
   }
-  15% {
-    opacity: 1; /* Rápido aparecimento */
+  10% {
+    transform: translate(var(--mid-x), var(--mid-y)) scale(1.5);
+    opacity: 1;
   }
-  70% { 
-    transform: translate(var(--x-end), var(--y-end)) scale(var(--scale-end)); 
-    opacity: 0.8; 
-    box-shadow: 0 0 15px var(--bf-particle-glow), 0 0 25px var(--bf-particle-color); /* Brilho máximo */
+  20% {
+    transform: translate(var(--end-x), var(--end-y)) scale(2);
+    opacity: 0.8;
   }
-  100% { 
-    transform: translate(var(--x-end), var(--y-end)) scale(0); 
-    opacity: 0; 
-    box-shadow: 0 0 0 transparent; /* Desaparece */
+  30% {
+    transform: translate(var(--end-x), var(--end-y)) scale(2.5);
+    opacity: 0.6;
+  }
+  40% {
+    transform: translate(var(--end-x), var(--end-y)) scale(3);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translate(var(--end-x), var(--end-y)) scale(3.5);
+    opacity: 0.2;
+  }
+  60% {
+    transform: translate(var(--end-x), var(--end-y)) scale(4);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate(var(--end-x), var(--end-y)) scale(5);
+    opacity: 0;
   }
 }
 
-.bf-container {
-  box-sizing: border-box;
-  max-width: 820px;
-  width: 95%;
-  margin: 30px auto;
-  font-family: var(--font-main);
-  color: var(--text);
-  background: var(--panel);
-  border-radius: 10px;
-  border: 1px solid var(--accent1);
-  box-shadow: 0 0 15px rgba(155, 0, 255, 0.4);
-  overflow: hidden;
-  position: relative;
+@keyframes shockwave {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+    box-shadow: 0 0 20px var(--failure), 0 0 30px var(--failure);
+  }
+  70% {
+    transform: scale(1);
+    opacity: 0.5;
+    box-shadow: 0 0 40px var(--failure), 0 0 60px var(--failure);
+  }
+  100% {
+    transform: scale(1.2);
+    opacity: 0;
+    box-shadow: 0 0 60px var(--failure), 0 0 80px var(--failure);
+  }
 }
 
-.bf-header {
-  padding: 20px 25px;
-  text-align: center;
-  background: var(--bg);
-  border-bottom: 1px solid var(--accent1);
-  position: relative;
-  overflow: hidden;
+@keyframes energy-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
 }
 
-.bf-title-wrapper {
-  position: relative;
-  display: inline-block;
-  z-index: 2; /* Garante que o texto esteja acima das partículas */
-}
-
-.bf-title {
-  font-family: var(--font-title);
-  font-size: 2.8em;
-  color: var(--text);
-  margin: 0;
-  text-shadow: 0 0 10px var(--failure);
-}
-
-.bf-title .glitch-text {
-  position: relative;
-  display: inline-block;
-  color: var(--failure);
-}
-/* Efeito Glitch no Título */
-.bf-title .glitch-text::before,
-.bf-title .glitch-text::after {
-  content: 'Flash Negro';
+.bf-spark {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg);
-}
-.bf-title .glitch-text::before {
-  color: var(--bf-glitch-color-1); /* Cyan */
-  animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
-}
-.bf-title .glitch-text::after {
-  color: var(--bf-glitch-color-2); /* Roxo */
-  animation: bf-glitch-anim 1s infinite linear alternate;
-}
-
-.bf-subtitle {
-  font-family: var(--font-mono);
-  font-size: 1.2em;
-  color: var(--muted);
-  margin: 5px 0 0 0;
-  position: relative;
-  z-index: 2;
-}
-
-/* --- Estilização para as partículas geradas por JS --- */
-.bf-header .js-particle-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 1; /* Atrás do título e subtítulo */
-}
-
-.bf-header .js-particle {
-  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: var(--failure);
   border-radius: 50%;
-  background: radial-gradient(circle, #fff 0%, var(--bf-particle-color) 100%); /* Centro mais branco para brilho */
-  opacity: 0;
-  animation: bf-js-spark-anim var(--anim-duration) ease-out infinite;
-  animation-delay: var(--anim-delay);
+  pointer-events: none;
+  z-index: 2;
+  animation: spark-flash 0.8s linear forwards;
+  box-shadow: 0 0 10px currentColor;
 }
 
-
-.bf-body {
-  padding: 25px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.bf-section {
-  background: var(--glass-2);
-  border: 1px solid var(--glass);
-  border-radius: 8px;
-  padding: 20px;
-}
-.bf-section.full-width {
-  grid-column: 1 / -1;
-}
-.bf-section h3 {
-  font-family: var(--font-mono);
-  font-size: 1.1em;
-  color: var(--highlight);
-  text-transform: uppercase;
-  margin: 0 0 15px 0;
-  border-bottom: 1px solid var(--glass);
-  padding-bottom: 10px;
-}
-.bf-section p {
-  font-size: 0.95em;
-  line-height: 1.7;
-  color: var(--muted);
-  margin: 0 0 15px 0;
-}
-.bf-section p:last-child {
-  margin-bottom: 0;
-}
-.bf-section ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 0;
-}
-.bf-section li {
-  font-size: 0.95em;
-  line-height: 1.7;
-  color: var(--muted);
-  padding-left: 20px;
-  position: relative;
-  margin-bottom: 8px;
-}
-.bf-section li::before {
-  content: '>';
+.bf-shockwave {
   position: absolute;
-  left: 0;
-  top: 0;
-  color: var(--highlight);
-  font-family: var(--font-mono);
-}
-.bf-section b {
-  color: var(--text);
-}
-/* Caixa de Fórmula */
-.bf-formula-box {
-  background: var(--bg);
-  border-radius: 6px;
-  padding: 10px;
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  color: var(--text);
-  border: 1px solid var(--glass);
-  text-align: center;
-}
-.bf-formula-box .formula {
-  color: var(--highlight);
-  font-weight: 700;
-  font-size: 1.1em;
-}
-/* Card de Efeito (A Zona) */
-.bf-buff-card {
-  background: linear-gradient(135deg, rgba(0, 224, 145, 0.05), rgba(0, 224, 145, 0.15));
-  border: 1px solid var(--success);
-  border-radius: 8px;
-  padding: 15px;
-  margin-top: 15px;
-}
-.bf-buff-card .buff-title {
-  font-family: var(--font-title);
-  font-size: 1.3em;
-  color: var(--success);
-  text-shadow: 0 0 10px rgba(0, 224, 145, 0.5);
-  margin: 0 0 10px 0;
-}
-.bf-buff-card li::before {
-  color: var(--success);
+  width: 100px;
+  height: 100px;
+  border: 2px solid var(--failure);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: shockwave 1s ease-out forwards;
 }
 
-/* Grid de Status/Caminhos */
-.bf-stats-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-  margin-top: 15px;
+.bf-energy-pulse {
+  animation: energy-pulse 2s ease-in-out infinite;
 }
-.bf-stats-grid .stat-item {
-  background: var(--glass-2);
-  border: 1px solid var(--glass);
-  border-radius: 8px;
-  padding: 15px;
-  text-align: center;
-}
-.bf-stats-grid .stat-item .stat-value {
-  font-family: var(--font-title);
-  font-size: 1.3em;
-  display: block;
-  margin-bottom: 5px;
-  line-height: 1.2;
-}
-.bf-stats-grid .stat-item .stat-label {
-  font-size: 0.85em;
-  color: var(--muted);
-  display: block;
-  text-transform: uppercase;
-}
-/* Cores para os Caminhos */
-.bf-stats-grid .stat-item .stat-value[style*="var(--success)"] { color: var(--success) !important; text-shadow: 0 0 8px rgba(0,224,145,0.5); }
-.bf-stats-grid .stat-item .stat-value[style*="var(--highlight)"] { color: var(--highlight) !important; text-shadow: 0 0 8px rgba(196,143,255,0.5); }
-.bf-stats-grid .stat-item .stat-value[style*="var(--blue)"] { color: #00E5FF !important; text-shadow: 0 0 8px rgba(0,229,255,0.5); }
 
-
-@media (max-width: 640px) {
-  .bf-body {
-    grid-template-columns: 1fr;
-  }
-  .bf-stats-grid {
-    grid-template-columns: 1fr;
-  }
+/* Efeito de brilho no título quando partículas ativam */
+.bf-title-highlight {
+  text-shadow: 0 0 20px var(--failure), 
+               0 0 30px var(--failure), 
+               0 0 40px var(--failure) !important;
+  transition: text-shadow 0.3s ease;
 }
