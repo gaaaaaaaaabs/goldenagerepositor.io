@@ -1,4 +1,4 @@
-/* --- Template: Black Flash (v1.2 - Efeito Raio) --- */
+/* --- Template: Black Flash (v1.3 - Sem Glitch) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Share+Tech+Mono&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -16,33 +16,13 @@
   --font-title: 'Yuji Syuku', serif;
   --font-mono: 'Share Tech Mono', monospace;
 
-  /* [CORRIGIDO] Cores do Glitch para Vermelho e Preto */
-  --bf-glitch-color-1: #000000; /* Era Cyan */
-  --bf-glitch-color-2: #000000; /* Era Roxo */
-  
   --bf-particle-color: #FF3030; 
   --bf-particle-glow: #FF0000; /* Vermelho puro */
 }
 
-/* --- Animação de Glitch (Da Memória) --- */
-@keyframes bf-glitch-anim {
-  0% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
-  10% { clip-path: inset(43% 0 16% 0); transform: translate(3px, 2px); }
-  20% { clip-path: inset(93% 0 2% 0); transform: translate(-2px, -3px); }
-  30% { clip-path: inset(1% 0 92% 0); transform: translate(5px, 1px); }
-  40% { clip-path: inset(36% 0 54% 0); transform: translate(1px, -2px); }
-  50% { clip-path: inset(90% 0 3% 0); transform: translate(-4px, 0); }
-  60% { clip-path: inset(12% 0 79% 0); transform: translate(3px, -1px); }
-  70% { clip-path: inset(57% 0 23% 0); transform: translate(-2px, 2px); }
-  80% { clip-path: inset(10% 0 83% 0); transform: translate(4px, -3px); }
-  90% { clip-path: inset(71% 0 10% 0); transform: translate(-1px, 1px); }
-  100% { clip-path: inset(89% 0 3% 0); transform: translate(-5px, 0); }
-}
-
-/* --- [CORRIGIDO] ANIMAÇÃO DE PARTÍCULAS (para JS) --- */
+/* --- ANIMAÇÃO DE PARTÍCULAS (para JS) --- */
 @keyframes bf-js-spark-anim {
   0% { 
-    /* Adiciona a rotação no início */
     transform: rotate(var(--rotation)) translate(0, 0) scale(0.1); 
     opacity: 0; 
     box-shadow: 0 0 5px var(--bf-particle-color); 
@@ -92,36 +72,14 @@
   z-index: 2; 
 }
 
+/* Título Limpo */
 .bf-title {
   font-family: var(--font-title);
   font-size: 2.8em;
   color: var(--text);
   margin: 0;
+  /* Mantém o brilho vermelho, mas sem o efeito tremido */
   text-shadow: 0 0 10px var(--bf-particle-glow), 0 0 20px var(--failure); 
-}
-
-.bf-title .glitch-text {
-  position: relative;
-  display: inline-block;
-  color: var(--failure);
-}
-.bf-title .glitch-text::before,
-.bf-title .glitch-text::after {
-  content: 'Flash Negro';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--bg);
-}
-.bf-title .glitch-text::before {
-  color: var(--bf-glitch-color-1); /* Preto */
-  animation: bf-glitch-anim 1.2s infinite linear alternate-reverse;
-}
-.bf-title .glitch-text::after {
-  color: var(--bf-glitch-color-2); /* Preto */
-  animation: bf-glitch-anim 1s infinite linear alternate;
 }
 
 .bf-subtitle {
@@ -133,7 +91,7 @@
   z-index: 2;
 }
 
-/* --- [CORRIGIDO] Estilização para as partículas (Raios) --- */
+/* --- Estilização para as partículas (Raios) --- */
 .bf-header .js-particle-container {
   position: absolute;
   top: 0;
@@ -146,18 +104,15 @@
 
 .bf-header .js-particle {
   position: absolute;
-  /* Remove o border-radius */
-  /* background: radial-gradient(circle at center, #ffffff 0%, var(--bf-particle-glow) 20%, var(--bf-particle-color) 80%); */
-  background: var(--bf-particle-glow); /* Cor vermelha sólida e brilhante */
+  background: var(--bf-particle-glow);
   opacity: 0;
   animation: bf-js-spark-anim var(--anim-duration) ease-out infinite;
   animation-delay: var(--anim-delay);
-  
-  /* [NOVO] Corta a partícula em forma de raio */
   clip-path: polygon(50% 0%, 60% 40%, 45% 50%, 55% 100%, 50% 65%, 40% 50%);
 }
 
-.bf-body { /* ... (O resto do CSS continua igual) ... */
+/* ... (O restante do CSS do corpo permanece igual) ... */
+.bf-body {
   padding: 25px;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -277,10 +232,7 @@
 .bf-stats-grid .stat-item .stat-value[style*="var(--blue)"] { color: #00E5FF !important; text-shadow: 0 0 8px rgba(0,229,255,0.5); }
 
 @media (max-width: 640px) {
-  .bf-body {
-    grid-template-columns: 1fr;
-  }
-  .bf-stats-grid {
+  .bf-body, .bf-stats-grid {
     grid-template-columns: 1fr;
   }
 }
