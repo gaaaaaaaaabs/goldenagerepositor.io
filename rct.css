@@ -1,0 +1,172 @@
+/* --- Template Técnica Reversa (RCT) --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+
+:root {
+  --bg: #0c0c1a;
+  --panel: #13141c;
+  --muted: #bfc6e6;
+  --accent1: #9b00ff;
+  --positive: #FFFFFF; /* Branco/Luz para Energia Positiva */
+  --positive-glow: rgba(255, 255, 255, 0.6);
+  --highlight: #c48fff;
+  --text: #e7e9ff;
+  --ui: 'Inter', system-ui, sans-serif;
+  --title: 'Yuji Syuku', serif;
+  --mono: 'Roboto Mono', monospace;
+  --card-radius: 10px;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-2: rgba(255, 255, 255, 0.02);
+}
+
+.rct-container {
+  box-sizing: border-box;
+  max-width: 820px;
+  width: 95%;
+  margin: 20px auto;
+  font-family: var(--ui);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: var(--card-radius);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15); /* Brilho branco sutil */
+  overflow: hidden;
+}
+
+/* Header */
+.rct-header {
+  height: 200px;
+  position: relative;
+  background-image: url('https://i.pinimg.com/originals/8d/4f/63/8d4f63546804382436785726f0004429.gif'); /* GIF de RCT/Gojo */
+  background-position: center center;
+  background-size: cover;
+  border-bottom: 1px solid var(--glass);
+}
+.rct-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(0deg, rgba(19, 20, 28, 1) 0%, rgba(19, 20, 28, 0.4) 100%);
+}
+.rct-title {
+  font-family: var(--title);
+  font-size: 2.8em;
+  color: var(--positive);
+  text-shadow: 0 0 15px var(--positive-glow);
+  position: absolute;
+  bottom: 20px;
+  left: 25px;
+  z-index: 2;
+  margin: 0;
+}
+.rct-kanji {
+  position: absolute;
+  bottom: -30px;
+  right: 25px;
+  z-index: 2;
+  font-family: var(--title);
+  font-size: 80px;
+  color: var(--positive);
+  opacity: 0.2;
+}
+
+/* Corpo */
+.rct-body {
+  padding: 25px;
+}
+.rct-body h2 {
+  font-family: var(--title);
+  font-size: 1.8em;
+  color: var(--positive);
+  margin: 25px 0 15px 0;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--positive);
+  text-shadow: 0 0 8px var(--positive-glow);
+}
+.rct-body section:first-child h2 { margin-top: 0; }
+.rct-body p {
+  font-size: 1.05em;
+  line-height: 1.8;
+  color: var(--muted);
+  margin-bottom: 15px;
+}
+.rct-body ul {
+  list-style: none;
+  padding-left: 0;
+}
+.rct-body li {
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 10px;
+  color: var(--muted);
+}
+.rct-body li::before {
+  content: '+';
+  position: absolute;
+  left: 0;
+  color: var(--positive);
+  font-weight: bold;
+}
+
+/* Tabela de Cura */
+.heal-table {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+}
+.heal-row {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px 100px;
+  background: var(--glass-2);
+  border: 1px solid var(--glass);
+  border-radius: 6px;
+  padding: 12px;
+  align-items: center;
+}
+.heal-row.header {
+  background: rgba(255, 255, 255, 0.1);
+  font-weight: 700;
+  color: var(--positive);
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 1px;
+}
+.heal-col {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+.heal-col.desc {
+  font-family: var(--ui);
+  color: var(--text);
+  font-weight: 600;
+}
+.heal-col.cost { color: var(--accent1); }
+.heal-col.heal { color: var(--success); }
+.heal-col.req { color: var(--muted); font-size: 11px; }
+
+/* Cards de Dano */
+.dmg-card {
+  background: linear-gradient(135deg, var(--glass), rgba(255, 255, 255, 0.05));
+  border: 1px solid var(--positive);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+.dmg-card h3 {
+  color: var(--positive);
+  margin: 0 0 10px 0;
+  font-size: 1.3em;
+}
+
+@media (max-width: 640px) {
+  .heal-row {
+    grid-template-columns: 1fr;
+    gap: 5px;
+    text-align: center;
+  }
+  .heal-row.header { display: none; }
+  .heal-col::before {
+    content: attr(data-label) ": ";
+    font-weight: bold;
+    color: var(--muted);
+  }
+}
