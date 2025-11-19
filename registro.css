@@ -1,0 +1,111 @@
+/* --- REGISTROS (Aparência & Técnicas) --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
+
+:root {
+  --reg-bg: #101118;
+  --reg-card-bg: #1b1d29;
+  --reg-border: #2a2d3d;
+  --reg-accent: #6D20C5;
+  --reg-text-main: #e0e0e0;
+  --reg-text-dim: #a0a0a0;
+  --reg-full: #c52020;   /* Vermelho para lotado */
+  --reg-open: #20c56d;   /* Verde para livre */
+}
+
+.jjk-registry-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  font-family: 'Roboto', sans-serif;
+  color: var(--reg-text-main);
+}
+
+/* Cabeçalho Simples */
+.jjk-registry-title {
+  text-align: center;
+  font-size: 2em;
+  font-weight: 900;
+  color: var(--reg-accent);
+  text-transform: uppercase;
+  margin-bottom: 30px;
+  border-bottom: 2px solid var(--reg-border);
+  padding-bottom: 15px;
+}
+
+/* Grid Responsivo */
+.jjk-registry-grid {
+  display: grid;
+  /* Cria colunas automáticas com largura mínima de 280px */
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 15px;
+}
+
+/* Card Individual */
+.jjk-reg-item {
+  background-color: var(--reg-card-bg);
+  border: 1px solid var(--reg-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.jjk-reg-item:hover {
+  transform: translateY(-3px);
+  border-color: var(--reg-accent);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+/* Topo do Card (Nome e Contagem) */
+.jjk-reg-header {
+  padding: 12px 15px;
+  background: rgba(0,0,0,0.2);
+  border-bottom: 1px solid var(--reg-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.jjk-reg-name {
+  font-weight: 700;
+  font-size: 1.1em;
+  color: #fff;
+}
+
+.jjk-reg-count {
+  font-size: 0.85em;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 4px;
+  background: var(--reg-bg);
+  border: 1px solid var(--reg-border);
+  color: var(--reg-text-dim);
+}
+
+/* Cores para status (opcional, basta adicionar a classe) */
+.jjk-reg-item.is-full .jjk-reg-count {
+  color: var(--reg-full);
+  border-color: var(--reg-full);
+}
+.jjk-reg-item.is-open .jjk-reg-count {
+  color: var(--reg-open);
+  border-color: var(--reg-open);
+}
+
+/* Lista de Usuários */
+.jjk-reg-users {
+  padding: 15px;
+  font-size: 0.95em;
+  color: var(--reg-text-dim);
+  line-height: 1.6;
+}
+
+.jjk-reg-users a {
+  color: var(--reg-accent); /* Cor do link do perfil */
+  text-decoration: none;
+  font-weight: 700;
+}
+.jjk-reg-users a:hover {
+  text-decoration: underline;
+  color: #fff;
+}
