@@ -1,4 +1,4 @@
-/* --- Template Técnica Reversa (RCT) --- */
+/* --- Template Técnica Reversa (RCT) v2 --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -6,7 +6,7 @@
   --panel: #13141c;
   --muted: #bfc6e6;
   --accent1: #9b00ff;
-  --positive: #FFFFFF; /* Branco/Luz para Energia Positiva */
+  --positive: #FFFFFF; 
   --positive-glow: rgba(255, 255, 255, 0.6);
   --highlight: #c48fff;
   --text: #e7e9ff;
@@ -16,6 +16,7 @@
   --card-radius: 10px;
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
+  --success: #00e091;
 }
 
 .rct-container {
@@ -28,7 +29,7 @@
   background: var(--panel);
   border-radius: var(--card-radius);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15); /* Brilho branco sutil */
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.15);
   overflow: hidden;
 }
 
@@ -36,7 +37,7 @@
 .rct-header {
   height: 200px;
   position: relative;
-  background-image: url('https://i.pinimg.com/originals/8d/4f/63/8d4f63546804382436785726f0004429.gif'); /* GIF de RCT/Gojo */
+  background-image: url('https://i.pinimg.com/originals/8d/4f/63/8d4f63546804382436785726f0004429.gif');
   background-position: center center;
   background-size: cover;
   border-bottom: 1px solid var(--glass);
@@ -107,7 +108,7 @@
   font-weight: bold;
 }
 
-/* Tabela de Cura */
+/* [ATUALIZADO v2] Tabela de Capacidade Regenerativa */
 .heal-table {
   display: grid;
   gap: 10px;
@@ -115,7 +116,8 @@
 }
 .heal-row {
   display: grid;
-  grid-template-columns: 1fr 100px 100px 100px;
+  /* Gravidade (Pequeno) | Descrição (Grande) | Requisito (Médio) */
+  grid-template-columns: 120px 1fr 120px; 
   background: var(--glass-2);
   border: 1px solid var(--glass);
   border-radius: 6px;
@@ -134,14 +136,20 @@
   font-family: var(--mono);
   font-size: 13px;
 }
+.heal-col.severity {
+  color: var(--accent1);
+  font-weight: 700;
+}
 .heal-col.desc {
   font-family: var(--ui);
   color: var(--text);
-  font-weight: 600;
+  line-height: 1.4;
 }
-.heal-col.cost { color: var(--accent1); }
-.heal-col.heal { color: var(--success); }
-.heal-col.req { color: var(--muted); font-size: 11px; }
+.heal-col.req { 
+  color: var(--success); 
+  text-align: right;
+  font-weight: 700;
+}
 
 /* Cards de Dano */
 .dmg-card {
@@ -161,12 +169,14 @@
   .heal-row {
     grid-template-columns: 1fr;
     gap: 5px;
-    text-align: center;
+    text-align: left;
   }
   .heal-row.header { display: none; }
   .heal-col::before {
     content: attr(data-label) ": ";
     font-weight: bold;
     color: var(--muted);
+    display: inline-block;
+    width: 80px;
   }
 }
