@@ -1,4 +1,4 @@
-/* --- REGISTROS V2 (Lista Vertical + Pedido) --- */
+/* --- REGISTROS V3 (Lista Vertical + Alfabeto) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
@@ -24,7 +24,6 @@
   padding: 20px;
 }
 
-/* Cabeçalho */
 .jjk-registry-title {
   text-align: center;
   font-size: 2em;
@@ -37,17 +36,28 @@
   letter-spacing: 1px;
 }
 
-/* Lista Vertical (Um abaixo do outro) */
 .jjk-registry-list {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-/* Item da Lista */
+/* --- [NOVO] Separador de Letras (A, B, C...) --- */
+.jjk-reg-letter {
+  font-size: 1.5em;
+  font-weight: 900;
+  color: var(--reg-accent);
+  background: linear-gradient(90deg, var(--reg-card-bg), transparent);
+  padding: 10px 15px;
+  border-left: 4px solid var(--reg-accent);
+  margin-top: 20px; /* Espaço antes da nova letra */
+  margin-bottom: 5px;
+  border-radius: 0 4px 4px 0;
+}
+
 .jjk-reg-item {
   display: flex;
-  align-items: center; /* Alinha verticalmente */
+  align-items: center;
   background-color: var(--reg-card-bg);
   border: 1px solid var(--reg-border);
   border-radius: 6px;
@@ -60,9 +70,8 @@
   transform: translateX(5px);
 }
 
-/* Coluna do Nome (Esquerda) */
 .jjk-reg-info {
-  flex-grow: 1; /* Ocupa o espaço disponível */
+  flex-grow: 1;
   display: flex;
   align-items: center;
   gap: 15px;
@@ -72,9 +81,10 @@
   font-weight: 700;
   font-size: 1.1em;
   color: #fff;
-  min-width: 200px; /* Garante alinhamento visual */
+  min-width: 200px;
 }
 
+/* Contagem (Opcional para aparência) */
 .jjk-reg-count {
   font-size: 0.85em;
   font-weight: 700;
@@ -85,12 +95,9 @@
   color: var(--reg-text-dim);
   white-space: nowrap;
 }
-
-/* Cores de Status */
 .is-full .jjk-reg-count { color: var(--reg-full); border-color: var(--reg-full); }
 .is-open .jjk-reg-count { color: var(--reg-open); border-color: var(--reg-open); }
 
-/* Coluna dos Usuários (Direita) */
 .jjk-reg-users {
   font-size: 0.95em;
   color: var(--reg-text-dim);
@@ -105,13 +112,12 @@
 }
 .jjk-reg-users a:hover { text-decoration: underline; color: #fff; }
 
-/* --- Área de Pedido (Codebox) --- */
+/* Área de Pedido */
 .jjk-request-section {
   margin-top: 40px;
   padding-top: 20px;
   border-top: 2px dashed var(--reg-border);
 }
-
 .jjk-request-title {
   font-size: 1.2em;
   font-weight: 700;
@@ -119,20 +125,46 @@
   margin-bottom: 10px;
 }
 
-.jjk-code-box {
-  background-color: var(--reg-code-bg);
-  border: 1px solid var(--reg-border);
-  border-left: 3px solid var(--reg-accent);
-  color: var(--reg-text-dim);
-  padding: 15px;
-  font-family: monospace;
-  font-size: 0.9em;
-  border-radius: 4px;
-  user-select: all; /* Seleciona tudo ao clicar */
-  cursor: text;
+/* --- [IMPORTANTE] CUSTOMIZAÇÃO DO BBCODE [CODE] DA FORUMEIROS --- */
+/* Isso sobrescreve o visual padrão feio do fórum */
+dl.codebox {
+  background-color: var(--reg-code-bg) !important;
+  border: 1px solid var(--reg-border) !important;
+  border-left: 3px solid var(--reg-accent) !important;
+  border-radius: 5px !important;
+  padding: 0 !important;
+  margin: 10px 0 !important;
+  color: var(--reg-text-dim) !important;
 }
 
-/* Responsividade */
+dl.codebox dt {
+  /* Cabeçalho onde diz "Código:" */
+  border-bottom: 1px solid var(--reg-border) !important;
+  font-family: 'Roboto', sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 0.85em !important;
+  color: var(--reg-accent) !important;
+  padding: 5px 10px !important;
+  background: rgba(255,255,255,0.02) !important;
+}
+
+dl.codebox dd {
+  /* Onde fica o texto do código */
+  margin: 0 !important;
+  padding: 10px 15px !important;
+}
+
+dl.codebox code {
+  /* O texto em si */
+  font-family: monospace !important;
+  font-size: 0.9em !important;
+  color: var(--reg-text-main) !important;
+  white-space: pre-wrap !important; /* QUEBRA A LINHA AUTOMATICAMENTE */
+  word-wrap: break-word !important; /* QUEBRA PALAVRAS LONGAS */
+  overflow-x: hidden !important;    /* REMOVE BARRA DE ROLAGEM HORIZONTAL */
+  display: block !important;
+}
+
 @media (max-width: 600px) {
   .jjk-reg-item { flex-direction: column; align-items: flex-start; gap: 10px; }
   .jjk-reg-users { text-align: left; margin-top: 5px; }
