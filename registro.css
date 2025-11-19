@@ -1,4 +1,4 @@
-/* --- REGISTROS (Aparência & Técnicas) --- */
+/* --- REGISTROS V2 (Lista Vertical + Pedido) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
@@ -8,18 +8,23 @@
   --reg-accent: #6D20C5;
   --reg-text-main: #e0e0e0;
   --reg-text-dim: #a0a0a0;
-  --reg-full: #c52020;   /* Vermelho para lotado */
-  --reg-open: #20c56d;   /* Verde para livre */
+  --reg-full: #c52020;
+  --reg-open: #20c56d;
+  --reg-code-bg: #0c0d13;
 }
 
 .jjk-registry-container {
-  max-width: 1000px;
+  max-width: 900px;
   margin: 20px auto;
   font-family: 'Roboto', sans-serif;
   color: var(--reg-text-main);
+  background-color: var(--reg-bg);
+  border: 1px solid var(--reg-border);
+  border-radius: 8px;
+  padding: 20px;
 }
 
-/* Cabeçalho Simples */
+/* Cabeçalho */
 .jjk-registry-title {
   text-align: center;
   font-size: 2em;
@@ -29,83 +34,106 @@
   margin-bottom: 30px;
   border-bottom: 2px solid var(--reg-border);
   padding-bottom: 15px;
+  letter-spacing: 1px;
 }
 
-/* Grid Responsivo */
-.jjk-registry-grid {
-  display: grid;
-  /* Cria colunas automáticas com largura mínima de 280px */
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 15px;
+/* Lista Vertical (Um abaixo do outro) */
+.jjk-registry-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-/* Card Individual */
+/* Item da Lista */
 .jjk-reg-item {
+  display: flex;
+  align-items: center; /* Alinha verticalmente */
   background-color: var(--reg-card-bg);
   border: 1px solid var(--reg-border);
   border-radius: 6px;
-  overflow: hidden;
-  transition: transform 0.2s ease, border-color 0.2s ease;
-  display: flex;
-  flex-direction: column;
+  padding: 15px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
 }
 
 .jjk-reg-item:hover {
-  transform: translateY(-3px);
   border-color: var(--reg-accent);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  transform: translateX(5px);
 }
 
-/* Topo do Card (Nome e Contagem) */
-.jjk-reg-header {
-  padding: 12px 15px;
-  background: rgba(0,0,0,0.2);
-  border-bottom: 1px solid var(--reg-border);
+/* Coluna do Nome (Esquerda) */
+.jjk-reg-info {
+  flex-grow: 1; /* Ocupa o espaço disponível */
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  gap: 15px;
 }
 
 .jjk-reg-name {
   font-weight: 700;
   font-size: 1.1em;
   color: #fff;
+  min-width: 200px; /* Garante alinhamento visual */
 }
 
 .jjk-reg-count {
   font-size: 0.85em;
   font-weight: 700;
-  padding: 2px 8px;
+  padding: 3px 8px;
   border-radius: 4px;
   background: var(--reg-bg);
   border: 1px solid var(--reg-border);
   color: var(--reg-text-dim);
+  white-space: nowrap;
 }
 
-/* Cores para status (opcional, basta adicionar a classe) */
-.jjk-reg-item.is-full .jjk-reg-count {
-  color: var(--reg-full);
-  border-color: var(--reg-full);
-}
-.jjk-reg-item.is-open .jjk-reg-count {
-  color: var(--reg-open);
-  border-color: var(--reg-open);
-}
+/* Cores de Status */
+.is-full .jjk-reg-count { color: var(--reg-full); border-color: var(--reg-full); }
+.is-open .jjk-reg-count { color: var(--reg-open); border-color: var(--reg-open); }
 
-/* Lista de Usuários */
+/* Coluna dos Usuários (Direita) */
 .jjk-reg-users {
-  padding: 15px;
   font-size: 0.95em;
   color: var(--reg-text-dim);
-  line-height: 1.6;
+  text-align: right;
 }
 
 .jjk-reg-users a {
-  color: var(--reg-accent); /* Cor do link do perfil */
+  color: var(--reg-accent);
   text-decoration: none;
   font-weight: 700;
+  margin-left: 5px;
 }
-.jjk-reg-users a:hover {
-  text-decoration: underline;
-  color: #fff;
+.jjk-reg-users a:hover { text-decoration: underline; color: #fff; }
+
+/* --- Área de Pedido (Codebox) --- */
+.jjk-request-section {
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 2px dashed var(--reg-border);
+}
+
+.jjk-request-title {
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--reg-text-main);
+  margin-bottom: 10px;
+}
+
+.jjk-code-box {
+  background-color: var(--reg-code-bg);
+  border: 1px solid var(--reg-border);
+  border-left: 3px solid var(--reg-accent);
+  color: var(--reg-text-dim);
+  padding: 15px;
+  font-family: monospace;
+  font-size: 0.9em;
+  border-radius: 4px;
+  user-select: all; /* Seleciona tudo ao clicar */
+  cursor: text;
+}
+
+/* Responsividade */
+@media (max-width: 600px) {
+  .jjk-reg-item { flex-direction: column; align-items: flex-start; gap: 10px; }
+  .jjk-reg-users { text-align: left; margin-top: 5px; }
 }
