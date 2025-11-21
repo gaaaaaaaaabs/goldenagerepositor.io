@@ -1,207 +1,167 @@
-/* --- Ficha de Maldição (NPC Statblock) v1 --- */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) --- */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
-  --c-bg: #0f0505;         /* Fundo bem escuro/avermelhado */
-  --c-panel: #1a0a0a;      /* Painel */
-  --c-border: #4a1515;     /* Bordas vermelhas */
-  --c-accent: #ff3030;     /* Destaque Vermelho */
-  --c-text: #e7e9ff;
-  --c-muted: #b38585;
-  --font-ui: 'Inter', sans-serif;
-  --font-mono: 'Roboto Mono', monospace;
-  --font-title: 'Yuji Syuku', serif;
+  --curse-bg: #0c0505; /* Fundo mais avermelhado/escuro */
+  --curse-panel: #1a0b0b;
+  --curse-border: #3d1a1a;
+  --curse-accent: #c52020; /* Vermelho Sangue */
+  --curse-accent-dim: #7a1212;
+  --curse-text: #e0e0e0;
+  --curse-dim: #a08080;
 }
 
-.curse-sheet {
-  box-sizing: border-box;
-  max-width: 700px; /* Mais estreito que a ficha de player */
-  width: 95%;
+.jjk-curse-container {
+  max-width: 800px;
   margin: 20px auto;
-  background: var(--c-bg);
-  border: 1px solid var(--c-border);
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--curse-bg);
+  border: 1px solid var(--curse-border);
+  border-left: 4px solid var(--curse-accent);
   border-radius: 8px;
-  font-family: var(--font-ui);
-  color: var(--c-text);
+  color: var(--curse-text);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
   overflow: hidden;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
 }
 
-/* Cabeçalho */
+/* --- Cabeçalho --- */
 .curse-header {
   display: flex;
-  gap: 20px;
-  padding: 20px;
-  background: linear-gradient(90deg, var(--c-panel) 0%, rgba(74, 21, 21, 0.2) 100%);
-  border-bottom: 2px solid var(--c-border);
-  align-items: center;
-}
-.curse-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  border: 2px solid var(--c-accent);
-  object-fit: cover;
-  background: #000;
-  flex-shrink: 0;
-}
-.curse-info h1 {
-  font-family: var(--font-title);
-  font-size: 1.8em;
-  margin: 0;
-  color: var(--c-accent);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.curse-info .curse-rank {
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  color: var(--c-muted);
-  background: rgba(255, 48, 48, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  display: inline-block;
-  margin-top: 5px;
-  border: 1px solid var(--c-border);
+  background: linear-gradient(to right, var(--curse-panel), var(--curse-bg));
+  border-bottom: 1px solid var(--curse-border);
 }
 
-/* Status Vitais (Barras) */
-.curse-vitals {
-  padding: 15px 20px;
-  background: rgba(0, 0, 0, 0.3);
-  border-bottom: 1px solid var(--c-border);
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+.curse-image {
+  width: 200px;
+  min-height: 200px;
+  background-size: cover;
+  background-position: center;
+  border-right: 1px solid var(--curse-border);
 }
-.vital-box {
+
+.curse-identity {
+  padding: 20px;
+  flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  justify-content: center;
 }
-.vital-label {
-  font-size: 0.8em;
-  font-weight: 700;
-  color: var(--c-muted);
-  text-transform: uppercase;
-  display: flex;
-  justify-content: space-between;
-}
-.vital-bar-bg {
-  height: 12px;
-  background: #330000;
-  border-radius: 4px;
-  border: 1px solid #550000;
-  overflow: hidden;
-}
-.vital-bar-fill {
-  height: 100%;
-  border-radius: 4px;
-}
-.hp-fill { background: #ff3030; width: 100%; } /* Assumindo cheio */
-.ea-fill { background: #9b00ff; width: 100%; } /* Assumindo cheio */
 
-.vital-regen {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-family: var(--font-mono);
-  font-size: 0.85em;
-  color: var(--c-muted);
-  padding-top: 5px;
-  border-top: 1px solid rgba(255,255,255,0.05);
-  margin-top: 5px;
+.curse-name {
+  font-size: 2em;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+  text-shadow: 0 0 10px var(--curse-accent-dim);
+}
+
+.curse-tags {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.tag-grade, .tag-type {
+  font-size: 0.8em;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+.tag-grade { background: var(--curse-accent); color: #fff; }
+.tag-type { background: #333; color: #aaa; border: 1px solid #444; }
+
+/* Stats Principais (HP/EA) */
+.curse-main-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Reutilizando classes do script v5 para animação */
+.jjk-dossier-status-item {
+  margin-bottom: 5px;
+}
+.jjk-dossier-status-header {
+  display: flex; justify-content: space-between; font-size: 0.85em; font-weight: 700; margin-bottom: 2px; color: var(--curse-dim);
+}
+.jjk-dossier-status-value { color: #fff; }
+
+.jjk-dossier-status-bar {
+  height: 8px; background: #000; border-radius: 4px; border: 1px solid #333; overflow: hidden;
+}
+.jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; }
+.jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; } /* Roxo para EA */
+
+.curse-regen-info {
+  font-size: 0.8em; color: var(--curse-dim); margin-top: 2px; text-align: right;
+}
+.curse-regen-info .value { color: #6D20C5; font-weight: 700; }
+
+/* --- Seções Genéricas --- */
+.curse-section {
+  padding: 15px 20px;
+  border-bottom: 1px solid var(--curse-border);
+}
+.curse-section:last-child { border-bottom: none; }
+
+.curse-title {
+  font-size: 1.1em;
+  font-weight: 700;
+  color: var(--curse-accent);
+  border-bottom: 1px solid var(--curse-border);
+  padding-bottom: 5px;
+  margin: 0 0 15px 0;
+  text-transform: uppercase;
 }
 
 /* Atributos (Grid Compacto) */
-.curse-section-title {
-  background: var(--c-panel);
-  padding: 8px 20px;
-  font-family: var(--font-mono);
-  font-size: 0.9em;
-  font-weight: 700;
-  color: var(--c-muted);
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-  text-transform: uppercase;
-}
-.curse-attr-grid {
+.jjk-dossier-attr-list {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4 por linha */
-  padding: 15px 20px;
+  grid-template-columns: repeat(6, 1fr); /* 6 em linha no PC */
   gap: 10px;
-  background: var(--c-bg);
 }
-.c-attr {
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  padding: 8px;
-  border-radius: 4px;
-}
-.c-attr-label {
-  display: block;
-  font-size: 10px;
-  color: var(--c-muted);
-  font-weight: 700;
-}
-.c-attr-val {
-  display: block;
-  font-family: var(--font-mono);
-  font-size: 1.2em;
-  font-weight: 700;
-  color: var(--c-text);
-}
+.jjk-dossier-attr-item { background: var(--curse-panel); padding: 5px; border-radius: 4px; border: 1px solid var(--curse-border); text-align: center; }
+.jjk-dossier-attr-header { display: flex; flex-direction: column; font-size: 0.8em; font-weight: 700; gap: 2px; }
+.jjk-dossier-attr-header span:first-child { color: var(--curse-accent); }
+.jjk-dossier-attr-bar { height: 4px; background: #000; margin-top: 5px; border-radius: 2px; }
+.jjk-dossier-attr-bar-fill { height: 100%; background: var(--curse-text); transition: width 0.5s; }
 
-/* Aptidões (Tags) */
-.curse-aptitudes {
-  padding: 15px 20px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
+/* Aptidões (Lista Compacta 3 Colunas) */
+.curse-skills-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 15px;
 }
-.apt-tag {
-  background: var(--c-panel);
-  border: 1px solid var(--c-border);
-  padding: 4px 10px;
-  border-radius: 4px;
-  font-size: 0.85em;
-  color: var(--c-text);
+.skill-cat-name {
+  font-size: 0.8em; font-weight: 900; color: #fff; background: var(--curse-accent-dim);
+  padding: 2px 5px; margin-bottom: 5px; text-align: center; border-radius: 2px;
 }
-.apt-tag b { color: var(--c-accent); }
+.jjk-dossier-skill-item {
+  display: flex; justify-content: space-between; font-size: 0.8em;
+  padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.jjk-dossier-skill-item span:first-child { color: var(--curse-dim); }
+.jjk-dossier-skill-xp { color: #fff; font-weight: 700; }
+
+/* Esconde as barras de XP das aptidões na ficha de NPC para economizar espaço, mantém só o número */
+.curse-skills-grid .jjk-dossier-skill-bar { display: none; }
 
 /* Técnicas */
-.curse-techniques {
-  padding: 15px 20px;
-}
-.tech-item {
-  margin-bottom: 15px;
-  background: rgba(255, 255, 255, 0.02);
+.curse-tech-list { display: flex; flex-direction: column; gap: 10px; }
+.curse-tech-card {
+  background: var(--curse-panel);
+  border: 1px solid var(--curse-border);
   padding: 10px;
-  border-left: 3px solid var(--c-accent);
-  border-radius: 0 4px 4px 0;
+  border-radius: 4px;
 }
-.tech-item:last-child { margin-bottom: 0; }
-.tech-name {
-  font-weight: 700;
-  color: var(--c-accent);
-  display: block;
-  margin-bottom: 5px;
-  font-family: var(--font-title);
-  font-size: 1.1em;
-}
-.tech-meta {
-  font-family: var(--font-mono);
-  font-size: 0.8em;
-  color: var(--c-muted);
-  margin-bottom: 8px;
-  display: block;
-}
-.tech-desc {
-  font-size: 0.9em;
-  line-height: 1.5;
-  color: #ccc;
-}
+.tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; }
+.tech-desc { font-size: 0.9em; color: var(--curse-dim); line-height: 1.5; }
 
-@media (max-width: 500px) {
-  .curse-attr-grid { grid-template-columns: repeat(2, 1fr); }
-  .curse-vitals { grid-template-columns: 1fr; }
+/* Responsivo */
+@media (max-width: 700px) {
+  .curse-header { flex-direction: column; }
+  .curse-image { width: 100%; height: 150px; border-right: none; border-bottom: 1px solid var(--curse-border); }
+  .jjk-dossier-attr-list { grid-template-columns: repeat(3, 1fr); }
+  .curse-skills-grid { grid-template-columns: 1fr; }
 }
