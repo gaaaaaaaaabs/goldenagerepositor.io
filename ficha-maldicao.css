@@ -1,0 +1,207 @@
+/* --- Ficha de Maldição (NPC Statblock) v1 --- */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
+
+:root {
+  --c-bg: #0f0505;         /* Fundo bem escuro/avermelhado */
+  --c-panel: #1a0a0a;      /* Painel */
+  --c-border: #4a1515;     /* Bordas vermelhas */
+  --c-accent: #ff3030;     /* Destaque Vermelho */
+  --c-text: #e7e9ff;
+  --c-muted: #b38585;
+  --font-ui: 'Inter', sans-serif;
+  --font-mono: 'Roboto Mono', monospace;
+  --font-title: 'Yuji Syuku', serif;
+}
+
+.curse-sheet {
+  box-sizing: border-box;
+  max-width: 700px; /* Mais estreito que a ficha de player */
+  width: 95%;
+  margin: 20px auto;
+  background: var(--c-bg);
+  border: 1px solid var(--c-border);
+  border-radius: 8px;
+  font-family: var(--font-ui);
+  color: var(--c-text);
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.7);
+}
+
+/* Cabeçalho */
+.curse-header {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+  background: linear-gradient(90deg, var(--c-panel) 0%, rgba(74, 21, 21, 0.2) 100%);
+  border-bottom: 2px solid var(--c-border);
+  align-items: center;
+}
+.curse-img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  border: 2px solid var(--c-accent);
+  object-fit: cover;
+  background: #000;
+  flex-shrink: 0;
+}
+.curse-info h1 {
+  font-family: var(--font-title);
+  font-size: 1.8em;
+  margin: 0;
+  color: var(--c-accent);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.curse-info .curse-rank {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  color: var(--c-muted);
+  background: rgba(255, 48, 48, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-top: 5px;
+  border: 1px solid var(--c-border);
+}
+
+/* Status Vitais (Barras) */
+.curse-vitals {
+  padding: 15px 20px;
+  background: rgba(0, 0, 0, 0.3);
+  border-bottom: 1px solid var(--c-border);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.vital-box {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.vital-label {
+  font-size: 0.8em;
+  font-weight: 700;
+  color: var(--c-muted);
+  text-transform: uppercase;
+  display: flex;
+  justify-content: space-between;
+}
+.vital-bar-bg {
+  height: 12px;
+  background: #330000;
+  border-radius: 4px;
+  border: 1px solid #550000;
+  overflow: hidden;
+}
+.vital-bar-fill {
+  height: 100%;
+  border-radius: 4px;
+}
+.hp-fill { background: #ff3030; width: 100%; } /* Assumindo cheio */
+.ea-fill { background: #9b00ff; width: 100%; } /* Assumindo cheio */
+
+.vital-regen {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: 0.85em;
+  color: var(--c-muted);
+  padding-top: 5px;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  margin-top: 5px;
+}
+
+/* Atributos (Grid Compacto) */
+.curse-section-title {
+  background: var(--c-panel);
+  padding: 8px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  font-weight: 700;
+  color: var(--c-muted);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  text-transform: uppercase;
+}
+.curse-attr-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 4 por linha */
+  padding: 15px 20px;
+  gap: 10px;
+  background: var(--c-bg);
+}
+.c-attr {
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  padding: 8px;
+  border-radius: 4px;
+}
+.c-attr-label {
+  display: block;
+  font-size: 10px;
+  color: var(--c-muted);
+  font-weight: 700;
+}
+.c-attr-val {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 1.2em;
+  font-weight: 700;
+  color: var(--c-text);
+}
+
+/* Aptidões (Tags) */
+.curse-aptitudes {
+  padding: 15px 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.apt-tag {
+  background: var(--c-panel);
+  border: 1px solid var(--c-border);
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  color: var(--c-text);
+}
+.apt-tag b { color: var(--c-accent); }
+
+/* Técnicas */
+.curse-techniques {
+  padding: 15px 20px;
+}
+.tech-item {
+  margin-bottom: 15px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 10px;
+  border-left: 3px solid var(--c-accent);
+  border-radius: 0 4px 4px 0;
+}
+.tech-item:last-child { margin-bottom: 0; }
+.tech-name {
+  font-weight: 700;
+  color: var(--c-accent);
+  display: block;
+  margin-bottom: 5px;
+  font-family: var(--font-title);
+  font-size: 1.1em;
+}
+.tech-meta {
+  font-family: var(--font-mono);
+  font-size: 0.8em;
+  color: var(--c-muted);
+  margin-bottom: 8px;
+  display: block;
+}
+.tech-desc {
+  font-size: 0.9em;
+  line-height: 1.5;
+  color: #ccc;
+}
+
+@media (max-width: 500px) {
+  .curse-attr-grid { grid-template-columns: repeat(2, 1fr); }
+  .curse-vitals { grid-template-columns: 1fr; }
+}
