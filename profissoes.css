@@ -1,4 +1,4 @@
-/* --- Template Profissões (v3 - Banner Responsivo) --- */
+/* --- Template Profissões (v4 - Anti-Conflito) --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&family=Yuji+Syuku&display=swap');
 
 :root {
@@ -12,17 +12,6 @@
   --glass: rgba(255, 255, 255, 0.03);
   --glass-2: rgba(255, 255, 255, 0.02);
   --text: #e7e9ff;
-}
-
-/* Animações */
-@keyframes shine {
-  0% { background-position: left center; }
-  50% { background-position: right center; }
-  100% { background-position: left center; }
-}
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
 }
 
 /* Estilo Base */
@@ -42,56 +31,47 @@
   box-shadow: 0 10px 30px rgba(2, 2, 6, 0.6);
 }
 
-/* [CORRIGIDO v3] Container do Banner Responsivo */
+/* Container do Banner */
 .banner-container {
   position: relative;
   width: 100%;
-  /* Define a proporção (Largura / Altura). Ajuste se quiser mais alto ou baixo.
-     2.5 / 1 é um formato panorâmico bom. 16 / 9 é mais alto. */
   aspect-ratio: 2.5 / 1; 
   overflow: hidden;
 }
-
 .lore-banner {
   position: absolute;
-  inset: 0; /* Ocupa todo o container */
+  inset: 0;
   background-size: cover;
   background-position: center center;
   border-radius: var(--card-radius) var(--card-radius) 0 0;
   transition: opacity 0.5s ease-in-out;
+  opacity: 0; /* Padrão oculto */
 }
-
 .lore-banner::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 50%; /* Gradiente sobe até a metade */
+  bottom: 0; left: 0; right: 0;
+  height: 50%;
   background: linear-gradient(180deg, transparent 0%, var(--bg) 100%);
 }
 
-/* Banners Específicos (Opacity controlado por inputs) */
-.prof-banner { opacity: 1; }
-.dir-banner { opacity: 0; }
+/* [CORREÇÃO v4] Lógica de Abas por CLASSE, não ID */
+/* Input 1 Ativado (Professor) -> Banner 1 Visível */
+.tab-input-1:checked ~ .rpg-card .banner-container .banner-img-1 { opacity: 1; }
+/* Input 2 Ativado (Diretor) -> Banner 2 Visível */
+.tab-input-2:checked ~ .rpg-card .banner-container .banner-img-2 { opacity: 1; }
 
-/* Lógica de Troca (Para Abas) */
-#tab-prof:checked ~ .rpg-card .banner-container .prof-banner { opacity: 1; }
-#tab-prof:checked ~ .rpg-card .banner-container .dir-banner { opacity: 0; }
-#tab-dir:checked ~ .rpg-card .banner-container .prof-banner { opacity: 0; }
-#tab-dir:checked ~ .rpg-card .banner-container .dir-banner { opacity: 1; }
+/* Inputs padrões de profissão única (sem abas) */
+.banner-static { opacity: 1 !important; }
 
 /* Conteúdo Principal */
-.main-content {
-  padding: 20px;
-  padding-top: 0;
-}
+.main-content { padding: 20px; padding-top: 0; }
 
 /* Cabeçalho */
 .rpg-card .header {
   padding-left: 90px;
   position: relative;
-  margin-top: -60px; /* Sobe para ficar em cima do banner */
+  margin-top: -60px;
   z-index: 2;
   min-height: 80px;
   display: flex;
@@ -136,7 +116,7 @@
   font-size: 13px;
   max-width: 90%;
   text-shadow: 0 2px 4px rgba(0,0,0,0.8);
-  background: rgba(0,0,0,0.3); /* Fundo leve para leitura no banner */
+  background: rgba(0,0,0,0.3);
   padding: 2px 5px;
   border-radius: 4px;
   width: fit-content;
@@ -153,7 +133,7 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-/* Seções e Conteúdo */
+/* Seções */
 .section {
   background: linear-gradient(180deg, var(--glass), var(--glass-2));
   border-radius: 8px;
@@ -165,21 +145,10 @@
 }
 .rpg-card .section:nth-of-type(1) { animation-delay: 0.1s; }
 .rpg-card .section:nth-of-type(2) { animation-delay: 0.2s; }
+.section .h .name { font-family: 'Yuji Syuku', serif; font-weight: 700; color: var(--highlight); font-size: 17px; }
+.section p.lead { margin: 0; color: var(--muted); font-size: 13.5px; line-height: 1.5; }
 
-.section .h .name {
-  font-family: 'Yuji Syuku', serif;
-  font-weight: 700;
-  color: var(--highlight);
-  font-size: 17px;
-}
-.section p.lead {
-  margin: 0;
-  color: var(--muted);
-  font-size: 13.5px;
-  line-height: 1.5;
-}
-
-/* Sistema de Abas (Apenas para cards com abas) */
+/* Abas */
 .tabs-container {
   display: flex;
   flex-wrap: wrap;
@@ -199,12 +168,14 @@
 }
 .tabs-container .tab-button:hover { background: var(--glass); }
 
-#tab-prof:checked ~ .rpg-card .tabs-container label[for="tab-prof"],
-#tab-dir:checked ~ .rpg-card .tabs-container label[for="tab-dir"] {
+/* [CORREÇÃO v4] Estilo do Botão Ativo */
+.tab-input-1:checked ~ .rpg-card .tabs-container .tab-btn-1,
+.tab-input-2:checked ~ .rpg-card .tabs-container .tab-btn-2 {
   background: var(--accent1);
   color: white;
   box-shadow: 0 -5px 15px rgba(155, 0, 255, 0.2);
 }
+
 .tab-pane {
   order: 99;
   flex-grow: 1;
@@ -215,36 +186,21 @@
   border-radius: 0 8px 8px 8px;
   border-top: 2px solid var(--accent1);
 }
-#tab-prof:checked ~ .rpg-card .tabs-container .tab-pane-prof { display: block; }
-#tab-dir:checked ~ .rpg-card .tabs-container .tab-pane-dir { display: block; }
 
-/* Acordeão e Grids */
-.accordion-item input[type="checkbox"] { display: none; }
-.accordion-item .accordion-title {
-  display: flex; justify-content: space-between; align-items: center;
-  padding: 10px 12px; background: var(--glass-2); border-radius: 6px;
-  cursor: pointer; transition: background 0.3s; margin-top: 5px;
-}
-.accordion-item .accordion-title:hover { background: var(--glass); }
-.accordion-item .accordion-title .nation-name { font-weight: 700; color: var(--text); font-size: 14px; }
-.accordion-item .accordion-title .icon::before { content: '+'; font-size: 20px; color: var(--highlight); font-weight: bold; }
-.accordion-item .accordion-content {
-  max-height: 0; overflow: hidden; transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
-  padding: 0 12px; font-size: 13px; color: var(--muted); line-height: 1.6; background: var(--panel);
-}
-.accordion-item input:checked + .accordion-title + .accordion-content {
-  max-height: 200px; padding: 10px 12px; border-top: 1px solid var(--glass); border-radius: 0 0 6px 6px;
-}
-.accordion-item input:checked + .accordion-title .icon::before { transform: rotate(45deg); }
+/* [CORREÇÃO v4] Conteúdo Visível */
+.tab-input-1:checked ~ .rpg-card .tabs-container .tab-pane-1 { display: block; }
+.tab-input-2:checked ~ .rpg-card .tabs-container .tab-pane-2 { display: block; }
 
-.details-grid {
-  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;
-}
+/* Grids */
+.details-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px; }
 .detail-card { background: var(--glass-2); padding: 12px; border-radius: 6px; }
 .detail-card .card-title { font-size: 14px; font-weight: 700; color: var(--highlight); }
 .detail-card .card-content { font-size: 13px; color: var(--muted); margin-top: 5px; line-height: 1.5; }
 .detail-card ul { padding-left: 18px; margin: 5px 0 0 0; }
 
+/* Animações */
+@keyframes shine { 0% { background-position: left center; } 50% { background-position: right center; } 100% { background-position: left center; } }
+@keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 768px) {
   .rpg-card .header { padding-left: 0; text-align: center; margin-top: -70px; }
   .rpg-card .icon-deco { position: relative; left: 50%; transform: translateX(-50%); margin-bottom: 15px; }
