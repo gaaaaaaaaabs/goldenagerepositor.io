@@ -1,11 +1,11 @@
-/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) --- */
+/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) v2.1 (Img Fix) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
-  --curse-bg: #0c0505; /* Fundo mais avermelhado/escuro */
+  --curse-bg: #0c0505;
   --curse-panel: #1a0b0b;
   --curse-border: #3d1a1a;
-  --curse-accent: #c52020; /* Vermelho Sangue */
+  --curse-accent: #c52020;
   --curse-accent-dim: #7a1212;
   --curse-text: #e0e0e0;
   --curse-dim: #a08080;
@@ -24,29 +24,34 @@
   overflow: hidden;
 }
 
-/* --- Cabeçalho --- */
+/* Cabeçalho */
 .curse-header {
   display: flex;
   background: linear-gradient(to right, var(--curse-panel), var(--curse-bg));
   border-bottom: 1px solid var(--curse-border);
+  align-items: stretch; /* Garante que a imagem e o texto tenham a mesma altura */
 }
 
+/* [ATUALIZADO] Imagem da Maldição */
 .curse-image {
   width: 200px;
-  min-height: 200px;
-  background-size: cover;
+  min-height: 250px; /* Aumentei um pouco para dar mais espaço vertical */
+  background-color: #000; /* Fundo preto caso a imagem não preencha tudo */
+  background-size: contain; /* Garante que a imagem caiba inteira sem cortar */
+  background-repeat: no-repeat;
   background-position: center;
-  border-right: 1px solid var(--curse-border);
+  border: 1px solid var(--curse-border); /* Borda completa em volta da imagem */
+  margin: 15px; /* Um pequeno espaço para a borda não colar no container principal */
+  border-radius: 4px;
 }
 
 .curse-identity {
-  padding: 20px;
+  padding: 20px 20px 20px 5px; /* Ajuste no padding esquerdo por causa da margem da imagem */
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-
 .curse-name {
   font-size: 2em;
   font-weight: 900;
@@ -55,7 +60,6 @@
   margin-bottom: 5px;
   text-shadow: 0 0 10px var(--curse-accent-dim);
 }
-
 .curse-tags {
   display: flex;
   gap: 10px;
@@ -71,63 +75,35 @@
 .tag-grade { background: var(--curse-accent); color: #fff; }
 .tag-type { background: #333; color: #aaa; border: 1px solid #444; }
 
-/* Stats Principais (HP/EA) */
-.curse-main-stats {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-/* Reutilizando classes do script v5 para animação */
-.jjk-dossier-status-item {
-  margin-bottom: 5px;
-}
-.jjk-dossier-status-header {
-  display: flex; justify-content: space-between; font-size: 0.85em; font-weight: 700; margin-bottom: 2px; color: var(--curse-dim);
-}
+/* Stats */
+.curse-main-stats { display: flex; flex-direction: column; gap: 10px; }
+.jjk-dossier-status-item { margin-bottom: 5px; }
+.jjk-dossier-status-header { display: flex; justify-content: space-between; font-size: 0.85em; font-weight: 700; margin-bottom: 2px; color: var(--curse-dim); }
 .jjk-dossier-status-value { color: #fff; }
-
-.jjk-dossier-status-bar {
-  height: 8px; background: #000; border-radius: 4px; border: 1px solid #333; overflow: hidden;
-}
+.jjk-dossier-status-bar { height: 8px; background: #000; border-radius: 4px; border: 1px solid #333; overflow: hidden; }
 .jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; }
-.jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; } /* Roxo para EA */
-
-.curse-regen-info {
-  font-size: 0.8em; color: var(--curse-dim); margin-top: 2px; text-align: right;
-}
+.jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; }
+.curse-regen-info { font-size: 0.8em; color: var(--curse-dim); margin-top: 2px; text-align: right; }
 .curse-regen-info .value { color: #6D20C5; font-weight: 700; }
 
-/* --- Seções Genéricas --- */
-.curse-section {
-  padding: 15px 20px;
-  border-bottom: 1px solid var(--curse-border);
-}
+/* Seções */
+.curse-section { padding: 15px 20px; border-bottom: 1px solid var(--curse-border); }
 .curse-section:last-child { border-bottom: none; }
-
 .curse-title {
-  font-size: 1.1em;
-  font-weight: 700;
-  color: var(--curse-accent);
-  border-bottom: 1px solid var(--curse-border);
-  padding-bottom: 5px;
-  margin: 0 0 15px 0;
-  text-transform: uppercase;
+  font-size: 1.1em; font-weight: 700; color: var(--curse-accent);
+  border-bottom: 1px solid var(--curse-border); padding-bottom: 5px;
+  margin: 0 0 15px 0; text-transform: uppercase;
 }
 
-/* Atributos (Grid Compacto) */
-.jjk-dossier-attr-list {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr); /* 6 em linha no PC */
-  gap: 10px;
-}
+/* Atributos */
+.jjk-dossier-attr-list { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
 .jjk-dossier-attr-item { background: var(--curse-panel); padding: 5px; border-radius: 4px; border: 1px solid var(--curse-border); text-align: center; }
 .jjk-dossier-attr-header { display: flex; flex-direction: column; font-size: 0.8em; font-weight: 700; gap: 2px; }
 .jjk-dossier-attr-header span:first-child { color: var(--curse-accent); }
 .jjk-dossier-attr-bar { height: 4px; background: #000; margin-top: 5px; border-radius: 2px; }
 .jjk-dossier-attr-bar-fill { height: 100%; background: var(--curse-text); transition: width 0.5s; }
 
-/* Aptidões (Lista Compacta 3 Colunas) */
+/* Aptidões (Grid com Nível) */
 .curse-skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -138,30 +114,46 @@
   padding: 2px 5px; margin-bottom: 5px; text-align: center; border-radius: 2px;
 }
 .jjk-dossier-skill-item {
-  display: flex; justify-content: space-between; font-size: 0.8em;
-  padding: 2px 0; border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: grid;
+  grid-template-columns: 1fr auto auto; 
+  gap: 5px;
+  align-items: center;
+  padding: 2px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.jjk-dossier-skill-item span:first-child { color: var(--curse-dim); }
-.jjk-dossier-skill-xp { color: #fff; font-weight: 700; }
-
-/* Esconde as barras de XP das aptidões na ficha de NPC para economizar espaço, mantém só o número */
+.jjk-dossier-skill-item span:first-child { 
+  color: var(--curse-dim); 
+  font-size: 0.8em;
+}
+.jjk-dossier-skill-level {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--curse-accent);
+}
+.jjk-dossier-skill-xp { 
+  color: #fff; 
+  font-weight: 700; 
+  font-size: 0.75em;
+  text-align: right;
+}
 .curse-skills-grid .jjk-dossier-skill-bar { display: none; }
 
 /* Técnicas */
 .curse-tech-list { display: flex; flex-direction: column; gap: 10px; }
-.curse-tech-card {
-  background: var(--curse-panel);
-  border: 1px solid var(--curse-border);
-  padding: 10px;
-  border-radius: 4px;
-}
+.curse-tech-card { background: var(--curse-panel); border: 1px solid var(--curse-border); padding: 10px; border-radius: 4px; }
 .tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; }
 .tech-desc { font-size: 0.9em; color: var(--curse-dim); line-height: 1.5; }
 
 /* Responsivo */
 @media (max-width: 700px) {
   .curse-header { flex-direction: column; }
-  .curse-image { width: 100%; height: 150px; border-right: none; border-bottom: 1px solid var(--curse-border); }
+  /* [ATUALIZADO] Ajuste responsivo da imagem */
+  .curse-image { 
+    width: calc(100% - 30px); /* Largura total menos as margens */
+    height: 250px; 
+    margin: 15px auto; /* Centraliza horizontalmente */
+  }
+  .curse-identity { padding: 0 20px 20px 20px; }
   .jjk-dossier-attr-list { grid-template-columns: repeat(3, 1fr); }
   .curse-skills-grid { grid-template-columns: 1fr; }
 }
