@@ -1,4 +1,4 @@
-/* --- TEMPLATE DE POSTAGEM (JOGADOR) --- */
+/* --- TEMPLATE DE POSTAGEM (JOGADOR) v2.1 --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
 
 :root {
@@ -36,20 +36,32 @@
 /* Animações */
 @keyframes draw-line-x { from { width: 0%; } to { width: 100%; } }
 @keyframes draw-line-y { from { height: 0%; } to { height: 100%; } }
-@keyframes blink { 50% { opacity: 0; } }
 @keyframes neon-flicker {
-  0%, 100% { opacity: 1; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark); }
+  0%, 100% { opacity: 1; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent); }
   20%, 24%, 55% { opacity: 0.6; text-shadow: none; }
-  22%, 26%, 57% { opacity: 1; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark); }
+  22%, 26%, 57% { opacity: 1; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent); }
 }
 
-/* Imagem e Efeitos */
+/* --- [FIX DA IMAGEM NO FÓRUM] --- */
 .rp-post-image-wrapper {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 15px;
+  width: 100%;
+  height: 350px; /* Define a altura fixa do banner */
+  background-color: #000; /* Fundo preto se a imagem falhar */
+  border: 1px solid rgba(160, 80, 255, 0.2);
 }
+
+.rp-post-image-wrapper img {
+  display: block;
+  width: 100%;
+  height: 100%; /* Força a imagem a ocupar toda a altura de 350px */
+  object-fit: cover; /* A MÁGICA: Corta o excesso sem esticar/distorcer */
+  object-position: top center; /* Garante que o rosto do personagem (topo) apareça */
+}
+/* -------------------------------- */
 
 .rp-post-image-wrapper::before,
 .rp-post-image-wrapper::after {
@@ -73,15 +85,8 @@
 
 .rp-post-image-wrapper::after {
   color: #fff;
-  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent), 0 0 20px var(--accent), 0 0 25px var(--accent), 0 0 30px var(--accent-dark), 0 0 35px var(--accent-dark);
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent);
   animation: neon-flicker 5s infinite alternate;
-}
-
-.rp-post-image-wrapper img {
-  display: block;
-  width: 100%;
-  height: auto;
-  object-fit: cover;
 }
 
 .rp-post-image-wrapper .overlay {
@@ -279,12 +284,11 @@
 .rp-post-content p {
   margin: 0 0 1em 0;
 }
-
 .rp-post-content p:last-child {
   margin-bottom: 0;
 }
 
-/* --- [NOVO] Caixa de Notas/Extras --- */
+/* Caixa de Notas/Extras */
 .rp-post-extras {
   margin-top: 15px;
   background: rgba(0, 0, 0, 0.5);
@@ -295,7 +299,7 @@
 }
 
 .rp-post-extras::before {
-  content: 'INFO // SISTEMA'; /* Label decorativa */
+  content: 'INFO // SISTEMA';
   position: absolute;
   top: -10px;
   left: 15px;
@@ -315,7 +319,6 @@
   line-height: 1.5;
 }
 
-/* Estilo para destacar números ou dados dentro das notas */
 .rp-post-extras-content b {
   color: var(--text);
 }
