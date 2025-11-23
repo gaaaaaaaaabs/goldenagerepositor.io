@@ -1,0 +1,162 @@
+/* --- INTERNATIONAL GOLDEN BANK --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Lato:wght@300;400;700&display=swap');
+
+:root {
+  --bank-bg: #0a0a0a;
+  --bank-panel: #141414;
+  --bank-gold: #d4af37;
+  --bank-gold-dim: #8a701e;
+  --bank-text: #e0e0e0;
+  --bank-border: #333;
+  --bank-success: #2ecc71;
+  --bank-danger: #e74c3c;
+}
+
+.bank-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: var(--bank-bg);
+  color: var(--bank-text);
+  font-family: 'Lato', sans-serif;
+  border: 1px solid var(--bank-gold-dim);
+  border-radius: 4px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Textura de Luxo */
+.bank-container::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 5px;
+  background: linear-gradient(90deg, var(--bank-gold-dim), var(--bank-gold), var(--bank-gold-dim));
+}
+
+/* Cabeçalho */
+.bank-header {
+  text-align: center;
+  padding: 40px 20px;
+  background: radial-gradient(circle at center, #1f1f1f 0%, #0a0a0a 100%);
+  border-bottom: 1px solid var(--bank-gold-dim);
+}
+
+.bank-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 3em;
+  color: var(--bank-gold);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  margin: 0;
+  text-shadow: 0 2px 10px rgba(212, 175, 55, 0.2);
+}
+
+.bank-subtitle {
+  color: var(--bank-text);
+  opacity: 0.6;
+  font-size: 0.9em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: 10px;
+}
+
+/* Corpo */
+.bank-body { padding: 30px; }
+
+.bank-section-title {
+  font-family: 'Cinzel', serif;
+  color: var(--bank-gold);
+  font-size: 1.4em;
+  border-bottom: 1px solid var(--bank-border);
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+.bank-section-title:first-child { margin-top: 0; }
+
+/* Grid de Limites */
+.loan-tiers {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 15px;
+}
+
+.tier-card {
+  background: var(--bank-panel);
+  border: 1px solid var(--bank-border);
+  padding: 15px;
+  text-align: center;
+  border-radius: 4px;
+  transition: border-color 0.3s;
+}
+.tier-card:hover { border-color: var(--bank-gold-dim); }
+
+.tier-grade {
+  display: block;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  color: var(--bank-gold);
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.tier-amount {
+  font-family: 'Cinzel', serif;
+  font-size: 1.2em;
+  color: #fff;
+}
+
+/* Calculadora */
+.bank-calculator {
+  background: var(--bank-panel);
+  border: 1px solid var(--bank-border);
+  padding: 20px;
+  border-radius: 4px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.calc-input-group { display: flex; flex-direction: column; gap: 5px; }
+.calc-input-group label { font-size: 0.8em; color: var(--bank-gold); text-transform: uppercase; }
+.calc-input-group input, .calc-input-group select {
+  background: #000; border: 1px solid var(--bank-border); color: #fff; padding: 10px;
+  font-family: 'Lato', sans-serif; outline: none;
+}
+.calc-input-group input:focus { border-color: var(--bank-gold); }
+
+.calc-result {
+  grid-column: 1 / -1;
+  background: #000;
+  border: 1px solid var(--bank-gold-dim);
+  padding: 15px;
+  text-align: center;
+  margin-top: 10px;
+}
+.calc-res-label { display: block; font-size: 0.8em; color: #888; text-transform: uppercase; }
+.calc-res-value { display: block; font-size: 1.8em; color: var(--bank-gold); font-family: 'Cinzel', serif; margin-top: 5px; }
+.calc-note { font-size: 0.7em; color: var(--bank-danger); margin-top: 5px; display: block; }
+
+/* Área de Cópia */
+.bank-copy-area {
+  background: #000;
+  border: 1px dashed var(--bank-border);
+  padding: 15px;
+  position: relative;
+}
+.bank-code-text {
+  width: 100%; height: 80px;
+  background: transparent; border: none; color: #888;
+  font-family: monospace; font-size: 0.85em; resize: none; outline: none;
+}
+.bank-btn {
+  background: var(--bank-gold-dim); color: #fff; border: none; padding: 10px 20px;
+  font-family: 'Cinzel', serif; cursor: pointer; width: 100%; transition: 0.2s;
+  text-transform: uppercase; font-weight: 700;
+}
+.bank-btn:hover { background: var(--bank-gold); color: #000; }
+
+@media (max-width: 600px) {
+  .bank-calculator { grid-template-columns: 1fr; }
+  .loan-tiers { grid-template-columns: 1fr 1fr; }
+}
