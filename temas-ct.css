@@ -1,0 +1,140 @@
+/* --- TEMAS DE TÉCNICAS (SKINS) --- */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Orbitron:wght@500&family=Nanum+Brush+Script&display=swap');
+
+/* =========================================
+   TEMA 1: ILIMITADO (Gojo)
+   Estética: Espaço, Neon, Infinito, Sci-Fi
+   ========================================= */
+.theme-limitless {
+  --ct-bg: #050510;
+  --ct-panel: rgba(10, 10, 25, 0.8);
+  --ct-text: #e0f7ff;
+  --ct-accent: #00e5ff; /* Ciano */
+  --ct-secondary: #a050ff; /* Roxo */
+  --ct-font-title: 'Orbitron', sans-serif;
+  --ct-radius: 15px;
+}
+
+.theme-limitless.rp-post-container {
+  background: var(--ct-bg);
+  border: 1px solid var(--ct-accent);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.2), inset 0 0 50px rgba(160, 80, 255, 0.1);
+  color: var(--ct-text);
+  border-radius: var(--ct-radius);
+  backdrop-filter: blur(5px);
+  padding: 25px;
+  font-family: 'Inter', sans-serif;
+  max-width: 700px; margin: 40px auto; position: relative;
+}
+
+.theme-limitless .rp-post-header { text-align: center; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 15px; margin-bottom: 20px; }
+.theme-limitless .post-title { font-family: var(--ct-font-title); font-size: 24px; color: var(--ct-accent); text-shadow: 0 0 10px var(--ct-accent); letter-spacing: 2px; margin: 0; }
+.theme-limitless .post-subtitle { font-size: 12px; color: var(--ct-secondary); letter-spacing: 4px; text-transform: uppercase; }
+
+/* Barras do Ilimitado (Degradê Infinito) */
+.theme-limitless .jjk-dossier-status-bar { background: #000; border: 1px solid var(--ct-secondary); border-radius: 50px; height: 12px; }
+.theme-limitless .jjk-dossier-hp-fill { background: linear-gradient(90deg, #00e5ff, #2979ff); box-shadow: 0 0 10px #00e5ff; }
+.theme-limitless .jjk-dossier-ea-fill { background: linear-gradient(90deg, #a050ff, #ff00ff); box-shadow: 0 0 10px #a050ff; }
+
+.theme-limitless .rp-post-content { background: rgba(255,255,255,0.03); border-left: 3px solid var(--ct-accent); padding: 20px; font-size: 14px; line-height: 1.7; }
+
+/* =========================================
+   TEMA 2: DEZ SOMBRAS (Megumi)
+   Estética: Líquido, Sombras, Tinta, Verde Escuro
+   ========================================= */
+.theme-shadows {
+  --ct-bg: #080a08;
+  --ct-panel: #0f1410;
+  --ct-text: #dbece2;
+  --ct-accent: #43a047; /* Verde Shikigami */
+  --ct-secondary: #1b5e20;
+  --ct-font-title: 'Cinzel', serif;
+  --ct-radius: 6px;
+}
+
+.theme-shadows.rp-post-container {
+  background-color: var(--ct-bg);
+  color: var(--ct-text);
+  border: none;
+  /* Efeito de sombra líquida interna */
+  box-shadow: inset 0 0 40px #000, 0 10px 30px rgba(0,0,0,0.8);
+  border-bottom: 4px solid var(--ct-accent);
+  padding: 30px;
+  max-width: 700px; margin: 40px auto; position: relative;
+  font-family: 'Inter', sans-serif;
+}
+
+/* Efeito de Tinta escorrendo (Simulado) */
+.theme-shadows::before {
+  content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 5px;
+  background: var(--ct-accent);
+  box-shadow: 0 5px 15px var(--ct-accent);
+}
+
+.theme-shadows .post-title { font-family: var(--ct-font-title); color: #fff; font-size: 26px; border-bottom: 1px solid var(--ct-secondary); padding-bottom: 5px; display: inline-block; }
+.theme-shadows .post-subtitle { color: var(--ct-accent); font-weight: 700; font-size: 11px; margin-top: 5px; }
+
+.theme-shadows .rp-post-image-wrapper { opacity: 0.9; filter: contrast(1.1) desaturate(0.3); border-radius: 4px; border: 1px solid #333; }
+
+/* Barras das Sombras */
+.theme-shadows .jjk-dossier-status-bar { background: #111; border: none; height: 10px; border-radius: 2px; }
+.theme-shadows .jjk-dossier-hp-fill { background: #a04343; border-radius: 2px; }
+.theme-shadows .jjk-dossier-ea-fill { background: var(--ct-accent); border-radius: 2px; box-shadow: 0 0 5px var(--ct-accent); }
+
+.theme-shadows .rp-post-content { background: transparent; padding: 10px 0; font-size: 14px; color: #ccc; }
+
+/* =========================================
+   TEMA 3: FALA AMALDIÇOADA (Inumaki)
+   Estética: Selo, Dourado, Azul Marinho, Tribal
+   ========================================= */
+.theme-speech {
+  --ct-bg: #0a0e17;
+  --ct-text: #e0e0e0;
+  --ct-accent: #d4af37; /* Dourado/Ouro */
+  --ct-secondary: #1a237e; /* Azul Marinho */
+  --ct-font-title: 'Yuji Syuku', serif;
+  --ct-radius: 0px; /* Quadrado */
+}
+
+.theme-speech.rp-post-container {
+  background-color: var(--ct-bg);
+  border: 2px solid var(--ct-accent);
+  color: var(--ct-text);
+  padding: 20px;
+  max-width: 700px; margin: 40px auto; position: relative;
+  font-family: 'Inter', sans-serif;
+  /* Cantos cortados estilo selo */
+  clip-path: polygon(
+    0 10px, 10px 0, 
+    calc(100% - 10px) 0, 100% 10px, 
+    100% calc(100% - 10px), calc(100% - 10px) 100%, 
+    10px 100%, 0 calc(100% - 10px)
+  );
+}
+
+/* Marcas da Boca (Selo) */
+.theme-speech::after {
+  content: '◎'; /* Símbolo simples de selo */
+  position: absolute; top: 15px; right: 15px;
+  font-size: 40px; color: var(--ct-accent); opacity: 0.2; font-weight: bold;
+}
+
+.theme-speech .rp-post-header { text-align: left; border-left: 3px solid var(--ct-accent); padding-left: 15px; margin-bottom: 20px; }
+.theme-speech .post-title { font-family: var(--ct-font-title); font-size: 28px; color: var(--ct-accent); margin: 0; }
+.theme-speech .post-subtitle { color: #6c7ac9; font-weight: 700; letter-spacing: 1px; font-size: 12px; }
+
+/* Barras Fala */
+.theme-speech .jjk-dossier-status-bar { background: #000; border: 1px solid var(--ct-accent); height: 14px; border-radius: 0; }
+.theme-speech .jjk-dossier-hp-fill { background: #c62828; }
+.theme-speech .jjk-dossier-ea-fill { background: var(--ct-accent); } /* Energia Dourada */
+
+.theme-speech .rp-post-content { font-size: 15px; line-height: 1.8; color: #d1d5db; }
+
+/* Classes Utilitárias Comuns a Todos */
+.jjk-dossier-status-bars { display: flex; flex-direction: column; gap: 8px; margin: 20px 0; }
+.jjk-dossier-status-item { display: flex; align-items: center; gap: 10px; }
+.jjk-dossier-status-label { width: 30px; font-size: 11px; font-weight: 700; color: #888; }
+.jjk-dossier-status-bar-wrapper { flex: 1; position: relative; }
+.jjk-dossier-status-value { position: absolute; top: 0; left: 50%; transform: translateX(-50%); font-size: 9px; color: #fff; text-shadow: 1px 1px 2px #000; line-height: 14px; font-weight: 700; }
+.rp-post-image-wrapper img { width: 100%; height: 300px; object-fit: cover; border-radius: 4px; margin-bottom: 15px; display: block; }
+.rp-post-extras { margin-top: 15px; padding: 15px; font-size: 13px; background: rgba(0,0,0,0.3); border-top: 1px dashed #555; }
