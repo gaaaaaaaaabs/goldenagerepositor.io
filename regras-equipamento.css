@@ -1,0 +1,187 @@
+/* --- TEMPLATE: REGRAS DE EQUIPAMENTO --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;600&family=Roboto+Mono:wght@500&display=swap');
+
+:root {
+  --rule-bg: #0e1014;
+  --rule-panel: #16191f;
+  --rule-border: #2c3340;
+  --rule-accent: #607d8b; /* Azul Aço */
+  --rule-highlight: #90a4ae;
+  --rule-alert: #cf6679;
+  --rule-success: #81c784;
+  --text-main: #eceff1;
+  --text-muted: #b0bec5;
+}
+
+.jjk-rules-container {
+  max-width: 850px;
+  margin: 30px auto;
+  background-color: var(--rule-bg);
+  color: var(--text-main);
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--rule-border);
+  border-top: 4px solid var(--rule-accent);
+  border-radius: 6px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+  overflow: hidden;
+  line-height: 1.6;
+}
+
+.jjk-rules-container * { box-sizing: border-box; }
+
+/* Cabeçalho */
+.rules-header {
+  background: var(--rule-panel);
+  padding: 30px;
+  border-bottom: 1px solid var(--rule-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-image: radial-gradient(circle at 100% 0%, rgba(96, 125, 139, 0.1) 0%, transparent 30%);
+}
+
+.rules-title h1 {
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2.2em;
+  margin: 0;
+  color: #fff;
+  letter-spacing: 1px;
+}
+
+.rules-title p {
+  margin: 5px 0 0 0;
+  color: var(--rule-accent);
+  font-weight: 600;
+  font-size: 0.9em;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.rules-icon {
+  font-size: 2.5em;
+  color: var(--rule-border);
+}
+
+/* Corpo */
+.rules-body { padding: 30px; }
+
+/* Seções */
+.rules-section { margin-bottom: 40px; }
+.rules-section:last-child { margin-bottom: 0; }
+
+.rules-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--rule-highlight);
+  font-size: 1.4em;
+  border-bottom: 2px solid var(--rule-border);
+  padding-bottom: 8px;
+  margin-bottom: 15px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.rules-text {
+  color: var(--text-muted);
+  font-size: 0.95em;
+  text-align: justify;
+}
+
+.rules-text strong { color: #fff; font-weight: 700; }
+
+/* Tabela de Durabilidade */
+.rules-table-wrapper {
+  background: var(--rule-panel);
+  border: 1px solid var(--rule-border);
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 20px 0;
+}
+
+.rules-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.rules-table th {
+  background: rgba(255,255,255,0.05);
+  text-align: left;
+  padding: 12px 15px;
+  color: var(--rule-highlight);
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  border-bottom: 1px solid var(--rule-border);
+}
+
+.rules-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.02);
+  color: var(--text-muted);
+}
+
+.rules-table tr:last-child td { border-bottom: none; }
+.rules-table tr:hover { background: rgba(255,255,255,0.02); }
+
+.durability-val {
+  font-family: 'Roboto Mono', monospace;
+  color: #fff;
+  font-weight: 700;
+}
+
+/* Caixas de Alerta/Info */
+.rules-alert {
+  background: rgba(207, 102, 121, 0.1);
+  border-left: 4px solid var(--rule-alert);
+  padding: 15px;
+  border-radius: 0 4px 4px 0;
+  margin: 20px 0;
+  font-size: 0.9em;
+  color: #ffdadf;
+}
+
+.rules-info {
+  background: rgba(129, 199, 132, 0.1);
+  border-left: 4px solid var(--rule-success);
+  padding: 15px;
+  border-radius: 0 4px 4px 0;
+  margin: 20px 0;
+  font-size: 0.9em;
+  color: #e0f2f1;
+}
+
+/* Lista de Passos */
+.rules-steps {
+  list-style: none;
+  padding: 0;
+  counter-reset: step-counter;
+}
+.rules-steps li {
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  color: var(--text-muted);
+}
+.rules-steps li::before {
+  counter-increment: step-counter;
+  content: counter(step-counter);
+  position: absolute;
+  left: 0; top: 0;
+  width: 24px; height: 24px;
+  background: var(--rule-border);
+  color: #fff;
+  border-radius: 50%;
+  text-align: center;
+  font-size: 0.8em;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: 'Roboto Mono';
+}
+
+@media (max-width: 600px) {
+  .rules-header { flex-direction: column; text-align: center; gap: 15px; }
+  .rules-icon { display: none; }
+  .rules-table th, .rules-table td { padding: 10px; font-size: 0.85em; }
+}
