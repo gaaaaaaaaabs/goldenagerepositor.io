@@ -1,0 +1,183 @@
+/* --- TEMPLATE: MERCADO NEGRO (Black Market) --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bm-bg: #050505;
+  --bm-panel: #0f0f0f;
+  --bm-accent: #b026ff; /* Roxo Neon */
+  --bm-danger: #ff0055; /* Vermelho Neon */
+  --bm-gold: #ffd700;
+  --bm-text: #e0e0e0;
+  --bm-dim: #666;
+  --bm-border: #222;
+}
+
+.jjk-blackmarket-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: var(--bm-bg);
+  color: var(--bm-text);
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--bm-border);
+  border-radius: 8px;
+  overflow: hidden;
+  /* Sombra colorida para dar o ar de "neon" */
+  box-shadow: 0 0 30px rgba(176, 38, 255, 0.15);
+  position: relative;
+}
+
+/* Faixa de Perigo no topo */
+.jjk-blackmarket-container::before {
+  content: '';
+  position: absolute; top: 0; left: 0; width: 100%; height: 3px;
+  background: linear-gradient(90deg, var(--bm-accent), var(--bm-danger), var(--bm-accent));
+  z-index: 10;
+}
+
+/* Cabeçalho */
+.bm-header {
+  background: radial-gradient(circle at top, #1a0b2e 0%, #050505 100%);
+  padding: 40px 30px;
+  border-bottom: 1px solid var(--bm-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.bm-title h1 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 2.5em;
+  margin: 0;
+  color: #fff;
+  text-shadow: 0 0 10px var(--bm-accent);
+  letter-spacing: 2px;
+}
+.bm-title p {
+  margin: 5px 0 0 0;
+  color: var(--bm-accent);
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 0.9em;
+}
+
+.bm-npc {
+  display: flex; align-items: center; gap: 15px;
+  background: rgba(0,0,0,0.5);
+  padding: 10px 20px;
+  border: 1px solid var(--bm-accent);
+  border-radius: 4px;
+  box-shadow: 0 0 15px rgba(176, 38, 255, 0.2);
+}
+.bm-npc-avatar { width: 50px; height: 50px; border-radius: 4px; border: 1px solid #fff; object-fit: cover; filter: grayscale(0.5); }
+.bm-npc-text { font-size: 0.85em; color: #fff; font-style: italic; }
+
+/* Abas */
+.bm-tabs { display: flex; background: #111; border-bottom: 1px solid var(--bm-border); }
+.bm-tabs input[type="radio"] { display: none; }
+.bm-tabs label {
+  flex: 1; padding: 15px; text-align: center; text-transform: uppercase;
+  font-family: 'Orbitron', sans-serif; font-size: 0.9em; color: var(--bm-dim);
+  cursor: pointer; transition: 0.3s; border-bottom: 2px solid transparent;
+}
+.bm-tabs label:hover { color: #fff; background: rgba(255,255,255,0.05); }
+
+/* Ativação das Abas */
+#bm-tab-weapons:checked ~ .bm-tabs label[for="bm-tab-weapons"],
+#bm-tab-objects:checked ~ .bm-tabs label[for="bm-tab-objects"],
+#bm-tab-illegal:checked ~ .bm-tabs label[for="bm-tab-illegal"] {
+  color: var(--bm-accent);
+  border-bottom-color: var(--bm-accent);
+  background: rgba(176, 38, 255, 0.05);
+  text-shadow: 0 0 8px var(--bm-accent);
+}
+
+.bm-content { display: none; padding: 30px; animation: fadeIn 0.5s ease; }
+
+#bm-tab-weapons:checked ~ #content-weapons,
+#bm-tab-objects:checked ~ #content-objects,
+#bm-tab-illegal:checked ~ #content-illegal {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 25px;
+}
+
+@keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Cards */
+.bm-item-card {
+  background: var(--bm-panel);
+  border: 1px solid var(--bm-border);
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease;
+  position: relative;
+}
+/* Efeito de Hover mais agressivo */
+.bm-item-card:hover {
+  transform: translateY(-5px);
+  border-color: var(--bm-accent);
+  box-shadow: 0 5px 20px rgba(176, 38, 255, 0.15);
+}
+
+.item-image {
+  width: 100%; height: 180px; background: #000; border-bottom: 1px solid var(--bm-border);
+  position: relative;
+}
+.item-image img {
+  width: 100%; height: 100%; object-fit: cover; object-position: center; opacity: 0.8;
+  transition: opacity 0.3s;
+}
+.bm-item-card:hover .item-image img { opacity: 1; }
+
+/* Tag de Raridade na Imagem */
+.rarity-tag {
+  position: absolute; top: 10px; right: 10px;
+  background: #000; color: var(--bm-danger); border: 1px solid var(--bm-danger);
+  padding: 2px 6px; font-size: 0.7em; font-weight: 900; text-transform: uppercase;
+  font-family: 'Rajdhani', sans-serif; letter-spacing: 1px;
+}
+
+.item-info { padding: 20px; flex: 1; display: flex; flex-direction: column; }
+.item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 15px; }
+.item-name { font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 1.3em; color: #fff; line-height: 1.1; text-transform: uppercase; }
+.item-type { font-size: 0.7em; text-transform: uppercase; color: var(--bm-dim); margin-top: 4px; display: block; letter-spacing: 1px;}
+
+.item-price {
+  font-family: 'Orbitron', sans-serif; font-weight: 700; color: var(--bm-gold);
+  font-size: 1.1em; white-space: nowrap; text-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+}
+
+.item-desc {
+  font-size: 0.85em; color: var(--bm-text); line-height: 1.6; margin-bottom: 20px; flex: 1;
+  border-left: 2px solid var(--bm-border); padding-left: 10px;
+}
+.item-desc b { color: var(--bm-accent); }
+
+/* Botão de Compra "Illegal" */
+.buy-btn {
+  background: transparent; border: 1px solid var(--bm-accent); color: var(--bm-accent);
+  text-align: center; padding: 10px; border-radius: 2px;
+  text-decoration: none; font-size: 0.9em; font-weight: 700; text-transform: uppercase;
+  transition: 0.2s; margin-top: auto; cursor: pointer; letter-spacing: 2px; font-family: 'Orbitron', sans-serif;
+}
+.buy-btn:hover { background: var(--bm-accent); color: #000; box-shadow: 0 0 15px var(--bm-accent); }
+.buy-btn:active { transform: scale(0.98); }
+
+@media (max-width: 600px) {
+  .bm-header { flex-direction: column; text-align: center; }
+  .bm-tabs { flex-direction: column; }
+  .bm-tabs label { border-bottom: 1px solid var(--bm-border); border-left: 3px solid transparent; }
+  #bm-tab-weapons:checked ~ .bm-tabs label[for="bm-tab-weapons"],
+  #bm-tab-objects:checked ~ .bm-tabs label[for="bm-tab-objects"],
+  #bm-tab-illegal:checked ~ .bm-tabs label[for="bm-tab-illegal"] {
+    border-bottom-color: var(--bm-border); border-left-color: var(--bm-accent);
+  }
+}
