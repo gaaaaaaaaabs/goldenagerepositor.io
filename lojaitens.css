@@ -124,3 +124,67 @@
     border-bottom-color: var(--shop-border); border-left-color: var(--shop-highlight);
   }
 }
+
+/* --- CORREÇÃO DE ALINHAMENTO DA PAGINAÇÃO --- */
+
+/* 1. O Container: Força alinhamento Flexbox */
+.pagination, 
+.topic-actions .pagination, 
+.pathname-box .pagination {
+    display: inline-flex !important;
+    align-items: center !important; /* Centraliza verticalmente */
+    justify-content: center !important;
+    vertical-align: middle !important;
+    gap: 6px !important; /* Espaço entre as bolinhas */
+    height: auto !important;
+    margin: 0 !important;
+    float: none !important;
+}
+
+/* 2. Os Itens (Links e Ativo): Reseta tamanhos e margens */
+.pagination span, 
+.pagination a, 
+.pagination strong {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    vertical-align: middle !important;
+    float: none !important;
+    
+    /* Define um tamanho fixo para todos serem iguais */
+    min-width: 12px !important; 
+    height: 12px !important;
+    
+    line-height: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border-radius: 50% !important; /* Garante que sejam redondos */
+}
+
+/* 3. O Item Ativo (Círculo Vazio com Borda) */
+/* O problema geralmente é a borda somando ao tamanho total */
+.pagination strong, 
+.pagination span.active,
+.pagination a:active {
+    box-sizing: border-box !important; /* Borda conta para dentro */
+    background: transparent !important;
+    border: 2px solid var(--accent1, #9b00ff) !important; /* Usa a cor do seu tema */
+}
+
+/* 4. Os Itens Inativos (Bolinhas Cheias) */
+.pagination a {
+    background-color: #a0a0a0 !important; /* Cor da bolinha inativa */
+    border: 2px solid transparent !important; /* Borda transparente para manter o mesmo tamanho do ativo */
+    box-sizing: border-box !important;
+    font-size: 0 !important; /* Esconde números se houver */
+    color: transparent !important;
+}
+
+/* 5. Setas (Anterior/Próximo) - Caso existam e estejam desalinhando */
+.pagination a[href*="start="] {
+    /* Mantém as setas visíveis se forem texto */
+    font-size: 12px !important; 
+    color: var(--text, #ccc) !important;
+    width: auto !important;
+    background: none !important;
+}
