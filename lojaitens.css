@@ -1,15 +1,15 @@
-/* --- TEMPLATE: LOJA DA ESCOLA (ARSENAL) --- */
+/* --- TEMPLATE: LOJA DA ESCOLA (ARSENAL) v2 --- */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap');
 
 :root {
   --shop-bg: #121418;
   --shop-panel: #1b1e24;
-  --shop-accent: #38485c; /* Azul Militar Desaturado */
+  --shop-accent: #38485c;
   --shop-highlight: #62a4ff;
   --shop-border: #2a2f38;
   --shop-text: #e0e0e0;
   --shop-dim: #909090;
-  --shop-price: #ffd700; /* Dourado para dinheiro */
+  --shop-price: #ffd700;
 }
 
 .jjk-shop-container {
@@ -45,138 +45,74 @@
   color: #fff;
   letter-spacing: 2px;
 }
-.shop-title p {
-  margin: 5px 0 0 0;
-  color: var(--shop-dim);
-  font-size: 0.9em;
-}
+.shop-title p { margin: 5px 0 0 0; color: var(--shop-dim); font-size: 0.9em; }
 
 .shop-npc {
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  background: rgba(255,255,255,0.05);
-  padding: 10px 15px;
-  border-radius: 50px;
-  border: 1px solid var(--shop-border);
+  display: flex; align-items: center; gap: 15px; background: rgba(255,255,255,0.05);
+  padding: 10px 15px; border-radius: 50px; border: 1px solid var(--shop-border);
 }
-.shop-npc-avatar {
-  width: 40px; height: 40px; border-radius: 50%; background: #333; object-fit: cover;
-}
-.shop-npc-text {
-  font-size: 0.85em; color: var(--shop-highlight); font-weight: 600;
-}
+.shop-npc-avatar { width: 40px; height: 40px; border-radius: 50%; background: #333; object-fit: cover; }
+.shop-npc-text { font-size: 0.85em; color: var(--shop-highlight); font-weight: 600; }
 
-/* Sistema de Abas (CSS Puro) */
-.shop-tabs {
-  display: flex;
-  background: var(--shop-panel);
-  border-bottom: 1px solid var(--shop-border);
-}
-
+/* Abas */
+.shop-tabs { display: flex; background: var(--shop-panel); border-bottom: 1px solid var(--shop-border); }
 .shop-tabs input[type="radio"] { display: none; }
-
 .shop-tabs label {
-  flex: 1;
-  padding: 15px;
-  text-align: center;
-  text-transform: uppercase;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  font-size: 1.1em;
-  color: var(--shop-dim);
-  cursor: pointer;
-  transition: 0.3s;
-  border-bottom: 3px solid transparent;
+  flex: 1; padding: 15px; text-align: center; text-transform: uppercase; font-family: 'Rajdhani', sans-serif;
+  font-weight: 700; font-size: 1.1em; color: var(--shop-dim); cursor: pointer; transition: 0.3s; border-bottom: 3px solid transparent;
 }
-
 .shop-tabs label:hover { background: rgba(255,255,255,0.02); color: #fff; }
 
-/* Lógica de Ativação das Abas */
 #tab-melee:checked ~ .shop-tabs label[for="tab-melee"],
 #tab-ranged:checked ~ .shop-tabs label[for="tab-ranged"],
 #tab-items:checked ~ .shop-tabs label[for="tab-items"] {
-  color: var(--shop-highlight);
-  border-bottom-color: var(--shop-highlight);
-  background: rgba(98, 164, 255, 0.05);
+  color: var(--shop-highlight); border-bottom-color: var(--shop-highlight); background: rgba(98, 164, 255, 0.05);
 }
 
 .shop-content { display: none; padding: 25px; animation: fadeIn 0.3s ease; }
-
 #tab-melee:checked ~ #content-melee,
 #tab-ranged:checked ~ #content-ranged,
 #tab-items:checked ~ #content-items {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 20px;
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 20px;
 }
 
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-/* Cards de Item */
+/* Cards */
 .shop-item-card {
-  background: var(--shop-panel);
-  border: 1px solid var(--shop-border);
-  border-radius: 6px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: transform 0.2s, border-color 0.2s;
+  background: var(--shop-panel); border: 1px solid var(--shop-border); border-radius: 6px;
+  overflow: hidden; display: flex; flex-direction: column; transition: transform 0.2s, border-color 0.2s;
 }
+.shop-item-card:hover { transform: translateY(-3px); border-color: var(--shop-highlight); }
 
-.shop-item-card:hover {
-  transform: translateY(-3px);
-  border-color: var(--shop-highlight);
-}
-
+/* [FIX IMAGEM] */
 .item-image {
-  width: 100%;
-  height: 150px;
-  background: #000;
-  border-bottom: 1px solid var(--shop-border);
+  width: 100%; height: 160px; background: #000; border-bottom: 1px solid var(--shop-border);
 }
 .item-image img {
-  width: 100%; height: 100%; object-fit: cover; opacity: 0.9;
+  width: 100%; height: 100%; object-fit: cover; /* Preenche sem esticar */ object-position: center; opacity: 0.9;
 }
 
 .item-info { padding: 15px; flex: 1; display: flex; flex-direction: column; }
-
 .item-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
 .item-name { font-weight: 700; font-size: 1.1em; color: #fff; line-height: 1.2; }
 .item-type { font-size: 0.7em; text-transform: uppercase; color: var(--shop-dim); margin-top: 4px; display: block; }
-
 .item-price {
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  color: var(--shop-price);
-  background: rgba(255, 215, 0, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  font-size: 1.1em;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700; color: var(--shop-price);
+  background: rgba(255, 215, 0, 0.1); padding: 2px 8px; border-radius: 4px; font-size: 1.1em; white-space: nowrap;
 }
-
 .item-desc {
-  font-size: 0.85em;
-  color: var(--shop-text);
-  line-height: 1.5;
-  margin-bottom: 15px;
-  flex: 1; /* Empurra o botão para baixo */
+  font-size: 0.85em; color: var(--shop-text); line-height: 1.5; margin-bottom: 15px; flex: 1;
 }
 
+/* Botão Copiar */
 .buy-btn {
-  background: var(--shop-border);
-  color: #fff;
-  text-align: center;
-  padding: 8px;
-  border-radius: 4px;
-  text-decoration: none;
-  font-size: 0.85em;
-  font-weight: 700;
-  text-transform: uppercase;
-  transition: 0.2s;
-  margin-top: auto; /* Sempre no fundo */
+  background: var(--shop-border); color: #fff; text-align: center; padding: 8px; border-radius: 4px;
+  text-decoration: none; font-size: 0.85em; font-weight: 700; text-transform: uppercase;
+  transition: 0.2s; margin-top: auto; cursor: pointer; border: 1px solid rgba(255,255,255,0.1);
 }
-.buy-btn:hover { background: var(--shop-highlight); color: #000; }
+.buy-btn:hover { background: var(--shop-highlight); color: #000; border-color: var(--shop-highlight); }
+.buy-btn:active { transform: scale(0.98); }
 
 @media (max-width: 600px) {
   .shop-header { flex-direction: column; text-align: center; }
@@ -185,7 +121,6 @@
   #tab-melee:checked ~ .shop-tabs label[for="tab-melee"],
   #tab-ranged:checked ~ .shop-tabs label[for="tab-ranged"],
   #tab-items:checked ~ .shop-tabs label[for="tab-items"] {
-    border-bottom-color: var(--shop-border);
-    border-left-color: var(--shop-highlight);
+    border-bottom-color: var(--shop-border); border-left-color: var(--shop-highlight);
   }
 }
