@@ -283,3 +283,39 @@
 .rp-post-content p:last-child {
   margin-bottom: 0;
 }
+
+/* --- [NOVO] Caixa de Notas/Extras --- */
+.rp-post-extras {
+  margin-top: 15px;
+  background: rgba(0, 0, 0, 0.5);
+  border: 1px dashed var(--text-muted);
+  border-radius: 4px;
+  padding: 15px;
+  position: relative;
+}
+
+.rp-post-extras::before {
+  content: 'INFO // SISTEMA'; /* Label decorativa */
+  position: absolute;
+  top: -10px;
+  left: 15px;
+  background: var(--panel);
+  padding: 0 8px;
+  font-family: 'Share Tech Mono', monospace;
+  font-size: 10px;
+  color: var(--highlight);
+  letter-spacing: 1px;
+  font-weight: 700;
+}
+
+.rp-post-extras-content {
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+/* Estilo para destacar números ou dados dentro das notas */
+.rp-post-extras-content b {
+  color: var(--text);
+}
