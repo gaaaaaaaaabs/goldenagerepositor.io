@@ -1,4 +1,4 @@
-/* --- TEMPLATE MESTRE: MERCADO NEGRO (FUSÃO) --- */
+/* --- TEMPLATE MESTRE: MERCADO NEGRO (FUSÃO) - v2 CORRIGIDO --- */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap');
 
 :root {
@@ -165,9 +165,9 @@
   display: flex;
   background: #000;
   border-bottom: 1px solid var(--bm-border);
-  position: sticky; top: 0; z-index: 10; /* Abas fixas ao rolar dentro se possível */
+  position: sticky; top: 0; z-index: 10;
 }
-.bm-tabs input[type="radio"] { display: none; } /* Inputs ocultos devem estar no HTML pai */
+.bm-tabs input[type="radio"] { display: none; }
 
 .bm-tabs label {
   flex: 1; padding: 20px; text-align: center; text-transform: uppercase;
@@ -176,7 +176,7 @@
 }
 .bm-tabs label:hover { color: #fff; background: rgba(255,255,255,0.05); }
 
-/* Lógica de Exibição (Inputs estão no HTML principal) */
+/* Lógica de Exibição */
 #bm-tab-weapons:checked ~ .bm-shop-section .bm-tabs label[for="bm-tab-weapons"],
 #bm-tab-objects:checked ~ .bm-shop-section .bm-tabs label[for="bm-tab-objects"],
 #bm-tab-illegal:checked ~ .bm-shop-section .bm-tabs label[for="bm-tab-illegal"] {
@@ -257,8 +257,8 @@
 .buy-btn:hover { background: var(--bm-accent); color: #000; box-shadow: 0 0 15px var(--bm-accent); }
 .buy-btn:active { transform: scale(0.98); }
 
-/* Rodapé */
-.bm-footer {
+/* [CORRIGIDO] Rodapé com a classe certa */
+.bm-loc-footer {
   background: #000;
   padding: 20px;
   text-align: center;
