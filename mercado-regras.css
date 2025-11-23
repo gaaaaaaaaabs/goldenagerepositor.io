@@ -1,0 +1,148 @@
+/* --- REGRAS DO MERCADO NEGRO (LOCAL & SISTEMA) --- */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;900&family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --bm-bg: #050505;
+  --bm-panel: #0f0f0f;
+  --bm-accent: #b026ff; /* Roxo Neon */
+  --bm-danger: #ff0055; /* Vermelho Sangue */
+  --bm-text: #cccccc;
+  --bm-border: #222;
+}
+
+.bm-location-container {
+  max-width: 800px;
+  margin: 30px auto;
+  background-color: var(--bm-bg);
+  color: var(--bm-text);
+  font-family: 'Inter', sans-serif;
+  border: 1px solid var(--bm-border);
+  /* Borda dupla colorida */
+  border-left: 4px solid var(--bm-accent);
+  border-right: 4px solid var(--bm-danger);
+  box-shadow: 0 0 50px rgba(0,0,0,0.9);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Background com Ruído Digital */
+.bm-location-container::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(176, 38, 255, 0.03) 3px);
+  pointer-events: none; z-index: 0;
+}
+
+/* Cabeçalho */
+.bm-loc-header {
+  background: radial-gradient(circle at top, #1a0b2e 0%, #000000 100%);
+  padding: 40px 30px;
+  text-align: center;
+  border-bottom: 1px solid var(--bm-border);
+  position: relative; z-index: 1;
+}
+
+.bm-loc-title {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 900;
+  font-size: 2.5em;
+  color: #fff;
+  text-transform: uppercase;
+  margin: 0;
+  text-shadow: 0 0 15px var(--bm-accent);
+  letter-spacing: 3px;
+}
+
+.bm-loc-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  color: var(--bm-danger);
+  font-weight: 700;
+  font-size: 1em;
+  margin-top: 5px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+/* Corpo */
+.bm-loc-body { padding: 40px; position: relative; z-index: 1; }
+
+/* Descrição de Ambiente */
+.bm-description {
+  font-size: 1em;
+  line-height: 1.8;
+  color: #a0a0a0;
+  margin-bottom: 40px;
+  text-align: justify;
+  border-left: 2px solid var(--bm-border);
+  padding-left: 20px;
+}
+.bm-description strong { color: var(--bm-accent); }
+
+/* Caixa de Aviso */
+.bm-warning-box {
+  background: rgba(255, 0, 85, 0.05);
+  border: 1px solid var(--bm-danger);
+  padding: 20px;
+  text-align: center;
+  color: var(--bm-danger);
+  font-family: 'Orbitron', sans-serif;
+  font-size: 0.85em;
+  letter-spacing: 1px;
+  margin-bottom: 40px;
+}
+
+/* Lista de Regras */
+.bm-rules-list {
+  list-style: none; padding: 0; margin: 0;
+  display: flex; flex-direction: column; gap: 25px;
+}
+
+.bm-rule-item {
+  display: flex; gap: 20px; align-items: flex-start;
+}
+
+.bm-rule-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.8em;
+  font-weight: 900;
+  color: #1a1a1a; /* Escuro */
+  -webkit-text-stroke: 1px var(--bm-accent); /* Contorno Neon */
+  min-width: 40px;
+  line-height: 1;
+}
+
+.bm-rule-content h4 {
+  margin: 0 0 5px 0;
+  color: #fff;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.2em;
+  text-transform: uppercase;
+}
+
+.bm-rule-content p {
+  margin: 0;
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #888;
+}
+
+/* Rodapé */
+.bm-loc-footer {
+  background: #000;
+  padding: 20px;
+  text-align: center;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 0.8em;
+  color: #444;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  border-top: 1px solid var(--bm-border);
+}
+
+@media (max-width: 600px) {
+  .bm-loc-header { padding: 30px 15px; }
+  .bm-loc-title { font-size: 1.8em; }
+  .bm-loc-body { padding: 20px; }
+  .bm-rule-item { flex-direction: column; gap: 5px; }
+  .bm-rule-num { font-size: 1.2em; margin-bottom: 5px; }
+}
