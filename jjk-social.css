@@ -1,63 +1,54 @@
-/* --- TEMPLATE: JujuNET (Rede Social) --- */
-@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@400;500;700&display=swap');
+/* --- TEMPLATE: JujuNET (Clean Dark) --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600&family=Inter:wght@400;500;700&display=swap');
 
 :root {
-  --net-bg: #0a1a26;       /* Fundo Escuro */
-  --net-panel: #102533;    /* Fundo dos Posts */
-  --net-accent: #2af5ff;   /* Ciano Energia */
-  --net-border: #3a5a6e;   /* Bordas */
-  --net-text: #eafafc;
-  --net-muted: #8baec2;
-  --net-red: #cf2e3e;      /* Detalhes em vermelho */
+  --net-bg: #101118;       /* Fundo do Fórum */
+  --net-panel: #161821;    /* Painel levemente mais claro */
+  --net-border: #2a2d3d;   /* Bordas sutis */
+  --net-accent: #6D20C5;   /* Roxo JJK */
+  --net-accent-dim: rgba(109, 32, 197, 0.1);
+  --net-text: #e0e0e0;
+  --net-muted: #7a7a7a;
 }
 
 .jjk-net-interface {
-  max-width: 900px;
-  margin: 30px auto;
+  max-width: 800px;
+  margin: 20px auto;
   background-color: var(--net-bg);
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   color: var(--net-text);
   border: 1px solid var(--net-border);
-  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 600px;
+  height: 550px; /* Altura contida */
 }
 
-/* --- TOPO (MENU) --- */
+/* --- TOPO --- */
 .net-top-bar {
-  background: var(--net-red);
+  background: var(--net-panel);
+  height: 45px;
   display: flex;
-  padding: 0 20px;
-  height: 50px;
   align-items: center;
-  gap: 30px;
-  border-bottom: 2px solid #000;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--net-border);
+  justify-content: space-between;
 }
 
-.net-menu-item {
+.net-logo {
   font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
+  font-weight: 600;
   text-transform: uppercase;
-  color: rgba(0,0,0,0.6);
-  font-size: 0.9em;
-  cursor: pointer;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
+  color: var(--net-text);
+  display: flex; align-items: center; gap: 10px;
 }
-.net-menu-item.active {
-  color: #000;
-  position: relative;
-}
-.net-menu-item.active::after {
-  content: 'R1';
-  position: absolute;
-  right: -30px;
-  background: #000;
-  color: #fff;
-  font-size: 0.7em;
-  padding: 2px 6px;
-  border-radius: 4px;
+.net-logo::before {
+  content: ''; display: block; width: 8px; height: 8px;
+  background: var(--net-accent); border-radius: 50%;
+  box-shadow: 0 0 8px var(--net-accent);
 }
 
 /* --- CORPO --- */
@@ -69,47 +60,56 @@
 
 /* Sidebar (Perfil) */
 .net-sidebar {
-  width: 250px;
+  width: 220px;
   background: var(--net-bg);
-  border-right: 1px solid var(--net-accent);
+  border-right: 1px solid var(--net-border);
   display: flex;
   flex-direction: column;
-  padding: 20px;
-  gap: 20px;
+  padding: 25px 20px;
+  align-items: center;
+  text-align: center;
+  gap: 15px;
 }
 
-.net-profile-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: var(--net-accent);
-  padding: 10px;
-  color: #000;
-  font-weight: 700;
-  font-family: 'Rajdhani', sans-serif;
-  text-transform: uppercase;
-  font-size: 1.1em;
-  clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+.net-avatar-frame {
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  padding: 3px;
+  border: 2px solid var(--net-accent); /* Borda Roxa */
+  position: relative;
 }
 
 .net-avatar {
-  width: 40px; height: 40px;
+  width: 100%; height: 100%;
   border-radius: 50%;
-  border: 2px solid #000;
   object-fit: cover;
+  background: #000;
 }
 
-.net-stats {
-  font-size: 0.85em;
-  color: var(--net-muted);
-  line-height: 1.6;
+.net-user-info h3 {
+  margin: 0; font-size: 1.1em; color: #fff; font-weight: 700;
 }
-.net-stats strong { color: var(--net-accent); }
+.net-user-info span {
+  font-size: 0.8em; color: var(--net-muted); display: block; margin-top: 2px;
+}
+
+.net-status-box {
+  background: var(--net-panel);
+  border: 1px solid var(--net-border);
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 0.85em;
+  color: var(--net-text);
+  width: 100%;
+  text-align: left;
+  font-style: italic;
+}
+.net-status-box b { color: var(--net-accent); display: block; font-style: normal; font-size: 0.9em; margin-bottom: 3px; text-transform: uppercase; }
 
 /* Feed */
 .net-feed-area {
   flex: 1;
-  background: linear-gradient(90deg, rgba(16,37,51,0.8) 0%, rgba(10,26,38,1) 100%);
+  background: #0d0e12; /* Fundo levemente diferente */
   display: flex;
   flex-direction: column;
   position: relative;
@@ -121,55 +121,46 @@
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  scroll-behavior: smooth;
+  gap: 12px;
 }
 
-.net-feed-list::-webkit-scrollbar { width: 6px; }
-.net-feed-list::-webkit-scrollbar-track { background: #051018; }
-.net-feed-list::-webkit-scrollbar-thumb { background: var(--net-accent); border-radius: 3px; }
+/* Scrollbar Sutil */
+.net-feed-list::-webkit-scrollbar { width: 4px; }
+.net-feed-list::-webkit-scrollbar-track { background: transparent; }
+.net-feed-list::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
 
 /* Posts */
 .net-post {
-  background: rgba(255,255,255,0.03);
-  border-left: 3px solid var(--net-border);
-  padding: 10px 15px;
+  background: var(--net-panel);
+  border: 1px solid var(--net-border);
+  border-radius: 6px;
+  padding: 12px 15px;
   font-size: 0.9em;
   position: relative;
 }
 
 .net-reply-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--net-accent);
-  font-weight: 700;
-  font-size: 0.9em;
-  margin-bottom: 5px;
+  display: flex; align-items: center; gap: 8px;
+  color: var(--net-accent); font-weight: 700; font-size: 0.8em;
+  margin-bottom: 5px; text-transform: uppercase;
 }
-.net-reply-header i { font-size: 1.2em; }
 
 .post-author {
-  font-weight: 700;
-  color: var(--net-text);
-  margin-bottom: 4px;
-  display: block;
+  font-weight: 700; color: #fff; margin-right: 5px;
 }
 
-.post-content {
-  color: #b0cddb;
-  line-height: 1.4;
-}
+.post-content { color: #ccc; line-height: 1.4; }
 
+/* Post Ativo (Seu Post) */
 .net-post.active {
-  border-left: 3px solid var(--net-accent);
-  background: linear-gradient(90deg, rgba(42, 245, 255, 0.05), transparent);
+  border-color: var(--net-accent);
+  background: linear-gradient(90deg, var(--net-accent-dim), transparent);
 }
 
-/* Input */
+/* Input Area */
 .net-input-area {
   padding: 15px;
-  background: #08141c;
+  background: var(--net-panel);
   border-top: 1px solid var(--net-border);
   display: flex;
   gap: 10px;
@@ -177,30 +168,29 @@
 
 .net-input {
   flex: 1;
-  background: rgba(255,255,255,0.05);
+  background: var(--net-bg);
   border: 1px solid var(--net-border);
+  border-radius: 4px;
   color: #fff;
   padding: 10px;
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Inter', sans-serif;
   outline: none;
 }
 .net-input:focus { border-color: var(--net-accent); }
 
 .net-send-btn {
   background: var(--net-accent);
-  color: #000;
+  color: #fff;
   border: none;
   padding: 0 20px;
   font-weight: 700;
-  font-family: 'Rajdhani', sans-serif;
-  text-transform: uppercase;
+  border-radius: 4px;
   cursor: pointer;
-  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+  transition: 0.2s;
 }
-.net-send-btn:hover { background: #fff; }
+.net-send-btn:hover { background: #8a40e3; }
 
 @media (max-width: 700px) {
-  .net-sidebar { display: none; }
-  .net-top-bar { display: none; }
-  .jjk-net-interface { height: 500px; }
+  .net-sidebar { display: none; } /* Mobile: Esconde sidebar */
+  .jjk-net-interface { height: 400px; }
 }
