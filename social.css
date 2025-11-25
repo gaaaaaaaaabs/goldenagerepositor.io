@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@400;500;700&display=swap');
+
+:root {
+  --spidey-bg: #0a1a26;       /* Fundo Escuro */
+  --spidey-panel: #102533;    /* Fundo dos Posts */
+  --spidey-accent: #2af5ff;   /* Ciano Neon (Aranha) */
+  --spidey-border: #3a5a6e;   /* Bordas */
+  --spidey-text: #eafafc;
+  --spidey-muted: #8baec2;
+  --spidey-reply: #2af5ff;
+}
+
+.spidey-interface {
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: var(--spidey-bg);
+  font-family: 'Roboto', sans-serif;
+  color: var(--spidey-text);
+  border: 1px solid var(--spidey-border);
+  box-shadow: 0 0 20px rgba(0,0,0,0.8);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 600px; /* Altura fixa para permitir scroll */
+}
+
+/* --- TOPO (MENU) --- */
+.spidey-top-bar {
+  background: #cf2e3e; /* Vermelho do Uniforme */
+  display: flex;
+  padding: 0 20px;
+  height: 50px;
+  align-items: center;
+  gap: 30px;
+  border-bottom: 2px solid #000;
+}
+
+.spidey-menu-item {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: rgba(0,0,0,0.6);
+  font-size: 0.9em;
+  cursor: pointer;
+  letter-spacing: 1px;
+}
+.spidey-menu-item.active {
+  color: #000;
+  position: relative;
+}
+.spidey-menu-item.active::after {
+  content: 'R1'; /* Botão do PS */
+  position: absolute;
+  right: -30px;
+  background: #000;
+  color: #fff;
+  font-size: 0.7em;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* --- CORPO PRINCIPAL --- */
+.spidey-body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+/* Sidebar (Esquerda - Perfil) */
+.spidey-sidebar {
+  width: 250px;
+  background: var(--spidey-bg);
+  border-right: 1px solid var(--spidey-accent);
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+}
+
+.spidey-profile-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--spidey-accent);
+  padding: 10px;
+  color: #000;
+  font-weight: 700;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  font-size: 1.1em;
+  /* Corte no canto */
+  clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
+}
+
+.spidey-avatar {
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  border: 2px solid #000;
+}
+
+.spidey-stats {
+  font-size: 0.85em;
+  color: var(--spidey-muted);
+  line-height: 1.6;
+}
+.spidey-stats strong { color: var(--spidey-accent); }
+
+/* Feed (Direita - Mensagens) */
+.spidey-feed-area {
+  flex: 1;
+  background: linear-gradient(90deg, rgba(16,37,51,0.8) 0%, rgba(10,26,38,1) 100%);
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Lista de Posts (Scroll) */
+.spidey-feed-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  scroll-behavior: smooth;
+}
+
+/* Scrollbar customizada fina */
+.spidey-feed-list::-webkit-scrollbar { width: 6px; }
+.spidey-feed-list::-webkit-scrollbar-track { background: #051018; }
+.spidey-feed-list::-webkit-scrollbar-thumb { background: var(--spidey-accent); border-radius: 3px; }
+
+/* O Post */
+.spidey-post {
+  background: rgba(255,255,255,0.03);
+  border-left: 3px solid var(--spidey-border);
+  padding: 10px 15px;
+  font-size: 0.9em;
+  position: relative;
+}
+
+/* Resposta (Destaque) */
+.spidey-reply-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--spidey-accent);
+  font-weight: 700;
+  font-size: 0.9em;
+  margin-bottom: 5px;
+}
+.spidey-reply-header i { font-size: 1.2em; } /* Ícone de comentário */
+
+.post-author {
+  font-weight: 700;
+  color: var(--spidey-text);
+  margin-bottom: 4px;
+  display: block;
+}
+
+.post-content {
+  color: #b0cddb;
+  line-height: 1.4;
+}
+
+/* Post Ativo/Recente (Borda Ciano) */
+.spidey-post.active {
+  border-left: 3px solid var(--spidey-accent);
+  background: linear-gradient(90deg, rgba(42, 245, 255, 0.05), transparent);
+}
+
+/* --- ÁREA DE INPUT (Baixo) --- */
+.spidey-input-area {
+  padding: 15px;
+  background: #08141c;
+  border-top: 1px solid var(--spidey-border);
+  display: flex;
+  gap: 10px;
+}
+
+.spidey-input {
+  flex: 1;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid var(--spidey-border);
+  color: #fff;
+  padding: 10px;
+  font-family: 'Roboto', sans-serif;
+  outline: none;
+}
+.spidey-input:focus { border-color: var(--spidey-accent); }
+
+.spidey-send-btn {
+  background: var(--spidey-accent);
+  color: #000;
+  border: none;
+  padding: 0 20px;
+  font-weight: 700;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  cursor: pointer;
+  clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
+}
+.spidey-send-btn:hover { background: #fff; }
+
+@media (max-width: 700px) {
+  .spidey-sidebar { display: none; } /* Esconde sidebar no mobile */
+  .spidey-top-bar { display: none; }
+  .spidey-interface { height: 500px; }
+}
