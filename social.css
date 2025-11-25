@@ -1,32 +1,33 @@
+/* --- TEMPLATE: JujuNET (Rede Social) --- */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Roboto:wght@400;500;700&display=swap');
 
 :root {
-  --spidey-bg: #0a1a26;       /* Fundo Escuro */
-  --spidey-panel: #102533;    /* Fundo dos Posts */
-  --spidey-accent: #2af5ff;   /* Ciano Neon (Aranha) */
-  --spidey-border: #3a5a6e;   /* Bordas */
-  --spidey-text: #eafafc;
-  --spidey-muted: #8baec2;
-  --spidey-reply: #2af5ff;
+  --net-bg: #0a1a26;       /* Fundo Escuro */
+  --net-panel: #102533;    /* Fundo dos Posts */
+  --net-accent: #2af5ff;   /* Ciano Energia */
+  --net-border: #3a5a6e;   /* Bordas */
+  --net-text: #eafafc;
+  --net-muted: #8baec2;
+  --net-red: #cf2e3e;      /* Detalhes em vermelho */
 }
 
-.spidey-interface {
+.jjk-net-interface {
   max-width: 900px;
   margin: 30px auto;
-  background-color: var(--spidey-bg);
+  background-color: var(--net-bg);
   font-family: 'Roboto', sans-serif;
-  color: var(--spidey-text);
-  border: 1px solid var(--spidey-border);
+  color: var(--net-text);
+  border: 1px solid var(--net-border);
   box-shadow: 0 0 20px rgba(0,0,0,0.8);
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  height: 600px; /* Altura fixa para permitir scroll */
+  height: 600px;
 }
 
 /* --- TOPO (MENU) --- */
-.spidey-top-bar {
-  background: #cf2e3e; /* Vermelho do Uniforme */
+.net-top-bar {
+  background: var(--net-red);
   display: flex;
   padding: 0 20px;
   height: 50px;
@@ -35,7 +36,7 @@
   border-bottom: 2px solid #000;
 }
 
-.spidey-menu-item {
+.net-menu-item {
   font-family: 'Rajdhani', sans-serif;
   font-weight: 700;
   text-transform: uppercase;
@@ -44,12 +45,12 @@
   cursor: pointer;
   letter-spacing: 1px;
 }
-.spidey-menu-item.active {
+.net-menu-item.active {
   color: #000;
   position: relative;
 }
-.spidey-menu-item.active::after {
-  content: 'R1'; /* Botão do PS */
+.net-menu-item.active::after {
+  content: 'R1';
   position: absolute;
   right: -30px;
   background: #000;
@@ -59,54 +60,54 @@
   border-radius: 4px;
 }
 
-/* --- CORPO PRINCIPAL --- */
-.spidey-body {
+/* --- CORPO --- */
+.net-body {
   display: flex;
   flex: 1;
   overflow: hidden;
 }
 
-/* Sidebar (Esquerda - Perfil) */
-.spidey-sidebar {
+/* Sidebar (Perfil) */
+.net-sidebar {
   width: 250px;
-  background: var(--spidey-bg);
-  border-right: 1px solid var(--spidey-accent);
+  background: var(--net-bg);
+  border-right: 1px solid var(--net-accent);
   display: flex;
   flex-direction: column;
   padding: 20px;
   gap: 20px;
 }
 
-.spidey-profile-header {
+.net-profile-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  background: var(--spidey-accent);
+  background: var(--net-accent);
   padding: 10px;
   color: #000;
   font-weight: 700;
   font-family: 'Rajdhani', sans-serif;
   text-transform: uppercase;
   font-size: 1.1em;
-  /* Corte no canto */
   clip-path: polygon(0 0, 100% 0, 100% 85%, 90% 100%, 0 100%);
 }
 
-.spidey-avatar {
+.net-avatar {
   width: 40px; height: 40px;
   border-radius: 50%;
   border: 2px solid #000;
+  object-fit: cover;
 }
 
-.spidey-stats {
+.net-stats {
   font-size: 0.85em;
-  color: var(--spidey-muted);
+  color: var(--net-muted);
   line-height: 1.6;
 }
-.spidey-stats strong { color: var(--spidey-accent); }
+.net-stats strong { color: var(--net-accent); }
 
-/* Feed (Direita - Mensagens) */
-.spidey-feed-area {
+/* Feed */
+.net-feed-area {
   flex: 1;
   background: linear-gradient(90deg, rgba(16,37,51,0.8) 0%, rgba(10,26,38,1) 100%);
   display: flex;
@@ -114,8 +115,7 @@
   position: relative;
 }
 
-/* Lista de Posts (Scroll) */
-.spidey-feed-list {
+.net-feed-list {
   flex: 1;
   overflow-y: auto;
   padding: 20px;
@@ -125,35 +125,33 @@
   scroll-behavior: smooth;
 }
 
-/* Scrollbar customizada fina */
-.spidey-feed-list::-webkit-scrollbar { width: 6px; }
-.spidey-feed-list::-webkit-scrollbar-track { background: #051018; }
-.spidey-feed-list::-webkit-scrollbar-thumb { background: var(--spidey-accent); border-radius: 3px; }
+.net-feed-list::-webkit-scrollbar { width: 6px; }
+.net-feed-list::-webkit-scrollbar-track { background: #051018; }
+.net-feed-list::-webkit-scrollbar-thumb { background: var(--net-accent); border-radius: 3px; }
 
-/* O Post */
-.spidey-post {
+/* Posts */
+.net-post {
   background: rgba(255,255,255,0.03);
-  border-left: 3px solid var(--spidey-border);
+  border-left: 3px solid var(--net-border);
   padding: 10px 15px;
   font-size: 0.9em;
   position: relative;
 }
 
-/* Resposta (Destaque) */
-.spidey-reply-header {
+.net-reply-header {
   display: flex;
   align-items: center;
   gap: 10px;
-  color: var(--spidey-accent);
+  color: var(--net-accent);
   font-weight: 700;
   font-size: 0.9em;
   margin-bottom: 5px;
 }
-.spidey-reply-header i { font-size: 1.2em; } /* Ícone de comentário */
+.net-reply-header i { font-size: 1.2em; }
 
 .post-author {
   font-weight: 700;
-  color: var(--spidey-text);
+  color: var(--net-text);
   margin-bottom: 4px;
   display: block;
 }
@@ -163,34 +161,33 @@
   line-height: 1.4;
 }
 
-/* Post Ativo/Recente (Borda Ciano) */
-.spidey-post.active {
-  border-left: 3px solid var(--spidey-accent);
+.net-post.active {
+  border-left: 3px solid var(--net-accent);
   background: linear-gradient(90deg, rgba(42, 245, 255, 0.05), transparent);
 }
 
-/* --- ÁREA DE INPUT (Baixo) --- */
-.spidey-input-area {
+/* Input */
+.net-input-area {
   padding: 15px;
   background: #08141c;
-  border-top: 1px solid var(--spidey-border);
+  border-top: 1px solid var(--net-border);
   display: flex;
   gap: 10px;
 }
 
-.spidey-input {
+.net-input {
   flex: 1;
   background: rgba(255,255,255,0.05);
-  border: 1px solid var(--spidey-border);
+  border: 1px solid var(--net-border);
   color: #fff;
   padding: 10px;
   font-family: 'Roboto', sans-serif;
   outline: none;
 }
-.spidey-input:focus { border-color: var(--spidey-accent); }
+.net-input:focus { border-color: var(--net-accent); }
 
-.spidey-send-btn {
-  background: var(--spidey-accent);
+.net-send-btn {
+  background: var(--net-accent);
   color: #000;
   border: none;
   padding: 0 20px;
@@ -200,10 +197,10 @@
   cursor: pointer;
   clip-path: polygon(10px 0, 100% 0, 100% 100%, 0 100%, 0 10px);
 }
-.spidey-send-btn:hover { background: #fff; }
+.net-send-btn:hover { background: #fff; }
 
 @media (max-width: 700px) {
-  .spidey-sidebar { display: none; } /* Esconde sidebar no mobile */
-  .spidey-top-bar { display: none; }
-  .spidey-interface { height: 500px; }
+  .net-sidebar { display: none; }
+  .net-top-bar { display: none; }
+  .jjk-net-interface { height: 500px; }
 }
