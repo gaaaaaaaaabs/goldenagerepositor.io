@@ -1,4 +1,4 @@
-/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) v3 (Final Fix) --- */
+/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) v4 (Status Fix) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
@@ -32,19 +32,17 @@
   align-items: stretch;
 }
 
-/* [CORREÇÃO DE IMAGEM] */
 .curse-image {
   width: 200px;
   min-height: 250px;
   background-color: #000;
-  /* Cover garante que preencha tudo. Top garante que não corte a cabeça */
   background-size: cover; 
   background-position: top center;
   background-repeat: no-repeat;
   border: 1px solid var(--curse-border);
   margin: 15px;
   border-radius: 4px;
-  flex-shrink: 0; /* Impede que a imagem encolha */
+  flex-shrink: 0;
 }
 
 .curse-identity {
@@ -77,14 +75,49 @@
 .tag-grade { background: var(--curse-accent); color: #fff; }
 .tag-type { background: #333; color: #aaa; border: 1px solid #444; }
 
-/* Stats */
+/* --- STATUS CORRIGIDOS --- */
 .curse-main-stats { display: flex; flex-direction: column; gap: 10px; }
-.jjk-dossier-status-item { margin-bottom: 5px; }
-.jjk-dossier-status-header { display: flex; justify-content: space-between; font-size: 0.85em; font-weight: 700; margin-bottom: 2px; color: var(--curse-dim); }
-.jjk-dossier-status-value { color: #fff; }
-.jjk-dossier-status-bar { height: 8px; background: #000; border-radius: 4px; border: 1px solid #333; overflow: hidden; }
-.jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; }
-.jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; }
+
+/* Container do Item */
+.jjk-curse-container .jjk-dossier-status-item { 
+  margin-bottom: 5px;
+  position: relative;
+}
+
+/* Cabeçalho (Nome e Valor) */
+.jjk-curse-container .jjk-dossier-status-header { 
+  display: flex; 
+  justify-content: space-between; 
+  font-size: 0.85em; 
+  font-weight: 700; 
+  margin-bottom: 4px; 
+  color: var(--curse-dim);
+}
+
+/* Valor Numérico (Onde estava o erro) */
+.jjk-curse-container .jjk-dossier-status-value { 
+  color: #fff !important; /* Força cor branca */
+  display: inline-block !important; /* Garante visibilidade */
+  opacity: 1 !important;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  text-shadow: 0 0 2px #000;
+  position: relative; /* Garante z-index */
+  z-index: 5;
+}
+
+/* Barras */
+.jjk-curse-container .jjk-dossier-status-bar { 
+  height: 8px; 
+  background: #000; 
+  border-radius: 4px; 
+  border: 1px solid #333; 
+  overflow: hidden; 
+  position: relative;
+}
+.jjk-curse-container .jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; }
+.jjk-curse-container .jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; }
+
 .curse-regen-info { font-size: 0.8em; color: var(--curse-dim); margin-top: 2px; text-align: right; }
 .curse-regen-info .value { color: #6D20C5; font-weight: 700; }
 
@@ -105,7 +138,7 @@
 .jjk-dossier-attr-bar { height: 4px; background: #000; margin-top: 5px; border-radius: 2px; }
 .jjk-dossier-attr-bar-fill { height: 100%; background: var(--curse-text); transition: width 0.5s; }
 
-/* Aptidões */
+/* Aptidões (Grid com Nível) */
 .curse-skills-grid {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -123,15 +156,27 @@
   padding: 2px 0;
   border-bottom: 1px solid rgba(255,255,255,0.05);
 }
-.jjk-dossier-skill-item span:first-child { color: var(--curse-dim); font-size: 0.8em; }
-.jjk-dossier-skill-level { font-size: 0.75em; font-weight: 700; color: var(--curse-accent); }
-.jjk-dossier-skill-xp { color: #fff; font-weight: 700; font-size: 0.75em; text-align: right; }
+.jjk-dossier-skill-item span:first-child { 
+  color: var(--curse-dim); 
+  font-size: 0.8em;
+}
+.jjk-dossier-skill-level {
+  font-size: 0.75em;
+  font-weight: 700;
+  color: var(--curse-accent);
+}
+.jjk-dossier-skill-xp { 
+  color: #fff; 
+  font-weight: 700; 
+  font-size: 0.75em;
+  text-align: right;
+}
 .curse-skills-grid .jjk-dossier-skill-bar { display: none; }
 
 /* Técnicas */
 .curse-tech-list { display: flex; flex-direction: column; gap: 10px; }
 .curse-tech-card { background: var(--curse-panel); border: 1px solid var(--curse-border); padding: 10px; border-radius: 4px; }
-.tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; }
+.tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; font-size: 0.9em; }
 .tech-desc { font-size: 0.9em; color: var(--curse-dim); line-height: 1.5; }
 
 /* Responsivo */
