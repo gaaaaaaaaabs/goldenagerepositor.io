@@ -1,4 +1,4 @@
-/* --- FICHA DE MALDIÇÃO (Standardized v5) --- */
+/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) v7 (Posição Fixa) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
@@ -12,6 +12,7 @@
 }
 
 .jjk-curse-container {
+  box-sizing: border-box;
   max-width: 800px;
   margin: 20px auto;
   font-family: 'Roboto', sans-serif;
@@ -22,7 +23,10 @@
   color: var(--curse-text);
   box-shadow: 0 0 20px rgba(0,0,0,0.6);
   overflow: hidden;
+  line-height: 1.5;
 }
+
+.jjk-curse-container * { box-sizing: border-box; }
 
 /* Header */
 .curse-header {
@@ -47,57 +51,70 @@
 .tag-grade { background: var(--curse-accent); color: #fff; font-size: 0.7em; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
 .tag-type { background: #333; color: #aaa; border: 1px solid #444; font-size: 0.7em; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
 
-/* --- STATUS (ESTRUTURA PADRONIZADA) --- */
-/* Aqui aplicamos o estilo de Maldição nas classes padrão do sistema */
+/* --- CORREÇÃO DOS STATUS (POSICIONAMENTO) --- */
+.curse-main-stats { display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
 
-.curse-main-stats { display: flex; flex-direction: column; gap: 10px; }
-
-/* O Container do Status */
+/* Item Container: Flexbox simples para alinhar tudo na mesma linha */
 .jjk-curse-container .jjk-dossier-status-item {
-  display: grid;
-  /* Label | Barra | Valor */
-  grid-template-columns: 30px 1fr auto;
-  align-items: center;
-  gap: 10px;
+  display: flex !important; 
+  flex-direction: row !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 15px;
   margin-bottom: 5px;
+  width: 100%;
+  height: auto !important;
+  min-height: 20px;
 }
 
-/* O Label (HP/EA) */
-.jjk-curse-container .jjk-dossier-status-label {
+/* 1. Label (Nome HP/EA) */
+.jjk-curse-container .jjk-dossier-status-header {
+  display: contents; /* Remove o container antigo do fluxo */
+}
+.jjk-curse-container .jjk-dossier-status-name {
+  display: block;
+  width: 40px; 
   font-size: 0.85em; font-weight: 900; color: var(--curse-accent);
   text-transform: uppercase;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
-/* O Wrapper da Barra */
-.jjk-curse-container .jjk-dossier-status-bar-wrapper {
-  width: 100%; height: 10px; background: #000;
+/* 2. Barra (Ocupa o meio) */
+.jjk-curse-container .jjk-dossier-status-bar {
+  flex-grow: 1; 
+  height: 10px; background: #000;
   border: 1px solid var(--curse-border); border-radius: 4px;
   overflow: hidden; position: relative;
+  margin: 0 !important;
 }
-.jjk-curse-container .jjk-dossier-status-bar {
-  width: 100%; height: 100%; background: transparent; border: none;
-}
+.jjk-curse-container .jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; box-shadow: 0 0 5px var(--curse-accent); }
+.jjk-curse-container .jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; box-shadow: 0 0 5px #6D20C5; }
 
-/* A Barra Colorida (Vermelha para HP, Roxa para EA nesta skin) */
-.jjk-curse-container .jjk-dossier-hp-fill {
-  height: 100%; background: var(--curse-accent); transition: width 0.5s;
-  box-shadow: 0 0 5px var(--curse-accent);
-}
-.jjk-curse-container .jjk-dossier-ea-fill {
-  height: 100%; background: #6D20C5; transition: width 0.5s;
-  box-shadow: 0 0 5px #6D20C5;
-}
-
-/* O Valor Numérico */
+/* 3. Valor Numérico (TRAVADO NA LINHA) */
 .jjk-curse-container .jjk-dossier-status-value {
-  font-size: 0.8em; font-weight: 700; color: #fff; font-family: 'Roboto Mono', monospace;
-  text-align: right; min-width: 80px;
+  display: block !important; 
+  position: static !important; /* Reseta qualquer position absolute */
+  top: auto !important;
+  left: auto !important;
+  right: auto !important;
+  transform: none !important;
+  
+  min-width: 80px; 
+  text-align: right;
+  font-size: 0.8em; font-weight: 700; 
+  color: #fff !important;
+  font-family: 'Roboto Mono', monospace;
+  text-shadow: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-/* Info Extra (Regen) */
-.curse-regen-info { font-size: 0.8em; color: var(--curse-dim); margin-top: -5px; text-align: right; }
+.curse-regen-info { font-size: 0.75em; color: var(--curse-dim); margin-top: -2px; text-align: right; }
 
-/* Seções */
+/* --- RESTO DO CSS (Mantido) --- */
 .curse-section { padding: 15px 20px; border-bottom: 1px solid var(--curse-border); }
 .curse-section:last-child { border-bottom: none; }
 .curse-title {
@@ -106,7 +123,12 @@
   margin: 0 0 15px 0; text-transform: uppercase;
 }
 
-/* Atributos */
+.lore-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 15px; }
+.lore-box { background: var(--curse-panel); padding: 15px; border-radius: 4px; border: 1px solid #2a1a1a; height: 100%; }
+.lore-full { grid-column: 1 / -1; }
+.lore-label { display: block; font-size: 0.75em; color: var(--curse-accent); text-transform: uppercase; font-weight: 900; margin-bottom: 8px; border-bottom: 1px dashed var(--curse-border); padding-bottom: 4px; }
+.lore-text { font-size: 0.9em; color: #ccc; line-height: 1.6; white-space: pre-wrap; text-align: justify; }
+
 .jjk-dossier-attr-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
 .jjk-dossier-attr-item { background: var(--curse-panel); padding: 5px; border-radius: 4px; border: 1px solid var(--curse-border); text-align: center; }
 .jjk-dossier-attr-header { display: flex; flex-direction: column; font-size: 0.75em; font-weight: 700; gap: 2px; }
@@ -114,19 +136,18 @@
 .jjk-dossier-attr-bar { height: 3px; background: #000; margin-top: 3px; border-radius: 2px; }
 .jjk-dossier-attr-bar-fill { height: 100%; background: var(--curse-text); transition: width 0.5s; }
 
-/* Aptidões */
 .curse-skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
 .skill-cat-name { font-size: 0.75em; font-weight: 900; color: #fff; background: var(--curse-accent-dim); padding: 2px 5px; margin-bottom: 5px; text-align: center; border-radius: 2px; }
 .jjk-dossier-skill-item { display: grid; grid-template-columns: 1fr auto auto; gap:5px; align-items: center; font-size: 0.75em; padding: 1px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
 .jjk-dossier-skill-item span:first-child { color: var(--curse-dim); }
 .jjk-dossier-skill-level { color: var(--curse-accent); font-weight: 700; }
 .jjk-dossier-skill-xp { color: #fff; font-weight: 700; text-align: right; }
+.curse-skills-grid .jjk-dossier-skill-bar { display: none; }
 
-/* Técnicas */
 .curse-tech-list { display: flex; flex-direction: column; gap: 8px; }
 .curse-tech-card { background: var(--curse-panel); border: 1px solid var(--curse-border); padding: 10px; border-radius: 4px; }
 .tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; font-size: 0.9em; }
-.tech-desc { font-size: 0.85em; color: var(--curse-dim); }
+.tech-desc { font-size: 0.85em; color: var(--curse-dim); white-space: pre-wrap; }
 
 @media (max-width: 700px) {
   .curse-header { flex-direction: column; }
@@ -134,4 +155,5 @@
   .curse-identity { padding: 0 20px 20px 20px; }
   .jjk-dossier-attr-list { grid-template-columns: repeat(4, 1fr); }
   .curse-skills-grid { grid-template-columns: 1fr; }
+  .lore-grid { grid-template-columns: 1fr; }
 }
