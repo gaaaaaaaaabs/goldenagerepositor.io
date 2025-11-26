@@ -1,4 +1,4 @@
-/* --- FICHA DE MALDIÇÃO (NPC/Inimigo) v4 (Status Fix) --- */
+/* --- FICHA DE MALDIÇÃO (Standardized v5) --- */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700;900&display=swap');
 
 :root {
@@ -24,102 +24,78 @@
   overflow: hidden;
 }
 
-/* Cabeçalho */
+/* Header */
 .curse-header {
   display: flex;
   background: linear-gradient(to right, var(--curse-panel), var(--curse-bg));
   border-bottom: 1px solid var(--curse-border);
   align-items: stretch;
 }
-
 .curse-image {
-  width: 200px;
-  min-height: 250px;
-  background-color: #000;
-  background-size: cover; 
-  background-position: top center;
-  background-repeat: no-repeat;
-  border: 1px solid var(--curse-border);
-  margin: 15px;
-  border-radius: 4px;
-  flex-shrink: 0;
+  width: 200px; min-height: 250px; background-color: #000;
+  background-size: cover; background-position: top center; background-repeat: no-repeat;
+  border: 2px solid var(--curse-border); margin: 15px; border-radius: 4px; flex-shrink: 0;
 }
-
 .curse-identity {
-  padding: 20px 20px 20px 5px;
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
+  padding: 20px 20px 20px 5px; flex: 1; display: flex; flex-direction: column; justify-content: center;
 }
 .curse-name {
-  font-size: 2em;
-  font-weight: 900;
-  color: #fff;
-  text-transform: uppercase;
-  margin-bottom: 5px;
-  text-shadow: 0 0 10px var(--curse-accent-dim);
+  font-size: 1.8em; font-weight: 900; color: #fff; text-transform: uppercase; margin-bottom: 5px;
+  text-shadow: 0 0 10px var(--curse-accent-dim); line-height: 1.1;
 }
-.curse-tags {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.tag-grade, .tag-type {
-  font-size: 0.8em;
-  padding: 3px 8px;
-  border-radius: 4px;
-  font-weight: 700;
-  text-transform: uppercase;
-}
-.tag-grade { background: var(--curse-accent); color: #fff; }
-.tag-type { background: #333; color: #aaa; border: 1px solid #444; }
+.curse-tags { display: flex; gap: 10px; margin-bottom: 15px; flex-wrap: wrap; }
+.tag-grade { background: var(--curse-accent); color: #fff; font-size: 0.7em; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
+.tag-type { background: #333; color: #aaa; border: 1px solid #444; font-size: 0.7em; padding: 3px 8px; border-radius: 4px; font-weight: 700; text-transform: uppercase; }
 
-/* --- STATUS CORRIGIDOS --- */
+/* --- STATUS (ESTRUTURA PADRONIZADA) --- */
+/* Aqui aplicamos o estilo de Maldição nas classes padrão do sistema */
+
 .curse-main-stats { display: flex; flex-direction: column; gap: 10px; }
 
-/* Container do Item */
-.jjk-curse-container .jjk-dossier-status-item { 
+/* O Container do Status */
+.jjk-curse-container .jjk-dossier-status-item {
+  display: grid;
+  /* Label | Barra | Valor */
+  grid-template-columns: 30px 1fr auto;
+  align-items: center;
+  gap: 10px;
   margin-bottom: 5px;
-  position: relative;
 }
 
-/* Cabeçalho (Nome e Valor) */
-.jjk-curse-container .jjk-dossier-status-header { 
-  display: flex; 
-  justify-content: space-between; 
-  font-size: 0.85em; 
-  font-weight: 700; 
-  margin-bottom: 4px; 
-  color: var(--curse-dim);
+/* O Label (HP/EA) */
+.jjk-curse-container .jjk-dossier-status-label {
+  font-size: 0.85em; font-weight: 900; color: var(--curse-accent);
+  text-transform: uppercase;
 }
 
-/* Valor Numérico (Onde estava o erro) */
-.jjk-curse-container .jjk-dossier-status-value { 
-  color: #fff !important; /* Força cor branca */
-  display: inline-block !important; /* Garante visibilidade */
-  opacity: 1 !important;
-  font-family: 'Roboto Mono', monospace;
-  font-weight: 700;
-  text-shadow: 0 0 2px #000;
-  position: relative; /* Garante z-index */
-  z-index: 5;
+/* O Wrapper da Barra */
+.jjk-curse-container .jjk-dossier-status-bar-wrapper {
+  width: 100%; height: 10px; background: #000;
+  border: 1px solid var(--curse-border); border-radius: 4px;
+  overflow: hidden; position: relative;
+}
+.jjk-curse-container .jjk-dossier-status-bar {
+  width: 100%; height: 100%; background: transparent; border: none;
 }
 
-/* Barras */
-.jjk-curse-container .jjk-dossier-status-bar { 
-  height: 8px; 
-  background: #000; 
-  border-radius: 4px; 
-  border: 1px solid #333; 
-  overflow: hidden; 
-  position: relative;
+/* A Barra Colorida (Vermelha para HP, Roxa para EA nesta skin) */
+.jjk-curse-container .jjk-dossier-hp-fill {
+  height: 100%; background: var(--curse-accent); transition: width 0.5s;
+  box-shadow: 0 0 5px var(--curse-accent);
 }
-.jjk-curse-container .jjk-dossier-hp-fill { height: 100%; background: var(--curse-accent); transition: width 0.5s; }
-.jjk-curse-container .jjk-dossier-ea-fill { height: 100%; background: #6D20C5; transition: width 0.5s; }
+.jjk-curse-container .jjk-dossier-ea-fill {
+  height: 100%; background: #6D20C5; transition: width 0.5s;
+  box-shadow: 0 0 5px #6D20C5;
+}
 
-.curse-regen-info { font-size: 0.8em; color: var(--curse-dim); margin-top: 2px; text-align: right; }
-.curse-regen-info .value { color: #6D20C5; font-weight: 700; }
+/* O Valor Numérico */
+.jjk-curse-container .jjk-dossier-status-value {
+  font-size: 0.8em; font-weight: 700; color: #fff; font-family: 'Roboto Mono', monospace;
+  text-align: right; min-width: 80px;
+}
+
+/* Info Extra (Regen) */
+.curse-regen-info { font-size: 0.8em; color: var(--curse-dim); margin-top: -5px; text-align: right; }
 
 /* Seções */
 .curse-section { padding: 15px 20px; border-bottom: 1px solid var(--curse-border); }
@@ -131,62 +107,30 @@
 }
 
 /* Atributos */
-.jjk-dossier-attr-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 8px; }
+.jjk-dossier-attr-list { display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px; }
 .jjk-dossier-attr-item { background: var(--curse-panel); padding: 5px; border-radius: 4px; border: 1px solid var(--curse-border); text-align: center; }
-.jjk-dossier-attr-header { display: flex; flex-direction: column; font-size: 0.8em; font-weight: 700; gap: 2px; }
+.jjk-dossier-attr-header { display: flex; flex-direction: column; font-size: 0.75em; font-weight: 700; gap: 2px; }
 .jjk-dossier-attr-header span:first-child { color: var(--curse-accent); }
-.jjk-dossier-attr-bar { height: 4px; background: #000; margin-top: 5px; border-radius: 2px; }
+.jjk-dossier-attr-bar { height: 3px; background: #000; margin-top: 3px; border-radius: 2px; }
 .jjk-dossier-attr-bar-fill { height: 100%; background: var(--curse-text); transition: width 0.5s; }
 
-/* Aptidões (Grid com Nível) */
-.curse-skills-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 15px;
-}
-.skill-cat-name {
-  font-size: 0.8em; font-weight: 900; color: #fff; background: var(--curse-accent-dim);
-  padding: 2px 5px; margin-bottom: 5px; text-align: center; border-radius: 2px;
-}
-.jjk-dossier-skill-item {
-  display: grid;
-  grid-template-columns: 1fr auto auto; 
-  gap: 5px;
-  align-items: center;
-  padding: 2px 0;
-  border-bottom: 1px solid rgba(255,255,255,0.05);
-}
-.jjk-dossier-skill-item span:first-child { 
-  color: var(--curse-dim); 
-  font-size: 0.8em;
-}
-.jjk-dossier-skill-level {
-  font-size: 0.75em;
-  font-weight: 700;
-  color: var(--curse-accent);
-}
-.jjk-dossier-skill-xp { 
-  color: #fff; 
-  font-weight: 700; 
-  font-size: 0.75em;
-  text-align: right;
-}
-.curse-skills-grid .jjk-dossier-skill-bar { display: none; }
+/* Aptidões */
+.curse-skills-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; }
+.skill-cat-name { font-size: 0.75em; font-weight: 900; color: #fff; background: var(--curse-accent-dim); padding: 2px 5px; margin-bottom: 5px; text-align: center; border-radius: 2px; }
+.jjk-dossier-skill-item { display: grid; grid-template-columns: 1fr auto auto; gap:5px; align-items: center; font-size: 0.75em; padding: 1px 0; border-bottom: 1px solid rgba(255,255,255,0.05); }
+.jjk-dossier-skill-item span:first-child { color: var(--curse-dim); }
+.jjk-dossier-skill-level { color: var(--curse-accent); font-weight: 700; }
+.jjk-dossier-skill-xp { color: #fff; font-weight: 700; text-align: right; }
 
 /* Técnicas */
-.curse-tech-list { display: flex; flex-direction: column; gap: 10px; }
+.curse-tech-list { display: flex; flex-direction: column; gap: 8px; }
 .curse-tech-card { background: var(--curse-panel); border: 1px solid var(--curse-border); padding: 10px; border-radius: 4px; }
 .tech-name { font-weight: 700; color: #fff; margin-bottom: 5px; font-size: 0.9em; }
-.tech-desc { font-size: 0.9em; color: var(--curse-dim); line-height: 1.5; }
+.tech-desc { font-size: 0.85em; color: var(--curse-dim); }
 
-/* Responsivo */
 @media (max-width: 700px) {
   .curse-header { flex-direction: column; }
-  .curse-image { 
-    width: calc(100% - 30px); 
-    height: 250px; 
-    margin: 15px auto;
-  }
+  .curse-image { width: calc(100% - 30px); height: 250px; margin: 15px auto; }
   .curse-identity { padding: 0 20px 20px 20px; }
   .jjk-dossier-attr-list { grid-template-columns: repeat(4, 1fr); }
   .curse-skills-grid { grid-template-columns: 1fr; }
