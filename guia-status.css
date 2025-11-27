@@ -1,0 +1,159 @@
+/* --- TEMPLATE: GUIA DE STATUS (DATABASE) --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --db-bg: #0e1014;
+  --db-panel: #161920;
+  --db-border: #2c3340;
+  --db-text: #b0bec5;
+  --db-title: #eceff1;
+  
+  /* Cores de Categoria */
+  --type-phys: #e53935; /* Vermelho */
+  --type-ment: #7e57c2; /* Roxo */
+  --type-tox: #43a047;  /* Verde */
+  --type-spec: #fb8c00; /* Laranja */
+}
+
+.status-guide-container {
+  max-width: 900px;
+  margin: 30px auto;
+  background-color: var(--db-bg);
+  font-family: 'Inter', sans-serif;
+  color: var(--db-text);
+  border: 1px solid var(--db-border);
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.status-guide-container * { box-sizing: border-box; }
+
+/* Cabeçalho */
+.db-header {
+  padding: 30px;
+  background: linear-gradient(to right, #121419, #1b2029);
+  border-bottom: 1px solid var(--db-border);
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.db-icon {
+  width: 60px; height: 60px;
+  background: #222;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 30px; color: #fff;
+  border: 1px solid var(--db-border);
+  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}
+
+.db-title h1 {
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2em;
+  margin: 0;
+  color: var(--db-title);
+  letter-spacing: 1px;
+}
+
+.db-title p {
+  margin: 5px 0 0 0;
+  font-size: 0.9em;
+  color: #607d8b;
+}
+
+/* Grid de Cards */
+.db-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 30px;
+}
+
+/* Card de Status */
+.status-card {
+  background: var(--db-panel);
+  border: 1px solid var(--db-border);
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.2s;
+  position: relative;
+}
+.status-card:hover { transform: translateY(-3px); }
+
+/* Faixa Lateral Colorida */
+.status-card.phys { border-left: 4px solid var(--type-phys); }
+.status-card.ment { border-left: 4px solid var(--type-ment); }
+.status-card.tox { border-left: 4px solid var(--type-tox); }
+.status-card.spec { border-left: 4px solid var(--type-spec); }
+
+/* Cabeçalho do Card */
+.card-header {
+  padding: 15px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  display: flex; justify-content: space-between; align-items: center;
+}
+
+.card-name {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 1.2em;
+  color: #fff;
+  display: flex; align-items: center; gap: 8px;
+}
+
+.card-tag {
+  font-size: 0.65em;
+  text-transform: uppercase;
+  padding: 3px 6px;
+  border-radius: 4px;
+  font-weight: 700;
+  background: #000;
+}
+.phys .card-tag { color: var(--type-phys); }
+.ment .card-tag { color: var(--type-ment); }
+.tox .card-tag { color: var(--type-tox); }
+.spec .card-tag { color: var(--type-spec); }
+
+/* Corpo do Card */
+.card-body {
+  padding: 15px;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+.card-effect {
+  margin-bottom: 10px;
+}
+.card-effect strong { color: #fff; }
+
+.card-cure {
+  font-size: 0.85em;
+  color: #78909c;
+  background: rgba(0,0,0,0.2);
+  padding: 8px;
+  border-radius: 4px;
+  border-left: 2px solid #555;
+}
+.card-cure span { font-weight: 700; color: #b0bec5; display: block; margin-bottom: 2px; }
+
+/* Rodapé do Guia */
+.db-footer {
+  padding: 20px;
+  text-align: center;
+  background: #08090b;
+  border-top: 1px solid var(--db-border);
+  font-size: 0.8em;
+  color: #555;
+  font-family: 'Rajdhani', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 600px) {
+  .db-header { flex-direction: column; text-align: center; }
+  .db-grid { grid-template-columns: 1fr; }
+}
