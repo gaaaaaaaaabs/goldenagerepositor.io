@@ -65,10 +65,11 @@
     background: #0c0c1a;
     height: 40px;
     border-radius: 6px;
-    position: relative;
+    position: relative; /* Importante para os marcadores */
     border: 1px solid rgba(255,255,255,0.03);
-    margin: 25px 0;
+    margin: 25px 0 35px 0; /* Margem inferior maior para caber os números */
     padding: 4px;
+    overflow: visible; /* Importante para não cortar os números */
 }
 
 .ga-bar-fill {
@@ -77,7 +78,39 @@
     border-radius: 4px;
     transition: width 0.5s ease-out;
     box-shadow: 0 0 10px #9b00ff;
-    /* Largura definida inline */
+    position: relative;
+    z-index: 1;
+}
+
+/* MARCADORES DA RÉGUA (Correção do Bug) */
+.progress-marker {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 2;
+}
+
+.progress-marker .marker-label {
+    position: absolute;
+    bottom: -25px; /* Empurra o número para baixo da barra */
+    left: 50%;
+    transform: translateX(-50%); /* Centraliza o número no risco */
+    font-family: 'Roboto Mono', monospace;
+    font-size: 10px;
+    color: #888;
+}
+
+.progress-marker.goal {
+    background: #FFD700;
+    opacity: 0.8;
+    width: 2px;
+}
+
+.progress-marker.goal .marker-label {
+    color: #FFD700;
+    font-weight: 700;
 }
 
 .ga-labels {
@@ -86,7 +119,7 @@
     font-family: 'Roboto Mono', monospace;
     font-size: 1em;
     color: #e7e9ff;
-    margin-top: 25px;
+    margin-top: 10px;
 }
 
 /* GRID DE ITENS (RECOMPENSAS) */
@@ -250,4 +283,6 @@
     .ga-info-grid { grid-template-columns: 1fr; }
     .xp-grid { grid-template-columns: 1fr; }
     .ga-body { padding: 20px; }
+    /* Esconde os números da régua no celular para não quebrar */
+    .progress-marker .marker-label { display: none; }
 }
