@@ -1,0 +1,164 @@
+/* --- TEMPLATE: SYSTEM RESET (MANUTENÇÃO) --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
+
+:root {
+  --reset-bg: #0d0e12;
+  --reset-panel: #15171e;
+  --reset-border: #333;
+  --reset-accent: #ffab00; /* Âmbar/Laranja de Manutenção */
+  --reset-text: #c9d1d9;
+  --reset-dim: #8b949e;
+}
+
+.reset-container {
+  box-sizing: border-box;
+  max-width: 800px;
+  width: 95%;
+  margin: 30px auto;
+  background-color: var(--reset-bg);
+  border: 1px solid var(--reset-border);
+  border-top: 4px solid var(--reset-accent);
+  border-radius: 6px;
+  font-family: 'Inter', sans-serif;
+  color: var(--reset-text);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+  overflow: hidden;
+}
+
+.reset-container * { box-sizing: border-box; }
+
+/* Header */
+.reset-header {
+  padding: 30px 40px;
+  background: linear-gradient(180deg, #1a1c24 0%, var(--reset-bg) 100%);
+  border-bottom: 1px solid var(--reset-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.reset-title h1 {
+  font-family: 'Rajdhani', sans-serif;
+  font-weight: 700;
+  font-size: 2em;
+  margin: 0;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  display: flex; align-items: center; gap: 10px;
+}
+/* Ícone de warning via CSS */
+.reset-title h1::before {
+  content: '⚠'; color: var(--reset-accent); font-size: 0.8em;
+}
+
+.reset-title p {
+  margin: 5px 0 0 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  color: var(--reset-accent);
+}
+
+/* Timer Box */
+.reset-timer {
+  text-align: right;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.9em;
+  color: var(--reset-dim);
+  border: 1px solid var(--reset-border);
+  padding: 8px 12px;
+  border-radius: 4px;
+  background: #0a0b0e;
+}
+.reset-timer strong { color: var(--reset-accent); display: block; font-size: 1.2em; }
+
+/* Corpo */
+.reset-body { padding: 40px; }
+
+.reset-block { margin-bottom: 30px; }
+.reset-block:last-child { margin-bottom: 0; }
+
+.reset-subtitle {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.4em;
+  color: #fff;
+  border-bottom: 1px solid var(--reset-border);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.reset-text {
+  font-size: 1em;
+  line-height: 1.6;
+  color: var(--reset-text);
+  text-align: justify;
+}
+.reset-text b { color: #fff; }
+
+/* Lista de Passos */
+.reset-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.step-item {
+  display: flex;
+  gap: 15px;
+  background: var(--reset-panel);
+  padding: 15px;
+  border: 1px solid var(--reset-border);
+  border-radius: 4px;
+}
+
+.step-num {
+  font-family: 'Rajdhani', sans-serif;
+  font-size: 1.5em;
+  font-weight: 700;
+  color: var(--reset-accent);
+  line-height: 1;
+  opacity: 0.5;
+}
+
+.step-content h4 { margin: 0 0 5px 0; color: #fff; font-size: 1em; }
+.step-content p { margin: 0; font-size: 0.9em; color: var(--reset-dim); }
+
+/* Caixa de Código para Copiar */
+.reset-code-box {
+  margin-top: 10px;
+  background: #050608;
+  border: 1px dashed var(--reset-accent);
+  padding: 15px;
+  border-radius: 4px;
+}
+.reset-code-box textarea {
+  width: 100%;
+  height: 80px;
+  background: transparent;
+  border: none;
+  color: var(--reset-accent);
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  resize: none;
+  outline: none;
+}
+
+/* Footer */
+.reset-footer {
+  background: #0a0b0e;
+  padding: 15px;
+  text-align: center;
+  border-top: 1px solid var(--reset-border);
+  font-size: 0.8em;
+  color: var(--reset-dim);
+  font-family: 'JetBrains Mono', monospace;
+}
+
+@media (max-width: 600px) {
+  .reset-header { flex-direction: column; text-align: center; gap: 15px; }
+  .reset-timer { text-align: center; width: 100%; }
+  .reset-body { padding: 20px; }
+}
