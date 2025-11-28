@@ -1,294 +1,253 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&family=Roboto+Mono:wght@400;700&family=Yuji+Syuku&display=swap');
-:root {
-  --bg: #0c0c1a;
-  --panel: #13141c;
-  --muted: #bfc6e6;
-  --accent1: #9b00ff;
-  --accent2: #3c00b0;
-  --highlight: #c48fff;
-  --text: #e7e9ff;
-  --ui: 'Inter', system-ui, sans-serif;
-  --title: 'Yuji Syuku', serif;
-  --mono: 'Roboto Mono', monospace;
-  --glass: rgba(255, 255, 255, 0.03);
-  --glass-2: rgba(255, 255, 255, 0.02);
-  --success: #00e091;
-  --gold: #FFD700;
-  --coin: #E6A000; 
-}
-.donation-container {
-  box-sizing: border-box;
-  max-width: 820px;
-  width: 95%;
-  margin: 20px auto;
-  font-family: var(--ui);
-  color: var(--text);
-  background: var(--panel);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-  overflow: hidden;
-}
-.donation-header {
-  padding: 20px 25px;
-  text-align: center;
-  border-bottom: 1px solid var(--glass);
-  background: var(--glass-2);
-}
-.donation-title {
-  font-family: var(--title);
-  font-size: 2.2em;
-  font-weight: 700;
-  color: var(--highlight);
-  margin: 0 0 5px 0;
-  text-shadow: 0 0 10px var(--accent1);
-}
-.donation-subtitle {
-  font-size: 1.1em;
-  color: var(--muted);
-  margin: 0;
-  font-weight: 300;
-}
-.donation-body {
-  padding: 25px;
-}
-.donation-body h2 {
-  font-family: var(--title);
-  font-size: 1.8em;
-  color: var(--highlight);
-  margin: 25px 0 15px 0;
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--accent1);
-}
-.donation-body section:first-child h2 {
-  margin-top: 0;
-}
-.donation-body p {
-  font-size: 1.05em;
-  line-height: 1.8;
-  color: var(--muted);
-  margin: 0 0 20px 0;
-  font-weight: 300;
-}
-.donation-body p:last-child {
-  margin-bottom: 0;
-}
-.progress-section {
-  background: var(--glass-2);
-  border: 1px solid var(--gold);
-  border-radius: 8px;
-  padding: 20px;
-  margin: 0 0 25px 0;
-  box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
-}
-.progress-section h2 {
-  text-align: center;
-  border-bottom: none;
-  color: var(--gold);
-  margin-top: 0;
-}
-.progress-bar-bg {
-  width: 100%;
-  height: 40px;
-  background: var(--bg);
-  border-radius: 6px;
-  border: 1px solid var(--glass);
-  overflow: visible;
-  padding: 4px;
-  position: relative; 
-  margin-top: 25px;
-}
-.progress-bar-fill {
-  height: 100%;
-  background: linear-gradient(90deg, var(--accent2), var(--accent1));
-  border-radius: 4px;
-  transition: width 0.5s ease-out;
-  box-shadow: 0 0 10px var(--accent1);
-}
-.progress-labels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 25px;
-  font-family: var(--mono);
-  font-size: 1em;
-  color: var(--text);
-}
-.progress-labels .goal {
-  font-weight: 700;
-  color: var(--gold);
-}
-.progress-marker {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: rgba(255, 255, 255, 0.1);
-}
-.progress-marker .marker-label {
-  position: absolute;
-  bottom: -20px;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: 10px;
-  color: var(--muted);
-}
-.progress-marker.goal {
-  background: var(--gold);
-  opacity: 0.5;
-}
-.progress-marker.goal .marker-label {
-  color: var(--gold);
-  font-weight: 700;
-}
-.info-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-}
-.reward-tiers-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-  margin-bottom: 25px;
-}
-.tier-card {
-  background: var(--bg);
-  border: 1px solid var(--glass);
-  border-radius: 6px;
-  padding: 15px;
-  text-align: center;
-  transition: all 0.3s;
-  opacity: 0.4; /* Inativo por padrão */
-}
-.tier-level {
-  font-family: var(--mono);
-  font-size: 1.1em;
-  font-weight: 700;
-  color: var(--muted);
-  display: block;
-}
-.tier-reward {
-  font-family: var(--title);
-  font-size: 2em;
-  color: var(--muted); /* Inativo */
-  margin: 10px 0;
-}
-.tier-goal {
-  font-family: var(--mono);
-  font-size: 0.9em;
-  color: var(--muted); /* Inativo */
-  font-weight: 700;
+
+/* CONTAINER PRINCIPAL */
+.ga-donation-wrapper {
+    background: #13141c;
+    color: #e7e9ff;
+    font-family: 'Inter', sans-serif;
+    max-width: 820px;
+    width: 95%;
+    margin: 20px auto;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    box-sizing: border-box;
 }
 
-/* [NOVO v3] Meta Concluída (Verde) */
-.tier-card.completed {
-  opacity: 1;
-  border-color: var(--success);
-  box-shadow: 0 0 15px rgba(0, 224, 145, 0.3);
-}
-.tier-card.completed .tier-level {
-  color: var(--success);
-}
-.tier-card.completed .tier-level::before {
-  content: 'CONCLUÍDO | ';
-}
-.tier-card.completed .tier-reward {
-  color: var(--success);
-  text-shadow: 0 0 10px rgba(0, 224, 145, 0.5);
-}
-.tier-card.completed .tier-goal {
-  color: var(--success);
+.ga-header {
+    background: rgba(255,255,255,0.02);
+    padding: 20px 25px;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
 }
 
-/* [NOVO v3] Meta Atual (Dourado) */
-.tier-card.current-goal {
-  opacity: 1;
-  border-color: var(--gold);
-  box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
-}
-.tier-card.current-goal .tier-level {
-  color: var(--gold);
-}
-.tier-card.current-goal .tier-level::before {
-  content: 'META ATUAL | ';
-}
-.tier-card.current-goal .tier-reward {
-  color: var(--gold);
-  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
-}
-.tier-card.current-goal .tier-goal {
-  color: var(--gold);
+.ga-title {
+    font-family: 'Yuji Syuku', serif;
+    color: #c48fff;
+    margin: 0 0 5px 0;
+    font-size: 2.2em;
+    font-weight: 700;
+    text-shadow: 0 0 10px #9b00ff;
 }
 
-.intermediate-rewards {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  background: var(--glass-2);
-  border-radius: 8px;
-  padding: 15px;
+.ga-body {
+    padding: 25px;
 }
-.intermediate-rewards li {
-  font-family: var(--mono);
-  font-size: 1em;
-  color: var(--muted);
-  padding: 10px 0;
-  border-bottom: 1px solid var(--glass-2);
+
+.ga-subtitle {
+    font-size: 1.1em;
+    color: #bfc6e6;
+    margin: 0;
+    font-weight: 300;
 }
-.intermediate-rewards li:last-child {
-  border-bottom: none;
+
+/* BARRA DE PROGRESSO */
+.ga-progress-box {
+    background: rgba(255,255,255,0.02);
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #FFD700;
+    margin-bottom: 25px;
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.15);
 }
-.intermediate-rewards li span {
-  font-family: var(--ui);
-  color: var(--text);
-  font-weight: 500;
+
+.ga-progress-title {
+    text-align: center;
+    border-bottom: none;
+    color: #FFD700;
+    margin-top: 0;
+    font-family: 'Yuji Syuku', serif;
+    font-size: 1.8em;
 }
-.intermediate-rewards li b {
-  color: var(--highlight);
+
+.ga-bar-bg {
+    background: #0c0c1a;
+    height: 40px;
+    border-radius: 6px;
+    position: relative;
+    border: 1px solid rgba(255,255,255,0.03);
+    margin: 25px 0;
+    padding: 4px;
 }
+
+.ga-bar-fill {
+    background: linear-gradient(90deg, #3c00b0, #9b00ff);
+    height: 100%;
+    border-radius: 4px;
+    transition: width 0.5s ease-out;
+    box-shadow: 0 0 10px #9b00ff;
+    /* Largura definida inline */
+}
+
+.ga-labels {
+    display: flex;
+    justify-content: space-between;
+    font-family: 'Roboto Mono', monospace;
+    font-size: 1em;
+    color: #e7e9ff;
+    margin-top: 25px;
+}
+
+/* GRID DE ITENS (RECOMPENSAS) */
+.ga-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 10px;
+    margin-top: 20px;
+}
+
+/* CARDS DE TEXTO (Glossário e Info) */
+.ga-info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* O CARD DO ITEM */
+.reward-card {
+    background: #0c0c1a;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 6px;
+    padding: 10px;
+    text-align: center;
+    transition: all 0.3s;
+    min-height: auto;
+}
+
+.reward-price {
+    display: block;
+    font-size: 0.7em;
+    color: #888;
+    font-family: 'Roboto Mono', monospace;
+    margin-bottom: 5px;
+}
+
+.reward-name {
+    font-size: 0.9em;
+    font-family: 'Yuji Syuku', serif;
+    color: #bfc6e6;
+}
+
+/* CARD DE TEXTO LONGO (GLOSSARIO) */
+.text-card {
+    text-align: left;
+    padding: 15px;
+    min-height: auto;
+    background: #0c0c1a;
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 6px;
+}
+
+/* ESTADOS: LOCKED / UNLOCKED */
+.locked {
+    opacity: 0.4;
+    filter: grayscale(100%);
+    border-color: #444 !important;
+}
+
+.unlocked {
+    opacity: 1;
+    filter: grayscale(0%);
+    border-color: var(--item-color);
+    box-shadow: 0 0 10px var(--item-color, rgba(255,255,255,0.1));
+}
+
+.unlocked .reward-price { color: var(--item-color); font-weight: bold; }
+.unlocked .reward-name { color: var(--item-color); }
+
+/* XP CARDS */
+.xp-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.xp-card {
+    background: #0c0c1a;
+    padding: 15px;
+    border-radius: 6px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.03);
+}
+
+.xp-card.unlocked {
+    border-color: #FFD700;
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.xp-level { display: block; font-family: 'Roboto Mono'; font-size: 1.1em; font-weight: 700; color: #bfc6e6; }
+.xp-val { font-size: 2em; color: #bfc6e6; font-family: 'Yuji Syuku', serif; margin: 10px 0; }
+.xp-goal { font-size: 0.9em; font-family: 'Roboto Mono'; color: #bfc6e6; font-weight: 700; }
+
+.xp-card.unlocked .xp-level, 
+.xp-card.unlocked .xp-val, 
+.xp-card.unlocked .xp-goal { color: #FFD700; }
+
+/* TEXTOS GERAIS */
+.ga-section-title {
+    font-family: 'Yuji Syuku', serif;
+    font-size: 1.8em;
+    color: #c48fff;
+    margin: 40px 0 15px 0;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #9b00ff;
+}
+
+.ga-p {
+    font-size: 1.05em;
+    line-height: 1.8;
+    color: #bfc6e6;
+    margin: 0 0 20px 0;
+    font-weight: 300;
+}
+
+/* ELEMENTOS ESPECIFICOS */
+.tier-card-box {
+    background: rgba(20, 20, 25, 0.5);
+    border: 1px solid #555;
+    margin-top: 15px;
+    padding: 15px;
+    border-radius: 6px;
+}
+
 .cta-card {
-  background: var(--glass-2);
-  border: 1px solid var(--glass);
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-}
-.cta-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95em;
-}
-.pix-key {
-  font-family: var(--mono);
-  font-size: 1.1em;
-  color: var(--text);
-  background: var(--bg);
-  padding: 10px 15px;
-  border-radius: 6px;
-  border: 1px solid var(--glass);
-  margin: 15px 0;
-  display: inline-block;
-}
-.coin-card {
-  background: var(--bg);
-  border: 1px solid var(--coin);
-  border-radius: 6px;
-  padding: 15px;
-  margin-top: 15px;
-  color: var(--coin);
-  font-family: var(--mono);
-  font-size: 1.2em;
-  font-weight: 700;
-  box-shadow: 0 0 15px rgba(230, 160, 0, 0.3);
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.03);
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    margin-top: 20px;
 }
 
-@media (max-width: 700px) {
-  .info-grid { grid-template-columns: 1fr; }
+.coin-card {
+    background: #0c0c1a;
+    border: 1px solid #E6A000;
+    border-radius: 6px;
+    padding: 15px;
+    color: #E6A000;
+    font-family: 'Roboto Mono';
+    font-size: 1.2em;
+    font-weight: 700;
+    box-shadow: 0 0 15px rgba(230, 160, 0, 0.3);
 }
+
+.pix-key {
+    font-family: 'Roboto Mono';
+    font-size: 1.1em;
+    color: #e7e9ff;
+    background: #0c0c1a;
+    padding: 10px 15px;
+    border-radius: 6px;
+    border: 1px solid rgba(255,255,255,0.03);
+    margin: 15px 0;
+    display: inline-block;
+}
+
 @media (max-width: 640px) {
-  .donation-body { padding: 20px; }
-  .progress-labels { font-size: 0.9em; }
-  .balance-amount { font-size: 2.8em; }
-  .reward-tiers-grid { grid-template-columns: 1fr; }
-  .progress-marker .marker-label { display: none; }
+    .ga-info-grid { grid-template-columns: 1fr; }
+    .xp-grid { grid-template-columns: 1fr; }
+    .ga-body { padding: 20px; }
 }
