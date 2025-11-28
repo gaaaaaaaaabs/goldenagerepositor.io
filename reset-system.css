@@ -1,4 +1,4 @@
-/* --- TEMPLATE: SYSTEM RESET v2 (Clean Fix) --- */
+/* --- TEMPLATE: SYSTEM RESET v3 (Code Tag Fix) --- */
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Inter:wght@400;600&family=JetBrains+Mono:wght@400;700&display=swap');
 
 :root {
@@ -80,7 +80,7 @@
 .step-content h4 { margin: 0 0 5px 0; color: #fff; font-size: 1em; }
 .step-content p { margin: 0; font-size: 0.9em; color: var(--reset-dim); }
 
-/* [NOVO] DISPLAY DE CÓDIGO (DIV SEGURA) */
+/* DISPLAY DE CÓDIGO */
 .reset-code-display {
   display: block;
   margin-top: 10px;
@@ -91,9 +91,33 @@
   color: var(--reset-accent);
   font-family: 'JetBrains Mono', monospace;
   font-size: 0.85em;
-  white-space: pre; /* Mantém quebras de linha */
-  user-select: all; /* Seleciona tudo ao clicar */
+  
+  /* Garante que quebre linha */
+  white-space: pre-wrap; 
+  word-break: break-word;
+  overflow-wrap: break-word;
+  
+  user-select: all; 
   cursor: text;
+}
+
+/* --- FIX PARA BBCODE [CODE] --- */
+/* Isso força a caixa gerada pelo fórum a obedecer o nosso estilo */
+.reset-code-display .codebox,
+.reset-code-display pre,
+.reset-code-display code {
+    background: transparent !important;
+    border: none !important;
+    color: inherit !important;
+    font-family: inherit !important;
+    font-size: 1em !important;
+    white-space: pre-wrap !important; /* Quebra linha */
+    word-wrap: break-word !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    box-shadow: none !important;
 }
 
 /* FOOTER */
