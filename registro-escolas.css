@@ -1,22 +1,14 @@
-/* --- TEMPLATE: REGISTRO ESCOLAR (TOKYO vs KYOTO) --- */
+/* --- TEMPLATE: REGISTRO ESCOLAR v4 (Forum Proof) --- */
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Rajdhani:wght@500;600;700&family=Inter:wght@400;600&display=swap');
 
 :root {
-  --reg-bg: #0e1014;
-  --reg-panel: #161920;
-  --reg-border: #2c3340;
-  --reg-text: #cfd8dc;
-  
-  /* Cores Tokyo */
-  --tokyo-accent: #3d5afe;
-  --tokyo-dark: #1a237e;
-  
-  /* Cores Kyoto */
-  --kyoto-accent: #880e4f;
-  --kyoto-dark: #4a0026;
+  --reg-bg: #0e1014; --reg-panel: #161920; --reg-border: #2c3340; --reg-text: #cfd8dc;
+  --tokyo-accent: #3d5afe; --tokyo-dark: #1a237e;
+  --kyoto-accent: #880e4f; --kyoto-dark: #4a0026;
 }
 
 .school-census-container {
+  box-sizing: border-box;
   max-width: 900px;
   margin: 30px auto;
   font-family: 'Inter', sans-serif;
@@ -26,189 +18,99 @@
   box-shadow: 0 10px 40px rgba(0,0,0,0.5);
   border-radius: 8px;
   overflow: hidden;
+  line-height: 1.5;
 }
 
 .school-census-container * { box-sizing: border-box; }
+.school-census-container a { text-decoration: none; transition: 0.2s; }
 
-/* Cabeçalho Geral */
+/* Header */
 .census-header {
-  text-align: center;
-  padding: 30px;
+  text-align: center; padding: 30px;
   background: linear-gradient(to bottom, #1b2029, var(--reg-bg));
   border-bottom: 1px solid var(--reg-border);
 }
 .census-title {
-  font-family: 'Cinzel', serif;
-  font-size: 2em;
-  color: #eceff1;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin: 0;
+  font-family: 'Cinzel', serif; font-size: 2em; color: #eceff1; text-transform: uppercase; letter-spacing: 2px; margin: 0;
 }
 .census-subtitle {
-  font-family: 'Rajdhani', sans-serif;
-  color: #90a4ae;
-  text-transform: uppercase;
-  font-weight: 600;
-  margin-top: 5px;
-  font-size: 0.9em;
-  letter-spacing: 1px;
+  font-family: 'Rajdhani', sans-serif; color: #90a4ae; text-transform: uppercase; font-weight: 600; margin-top: 5px; font-size: 0.9em; letter-spacing: 1px;
 }
 
-/* Grid das Escolas */
+/* Grid Escolas */
 .schools-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
+  display: grid; grid-template-columns: 1fr 1fr;
   border-bottom: 1px solid var(--reg-border);
 }
 
-/* Coluna da Escola */
-.school-column {
-  position: relative;
-  background: var(--reg-bg);
-}
-/* Divisória central */
+.school-column { position: relative; background: var(--reg-bg); }
 .school-column:first-child { border-right: 1px solid var(--reg-border); }
 
-/* Cabeçalho da Escola */
-.school-header {
-  padding: 20px;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.tokyo .school-header { 
-  background: linear-gradient(135deg, var(--tokyo-dark), var(--reg-bg)); 
-  border-bottom: 3px solid var(--tokyo-accent);
-}
-.kyoto .school-header { 
-  background: linear-gradient(135deg, var(--kyoto-dark), var(--reg-bg)); 
-  border-bottom: 3px solid var(--kyoto-accent);
-}
+.school-header { padding: 20px; text-align: center; position: relative; overflow: hidden; }
+.tokyo .school-header { background: linear-gradient(135deg, var(--tokyo-dark), var(--reg-bg)); border-bottom: 3px solid var(--tokyo-accent); }
+.kyoto .school-header { background: linear-gradient(135deg, var(--kyoto-dark), var(--reg-bg)); border-bottom: 3px solid var(--kyoto-accent); }
 
 .school-name {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 1.5em;
-  font-weight: 700;
-  text-transform: uppercase;
-  color: #fff;
-  position: relative; z-index: 2;
+  font-family: 'Rajdhani', sans-serif; font-size: 1.5em; font-weight: 700; text-transform: uppercase; color: #fff; position: relative; z-index: 2;
 }
-
-/* Contador Total */
 .school-counter {
-  font-size: 0.8em;
-  color: rgba(255,255,255,0.7);
-  background: rgba(0,0,0,0.3);
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-top: 5px;
-  display: inline-block;
-  font-weight: 600;
+  font-size: 0.8em; color: rgba(255,255,255,0.7); background: rgba(0,0,0,0.3); padding: 2px 8px; border-radius: 4px; margin-top: 5px; display: inline-block; font-weight: 600;
 }
-
-/* Icone de Fundo (Torii / Espiral) */
 .school-bg-icon {
-  position: absolute;
-  top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-size: 5em;
-  opacity: 0.1;
-  z-index: 1;
-  filter: grayscale(1);
+  position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+  font-size: 5em; opacity: 0.1; z-index: 1; filter: grayscale(1);
 }
 
-/* Lista de Anos/Classes */
-.grade-list {
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
+/* Listas */
+.grade-list { padding: 20px; display: flex; flex-direction: column; gap: 20px; }
+.grade-group { background: var(--reg-panel); border: 1px solid var(--reg-border); border-radius: 4px; overflow: hidden; }
 
-.grade-group {
-  background: var(--reg-panel);
-  border: 1px solid var(--reg-border);
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.grade-title {
-  padding: 8px 15px;
-  font-family: 'Rajdhani', sans-serif;
-  font-weight: 700;
-  text-transform: uppercase;
-  font-size: 0.9em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
+.grade-title { padding: 8px 15px; font-family: 'Rajdhani', sans-serif; font-weight: 700; text-transform: uppercase; font-size: 0.9em; display: flex; justify-content: space-between; align-items: center; }
 .tokyo .grade-title { background: rgba(61, 90, 254, 0.1); color: #8c9eff; border-bottom: 1px solid rgba(61, 90, 254, 0.2); }
 .kyoto .grade-title { background: rgba(136, 14, 79, 0.1); color: #f48fb1; border-bottom: 1px solid rgba(136, 14, 79, 0.2); }
-
 .grade-count { font-size: 0.9em; opacity: 0.7; }
 
-/* Itens de Aluno */
-.student-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.student-item {
-  padding: 8px 15px;
-  border-bottom: 1px solid rgba(255,255,255,0.03);
-  font-size: 0.9em;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  transition: background 0.2s;
-}
+.student-list { list-style: none; padding: 0; margin: 0; }
+.student-item { padding: 8px 15px; border-bottom: 1px solid rgba(255,255,255,0.03); font-size: 0.9em; display: flex; justify-content: space-between; align-items: center; transition: background 0.2s; }
 .student-item:last-child { border-bottom: none; }
 .student-item:hover { background: rgba(255,255,255,0.02); }
 
-.student-link {
-  text-decoration: none;
-  color: var(--reg-text);
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.student-link { color: var(--reg-text); font-weight: 500; display: flex; align-items: center; gap: 8px; }
 .student-link:hover { color: #fff; }
-
-/* Bolinha de Status (Opcional) */
-.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #555; }
+.status-dot { width: 6px; height: 6px; border-radius: 50%; background: #555; display: inline-block; }
 .status-dot.active { background: #2ecc71; box-shadow: 0 0 5px #2ecc71; }
+.student-grade-tag { font-size: 0.75em; padding: 1px 5px; border-radius: 2px; background: #222; color: #777; border: 1px solid #333; }
+.empty-slot { color: #555; font-style: italic; padding: 8px 15px; font-size: 0.85em; }
 
-/* Tag de Grau */
-.student-grade-tag {
-  font-size: 0.75em;
-  padding: 1px 5px;
-  border-radius: 2px;
-  background: #222;
-  color: #777;
-  border: 1px solid #333;
+/* --- CAIXA DE CÓDIGO (CORRIGIDA PARA O FÓRUM) --- */
+/* Usamos DIV em vez de TEXTAREA para evitar bugs de form */
+.census-request-box {
+    background: #0b0c10;
+    border-top: 1px solid var(--reg-border);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
 
-/* Vaga Vazia */
-.empty-slot {
-  color: #555;
-  font-style: italic;
-  padding: 8px 15px;
-  font-size: 0.85em;
+.req-title { font-family: 'Rajdhani', sans-serif; font-weight: 700; text-transform: uppercase; color: #fff; letter-spacing: 1px; }
+.req-desc { font-size: 0.9em; color: #777; }
+
+.req-code-display {
+    display: block;
+    background: #050505;
+    border: 1px solid #333;
+    color: #a855f7; /* Roxo Neon suave */
+    font-family: monospace;
+    font-size: 0.85em;
+    padding: 15px;
+    border-radius: 4px;
+    white-space: pre-wrap; /* Mantém quebras de linha */
+    word-break: break-all;
+    user-select: all; /* Seleciona tudo ao clicar */
 }
 
-/* Rodapé */
-.census-footer {
-  padding: 15px;
-  background: #0b0c10;
-  text-align: center;
-  font-size: 0.8em;
-  color: #555;
-  font-family: 'Rajdhani', sans-serif;
-  text-transform: uppercase;
-}
+.census-footer { padding: 15px; background: #08080a; text-align: center; font-size: 0.8em; color: #444; font-family: 'Rajdhani', sans-serif; text-transform: uppercase; }
 
 @media (max-width: 700px) {
   .schools-grid { grid-template-columns: 1fr; }
