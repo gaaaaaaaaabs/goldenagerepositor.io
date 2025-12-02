@@ -1,0 +1,104 @@
+/* --- TEMPLATE: CAMPANHA DE RECRUTAMENTO (COMMUNITY GROWTH) --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@600;700&family=Inter:wght@400;600&display=swap');
+
+:root {
+  --rec-bg: #0f172a;
+  --rec-panel: #1e293b;
+  --rec-border: #334155;
+  --rec-primary: #3b82f6; /* Azul Vibrante */
+  --rec-secondary: #f97316; /* Laranja XP */
+  --rec-text: #f1f5f9;
+  --rec-dim: #94a3b8;
+}
+
+.rec-container {
+  box-sizing: border-box;
+  max-width: 800px;
+  width: 95%;
+  margin: 30px auto;
+  font-family: 'Inter', sans-serif;
+  background-color: var(--rec-bg);
+  color: var(--rec-text);
+  border: 1px solid var(--rec-border);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+.rec-container * { box-sizing: border-box; }
+
+/* HEADER */
+.rec-header {
+  padding: 40px 20px; text-align: center;
+  background: linear-gradient(135deg, #1e1b4b 0%, #1e3a8a 100%);
+  border-bottom: 4px solid var(--rec-primary);
+}
+.rec-title {
+  font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 2.5em;
+  margin: 0; color: #fff; text-transform: uppercase; letter-spacing: 1px;
+  text-shadow: 0 4px 10px rgba(59, 130, 246, 0.5);
+}
+.rec-subtitle {
+  font-size: 1em; color: #bfdbfe; margin-top: 5px; font-weight: 600;
+}
+
+/* CORPO */
+.rec-body { padding: 30px; background: var(--rec-bg); }
+
+.rec-block {
+  background: var(--rec-panel); border: 1px solid var(--rec-border);
+  padding: 20px; border-radius: 6px; margin-bottom: 20px;
+}
+
+.rec-block-title {
+  font-family: 'Rajdhani', sans-serif; font-size: 1.4em; font-weight: 700;
+  color: var(--rec-primary); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;
+  border-bottom: 1px solid var(--rec-border); padding-bottom: 10px;
+}
+
+/* Regras */
+.rec-rules-list { list-style: none; padding: 0; margin: 0; }
+.rec-rules-list li {
+  padding: 10px; border-bottom: 1px dashed var(--rec-border);
+  font-size: 0.95em; color: var(--rec-dim);
+}
+.rec-rules-list li:last-child { border-bottom: none; }
+.rec-rules-list strong { color: #fff; }
+
+/* Bônus Cards */
+.bonus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 10px; }
+.bonus-card {
+  background: rgba(249, 115, 22, 0.1); border: 1px solid var(--rec-secondary);
+  padding: 15px; border-radius: 6px; text-align: center;
+}
+.bonus-val { font-family: 'Rajdhani', sans-serif; font-size: 2em; font-weight: 700; color: var(--rec-secondary); }
+.bonus-desc { font-size: 0.8em; color: var(--rec-dim); margin-top: 5px; }
+
+/* Aviso Anti-Cheat */
+.rec-warning {
+  background: rgba(220, 38, 38, 0.1); border-left: 4px solid #dc2626;
+  padding: 15px; font-size: 0.85em; color: #fca5a5; margin-top: 20px;
+  border-radius: 4px;
+}
+.rec-warning b { color: #f87171; text-transform: uppercase; }
+
+/* FORMULÁRIO DE REGISTRO (Colinha) */
+.rec-code-box {
+  background: #0b0f19; border: 1px dashed var(--rec-border); padding: 15px; border-radius: 4px;
+  margin-top: 20px;
+}
+.rec-code-textarea {
+  width: 100%; height: 100px; background: transparent; border: none;
+  color: var(--rec-primary); font-family: monospace; font-size: 0.9em;
+  resize: none; outline: none;
+}
+
+/* FOOTER */
+.rec-footer {
+  text-align: center; padding: 20px; background: #020617;
+  border-top: 1px solid var(--rec-border); font-size: 0.8em; color: var(--rec-dim);
+}
+
+@media (max-width: 600px) {
+  .bonus-grid { grid-template-columns: 1fr; }
+  .rec-header, .rec-body { padding: 20px; }
+}
