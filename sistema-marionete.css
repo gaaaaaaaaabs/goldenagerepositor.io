@@ -1,97 +1,136 @@
-/* --- TEMPLATE: PUPPET WORKSHOP (BLUEPRINT) --- */
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Teko:wght@400;600&display=swap');
+/* --- TEMPLATE: PUPPET SYSTEM (JUJUTSU TECH STYLE) --- */
+@import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=Inter:wght@400;600&display=swap');
 
 :root {
-  --blueprint-bg: #0f2045;
-  --blueprint-grid: rgba(255, 255, 255, 0.1);
-  --blueprint-line: #40a9ff;
-  --blueprint-text: #d6e4ff;
-  --blueprint-accent: #ffd700;
+  --sys-bg: #080808;
+  --sys-panel: #111111;
+  --sys-border: #333;
+  --sys-purple: #6D20C5;    /* Roxo Identidade */
+  --sys-purple-dim: #4a148c;
+  --sys-text: #e0e0e0;
+  --sys-highlight: #b388ff;
+  --sys-gold: #d4af37;      /* Detalhes Raros */
 }
 
-.puppet-system-container {
+.puppet-sys-container {
   box-sizing: border-box;
   max-width: 850px;
   width: 95%;
   margin: 30px auto;
-  background-color: var(--blueprint-bg);
+  background-color: var(--sys-bg);
   
-  /* Fundo de Papel Milimetrado (Blueprint) */
-  background-image: 
-    linear-gradient(var(--blueprint-grid) 1px, transparent 1px),
-    linear-gradient(90deg, var(--blueprint-grid) 1px, transparent 1px);
-  background-size: 20px 20px;
+  /* Fundo Sutil (Sem riscos fortes) */
+  background-image: radial-gradient(circle at top, #1a0b2e 0%, var(--sys-bg) 40%);
   
-  border: 2px solid var(--blueprint-line);
-  border-radius: 4px;
-  font-family: 'Share Tech Mono', monospace;
-  color: var(--blueprint-text);
-  box-shadow: 0 0 20px rgba(64, 169, 255, 0.2);
-  padding: 0;
+  border: 1px solid var(--sys-border);
+  border-top: 4px solid var(--sys-purple);
+  border-radius: 6px;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+  
+  color: var(--sys-text);
+  font-family: 'Inter', sans-serif;
+  position: relative;
   overflow: hidden;
 }
 
-.puppet-system-container * { box-sizing: border-box; }
+.puppet-sys-container * { box-sizing: border-box; }
 
-/* HEADER TÉCNICO */
+/* CABEÇALHO */
 .sys-header {
-  background: rgba(0,0,0,0.3);
-  padding: 20px;
-  border-bottom: 2px solid var(--blueprint-line);
+  padding: 30px;
+  border-bottom: 1px solid var(--sys-border);
+  background: linear-gradient(to bottom, rgba(109, 32, 197, 0.1), transparent);
   display: flex; justify-content: space-between; align-items: center;
 }
+
 .sys-title {
-  font-family: 'Teko', sans-serif; font-size: 2em; color: var(--blueprint-line);
-  text-transform: uppercase; letter-spacing: 2px; line-height: 1;
+  font-family: 'Rajdhani', sans-serif; font-weight: 700; font-size: 2em;
+  color: #fff; text-transform: uppercase; line-height: 1; letter-spacing: 1px;
 }
+.sys-title span { color: var(--sys-purple); }
+
 .sys-meta {
-  font-size: 0.8em; text-align: right; color: var(--blueprint-accent);
-  border: 1px solid var(--blueprint-accent); padding: 5px 10px;
+  text-align: right; font-family: 'Rajdhani', sans-serif; font-size: 0.9em;
+  color: var(--sys-highlight); border: 1px solid var(--sys-purple-dim);
+  padding: 5px 10px; border-radius: 4px;
 }
 
 /* SEÇÕES */
-.sys-section { padding: 20px; border-bottom: 1px dashed rgba(64, 169, 255, 0.3); }
+.sys-section { padding: 30px; border-bottom: 1px solid var(--sys-border); }
 .sys-section:last-child { border-bottom: none; }
 
 .sys-subtitle {
-  font-size: 1.2em; color: #fff; background: rgba(64, 169, 255, 0.2);
-  padding: 5px 10px; border-left: 4px solid var(--blueprint-line);
-  margin-bottom: 15px; text-transform: uppercase;
+  font-family: 'Rajdhani', sans-serif; font-size: 1.4em; color: #fff;
+  border-left: 4px solid var(--sys-purple); padding-left: 15px;
+  margin-bottom: 20px; text-transform: uppercase; font-weight: 700;
 }
 
-/* TABELAS TÉCNICAS */
+.sys-text {
+  font-size: 0.95em; line-height: 1.6; color: #ccc; margin-bottom: 20px; text-align: justify;
+}
+.sys-text b { color: var(--sys-highlight); }
+
+/* TABELAS LIMPAS */
 .sys-table {
-  width: 100%; border-collapse: collapse; font-size: 0.9em;
-  background: rgba(0,0,0,0.2); margin-bottom: 10px;
+  width: 100%; border-collapse: separate; border-spacing: 0;
+  font-size: 0.9em; margin-top: 10px; border: 1px solid var(--sys-border);
+  border-radius: 4px; overflow: hidden;
 }
+
 .sys-table th {
-  background: rgba(64, 169, 255, 0.15); color: var(--blueprint-line);
-  text-align: left; padding: 10px; border: 1px solid var(--blueprint-line);
-  text-transform: uppercase;
+  background: var(--sys-panel); color: var(--sys-highlight);
+  text-align: left; padding: 12px 15px;
+  border-bottom: 1px solid var(--sys-border);
+  font-family: 'Rajdhani', sans-serif; text-transform: uppercase; font-weight: 700;
 }
+
 .sys-table td {
-  padding: 10px; border: 1px solid rgba(64, 169, 255, 0.3);
-  vertical-align: top;
+  padding: 12px 15px; border-bottom: 1px solid #222;
+  vertical-align: top; color: #bbb;
 }
-.sys-table tr:hover td { background: rgba(64, 169, 255, 0.05); }
+.sys-table tr:last-child td { border-bottom: none; }
+.sys-table tr:hover td { background: rgba(109, 32, 197, 0.05); }
 
-/* DESTAQUES */
-.hl-val { color: var(--blueprint-accent); font-weight: bold; }
-.hl-bad { color: #ff6b6b; }
+/* Tags de Valor */
+.tag-bonus { color: #4caf50; font-weight: bold; }
+.tag-malus { color: #f44336; font-weight: bold; }
+.tag-neutral { color: var(--sys-gold); font-weight: bold; }
 
-/* CARDS DE MATERIAL */
-.mat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; }
-.mat-card {
-  border: 1px solid rgba(64, 169, 255, 0.3); padding: 10px;
-  background: rgba(0,0,0,0.4);
+/* GRID DE MATERIAIS (GRAUS) */
+.grade-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 15px;
 }
-.mat-grade { font-size: 1.5em; color: var(--blueprint-line); display: block; font-weight: bold; }
-.mat-name { font-size: 0.9em; color: #fff; border-bottom: 1px solid #555; padding-bottom: 5px; margin-bottom: 5px; display: block; }
+
+.grade-card {
+  background: var(--sys-panel); border: 1px solid var(--sys-border);
+  padding: 15px; text-align: center; border-radius: 4px;
+  transition: 0.2s;
+}
+.grade-card:hover { border-color: var(--sys-purple); transform: translateY(-2px); }
+
+.grade-title {
+  font-family: 'Rajdhani', sans-serif; font-size: 1.5em; font-weight: 700;
+  color: #fff; display: block; margin-bottom: 5px;
+}
+.grade-mat { font-size: 0.8em; color: #888; text-transform: uppercase; letter-spacing: 1px; display: block; margin-bottom: 10px; }
+
+.grade-stats {
+  display: flex; justify-content: space-around;
+  border-top: 1px solid #333; padding-top: 10px; font-size: 0.9em;
+}
+.stat-box span { display: block; color: var(--sys-purple); font-weight: bold; font-size: 1.1em; }
+.stat-box label { font-size: 0.7em; color: #666; text-transform: uppercase; }
 
 @media (max-width: 600px) {
   .sys-header { flex-direction: column; text-align: center; gap: 10px; }
+  
+  /* Tabela Responsiva (Card View) */
   .sys-table, .sys-table tbody, .sys-table th, .sys-table td, .sys-table tr { display: block; }
   .sys-table th { display: none; }
-  .sys-table td { position: relative; padding-left: 50%; text-align: right; }
-  .sys-table td::before { content: attr(data-label); position: absolute; left: 10px; font-weight: bold; color: var(--blueprint-line); }
+  .sys-table tr { margin-bottom: 15px; border: 1px solid var(--sys-border); border-radius: 4px; padding: 10px; }
+  .sys-table td { padding: 5px 0 5px 40%; position: relative; text-align: right; border: none; }
+  .sys-table td::before { 
+    content: attr(data-label); position: absolute; left: 0; top: 5px;
+    font-weight: bold; color: var(--sys-purple); font-family: 'Rajdhani'; text-transform: uppercase;
+  }
 }
