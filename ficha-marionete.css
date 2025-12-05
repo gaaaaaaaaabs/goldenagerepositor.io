@@ -1,0 +1,114 @@
+/* --- FICHA DE MARIONETE (BLUEPRINT) --- */
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Teko:wght@400;600&family=Rajdhani:wght@600&display=swap');
+
+:root {
+  --puppet-bg: #0b1021;
+  --puppet-panel: #131b2e;
+  --puppet-line: #40a9ff;
+  --puppet-text: #d6e4ff;
+  --puppet-accent: #ffd700;
+}
+
+.puppet-card {
+  box-sizing: border-box;
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: var(--puppet-bg);
+  
+  /* Grid Blueprint */
+  background-image: 
+    linear-gradient(rgba(64, 169, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(64, 169, 255, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  
+  border: 2px solid var(--puppet-line);
+  border-radius: 4px;
+  font-family: 'Share Tech Mono', monospace;
+  color: var(--puppet-text);
+  box-shadow: 0 0 20px rgba(64, 169, 255, 0.2);
+  overflow: hidden;
+}
+.puppet-card * { box-sizing: border-box; }
+
+/* Header */
+.puppet-header {
+  background: rgba(0,0,0,0.3);
+  padding: 15px;
+  border-bottom: 2px solid var(--puppet-line);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.puppet-model {
+  font-family: 'Teko', sans-serif; font-size: 1.8em; color: var(--puppet-line);
+  text-transform: uppercase; line-height: 1; letter-spacing: 1px;
+}
+.puppet-class {
+  font-size: 0.8em; color: var(--puppet-accent);
+  border: 1px solid var(--puppet-accent); padding: 2px 8px; border-radius: 2px;
+}
+
+/* Imagem */
+.puppet-img {
+  width: 100%; height: 250px;
+  background: #000;
+  border-bottom: 1px solid var(--puppet-line);
+  position: relative;
+}
+.puppet-img img {
+  width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  filter: sepia(1) hue-rotate(180deg) saturate(2) brightness(0.8) contrast(1.2); /* Efeito Blueprint Azul */
+}
+.puppet-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent, transparent 2px, rgba(64, 169, 255, 0.1) 3px
+  );
+  pointer-events: none;
+}
+
+/* Dados Técnicos */
+.puppet-data {
+  padding: 15px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
+  background: var(--puppet-panel);
+  border-bottom: 1px dashed var(--puppet-line);
+}
+.data-row { display: flex; justify-content: space-between; font-size: 0.85em; }
+.data-label { color: #6ba6e0; }
+.data-val { color: #fff; font-weight: bold; }
+
+/* Status (HP) */
+.puppet-status { padding: 15px; }
+.status-bar-container {
+  width: 100%; height: 15px; background: #000; border: 1px solid var(--puppet-line);
+  margin-top: 5px; position: relative;
+}
+.status-bar-fill {
+  height: 100%; background: var(--puppet-line);
+  box-shadow: 0 0 10px var(--puppet-line);
+  transition: width 0.5s;
+}
+.status-text {
+  display: flex; justify-content: space-between; font-size: 0.8em; margin-bottom: 2px;
+}
+
+/* Módulos */
+.puppet-modules { padding: 15px; }
+.mod-title {
+  font-family: 'Rajdhani', sans-serif; text-transform: uppercase; color: var(--puppet-accent);
+  border-bottom: 1px solid var(--puppet-accent); margin-bottom: 10px; font-size: 1.1em;
+}
+.mod-list { list-style: none; padding: 0; margin: 0; font-size: 0.85em; }
+.mod-item {
+  padding: 5px 0; border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; justify-content: space-between;
+}
+.mod-item span:last-child { color: #888; font-size: 0.9em; }
+
+/* Footer */
+.puppet-footer {
+  padding: 10px; text-align: center; background: #000;
+  font-size: 0.7em; color: #555; border-top: 1px solid var(--puppet-line);
+}
