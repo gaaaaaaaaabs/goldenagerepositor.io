@@ -1,4 +1,4 @@
-/* --- TEMPLATE DE POSTAGEM (JOGADOR) v2.1 --- */
+/* --- TEMPLATE DE POSTAGEM (JOGADOR) v2.1 - BLINDADO --- */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Yuji+Syuku&family=Share+Tech+Mono&display=swap');
 
 :root {
@@ -14,6 +14,7 @@
   --text-muted: #9FA3B9;
 }
 
+/* O Container Principal */
 .rp-post-container {
   box-sizing: border-box;
   max-width: 700px;
@@ -42,29 +43,29 @@
   22%, 26%, 57% { opacity: 1; text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent); }
 }
 
-/* --- [FIX DA IMAGEM NO FÓRUM] --- */
-.rp-post-image-wrapper {
+/* --- [FIX DA IMAGEM] --- */
+/* Note que agora tudo tem .rp-post-container antes */
+.rp-post-container .rp-post-image-wrapper {
   position: relative;
   border-radius: 4px;
   overflow: hidden;
   margin-bottom: 15px;
   width: 100%;
-  height: 350px; /* Define a altura fixa do banner */
-  background-color: #000; /* Fundo preto se a imagem falhar */
+  height: 350px;
+  background-color: #000;
   border: 1px solid rgba(160, 80, 255, 0.2);
 }
 
-.rp-post-image-wrapper img {
+.rp-post-container .rp-post-image-wrapper img {
   display: block;
   width: 100%;
-  height: 100%; /* Força a imagem a ocupar toda a altura de 350px */
-  object-fit: cover; /* A MÁGICA: Corta o excesso sem esticar/distorcer */
-  object-position: top center; /* Garante que o rosto do personagem (topo) apareça */
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
 }
-/* -------------------------------- */
 
-.rp-post-image-wrapper::before,
-.rp-post-image-wrapper::after {
+.rp-post-container .rp-post-image-wrapper::before,
+.rp-post-container .rp-post-image-wrapper::after {
   content: '呪術師';
   position: absolute;
   top: 30px;
@@ -77,19 +78,19 @@
   z-index: 4;
 }
 
-.rp-post-image-wrapper::before {
+.rp-post-container .rp-post-image-wrapper::before {
   color: var(--accent);
   opacity: 0.6;
   text-shadow: 0 0 10px var(--accent), 0 0 20px var(--accent-dark);
 }
 
-.rp-post-image-wrapper::after {
+.rp-post-container .rp-post-image-wrapper::after {
   color: #fff;
   text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--accent);
   animation: neon-flicker 5s infinite alternate;
 }
 
-.rp-post-image-wrapper .overlay {
+.rp-post-container .overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -98,16 +99,16 @@
   pointer-events: none;
 }
 
-.vignette-overlay {
+.rp-post-container .vignette-overlay {
   background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 60%, rgba(0, 0, 0, 0.7) 100%);
 }
 
-.grid-overlay {
+.rp-post-container .grid-overlay {
   background-image: url('data:image/svg+xml;utf8,<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg"><g fill="rgba(160, 80, 255, 0.05)" fill-opacity="1" fill-rule="evenodd"><path d="M0 40L40 0H20L0 20M40 40V20L20 40"/></g></svg>');
 }
 
-/* Cantos Animados */
-.frame-corners {
+/* Cantos Animados - Isolados */
+.rp-post-container .frame-corners {
   position: absolute;
   top: 0;
   left: 0;
@@ -116,46 +117,46 @@
   z-index: 5;
 }
 
-.frame-corners .corner {
+.rp-post-container .frame-corners .corner {
   position: absolute;
   width: 20px;
   height: 20px;
 }
 
-.frame-corners .corner::before,
-.frame-corners .corner::after {
+.rp-post-container .frame-corners .corner::before,
+.rp-post-container .frame-corners .corner::after {
   content: '';
   position: absolute;
   background: var(--accent);
   box-shadow: 0 0 8px var(--accent);
 }
 
-.frame-corners .corner::before { width: 100%; height: 2px; }
-.frame-corners .corner::after { width: 2px; height: 100%; }
+.rp-post-container .frame-corners .corner::before { width: 100%; height: 2px; }
+.rp-post-container .frame-corners .corner::after { width: 2px; height: 100%; }
 
-.corner.top-left { top: 10px; left: 10px; }
-.corner.top-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.1s forwards; }
-.corner.top-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 0.4s forwards; }
+.rp-post-container .corner.top-left { top: 10px; left: 10px; }
+.rp-post-container .corner.top-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.1s forwards; }
+.rp-post-container .corner.top-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 0.4s forwards; }
 
-.corner.top-right { top: 10px; right: 10px; transform: rotate(90deg); }
-.corner.top-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.7s forwards; }
-.corner.top-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1s forwards; }
+.rp-post-container .corner.top-right { top: 10px; right: 10px; transform: rotate(90deg); }
+.rp-post-container .corner.top-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 0.7s forwards; }
+.rp-post-container .corner.top-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1s forwards; }
 
-.corner.bottom-right { bottom: 10px; right: 10px; transform: rotate(180deg); }
-.corner.bottom-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.3s forwards; }
-.corner.bottom-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1.6s forwards; }
+.rp-post-container .corner.bottom-right { bottom: 10px; right: 10px; transform: rotate(180deg); }
+.rp-post-container .corner.bottom-right::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.3s forwards; }
+.rp-post-container .corner.bottom-right::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 1.6s forwards; }
 
-.corner.bottom-left { bottom: 10px; left: 10px; transform: rotate(270deg); }
-.corner.bottom-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.9s forwards; }
-.corner.bottom-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 2.2s forwards; }
+.rp-post-container .corner.bottom-left { bottom: 10px; left: 10px; transform: rotate(270deg); }
+.rp-post-container .corner.bottom-left::before { top: 0; left: 0; animation: draw-line-x 0.3s ease-out 1.9s forwards; }
+.rp-post-container .corner.bottom-left::after { top: 0; left: 0; animation: draw-line-y 0.3s ease-out 2.2s forwards; }
 
 /* Header do Post */
-.rp-post-header {
+.rp-post-container .rp-post-header {
   text-align: center;
   margin: 30px 0;
 }
 
-.post-title {
+.rp-post-container .post-title {
   font-family: 'Yuji Syuku', serif;
   font-size: 28px;
   color: var(--highlight);
@@ -166,17 +167,17 @@
   gap: 15px;
 }
 
-.post-title::before,
-.post-title::after {
+.rp-post-container .post-title::before,
+.rp-post-container .post-title::after {
   content: '';
   height: 1px;
   flex-grow: 1;
   background: linear-gradient(to right, transparent, var(--accent) 50%, transparent);
   opacity: 0.4;
 }
-.post-title::after { background: linear-gradient(to left, transparent, var(--accent) 50%, transparent); }
+.rp-post-container .post-title::after { background: linear-gradient(to left, transparent, var(--accent) 50%, transparent); }
 
-.post-subtitle {
+.rp-post-container .post-subtitle {
   font-family: 'Share Tech Mono', monospace;
   font-size: 13px;
   color: var(--text);
@@ -186,8 +187,12 @@
   opacity: 0.8;
 }
 
-/* Barras de Status */
-.jjk-dossier-status-bars {
+/* ---------------------------------------------------- */
+/* AQUI ESTAVA O PROBLEMA: BARRAS DE STATUS VAZANDO */
+/* AGORA ESTÃO ISOLADAS DENTRO DO .rp-post-container */
+/* ---------------------------------------------------- */
+
+.rp-post-container .jjk-dossier-status-bars {
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -195,13 +200,13 @@
   margin: 25px auto;
 }
 
-.jjk-dossier-status-item {
+.rp-post-container .jjk-dossier-status-item {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-.jjk-dossier-status-label {
+.rp-post-container .jjk-dossier-status-label {
   font-family: 'Share Tech Mono', monospace;
   font-size: 12px;
   font-weight: 700;
@@ -210,12 +215,12 @@
   color: var(--highlight);
 }
 
-.jjk-dossier-status-bar-wrapper {
+.rp-post-container .jjk-dossier-status-bar-wrapper {
   flex-grow: 1;
   position: relative;
 }
 
-.jjk-dossier-status-bar {
+.rp-post-container .jjk-dossier-status-bar {
   height: 14px;
   background: rgba(0, 0, 0, .3);
   border-radius: 50px;
@@ -223,16 +228,19 @@
   border: 1px solid rgba(0, 0, 0, .2);
 }
 
-.jjk-dossier-status-bar-fill {
+.rp-post-container .jjk-dossier-status-bar-fill {
   height: 100%;
   border-radius: 50px;
   transition: width .5s ease-in-out;
 }
 
-.jjk-dossier-hp-fill { background: linear-gradient(90deg, var(--hp-dark), var(--hp-color)); }
-.jjk-dossier-ea-fill { background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
+.rp-post-container .jjk-dossier-hp-fill { background: linear-gradient(90deg, var(--hp-dark), var(--hp-color)); }
+.rp-post-container .jjk-dossier-ea-fill { background: linear-gradient(90deg, var(--accent-dark), var(--accent)); }
 
-.jjk-dossier-status-value {
+/* A CORREÇÃO CRÍTICA: */
+/* Agora este CSS só afeta quem estiver dentro de .rp-post-container */
+/* O template da Mari (que está fora) será ignorado por esta regra */
+.rp-post-container .jjk-dossier-status-value {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -245,7 +253,7 @@
 }
 
 /* Conteúdo do Texto */
-.rp-post-content {
+.rp-post-container .rp-post-content {
   position: relative;
   background: rgba(0, 0, 0, 0.2);
   padding: 25px;
@@ -258,8 +266,8 @@
   box-shadow: inset 0 0 15px rgba(160, 80, 255, 0.1);
 }
 
-.rp-post-content::before,
-.rp-post-content::after {
+.rp-post-container .rp-post-content::before,
+.rp-post-container .rp-post-content::after {
   content: '';
   position: absolute;
   width: 20px;
@@ -267,29 +275,29 @@
   opacity: 0.5;
 }
 
-.rp-post-content::before {
+.rp-post-container .rp-post-content::before {
   top: 10px;
   left: 10px;
   border-top: 2px solid var(--accent);
   border-left: 2px solid var(--accent);
 }
 
-.rp-post-content::after {
+.rp-post-container .rp-post-content::after {
   bottom: 10px;
   right: 10px;
   border-bottom: 2px solid var(--accent);
   border-right: 2px solid var(--accent);
 }
 
-.rp-post-content p {
+.rp-post-container .rp-post-content p {
   margin: 0 0 1em 0;
 }
-.rp-post-content p:last-child {
+.rp-post-container .rp-post-content p:last-child {
   margin-bottom: 0;
 }
 
 /* Caixa de Notas/Extras */
-.rp-post-extras {
+.rp-post-container .rp-post-extras {
   margin-top: 15px;
   background: rgba(0, 0, 0, 0.5);
   border: 1px dashed var(--text-muted);
@@ -298,7 +306,7 @@
   position: relative;
 }
 
-.rp-post-extras::before {
+.rp-post-container .rp-post-extras::before {
   content: 'INFO // SISTEMA';
   position: absolute;
   top: -10px;
@@ -312,13 +320,13 @@
   font-weight: 700;
 }
 
-.rp-post-extras-content {
+.rp-post-container .rp-post-extras-content {
   font-family: 'Inter', sans-serif;
   font-size: 13px;
   color: var(--text-muted);
   line-height: 1.5;
 }
 
-.rp-post-extras-content b {
+.rp-post-container .rp-post-extras-content b {
   color: var(--text);
 }
