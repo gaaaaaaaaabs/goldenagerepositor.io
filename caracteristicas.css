@@ -128,7 +128,7 @@
   line-height: 1.4;
   border: 1px solid var(--accent2);
   overflow-y: auto;
-  align-items: flex-start;
+  display: block; 
 }
 
 .flip-back::-webkit-scrollbar { width: 4px; }
